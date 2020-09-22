@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo+Github Pages打造属于自己的博客 | VorSonnenaufgang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="VorSonnenaufgang,VorSonnenaufgang's Blog" />
+  
+  <meta name="description" content="在某一天我突发奇想想要好好重新学习一遍数据结构，然后发现自己一直使用的印象笔记居然无法美观地显示代码，鸡肋的代码块功能加无法显示行号，简直让人崩溃，然后我就去到某乎寻求程序员记笔记的正确方法，看到了许多大神们提议自己搭个人博客，我觉得这玩意太难，再加上我刚入门前端，技术很菜，因此依然在寻求现成软件的道路上越走越远，知道自己试用了很多很多东西还是不满意后，心一横决定还是自己弄博客吧，就算花一周时间">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo+Github Pages打造属于自己的博客">
+<meta property="og:url" content="http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:site_name" content="VorSonnenaufgang&#39;s Blog">
+<meta property="og:description" content="在某一天我突发奇想想要好好重新学习一遍数据结构，然后发现自己一直使用的印象笔记居然无法美观地显示代码，鸡肋的代码块功能加无法显示行号，简直让人崩溃，然后我就去到某乎寻求程序员记笔记的正确方法，看到了许多大神们提议自己搭个人博客，我觉得这玩意太难，再加上我刚入门前端，技术很菜，因此依然在寻求现成软件的道路上越走越远，知道自己试用了很多很多东西还是不满意后，心一横决定还是自己弄博客吧，就算花一周时间">
+<meta property="og:locale">
+<meta property="og:image" content="http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/images/1524659005360.jpg">
+<meta property="og:image" content="http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/images/TIM%E6%88%AA%E5%9B%BE20180425203503.png">
+<meta property="og:image" content="http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/images/1524660486058.jpg">
+<meta property="og:image" content="http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/images/1524661001180.jpg">
+<meta property="og:image" content="http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/images/1524661338865.jpg">
+<meta property="og:image" content="http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/images/1524661878672.jpg">
+<meta property="og:image" content="http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/images/1524663257667.jpg">
+<meta property="og:image" content="http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/images/1524663278967.jpg">
+<meta property="og:image" content="http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/images/1524663314033.jpg">
+<meta property="og:image" content="http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/images/1524663417784.jpg">
+<meta property="og:image" content="http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/images/1524663825326.jpg">
+<meta property="og:image" content="http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/images/1524664064514.jpg">
+<meta property="og:image" content="http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/images/1524664165366.jpg">
+<meta property="og:image" content="http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/images/1524664204532.jpg">
+<meta property="article:published_time" content="2018-04-24T22:00:00.000Z">
+<meta property="article:modified_time" content="2018-04-25T20:42:32.000Z">
+<meta property="article:author" content="VorSonnenaufgang">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/images/1524659005360.jpg">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+
+  <!--加载条样式-->
+  <style>
+    .pace .pace-progress {
+    	background-image: linear-gradient(90deg, #F79533 0%, #F37055 15%, #EF4E7B 30%, #A166AB 44%, #5073B8 58%, #1098AD 72%, #07B39B 86%, #6DBA82 100%);
+    	height: 3px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+  </style>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+
+        <div id="header-menu" class="header-menu-pos animated">
+
+
+<a target="_blank" rel="noopener" href="https://github.com/VorSonnenaufgang" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#1E90FF; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">VorSonnenaufgang&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/categories">
+                        <i class="fa fa-book"></i>
+                        <span>Categories</span>
+                    </a>
+                    
+                    <a  href="/tags">
+                        <i class="fa fa-tags"></i>
+                        <span>Tags</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        VorSonnenaufgang&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Carpe diem.
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Home" target="_blank" href="//vor.ink">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/VorSonnenaufgang">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/vorsonnenaufgang">
+                            <i class="fa fa-copyright fa-2x"></i></a>
+                    
+                        <a title="Google" target="_blank" href="//google.com">
+                            <i class="fa fa-google fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Hexo+Github Pages打造属于自己的博客" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Hexo+Github Pages打造属于自己的博客
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Blog/">Blog</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-04-25
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>          
+        </li>
+      </ul>
+       <span class="post-count">文章字数:2.3k字 &nbsp &nbsp  
+         阅读时长:8分钟</span>
+    </div>
+  
+        
+          
+      </header>
+    
+
+    <div class="article-entry post-content" itemprop="articleBody">
+
+    
+    
+
+
+
+      
+            
+            <blockquote>
+<p>在某一天我突发奇想想要好好重新学习一遍数据结构，然后发现自己一直使用的印象笔记居然无法美观地显示代码，鸡肋的代码块功能加无法显示行号，简直让人崩溃，然后我就去到某乎寻求程序员记笔记的正确方法，看到了许多大神们提议自己搭个人博客，我觉得这玩意太难，再加上我刚入门前端，技术很菜，因此依然在寻求现成软件的道路上越走越远，知道自己试用了很多很多东西还是不满意后，心一横决定还是自己弄博客吧，就算花一周时间也值了！</p>
+</blockquote>
+<hr>
+<p>事实上，关键还是方法要找对，在网上翻了许多教程，将目光定格于了某位大神的一篇<a target="_blank" rel="noopener" href="https://my.oschina.net/ryaneLee/blog/638440">简明教程</a>,然后遵照大神的教程，我在一个下午的时间就完成了博客的基本搭建，所以说整个过程对于即使是小白的人来说依然可以很容易地顺利完成。</p>
+<h3 id="一、Github-Pages和Hexo简介"><a href="#一、Github-Pages和Hexo简介" class="headerlink" title="一、Github Pages和Hexo简介"></a>一、Github Pages和Hexo简介</h3><p>Github Pages是Github提供给用户用来展示个人或者项目主页的静态网页系统。每个用户都可以使用自己的github项目创建，上传静态页面的html文件，github会帮你自动更新你的页面。</p>
+<p>hexo是一个用来生成静态界面的框架，使用hexo，你就可以直接使用markdown 来写文章，而不用关心前端样式的展现。</p>
+<p>而我们使用Hexo+Github Pages搭建博客，既可以绑定自己的域名，还可以使用Github Pages可以提供的一个免费的服务器，免去了自己搭建服务器和写数据库的麻烦。</p>
+<h3 id="二、安装Node-js"><a href="#二、安装Node-js" class="headerlink" title="二、安装Node.js"></a>二、安装Node.js</h3><p>由于本人基于Windows系统搭建，因此接下来的描述都是Windows系统下的过程。</p>
+<p>首先在Windows下安装Node.js，这个过程十分简单，到<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">官网</a>下载相应的版本，然后运行exe文件，一直下一步就行，环境变量也会自动配置（建议就选择默认路径，反正也不会占据太大空间）。</p>
+<p><img src="./images/1524659005360.jpg" alt="官网下载"></p>
+<h3 id="三、安装Git"><a href="#三、安装Git" class="headerlink" title="三、安装Git"></a>三、安装Git</h3><p>安装Git的方法也十分简单，去<a target="_blank" rel="noopener" href="https://git-scm.com/download/">官网</a>下载对用自己操作系统的版本然后执行exe文件，这里有一篇比较详细的<a target="_blank" rel="noopener" href="https://blog.csdn.net/renfufei/article/details/41647875">安装教程</a>（建议选择默认路径,并选择设置环境变量），建议安装完成后重启一次电脑。</p>
+<p>安装完成后在桌面按住shift的同时按住鼠标右键，打开命令提示符，输入git version，如果成功输出版本号信息，则安装成功，同时可以看到画面中出现的<code>Git GUI Here</code>和<code>Git Bash Here</code>的按钮。</p>
+<p><img src="./images/TIM%E6%88%AA%E5%9B%BE20180425203503.png" alt="确认安装成功"></p>
+<p>这里有一份教程，有时间打算深入了解下Git：<a target="_blank" rel="noopener" href="http://git.oschina.net/progit/">Git Pro</a></p>
+<h3 id="四、安装Hexo"><a href="#四、安装Hexo" class="headerlink" title="四、安装Hexo"></a>四、安装Hexo</h3><p>在桌面点击鼠标右键，选择<code>Git Bash Here</code>，输入npm命令安装Hexo。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>第一句是安装hexo，第二句是安装hexo部署到git page的deployer，两个都需要安装。</p>
+<p><strong>注意：</strong> 如果出现npm命令无效，则进入到<code>C:\Program Files\nodejs</code>即node.js的安装目录下右键打开<code>Git Bash Here</code>，这个问题出现的原因是环境变量配置不正确，或者之前没有重启主机。</p>
+<p><img src="./images/1524660486058.jpg" alt="安装成功"></p>
+<h3 id="五、Hexo配置"><a href="#五、Hexo配置" class="headerlink" title="五、Hexo配置"></a>五、Hexo配置</h3><p>首先到某个自己喜欢的目录下创建Hexo文件夹，比如我在<code>D:\</code>路径下新建了文件夹并命名为Hexo。</p>
+<p>然后我们进入到此新建文件夹，右键鼠标，打开<code>Git Bash Here</code>（以下简称Git），执行语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<p>上述操作可能需要等待半分钟才能完成，完成后，我们就可以看到Hexo文件夹下生成了如下的文件。</p>
+<p><img src="./images/1524661001180.jpg" alt="文件结构"></p>
+<p>为了确认我们的Hexo已经初始化成功，我们在Git里执行:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong> 执行hexo g命令可以代替hexo generate，hexo s可以代替hexo server。<br>等待一会，执行完成后，我们打开浏览器输入<code>localhost:4000</code>，如果出现如下页面，则说明初始化已经成功。</p>
+<p><img src="./images/1524661338865.jpg" alt="成功"></p>
+<h3 id="五、将Hexo生成博客部署到Github-Pages"><a href="#五、将Hexo生成博客部署到Github-Pages" class="headerlink" title="五、将Hexo生成博客部署到Github Pages"></a>五、将Hexo生成博客部署到Github Pages</h3><p>上面的步骤完成后我们的本地博客就已经成功搭建了，但是也只能在本地访问，而我们想要在互联网上看到自己的博客就必须将它发布到服务器上，Github Pages就是帮我们完成这件事的，因此我们只需要做好初始工作。</p>
+<h4 id="5-1-注册Github账号"><a href="#5-1-注册Github账号" class="headerlink" title="5.1 注册Github账号"></a>5.1 注册Github账号</h4><ol>
+<li>进入<a target="_blank" rel="noopener" href="https://github.com/">Github首页</a></li>
+<li>点击右上角Sign in，注册账号</li>
+</ol>
+<h4 id="5-2-创建项目代码库"><a href="#5-2-创建项目代码库" class="headerlink" title="5.2 创建项目代码库"></a>5.2 创建项目代码库</h4><p>注册完成后，我们要创建Github Pages的代码库，点击<a target="_blank" rel="noopener" href="https://github.com/new">New repository</a>，按照下面注意事项进行创建。</p>
+<p><img src="./images/1524661878672.jpg" alt="创建注意"></p>
+<h4 id="5-3-配置SSH密钥"><a href="#5-3-配置SSH密钥" class="headerlink" title="5.3 配置SSH密钥"></a>5.3 配置SSH密钥</h4><p>配置Github的SSH密钥可以让本地git项目与远程的github建立联系，让我们在本地写了代码之后直接通过git操作就可以实现本地代码库与Github代码库同步。</p>
+<p>第一步：看看是否存在SSH密钥(keys)<br>首先，我们需要看看是否看看本机是否存在SSH keys,打开Git,运行:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~&#x2F;. ssh </span><br></pre></td></tr></table></figure>
+<p> 如果不存在此目录，则进行第二步操作，如果存在，可以略过第二步，直接进入第三步操作。</p>
+<p>第二步：创建一对新的SSH密钥(keys)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</span><br><span class="line">#这将按照你提供的邮箱地址，创建一对密钥</span><br><span class="line">Generating public&#x2F;private rsa key pair.</span><br><span class="line">Enter file in which to save the key (&#x2F;c&#x2F;Users&#x2F;you&#x2F;.ssh&#x2F;id_rsa): [Press enter]</span><br></pre></td></tr></table></figure>
+<p>直接回车，则将密钥按默认文件进行存储。</p>
+<p>接着，根据提示，你需要输入密码和确认密码（说到这里，如果你很放心，其实可以不用密码，就是到输密码的地方，都直接回车，所以每次push就只管回车就行了 ）。相关提示如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase (empty for no passphrase): [Type a passphrase]</span><br><span class="line">Enter same passphrase again: [Type passphrase again]</span><br></pre></td></tr></table></figure>
+<p>输入完成之后，屏幕会显示你的SSH信息。</p>
+<p>第三步：在GitHub账户中添加公钥</p>
+<p>运行如下命令，将公钥的内容复制到系统粘贴板(clipboard)中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clip &lt; ~&#x2F;.ssh&#x2F;id_rsa.pub</span><br></pre></td></tr></table></figure>
+<p>接着回到Github页面，选择用户Setting<br><img src="./images/1524663257667.jpg"></p>
+<p>选择SSH Keys</p>
+<p><img src="./images/1524663278967.jpg" alt="enter description here"></p>
+<p>粘贴密钥，添加</p>
+<p><img src="./images/1524663314033.jpg" alt="enter description here"></p>
+<p>第四步：测试结果</p>
+<p>打开Git，输入命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>如果出现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host &#39;github.com (207.97.227.239)&#39; can&#39;t be established.</span><br><span class="line">RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.</span><br><span class="line">Are you sure you want to continue connecting (yes&#x2F;no)?</span><br></pre></td></tr></table></figure>
+<p>输入yes，然后会出现：</p>
+<p><img src="./images/1524663417784.jpg" alt="enter description here"></p>
+<p>第五步：设置用户信息</p>
+<p>现在已经可以通过SSH链接到GitHub了，但是还有一些个人信息需要完善的。 Git会根据用户的名字和邮箱来记录提交。GitHub也是用这些信息来做权限的处理，输入下面的代码进行个人信息的设置，把名称和邮箱替换成你自己的，名字根据自己的喜好自己取，不一定要是Github的用户名，设置完成后，SSH配置就成功了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;ryanlijianchang&quot;&#x2F;&#x2F;用户名</span><br><span class="line">git config --global user.email  &quot;liji.anchang@163.com&quot;&#x2F;&#x2F;填写自己的邮箱</span><br></pre></td></tr></table></figure>
+<h4 id="5-4-更新本地文件到Github的库"><a href="#5-4-更新本地文件到Github的库" class="headerlink" title="5.4 更新本地文件到Github的库"></a>5.4 更新本地文件到Github的库</h4><p>回到Github页面，在右下角找到自己的项目<code>用户名.github.io</code>，点击打开。</p>
+<p><img src="./images/1524663825326.jpg"></p>
+<p>按照图示打开复制地址：</p>
+<p><img src="./images/1524664064514.jpg"></p>
+<p>打开刚刚创建好的Hexo文件夹，用文本编辑器（如记事本）打开<code>_config.yml</code>：</p>
+<p><img src="./images/1524664165366.jpg"></p>
+<p>然后找到如图所示位置，进行修改并保存。</p>
+<p><img src="./images/1524664204532.jpg"></p>
+<p>接下来在Hexo文件夹下执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong> hexo g可以代替hexo generate，hexo d可以代替hexo deploy，或者直径合并执行，<code>hexo d -g</code>。</p>
+<p>如果报错<code>ERROR Deployer not found: git</code>，说明之前deployer没有成功安装，那么我们在执行一次<code>npm install hexo-deployer-git --save</code>,然后执行刚刚的语句，应该就成功了。</p>
+<p>执行完之后会被要求输入GitHub账号密码，输入完后，我们的博客就已经成功部署到GitHub Pages的服务器上了，我们可以尝试访问下，在浏览器输入<code>GitHub用户名.github.io</code>，就可以进入到自己的博客页面了，例如我的博客页面就是：<a target="_blank" rel="noopener" href="https://vorsonnenaufgang.github.io/">https://vorsonnenaufgang.github.io/</a> ，这样一来，别人也可以通过这个地址访问你的博客，到此为止，我们的整个博客搭建过程就完成了。</p>
+<hr>
+<blockquote>
+<p>是的，我并没有花上一周的时间来搭建博客，反而是在一个小时不到的时间里成功地完成了博客搭建，我以为我终于达到了自己目标，可当我打开写教程的大神的博客时我发现和我现在看到的自己的博客怎么差别这么大！于是又开始折腾的不归路。。。</p>
+</blockquote>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年04月25日 22:42</p>
+        <p>原始链接： <a class="post-url" href="/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" title="Hexo+Github Pages打造属于自己的博客">http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/</a></p>
+        <footer>
+            <a href="http://vor.ink">
+                <img src="/images/logo.png" alt="VorSonnenaufgang">
+                VorSonnenaufgang
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/&title=《Hexo+Github Pages打造属于自己的博客》 — VorSonnenaufgang's Blog&pic=cover.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/&title=《Hexo+Github Pages打造属于自己的博客》 — VorSonnenaufgang's Blog&source=Carpe diem." data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Hexo+Github Pages打造属于自己的博客》 — VorSonnenaufgang's Blog&url=http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/&via=http://vor.ink" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2018/04/25/Hexo+Github%20Pages%E6%89%93%E9%80%A0%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Blog/" class="color5">Blog</a>
+      
+    <a href="/tags/Hexo/" class="color5">Hexo</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+        <div class= "post-toc-name">Toc</div>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%80%E3%80%81Github-Pages%E5%92%8CHexo%E7%AE%80%E4%BB%8B"><span class="post-toc-text">一、Github Pages和Hexo简介</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85Node-js"><span class="post-toc-text">二、安装Node.js</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%89%E8%A3%85Git"><span class="post-toc-text">三、安装Git</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%89%E8%A3%85Hexo"><span class="post-toc-text">四、安装Hexo</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%BA%94%E3%80%81Hexo%E9%85%8D%E7%BD%AE"><span class="post-toc-text">五、Hexo配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%BA%94%E3%80%81%E5%B0%86Hexo%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0Github-Pages"><span class="post-toc-text">五、将Hexo生成博客部署到Github Pages</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-1-%E6%B3%A8%E5%86%8CGithub%E8%B4%A6%E5%8F%B7"><span class="post-toc-text">5.1 注册Github账号</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-2-%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81%E5%BA%93"><span class="post-toc-text">5.2 创建项目代码库</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-3-%E9%85%8D%E7%BD%AESSH%E5%AF%86%E9%92%A5"><span class="post-toc-text">5.3 配置SSH密钥</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-4-%E6%9B%B4%E6%96%B0%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%88%B0Github%E7%9A%84%E5%BA%93"><span class="post-toc-text">5.4 更新本地文件到Github的库</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/04/27/Hexo%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E4%B9%8B%E8%B7%AF%EF%BC%88%E4%B8%80%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          Hexo博客美化之路（一）
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/04/24/Markdown%E8%AF%AD%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Markdown语法</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="Hexo+Github Pages打造属于自己的博客" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cytzSxwzh';
+        var conf = '5280c2cb8d655a130b0308fcb528f675';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+    <div class="theme-info">
+</p>
+
+
+      <span class="post-count">本站博文总字数：61.4k</span>
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018~2020 VorSonnenaufgang<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://vor.ink",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Blog/">Blog</a><a class="category-link" href="/categories/Essay/">Essay</a><a class="category-link" href="/categories/UML/">UML</a><a class="category-link" href="/categories/%E5%A4%A7%E5%AD%A6/">大学</a><a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><a class="category-link" href="/categories/%E6%B3%95%E8%AF%AD/">法语</a><a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F%E7%BA%A7/">系统级</a><a class="category-link" href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/">计算机接口与通信</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Blog/" style="font-size: 15.71px;">Blog</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.43px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 12.86px;">Hexo</a> <a href="/tags/UML/" style="font-size: 14.29px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.14px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.29px;">数据库</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 14.29px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.57px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15.71px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 12.86px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.43px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/categories">
+                    <i class="fa fa-book"></i><span>Categories</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/tags">
+                    <i class="fa fa-tags"></i><span>Tags</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Blog/" style="font-size: 15.71px;">Blog</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.43px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 12.86px;">Hexo</a> <a href="/tags/UML/" style="font-size: 14.29px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.14px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.29px;">数据库</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 14.29px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.57px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15.71px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 12.86px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.43px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"react":{"opacity":0.8},"log":false});</script></body>
+</html>
+
+
+
