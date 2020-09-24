@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>第一章 计算机网络和因特网 | VorSonnenaufgang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="VorSonnenaufgang,VorSonnenaufgang's Blog" />
+  
+  <meta name="description" content="1.1  什么是因特网1.1.1 具体描述构成因特网是一个世界范围的计算机网络。  所有连接到因特网的设备称为主机（host）或端系统（end system）。端系统通过通信链路（communication link）和分组交换机（packet switch）连接到一起。 通信链路是物理媒体，包括同轴电缆、铜线、光纤和无线电频谱，不同链路的传输速率不同，以bit&#x2F;s或bps即每秒传输的bit数来衡">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一章 计算机网络和因特网">
+<meta property="og:url" content="http://vor.ink/2020/09/23/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/index.html">
+<meta property="og:site_name" content="VorSonnenaufgang&#39;s Blog">
+<meta property="og:description" content="1.1  什么是因特网1.1.1 具体描述构成因特网是一个世界范围的计算机网络。  所有连接到因特网的设备称为主机（host）或端系统（end system）。端系统通过通信链路（communication link）和分组交换机（packet switch）连接到一起。 通信链路是物理媒体，包括同轴电缆、铜线、光纤和无线电频谱，不同链路的传输速率不同，以bit&#x2F;s或bps即每秒传输的bit数来衡">
+<meta property="og:locale">
+<meta property="og:image" content="http://vor.ink/2020/09/23/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/images/1600929532107.png">
+<meta property="og:image" content="http://vor.ink/2020/09/23/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/images/1600929847970.png">
+<meta property="og:image" content="http://vor.ink/2020/09/23/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/images/1600930311239.png">
+<meta property="og:image" content="http://vor.ink/2020/09/23/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/images/1600930338818.png">
+<meta property="og:image" content="http://vor.ink/2020/09/23/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/images/1600930564700.png">
+<meta property="og:image" content="http://vor.ink/2020/09/23/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/images/1600930588560.png">
+<meta property="og:image" content="http://vor.ink/2020/09/23/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/images/1600930652993.png">
+<meta property="og:image" content="http://vor.ink/2020/09/23/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/images/1600930801981.png">
+<meta property="og:image" content="http://vor.ink/2020/09/23/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/images/1600930757998.png">
+<meta property="og:image" content="http://vor.ink/2020/09/23/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/images/1600931566814.png">
+<meta property="article:published_time" content="2020-09-23T15:11:51.000Z">
+<meta property="article:modified_time" content="2020-09-24T07:16:17.579Z">
+<meta property="article:author" content="VorSonnenaufgang">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://vor.ink/2020/09/23/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/images/1600929532107.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+
+  <!--加载条样式-->
+  <style>
+    .pace .pace-progress {
+    	background-image: linear-gradient(90deg, #F79533 0%, #F37055 15%, #EF4E7B 30%, #A166AB 44%, #5073B8 58%, #1098AD 72%, #07B39B 86%, #6DBA82 100%);
+    	height: 3px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+  </style>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+
+        <div id="header-menu" class="header-menu-pos animated">
+
+
+<a target="_blank" rel="noopener" href="https://github.com/VorSonnenaufgang" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#1E90FF; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">VorSonnenaufgang&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/categories">
+                        <i class="fa fa-book"></i>
+                        <span>Categories</span>
+                    </a>
+                    
+                    <a  href="/tags">
+                        <i class="fa fa-tags"></i>
+                        <span>Tags</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        VorSonnenaufgang&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Carpe diem.
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Home" target="_blank" href="//vor.ink">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/VorSonnenaufgang">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/vorsonnenaufgang">
+                            <i class="fa fa-copyright fa-2x"></i></a>
+                    
+                        <a title="Google" target="_blank" href="//google.com">
+                            <i class="fa fa-google fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-第一章 计算机网络和因特网" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      第一章 计算机网络和因特网
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/计算机网络/">计算机网络</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2020-09-23
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>          
+        </li>
+      </ul>
+       <span class="post-count">文章字数:5.9k字 &nbsp &nbsp  
+         阅读时长:20分钟</span>
+    </div>
+  
+        
+          
+      </header>
+    
+
+    <div class="article-entry post-content" itemprop="articleBody">
+
+    
+    
+
+
+
+      
+            
+            <h2 id="1-1-什么是因特网"><a href="#1-1-什么是因特网" class="headerlink" title="1.1  什么是因特网"></a>1.1  什么是因特网</h2><h3 id="1-1-1-具体描述构成"><a href="#1-1-1-具体描述构成" class="headerlink" title="1.1.1 具体描述构成"></a>1.1.1 具体描述构成</h3><p>因特网是一个世界范围的计算机网络。</p>
+<p><img src="./images/1600929532107.png"></p>
+<p>所有连接到因特网的设备称为<strong>主机</strong>（host）或<strong>端系统</strong>（end system）。端系统通过<strong>通信链路</strong>（communication link）和<strong>分组交换机</strong>（packet switch）连接到一起。</p>
+<p>通信链路是物理媒体，包括同轴电缆、铜线、光纤和无线电频谱，不同链路的传输速率不同，以bit/s或bps即每秒传输的bit数来衡量。</p>
+<p>当一台端系统向另一台端系统发送数据时，发送端将数据分段，并在每段加上首部字节，由此形成的信息包是<strong>分组</strong>（packet）。分组通过网络发送到目的端系统，然后被装配成原始数据。</p>
+<p>分组交换机从入通信链路接收到达分组，从出通信链路转发该分组。分组交换机有<strong>路由器</strong>（router）和<strong>链路层交换机</strong>（link-layer switch）。路由器通常用于网络核心，链路层交换机用于接入网中。</p>
+<p>从发送端到接收端系统，一个分组所经历的一系列通信链路和分组交换机称为通过该网络的<strong>路径</strong>（route或path）。</p>
+<p>端系统通过<strong>因特网服务提供商</strong>（Internet Service Provider ISP）接入因特网。每个ISP是一个由多个分组交换机和多段通信链路组成的网络。ISP是互联的，底层的ISP通过国家的、国际的高层ISP互联起来，高层ISP由通过高速光纤链路互联的高速路由器组成。</p>
+<p>端系统、分组交换机和其他因特网都要运行一系列<strong>协议</strong>（protocol），这些协议控制因特网中信息的接收和发送。<strong>TCP</strong>（Transmission Control Protocol 传输控制协议）和<strong>IP</strong>（Internet Protocol 网际协议）是因特网中两个最为重要的协议。</p>
+<h3 id="1-1-2-服务描述"><a href="#1-1-2-服务描述" class="headerlink" title="1.1.2 服务描述"></a>1.1.2 服务描述</h3><p>从为应用程序提供服务的基础设施的角度来描述因特网，即将因特网描述为应用程序的平台。这些应用称为<strong>分布式应用程序</strong>（distributed application），因为他们涉及多台相互交换数据的端系统。</p>
+<p>因特网应用程序运行在端系统上，他们并不运行在网络核心中的分组交换机，因此分组交换机虽然促进端系统之间的数据交换，但是他们并不关心作为数据的源或宿的应用程序。</p>
+<p>与因特网相连的端系统提供了一个<strong>应用程序编程接口</strong>（Application Programming Interface API），该API规定了运行在一个端系统上的软件请求因特网基础设施向运行在另一个端系统上的特定目的地软件交付数据的方式。因特网API是一套发送软件必须遵循的规则集合。</p>
+<h3 id="1-1-3-什么是协议"><a href="#1-1-3-什么是协议" class="headerlink" title="1.1.3 什么是协议"></a>1.1.3 什么是协议</h3><p>在因特网中，凡是涉及两个或多个远程通信实体的所有活动都受协议的制约。</p>
+<p>一个协议定义了在两个或多个通信实体之间交换的报文格式和次序，以及报文发送和/或接收一条报文或其他事件所采取的动作。</p>
+<p><img src="./images/1600929847970.png"></p>
+<h2 id="1-2-网络边缘"><a href="#1-2-网络边缘" class="headerlink" title="1.2 网络边缘"></a>1.2 网络边缘</h2><p>因特网的端系统包括桌面计算机、服务器、移动计算机和越来越多的非传统设备。</p>
+<p>端系统也被称为主机，它们容纳应用程序，如Web浏览器程序，Web服务器程序等。</p>
+<p>主机可以被进一步划分为两类：<strong>客户</strong>（client）和<strong>服务器</strong>（server）。客户即桌面PC、移动PC和智能手机等，服务器则是更强的机器，用于存储和发布Web页面、流视频、中继电子邮件。</p>
+<h3 id="1-2-1-接入网"><a href="#1-2-1-接入网" class="headerlink" title="1.2.1 接入网"></a>1.2.1 接入网</h3><p><strong>接入网</strong>（access network）是指将端系统连接到<strong>边缘路由器</strong>（edge router）的物理链路。边缘路由器是端系统到任何其他远程端系统的路径上的第一台路由器。</p>
+<ol>
+<li>家庭接入：DSL，电缆，FTTH，拨号和卫星</li>
+<li>企业（和家庭）接入：以太网和WiFi</li>
+<li>广域无线接入：3G和LTE</li>
+</ol>
+<h3 id="1-2-2-物理媒体"><a href="#1-2-2-物理媒体" class="headerlink" title="1.2.2 物理媒体"></a>1.2.2 物理媒体</h3><p>在网络中，一个bit从源到目的地传输时要经过一系列“传输器-接收器”对，对于每个传输器-接收器对，通过跨越一种<strong>物理媒体</strong>（physical medium）传播电磁波或光脉冲来发送该bit。</p>
+<p>物理媒体有多种形式和形状，包括双绞铜线，同轴电缆，多模光纤缆，陆地无线电频谱和卫星无线电频谱。</p>
+<p>物理媒体划分为：<strong>导引型媒体</strong>（guided media）和<strong>非导引型媒体</strong>（unguided ，media）。对于导引型媒体，电波沿着固体媒体前行，如光缆，双绞铜线或同轴电缆。对于非导引型媒体，电波在空气或外层空间中传播，如无线局域网或数字卫星频道。</p>
+<ol>
+<li>双绞铜线<br>最便宜且使用最为普遍的引导性传输媒体。由两根隔离的铜线组成，以规则的螺旋形式排列。通常许多双绞线捆扎在一起形成一根电缆，并在外面覆盖上保护性防护层。一对电线构成一个通信链路。无屏蔽双绞线（Unshielded Twisted Pair UTP）常用在建筑物内的计算机网络中，即用于局域网（LAN）中。双绞线能达到10Gbps，最终已经作为高速LAN联网的主要方式。</li>
+<li>同轴电缆<br>由两个铜导体组成，同心但不并行。借助这种结构和特殊的绝缘体和保护层，同轴电缆能够达到较高的数据传输速率。在电缆电视系统中相当普遍。电缆电视系统与电缆调制解调器结合，提供数十Mbps因特网接入。</li>
+<li>光纤<br>光纤是一种细而柔软的、能够引导光脉冲的媒体。每一个脉冲表示一个bit，一根光纤能够支持较高的比特速率（数十甚至数百Gbps），且不受电磁干扰，光缆信号衰减极低，且很难窃听。光纤是长途引导型传输媒体，特别是跨海链路，广泛用于因特网的主干。高成本的光设备也阻碍光纤在短途运输中的应用。LAN或家庭接入网就不会使用。</li>
+<li>陆地无线电信道<br>无线电信道承载电磁频谱中的信号。不需要安装物理线路，穿透墙壁、提供与移动用户连接以及长距离承载信号的能力。极大依赖于传播环境和传输信号的距离，有路径损耗、遮挡衰落和多径衰落以及干扰。个人设备如无线耳机、键盘跨短距离运行，无线LAN技术使用局域无线电信道，蜂窝接入技术使用了广域无线电信道。</li>
+<li>卫星无线电信道<br>一颗通信卫星连接两个或多个位于地球的微波发射方/接收方，被称为地面站。该卫星在一个频段上接收传输，使用一个转发器再生信号，并在另一个频率上传输信号。</li>
+</ol>
+<h2 id="1-3-网络核心"><a href="#1-3-网络核心" class="headerlink" title="1.3 网络核心"></a>1.3 网络核心</h2><p><strong>网络核心</strong>即由互联因特网端系统的分组交换机和链路构成的网状网络。</p>
+<h3 id="1-3-1-分组交换"><a href="#1-3-1-分组交换" class="headerlink" title="1.3.1 分组交换"></a>1.3.1 分组交换</h3><p>在各种网络应用中，端系统彼此交换<strong>报文</strong>（message）。报文能够包含协议设计者需要的任何东西。报文可以执行一种控制功能，也可以包含数据。</p>
+<p>为了从源端系统向目的端系统发送一个报文，源将长报文划分为较小的数据块，称之为<strong>分组</strong>（packet）。在源和目的之间，每个分组都通过通信链路和<strong>分组交换机</strong>（packet switch）即路由器和链路层交换机来传送。</p>
+<p>分组以等于该链路最大传输速率的速度传输通过通信链路。如果源端系统或者分组交换机经过一条链路发送一个L比特的分组，链路的传输速率为R比特/秒，则传输该分组的时间为L/R秒。</p>
+<h4 id="1-存储转发传输"><a href="#1-存储转发传输" class="headerlink" title="1. 存储转发传输"></a>1. 存储转发传输</h4><p>多数分组交换机在链路的输入端使用<strong>存储转发传输机制</strong>（store-and-forward transmission）。在交换机能够开始向输出链路传输该分组的第一个比特之前必须接收到整个分组。</p>
+<p> <img src="./images/1600930311239.png"></p>
+<p>源在0时刻传输，在时刻L/R路由器接收到整个分组，2L/R传输完整个分组。总时延2L/R</p>
+<p>如果有N条速率为R的链路组成路径（源到目的之间有N-1台路由器），总时延NL/R</p>
+<h4 id="2-排队时延和分组丢失"><a href="#2-排队时延和分组丢失" class="headerlink" title="2. 排队时延和分组丢失"></a>2. 排队时延和分组丢失</h4><p>每个分组交换机有多条链路与之相连。对于每条相连的链路，该分组交换机具有一个<strong>输出缓存</strong>（output buffer）也称为输出队列（output queue），它用来存储路由器准备发往那条链路的分组。如果到达的分组需要传输到某条链路，但发现该条链路正忙于传输其他分组，则该分组必须在该输出缓存中等待。</p>
+<p>因此除了存储转发时延，分组还要承受输出缓存的<strong>排队时延</strong>（queue delay）。排队时延是变化的，变化的程度取决于网络中的用塞程度。</p>
+<p>缓存空间的大小是有限的，一个到达的分组如果发现缓存已经被占满，将出现<strong>分组丢失</strong>（packet lost丢包），到达的分组或已经参与排队的分组之一将被丢弃。</p>
+<h4 id="3-转发表和路由选择协议"><a href="#3-转发表和路由选择协议" class="headerlink" title="3. 转发表和路由选择协议"></a>3. 转发表和路由选择协议</h4><p>在因特网中每个端系统具有一个称为IP的地址，源主机向目的端系统发送一个分组时，源在该分组的首部包含了目的地的IP地址。</p>
+<p>每台路由器具有一个<strong>转发表</strong>（forwarding table），用于将目的地址（或一部分）映射为输出链路。当某分组到达一台路由器时，路由器检查该地址，并用这个目的地址搜索其转发表，以发现适当的出链路，然后将该分组导向出链路。</p>
+<p><strong>路由选择协议</strong>（routing protocol）用于自动地设置这些转发表。</p>
+<h3 id="1-3-2-电路交换"><a href="#1-3-2-电路交换" class="headerlink" title="1.3.2 电路交换"></a>1.3.2 电路交换</h3><p>通过网络链路和交换机移动数据有两种基本方法：<strong>电路交换</strong>（circuit switching）和<strong>分组交换</strong>（packet switching）。</p>
+<p>在电路交换中，在端系统间通信会话期间，预留了端系统间通信沿路所需要的资源（缓存，链路传输速率）。在分组交换中，这些资源不是预留的。</p>
+<p>例如电话网络。在发送方能够发送信息之前，该网络必须在发送方和接收方之间建立一条连接，沿着发送方和接收方路径上的交换机都将为该连接维护连接状态，该连接被称为一条<strong>电路</strong>（circuit），也在连接期间在该网络链路上预留恒定的传输速率（表示为每条链路传输容量的一部分）。</p>
+<p>分组交换的性能优于电路交换的性能。提供了更好的带宽共享。</p>
+<h3 id="1-3-3-网络的网络"><a href="#1-3-3-网络的网络" class="headerlink" title="1.3.3 网络的网络"></a>1.3.3 网络的网络</h3><p>接入ISP是客户（customer），全球承载ISP时提供商（provider）。</p>
+<p><strong>区域ISP</strong>（reginal ISP），<strong>第一层ISP</strong>（tier-1 ISP），ISP互联，在等级结构基础上增加<strong>存在点</strong>（Point of Presence，PoP），<strong>多宿</strong>（multi-home），<strong>对等</strong>（peer）和<strong>因特网交换点</strong>（Internet exchange point，IXP）。</p>
+<p>PoP存在于除了底层（接入ISP）等级之外的所有层次。一个PoP是提供商网络中的一台或多台路由器群组，其中客户ISP能够与提供商ISP连接，对于要与提供商PoP连接的客户网络，可以从第三方通信提供商租用高速链路直接将它的路由器之一连接到该PoP的一台路由器。</p>
+<p>除第一层以外的任何ISP可以选择为多宿，即可以与两个或更多提供商ISP连接。当一个ISP多宿时，即使提供商之一出现故障，仍然能够发送和接收分组。</p>
+<p>位于相同等级结构层次的邻近一对ISP能够对等，即能够直接将他们的网络连接到一起使他们的所有流量直接连接而不是通过上游的中间ISP传输，任一个ISP不向其对等收费。第三方公司创建一个因特网交换点IXP，多个ISP在这里共同对等。</p>
+<p>内容提供商网络（content provider network）即服务器，数据中心。</p>
+<p><img src="./images/1600930338818.png"></p>
+<h2 id="1-4-分组交换网中的时延、丢包和吞吐量"><a href="#1-4-分组交换网中的时延、丢包和吞吐量" class="headerlink" title="1.4 分组交换网中的时延、丢包和吞吐量"></a>1.4 分组交换网中的时延、丢包和吞吐量</h2><h3 id="1-4-1-分组交换网络中的时延概述"><a href="#1-4-1-分组交换网络中的时延概述" class="headerlink" title="1.4.1 分组交换网络中的时延概述"></a>1.4.1 分组交换网络中的时延概述</h3><p>包括<strong>结点处理时延</strong>（nodal processing delay），<strong>排队时延</strong>（queuing delay）、<strong>传输时延</strong>（transmission delay）和<strong>传播时延</strong>（propagation delay），这些时延总体累加就是结点总时延）（total nodal delay）。</p>
+<h4 id="1-处理时延："><a href="#1-处理时延：" class="headerlink" title="1. 处理时延："></a>1. 处理时延：</h4><p>检查分组首部和决定该分组导向何处所需要的时间，还包括比如检查比特级别的差错所需要的时间。高速路由器的处理时延通常是微秒甚至更低数量级。</p>
+<h4 id="2-排队时延："><a href="#2-排队时延：" class="headerlink" title="2. 排队时延："></a>2. 排队时延：</h4><p>分组在链路上等待传输的时间。排队时延长度取决于先期到达的正在排队等待向链路传输的分组数量。实际排队时延可以是毫秒到微秒数量级。</p>
+<h4 id="3-传输时延："><a href="#3-传输时延：" class="headerlink" title="3. 传输时延："></a>3. 传输时延：</h4><p>先到先服务方式传输时，仅当所有已经到达的分组被传输后才传输刚到达的分组。传输时延等于该分组的长度除以路由器A到B的链路传输速率，L/R，是路由器将所有分组的比特推向链路所需要的时间。实际传输时延通常在毫秒到微秒量级。</p>
+<h4 id="4-传播时延："><a href="#4-传播时延：" class="headerlink" title="4. 传播时延："></a>4. 传播时延：</h4><p>一旦一个bit被推向链路，该bit需要向路由器B传播，从该链路的起点到路由器B所需要的时间是传播时延。该bit以该链路的传播速率传播，传播速率取决于链路的物理媒体（光纤，双绞铜线等），速率范围2<em>10^8 ~ 3</em>10^8m/s，等于或略小于光速。该传播时延等于路由器之间的距离除以传播速率，d/s。广域网中传播时延为毫秒量级。</p>
+<h4 id="5-传输时延和传播时延的比较："><a href="#5-传输时延和传播时延的比较：" class="headerlink" title="5. 传输时延和传播时延的比较："></a>5. 传输时延和传播时延的比较：</h4><p>通过高速公路收费站和通过高速公路路段的区别。传输时延时路由器推出分组所需要的时间，是分组长度和链路传输速率的函数，与两台路由器之间的距离无关。另一方面，传播时延是一个比特从一台路由器向另一台路由器传播所需要的时间，是两台路由器之间距离的函数，与分组长度或链路传输速率无关。</p>
+<h3 id="1-4-2-排队时延和丢包"><a href="#1-4-2-排队时延和丢包" class="headerlink" title="1.4.2 排队时延和丢包"></a>1.4.2 排队时延和丢包</h3><p>与其他三项不同，排队时延对不同的分组可能是不同的，排队时延的大小很大程度取决于流量到达该队列的速率、链路的传输速率和到达流量的性质。</p>
+<p>a-分组到达队列的平均速率（分组/秒，pkt/s），R-传输速率，从队列中推出比特的速率（bps），L-每个分组包含L比特。比特到达队列的平均速率为La bps。La/R被称为<strong>流量强度</strong>（traffic intensity）。</p>
+<p>如果La/R&gt;1，则比特到达队列的平均速率超过从该队列传输出去的速率，该队列趋向于无界增加，排队时延趋向无穷大。流量工程的设计原则：设计系统时流量强度不能大于1！</p>
+<p>如果La/R&lt;=1，到达流量的性质影响排队时延。如果分组周期性到达，即L/R秒到达一个分组，则每个分组将到达一个空队列中，不会有排队时延。如果分组突发性到达，则有很大的排队时延。例如假定L/R秒同时到达N个分组，传输的第一个分组没有排队时延，第二个时延L/R，第n个时延(n-1)L/R。</p>
+<p>实际上到达队列的过程通常是随机的，即到达并不遵循任何模式，分组之间的时间间隔是随机的。但还是可以通过La/R来描述流量强度和排队时延的关系。</p>
+<p> <img src="./images/1600930564700.png"></p>
+<p>流量强度接近于0时排队时延接近于0，随着流量强度接近于1，平均排队时延迅速增加，该强度少量的增加将导致时延大得多的增加。</p>
+<p>在现实中，一条链路前的队列只有有限的容量，随着流量强度接近于1，排队时延并不实际趋向无穷大，而是到达的分组发现一个满的队列，由于没有地方存储这个分组，路由器将丢弃（drop）该分组，该分组将丢失（lost）。</p>
+<p>从端系统的角度看，丢包现象看起来像是一个分组已经传输到网络核心但是却不会从网络发送到目的地。</p>
+<h3 id="1-4-3-端到端时延"><a href="#1-4-3-端到端时延" class="headerlink" title="1.4.3 端到端时延"></a>1.4.3 端到端时延</h3><p>假定源主机和目的主机之间有N-1台路由器，假定网络此时无拥塞（排队时延微不足道），每台路由器和源主机上的处理时延是d_proc，每台路由器和源主机的输出速率是R bps，每条链路的传输时延d_prop，结点时延累加，就得到端到端时延：<br><code>d_(end−end)=N(d_proc+d_trans+d_prop) 其中d_trans=L/R </code> </p>
+<h3 id="1-4-4-计算机网络中的吞吐量"><a href="#1-4-4-计算机网络中的吞吐量" class="headerlink" title="1.4.4 计算机网络中的吞吐量"></a>1.4.4 计算机网络中的吞吐量</h3><p>考虑从主机A到主机B跨越计算机网络传送一个大文件。在任何瞬间的瞬时吞吐量（instantaneous throughput）是主机B接收到该文件的速率（bps）。如果该文件以F比特组成，主机B接收到所有比特用T秒，平均吞吐量（average throughput）是F/T bps。</p>
+<p> <img src="./images/1600930588560.png"></p>
+<p>其中吞吐量是min{Rc, Rs}，它是瓶颈链路（bottleneck link）的传输速率。</p>
+<p><img src="./images/1600930652993.png"></p>
+<p>如果网络核心中的传输速率远大于接入网速率，则还是吞吐量还是min{Rs, Rc}（现实情况，因特网中对吞吐量的限制因素通常是接入网），但如果同时发生10个下载而网络核心传输速率R/10又小于Rs和Rc，那么吞吐量只有R/10了。</p>
+<h2 id="1-5-协议层次及其服务模型"><a href="#1-5-协议层次及其服务模型" class="headerlink" title="1.5 协议层次及其服务模型"></a>1.5 协议层次及其服务模型</h2><h3 id="1-5-1-分层的体系结构"><a href="#1-5-1-分层的体系结构" class="headerlink" title="1.5.1 分层的体系结构"></a>1.5.1 分层的体系结构</h3><p><img src="./images/1600930801981.png"></p>
+<p>协议分层：网络设计者以分层（layer）的方式组织协议以及实现这些协议额网络硬件和软件，这些协议属于网络的一个层次，且网络的一个层次向它的上一层提供服务（service），即所谓的一层的服务模型（service model），每层通过在该层中执行某些动作或使用直接下层的服务来提供服务。</p>
+<p>一个协议层能够用软件、硬件或两者的结合来实现，第n层协议的不同部分常常位于这些网络组件的各部分中。<br>各层的所有协议被称为<strong>协议栈</strong>（protocol stack）。因特网的协议栈由5个层次组成：物理层、链路层、网络层、运输层和应用层。</p>
+<h4 id="1-应用层"><a href="#1-应用层" class="headerlink" title="1. 应用层"></a>1. 应用层</h4><p>应用层是网络应用程序及它们的应用层协议存留的地方。因特网的应用层包括许多协议，例如HTTP（web文档的请求和传送），SMTP（电子邮件报文的传送），FTP（两个端系统之间的文件传送），DNS（域名系统）。应用层协议分布在多个端系统上，一个端系统中的应用程序使用协议与另一个端系统中的应用程序交换信息分组即<strong>报文</strong>（message）。</p>
+<h4 id="2-运输层"><a href="#2-运输层" class="headerlink" title="2. 运输层"></a>2. 运输层</h4><p>运输层在应用程序端点之间传送应用层报文。因特网中的TCP和UDP都能运输报文。TCP向应用程序提供面向连接的服务，包括应层层报文向目的地的确保传递和流量控制，TCP也将长报文划分为短报文，提供拥塞控制机制。UDP提供无连接的服务，没有可靠性，没有流量控制也没有拥塞控制。运输层分组称为<strong>报文段</strong>（segment）。</p>
+<h4 id="3-网络层"><a href="#3-网络层" class="headerlink" title="3. 网络层"></a>3. 网络层</h4><p>因特网的网络层负责将称为<strong>数据报</strong>（datagram）的网络层分组从一台主机移动到另一台主机。源主机中的因特网运输层协议（TCP或UDP）向网络层递交运输层报文段和目的地址。网络层包含著名的IP协议，该协议定义了在数据报中的各个字段以及端系统和路由器如果作用于这些字段，所有具有网络层的因特网组件必须运行IP协议。网络层还包括决定路由的路由选择协议，它使得数据报根据该路由从源传输到目的地。</p>
+<h4 id="4-链路层"><a href="#4-链路层" class="headerlink" title="4. 链路层"></a>4. 链路层</h4><p>因特网的网络层通过源和目的地之间的一系列路由器路由数据报，在每个结点，网络层将数据报下传给链路层，链路层沿着路径将数据报传递给下一个结点，下一个结点链路层又将数据上传给网络层。链路层的服务取决于应用于该链路的特定链路层协议。链路层分组称为<strong>帧</strong>（frame）</p>
+<h4 id="5-物理层"><a href="#5-物理层" class="headerlink" title="5. 物理层"></a>5. 物理层</h4><p>链路层将帧从一个网络元素移动到邻近的网络元素，而物理层的任务是将帧中的一个比特从一个结点移动到下一个结点。这层中的协议仍然是链路相关的，且进一步与该链路的实际传输媒体相关。</p>
+<p>OSI模型：开放系统互连模型，大约7层计算机网络。增加了表示层和会话层。</p>
+<p><img src="./images/1600930757998.png"></p>
+<p>表示层的作用是使通信的应用程序能够解释交换数据的含义，包括数据压缩、数据加密、数据描述。会话层提供了数据交换定界和同步功能，包括建立检查点和恢复方案。</p>
+<h3 id="1-5-2-封装（encapsulation）"><a href="#1-5-2-封装（encapsulation）" class="headerlink" title="1.5.2 封装（encapsulation）"></a>1.5.2 封装（encapsulation）</h3><p>在发送主机端，一个<strong>应用层报文</strong>（application-layer message）被传送给运输层，运输层收取报文并附上附加信息（首部信息）该首部将被接受端的运输层使用。应用层报文和运输层首部信息构成<strong>运输层报文段</strong>（transport-layer segement），运输层报文段因此封装了应用层报文。运输层向网络层传递该报文段后，网络层增加了如源和目的端系统地址等网络层首部信息，产生<strong>网络层数据报</strong>（network-layer datagram）。该数据报接下来被传递给链路层，链路层增加链路层首部信息并创建<strong>链路层帧</strong>（link-layer frame）。</p>
+<p><img src="./images/1600931566814.png"></p>
+<p>所以在每一层，一个分组具有两种类型字段：首部字段和有效载荷字段（payload field）。有效载荷字段来自于上一层的分组。</p>
+<hr>
+<p>2020.9.23 mercredi 17:11 done</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2020年09月24日 09:16</p>
+        <p>原始链接： <a class="post-url" href="/2020/09/23/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/" title="第一章 计算机网络和因特网">http://vor.ink/2020/09/23/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/</a></p>
+        <footer>
+            <a href="http://vor.ink">
+                <img src="/images/logo.png" alt="VorSonnenaufgang">
+                VorSonnenaufgang
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2020/09/23/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/&title=《第一章 计算机网络和因特网》 — VorSonnenaufgang's Blog&pic=cover.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2020/09/23/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/&title=《第一章 计算机网络和因特网》 — VorSonnenaufgang's Blog&source=Carpe diem." data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2020/09/23/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《第一章 计算机网络和因特网》 — VorSonnenaufgang's Blog&url=http://vor.ink/2020/09/23/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/&via=http://vor.ink" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2020/09/23/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2020/09/23/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/计算机网络/" class="color1">计算机网络</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+        <div class= "post-toc-name">Toc</div>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-1-%E4%BB%80%E4%B9%88%E6%98%AF%E5%9B%A0%E7%89%B9%E7%BD%91"><span class="post-toc-text">1.1  什么是因特网</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-1-1-%E5%85%B7%E4%BD%93%E6%8F%8F%E8%BF%B0%E6%9E%84%E6%88%90"><span class="post-toc-text">1.1.1 具体描述构成</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-1-2-%E6%9C%8D%E5%8A%A1%E6%8F%8F%E8%BF%B0"><span class="post-toc-text">1.1.2 服务描述</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-1-3-%E4%BB%80%E4%B9%88%E6%98%AF%E5%8D%8F%E8%AE%AE"><span class="post-toc-text">1.1.3 什么是协议</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-2-%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98"><span class="post-toc-text">1.2 网络边缘</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-1-%E6%8E%A5%E5%85%A5%E7%BD%91"><span class="post-toc-text">1.2.1 接入网</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-2-%E7%89%A9%E7%90%86%E5%AA%92%E4%BD%93"><span class="post-toc-text">1.2.2 物理媒体</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-3-%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83"><span class="post-toc-text">1.3 网络核心</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-3-1-%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2"><span class="post-toc-text">1.3.1 分组交换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-%E5%AD%98%E5%82%A8%E8%BD%AC%E5%8F%91%E4%BC%A0%E8%BE%93"><span class="post-toc-text">1. 存储转发传输</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-%E6%8E%92%E9%98%9F%E6%97%B6%E5%BB%B6%E5%92%8C%E5%88%86%E7%BB%84%E4%B8%A2%E5%A4%B1"><span class="post-toc-text">2. 排队时延和分组丢失</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-%E8%BD%AC%E5%8F%91%E8%A1%A8%E5%92%8C%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E5%8D%8F%E8%AE%AE"><span class="post-toc-text">3. 转发表和路由选择协议</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-3-2-%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2"><span class="post-toc-text">1.3.2 电路交换</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-3-3-%E7%BD%91%E7%BB%9C%E7%9A%84%E7%BD%91%E7%BB%9C"><span class="post-toc-text">1.3.3 网络的网络</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-4-%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2%E7%BD%91%E4%B8%AD%E7%9A%84%E6%97%B6%E5%BB%B6%E3%80%81%E4%B8%A2%E5%8C%85%E5%92%8C%E5%90%9E%E5%90%90%E9%87%8F"><span class="post-toc-text">1.4 分组交换网中的时延、丢包和吞吐量</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-4-1-%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E6%97%B6%E5%BB%B6%E6%A6%82%E8%BF%B0"><span class="post-toc-text">1.4.1 分组交换网络中的时延概述</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-%E5%A4%84%E7%90%86%E6%97%B6%E5%BB%B6%EF%BC%9A"><span class="post-toc-text">1. 处理时延：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-%E6%8E%92%E9%98%9F%E6%97%B6%E5%BB%B6%EF%BC%9A"><span class="post-toc-text">2. 排队时延：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-%E4%BC%A0%E8%BE%93%E6%97%B6%E5%BB%B6%EF%BC%9A"><span class="post-toc-text">3. 传输时延：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-%E4%BC%A0%E6%92%AD%E6%97%B6%E5%BB%B6%EF%BC%9A"><span class="post-toc-text">4. 传播时延：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-%E4%BC%A0%E8%BE%93%E6%97%B6%E5%BB%B6%E5%92%8C%E4%BC%A0%E6%92%AD%E6%97%B6%E5%BB%B6%E7%9A%84%E6%AF%94%E8%BE%83%EF%BC%9A"><span class="post-toc-text">5. 传输时延和传播时延的比较：</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-4-2-%E6%8E%92%E9%98%9F%E6%97%B6%E5%BB%B6%E5%92%8C%E4%B8%A2%E5%8C%85"><span class="post-toc-text">1.4.2 排队时延和丢包</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-4-3-%E7%AB%AF%E5%88%B0%E7%AB%AF%E6%97%B6%E5%BB%B6"><span class="post-toc-text">1.4.3 端到端时延</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-4-4-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E5%90%9E%E5%90%90%E9%87%8F"><span class="post-toc-text">1.4.4 计算机网络中的吞吐量</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-5-%E5%8D%8F%E8%AE%AE%E5%B1%82%E6%AC%A1%E5%8F%8A%E5%85%B6%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9E%8B"><span class="post-toc-text">1.5 协议层次及其服务模型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-5-1-%E5%88%86%E5%B1%82%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="post-toc-text">1.5.1 分层的体系结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-%E5%BA%94%E7%94%A8%E5%B1%82"><span class="post-toc-text">1. 应用层</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-%E8%BF%90%E8%BE%93%E5%B1%82"><span class="post-toc-text">2. 运输层</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="post-toc-text">3. 网络层</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="post-toc-text">4. 链路层</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-%E7%89%A9%E7%90%86%E5%B1%82"><span class="post-toc-text">5. 物理层</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-5-2-%E5%B0%81%E8%A3%85%EF%BC%88encapsulation%EF%BC%89"><span class="post-toc-text">1.5.2 封装（encapsulation）</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/22/Hexo+GitHub%20Pages%E5%8D%9A%E5%AE%A2%E4%BB%8EWin%E5%88%B0Mac%E8%BF%81%E7%A7%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Hexo+GitHub Pages博客从Win到Mac迁移</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="第一章 计算机网络和因特网" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cytzSxwzh';
+        var conf = '5280c2cb8d655a130b0308fcb528f675';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+    <div class="theme-info">
+</p>
+
+
+      <span class="post-count">本站博文总字数：67.4k</span>
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018~2020 VorSonnenaufgang<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://vor.ink",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Blog/">Blog</a><a class="category-link" href="/categories/Essay/">Essay</a><a class="category-link" href="/categories/UML/">UML</a><a class="category-link" href="/categories/%E5%A4%A7%E5%AD%A6/">大学</a><a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><a class="category-link" href="/categories/%E6%B3%95%E8%AF%AD/">法语</a><a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F%E7%BA%A7/">系统级</a><a class="category-link" href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/">计算机接口与通信</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Blog/" style="font-size: 15.71px;">Blog</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.43px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 12.86px;">Hexo</a> <a href="/tags/UML/" style="font-size: 14.29px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.14px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.29px;">数据库</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 14.29px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.57px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15.71px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 14.29px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.43px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/categories">
+                    <i class="fa fa-book"></i><span>Categories</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/tags">
+                    <i class="fa fa-tags"></i><span>Tags</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Blog/" style="font-size: 15.71px;">Blog</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.43px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 12.86px;">Hexo</a> <a href="/tags/UML/" style="font-size: 14.29px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.14px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.29px;">数据库</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 14.29px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.57px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15.71px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 14.29px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.43px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"react":{"opacity":0.8},"log":false});</script></body>
+</html>
+
+
+

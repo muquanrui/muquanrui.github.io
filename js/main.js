@@ -58,7 +58,9 @@
             }
         },
         showToc: function (scrollTop) {
-            if (scrollTop / clientHeight >= 0.4 && $(window).width()>1050) {
+            // 网页正文全文高
+            var bodyHeight= document.body.scrollHeight
+            if (scrollTop / clientHeight >= 0.5 && bodyHeight-scrollTop>=1400 && $(window).width()>1050) {
                 $(".post-toc-name").css("display","block"); 
                 toc.removeClass("post-toc-top");
                 toc.addClass("post-toc-not-top");
