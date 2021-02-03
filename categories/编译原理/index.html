@@ -22,8 +22,13 @@
     <link rel="icon" href="/favicon.ico">
   
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
   
 <link rel="stylesheet" href="/css/style.css">
+
+
+ <!--加载prettify代码高亮样式-->
+<link href="/google-code-prettify/tomorrow.css" type="text/css" rel="stylesheet" />
 
   
 <script src="/js/pace.min.js"></script>
@@ -168,7 +173,7 @@
     <h1 itemprop="name">
       <a class="archive-article-title" href="/2018/06/09/YAML%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/"  >YAML语言基础学习
       <br>
-      <span class="article-count">文章字数:959字 &nbsp &nbsp  
+      <span class="article-count">文章字数:965字 &nbsp &nbsp  
          阅读时长:3分钟</span>
 
       </a>
@@ -219,7 +224,7 @@
 </p>
 
 
-      <span class="post-count">本站博文总字数：88.3k</span>
+      <span class="post-count">本站博文总字数：89.4k</span>
       <p>
         Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
         Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
@@ -230,6 +235,17 @@
 </footer>
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<!--加载prettify代码高亮js-->
+  <script type="text/javascript" src="/google-code-prettify/prettify.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('pre').addClass('prettyprint linenums');
+      $('code').addClass('prettyprint');
+      prettyPrint();
+    })
+  </script>
+
 <script>
   var mihoConfig = {
       root: "http://vor.ink",
@@ -259,7 +275,7 @@
             <a class="category-link" href="/categories/Blog/">Blog</a><a class="category-link" href="/categories/C%E8%AF%AD%E8%A8%80/">C语言</a><a class="category-link" href="/categories/Essay/">Essay</a><a class="category-link" href="/categories/Java/">Java</a><a class="category-link" href="/categories/UML/">UML</a><a class="category-link" href="/categories/%E5%9B%BE%E8%AE%BA/">图论</a><a class="category-link" href="/categories/%E5%A4%A7%E5%AD%A6/">大学</a><a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><a class="category-link" href="/categories/%E6%B3%95%E8%AF%AD/">法语</a><a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F%E7%BA%A7/">系统级</a><a class="category-link" href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/">计算机接口与通信</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/Blog/" style="font-size: 15.71px;">Blog</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.86px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.43px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 12.86px;">Hexo</a> <a href="/tags/Java/" style="font-size: 14.29px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 11.43px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 14.29px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.14px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.29px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 14.29px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.57px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15.71px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.43px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 14.29px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.43px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
+            <a href="/tags/Blog/" style="font-size: 16.25px;">Blog</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.25px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Java/" style="font-size: 13.75px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 11.25px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 13.75px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.5px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.75px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 13.75px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.75px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.25px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.75px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.25px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -304,7 +320,7 @@
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/Blog/" style="font-size: 15.71px;">Blog</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.86px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.43px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 12.86px;">Hexo</a> <a href="/tags/Java/" style="font-size: 14.29px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 11.43px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 14.29px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.14px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.29px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 14.29px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.57px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15.71px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.43px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 14.29px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.43px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
+            <a href="/tags/Blog/" style="font-size: 16.25px;">Blog</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.25px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Java/" style="font-size: 13.75px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 11.25px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 13.75px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.5px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.75px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 13.75px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.75px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.25px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.75px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.25px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
         </div>
     </div>
 </div>

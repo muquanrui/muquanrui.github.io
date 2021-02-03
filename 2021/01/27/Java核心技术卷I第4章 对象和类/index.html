@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://vor.ink/2021/01/27/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC4%E7%AB%A0%20%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/images/1611780617992.png">
 <meta property="og:image" content="http://vor.ink/2021/01/27/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC4%E7%AB%A0%20%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/images/1611780929446.png">
 <meta property="article:published_time" content="2021-01-27T15:55:42.000Z">
-<meta property="article:modified_time" content="2021-02-02T09:38:24.000Z">
+<meta property="article:modified_time" content="2021-02-03T11:29:03.317Z">
 <meta property="article:author" content="VorSonnenaufgang">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Java核心技术卷I">
@@ -33,8 +33,13 @@
     <link rel="icon" href="/favicon.ico">
   
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
   
 <link rel="stylesheet" href="/css/style.css">
+
+
+ <!--加载prettify代码高亮样式-->
+<link href="/google-code-prettify/tomorrow.css" type="text/css" rel="stylesheet" />
 
   
 <script src="/js/pace.min.js"></script>
@@ -221,22 +226,76 @@
 <p><strong>继承</strong>（inheritance）：“is a”的关系，类A扩展类B，则A继承于B。</p>
 <h2 id="4-2-使用预定义类"><a href="#4-2-使用预定义类" class="headerlink" title="4.2 使用预定义类"></a>4.2 使用预定义类</h2><h3 id="4-2-1-对象与对象变量"><a href="#4-2-1-对象与对象变量" class="headerlink" title="4.2.1 对象与对象变量"></a>4.2.1 对象与对象变量</h3><p><strong>构造器</strong>（constructor）用于构造新的实例，它是一个特殊的方法，用来构造并初始化对象。</p>
 <p>构造器的名字与类名相同，使用构造器时在前面加上<code>new</code>操作符。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Data();</span><br><span class="line"></span><br><span class="line">System.out.println(<span class="keyword">new</span> Data());</span><br><span class="line"></span><br><span class="line">String s = <span class="keyword">new</span> Data().toString();</span><br><span class="line"></span><br><span class="line">Data birthday = <span class="keyword">new</span> Data();</span><br></pre></td></tr></table></figure>
+<pre><code class="java">new Data();
 
+System.out.println(new Data());
+
+String s = new Data().toString();
+
+Data birthday = new Data();</code></pre>
 <p>在前三个例子中，对象仅被使用了一次，如果要多次使用对象，按照第四个例子将对象存放在一个变量中，这个变量引用这个对象。</p>
 <p><img src="./images/1611764565598.png"></p>
 <p>对象与变量有着重大区别，<code>Data deadline;</code>，这个语句定义了一个对象变量deadline，但是它本身不是一个对象，此时也没有引用任何对象，无法将Data类的方法用于这个变量。</p>
 <p>因此对象变量定义后一定要先进行初始化再使用，可以使用新构造的变量来初始化变量，也可以引用一个已经存在的对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deadline = <span class="keyword">new</span> Data();</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">deadline = birthday;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">deadline = new Data();
+// or
+deadline = birthday;</code></pre>
 <p>此时变量<code>birthday</code>和<code>deadline</code>引用的是同一个对象。</p>
 <p><img src="./images/1611764811795.png"></p>
 <p>可以显示地将对象变量设置为<code>null</code>，表明这个变量目前没有引用任何对象，此时它也不能使用任何方法。</p>
 <p><strong>注意</strong>：对于局部变量，它们不会自动初始化为null！必须手动进行初始化。</p>
 <h3 id="4-2-2-更改器与访问器方法"><a href="#4-2-2-更改器与访问器方法" class="headerlink" title="4.2.2 更改器与访问器方法"></a>4.2.2 更改器与访问器方法</h3><p>更改器方法（mutator method）调用后会改变对象状态，比如最常见的<code>set</code>方法。</p>
-<p>访问其方法（accessor method）只访问对象但是不做任何修改，比如最常见的<code>get</code>方法。</p>
-<h2 id="4-3-用户自定义类"><a href="#4-3-用户自定义类" class="headerlink" title="4.3 用户自定义类"></a>4.3 用户自定义类</h2><h3 id="4-3-1-Employee类"><a href="#4-3-1-Employee类" class="headerlink" title="4.3.1 Employee类"></a>4.3.1 Employee类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.time.*</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmployeeTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// fill the staff array with three Employee objects</span></span><br><span class="line">        Employee[] staff = <span class="keyword">new</span> Employee[<span class="number">3</span>];</span><br><span class="line">        staff[<span class="number">0</span>] = <span class="keyword">new</span> Employee(<span class="string">&quot;Carl Cracker&quot;</span>, <span class="number">75000</span>, <span class="number">1987</span>, <span class="number">12</span>, <span class="number">15</span>);</span><br><span class="line">        staff[<span class="number">1</span>] = <span class="keyword">new</span> Employee(<span class="string">&quot;Harry Hecker&quot;</span>, <span class="number">50000</span>, <span class="number">1989</span>, <span class="number">10</span>, <span class="number">1</span>);</span><br><span class="line">        staff[<span class="number">2</span>] = <span class="keyword">new</span> Employee(<span class="string">&quot;Tony Tester&quot;</span>, <span class="number">40000</span>, <span class="number">1990</span>, <span class="number">3</span>, <span class="number">15</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// raise everyone&#x27;s salary by 5%</span></span><br><span class="line">        <span class="keyword">for</span> (Employee e : staff) &#123;</span><br><span class="line">            e.raiseSalary(<span class="number">5</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// print out information about all Employee objects</span></span><br><span class="line">        <span class="keyword">for</span> (Employee e : staff) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;name = &quot;</span> + e.getName() + <span class="string">&quot;, salary = &quot;</span> + e.getSalary() + <span class="string">&quot;, hireDay = &quot;</span> + e.getHireDay());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> salary;</span><br><span class="line">    <span class="keyword">private</span> LocalData hireDay;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Employee</span><span class="params">(String n, <span class="keyword">double</span> s, <span class="keyword">int</span> year, <span class="keyword">int</span> month, <span class="keyword">int</span> day)</span></span>&#123;</span><br><span class="line">        name = n;</span><br><span class="line">        salary = s;</span><br><span class="line">        hireDay = LocalData.of(year, month, day);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getSalary</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> salary;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> LocalData <span class="title">getHireDay</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> hireDay;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">raiseSalary</span><span class="params">(<span class="keyword">double</span> byPercent)</span></span>&#123;</span><br><span class="line">        <span class="keyword">double</span> raise = salary * byPercent/<span class="number">100</span>;</span><br><span class="line">        salary += raise;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>访问器方法（accessor method）只访问对象但是不做任何修改，比如最常见的<code>get</code>方法。</p>
+<h2 id="4-3-用户自定义类"><a href="#4-3-用户自定义类" class="headerlink" title="4.3 用户自定义类"></a>4.3 用户自定义类</h2><h3 id="4-3-1-Employee类"><a href="#4-3-1-Employee类" class="headerlink" title="4.3.1 Employee类"></a>4.3.1 Employee类</h3><pre><code class="java">import java.time.*
 
+public class EmployeeTest &#123;
+    public static void main(String[] args) &#123;
+        // fill the staff array with three Employee objects
+        Employee[] staff = new Employee[3];
+        staff[0] = new Employee(&quot;Carl Cracker&quot;, 75000, 1987, 12, 15);
+        staff[1] = new Employee(&quot;Harry Hecker&quot;, 50000, 1989, 10, 1);
+        staff[2] = new Employee(&quot;Tony Tester&quot;, 40000, 1990, 3, 15);
+
+        // raise everyone&#39;s salary by 5%
+        for (Employee e : staff) &#123;
+            e.raiseSalary(5);
+        &#125;
+
+        // print out information about all Employee objects
+        for (Employee e : staff) &#123;
+            System.out.println(&quot;name = &quot; + e.getName() + &quot;, salary = &quot; + e.getSalary() + &quot;, hireDay = &quot; + e.getHireDay());
+        &#125;
+    &#125;
+&#125;
+
+class Employee&#123;
+    private String name;
+    private double salary;
+    private LocalData hireDay;
+
+    public Employee(String n, double s, int year, int month, int day)&#123;
+        name = n;
+        salary = s;
+        hireDay = LocalData.of(year, month, day);
+    &#125;
+
+    public String getName()&#123;
+        return name;
+    &#125;
+
+    public double getSalary()&#123;
+        return salary;
+    &#125;
+
+    public LocalData getHireDay()&#123;
+        return hireDay;
+    &#125;
+
+    public void raiseSalary(double byPercent)&#123;
+        double raise = salary * byPercent/100;
+        salary += raise;
+    &#125;
+&#125;</code></pre>
 <p>注意， 在这个示例程序中包含两个类：<code>Employee</code>类和带有<code>public</code>访问修饰符的<code>EmployeeTest</code>类。 </p>
 <p><code>EmployeeTest</code>类包含了main方法，源文件名是<code>EmployeeTest.java</code>，这是因为文件名必须与<code>public</code>类的名字相匹配。 在一个源文件中， <strong>只能有一个公有类</strong>， 但可以有任意数目的非公有类。</p>
 <p>接下来， 当编译这段源代码的时候， 编译器将在目录下创建两个类文件: <code>EmployeeTest.class</code>和 <code>Employee.class</code>。</p>
@@ -255,12 +314,16 @@
 <li>不能对一个已经存在的对象调用构造器来达到重新设置实例域的目的。</li>
 </ul>
 <p><strong>注意</strong>：不要在构造器中定义与实例域重名的局部变量！</p>
-<h3 id="4-3-5-隐式参数与显示参数"><a href="#4-3-5-隐式参数与显示参数" class="headerlink" title="4.3.5 隐式参数与显示参数"></a>4.3.5 隐式参数与显示参数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">raiseSalary</span><span class="params">(<span class="keyword">double</span> byPercent)</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> raise = salary * byPercent/<span class="number">100</span>;</span><br><span class="line">    salary += raise;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个方法实际上有两个参数，一个参数称为<strong>隐式</strong>（implicit）参数，是出现在方法名前面的Employee类对象，第二个参数是<code>显示</code>（explicit）参数，是位于方法名后面括号中的数值。（隐式参数可以理解为方法调用的目标者或接受者）。</p>
+<h3 id="4-3-5-隐式参数与显示参数"><a href="#4-3-5-隐式参数与显示参数" class="headerlink" title="4.3.5 隐式参数与显示参数"></a>4.3.5 隐式参数与显示参数</h3><pre><code class="java">public void raiseSalary(double byPercent)&#123;
+    double raise = salary * byPercent/100;
+    salary += raise;
+&#125;</code></pre>
+<p>这个方法实际上有两个参数，一个参数称为<strong>隐式</strong>（implicit）参数，是出现在方法名前面的Employee类对象，第二个参数是<strong>显示</strong>（explicit）参数，是位于方法名后面括号中的数值。（隐式参数可以理解为方法调用的目标者或接受者）。</p>
 <p>在每一个方法中，关键字this表示隐式参数。在实例域前面加上<code>this.</code>可以更好地区分局部变量与实例域。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">raiseSalary</span><span class="params">(<span class="keyword">double</span> byPercent)</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> raise = <span class="keyword">this</span>.salary * byPercent/<span class="number">100</span>;</span><br><span class="line">    <span class="keyword">this</span>.salary += raise;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">public void raiseSalary(double byPercent)&#123;
+    double raise = this.salary * byPercent/100;
+    this.salary += raise;
+&#125;</code></pre>
 <h3 id="4-3-6-封装的优点"><a href="#4-3-6-封装的优点" class="headerlink" title="4.3.6 封装的优点"></a>4.3.6 封装的优点</h3><p>在上面的程序中，对每一个实例域都有一个对应的get方法，这些就是典型的域访问器。</p>
 <p>为了不破坏程序的封装，通常不会使用public来标记这些实例域，此时要获得或设置实例域的值，采用的方法是：</p>
 <ul>
@@ -269,39 +332,68 @@
 <li>一个public的域更改器方法</li>
 </ul>
 <p><strong>注意</strong>：不要让访问器返回的是引用可变对象。比如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Data hireDay;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Data <span class="title">getHireDay</span><span class="params">()</span></span>&#123;</span><br><span class="line">        returen hireDay; <span class="comment">// Bad</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">class Employee&#123;
+    private Data hireDay;
+    ...
+    public Data getHireDay()&#123;
+        returen hireDay; // Bad
+    &#125;
+&#125;</code></pre>
 <p>Data类与LocalData类不同之处在于，Data类有一个更改器方法setTime，可以设置毫秒数。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Employee harry = ...;</span><br><span class="line">Date d = harry.getHireDay() ;</span><br><span class="line"><span class="keyword">double</span> tenYearsInMilliSeconds = <span class="number">10</span> * <span class="number">365.25</span> * <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span>; </span><br><span class="line">d.setTime(d.getTime() -(<span class="keyword">long</span>) tenYearsInMilliSeconds);</span><br><span class="line"><span class="comment">// let&#x27;s give Harry ten years of added seniority</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">Employee harry = ...;
+Date d = harry.getHireDay() ;
+double tenYearsInMilliSeconds = 10 * 365.25 * 24 * 60 * 60 * 1000; 
+d.setTime(d.getTime() -(long) tenYearsInMilliSeconds);
+// let&#39;s give Harry ten years of added seniority</code></pre>
 <p><img src="./images/1611767924293.png"></p>
 <p>此时d和harry.hireDay引用的是同一个Data对象，对d通过setTime进行更改就改变了harry.hireDay的私有状态！</p>
 <p>如果需要返回一个可变对象的引用，应该先对它进行<strong>克隆</strong>（clone），对象克隆是指存放在另一个位置上的对象副本。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Data hireDay;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Data <span class="title">getHireDay</span><span class="params">()</span></span>&#123;</span><br><span class="line">        returen (Data) hireDay.clone(); <span class="comment">// Good</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-3-7-基于类的访问权限"><a href="#4-3-7-基于类的访问权限" class="headerlink" title="4.3.7 基于类的访问权限"></a>4.3.7 基于类的访问权限</h3><p>通过调用一个对象的方法，可以访问这个所调用对象的私有数据。同时，调用方法还可以访问所属类的<strong>所有对象</strong>的私有数据。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Employee other)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name.equals(other.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">class Employee&#123;
+    private Data hireDay;
+    ...
+    public Data getHireDay()&#123;
+        returen (Data) hireDay.clone(); // Good
+    &#125;
+&#125;</code></pre>
+<h3 id="4-3-7-基于类的访问权限"><a href="#4-3-7-基于类的访问权限" class="headerlink" title="4.3.7 基于类的访问权限"></a>4.3.7 基于类的访问权限</h3><p>通过调用一个对象的方法，可以访问这个调用对象的私有数据。同时，调用方法还可以访问所属类的<strong>所有对象</strong>的私有数据。</p>
+<pre><code class="java">class Employee&#123;
+    ...
+    public boolean equals(Employee other)&#123;
+        return name.equals(other.name);
+    &#125;
+&#125;</code></pre>
 <p><code>if(harry.equals(boss))...</code></p>
 <p>这个时候，<code>equals</code>方法访问了harry的私有域，同时，还访问了boss的私有域，这时合法的，因为harry和boss都是Employee类的对象，Employee类的方法可以访问这个类的任何一个对象的私有域。</p>
 <h3 id="4-3-8-私有方法"><a href="#4-3-8-私有方法" class="headerlink" title="4.3.8 私有方法"></a>4.3.8 私有方法</h3><p>有时希望将一个计算代码划分成若干个独立的辅助方法，由于它们往往与当前的实现机制非常紧密或者需要一个特别的协议以及一个特别的调用次序，这些辅助方法不应该成为公有接口的一部分，可以用<code>private</code>关键字来实现私有方法。</p>
 <h3 id="4-3-9-final实例域"><a href="#4-3-9-final实例域" class="headerlink" title="4.3.9 final实例域"></a>4.3.9 final实例域</h3><p>可以将实例域定义为<code>fianl</code>，构建对象时必须要初始化这样的域，即一个构造器执行后这个域将被设置，并且在后面的操作中不能够再对它进行修改。</p>
 <p><code>final</code>大都应用于基本（primitive）类型域，或不可变（immutable）类的域。如果类中的每个方法都不能修改其对象，这种类就是不可变类，比如String类。</p>
 <h2 id="4-4-静态域与静态方法"><a href="#4-4-静态域与静态方法" class="headerlink" title="4.4 静态域与静态方法"></a>4.4 静态域与静态方法</h2><h3 id="4-4-1-静态域"><a href="#4-4-1-静态域" class="headerlink" title="4.4.1 静态域"></a>4.4.1 静态域</h3><p>如果将域定义为<code>static</code>，每个类中只有一个这样的静态域。而每一个对象对于所有实例域都有自己的一份拷贝。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> nextId = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">class Employee&#123;
+    private static int nextId = 1;
+    private int id;
+    ...
+&#125;</code></pre>
 <p>对于1000个雇员对象，他们每一个都有自己的id，即存在1000个实例域id，但是他们共享一个nextId。即使没有一个雇员对象，静态域nextId也存在，它属于类，而不属于任何独立的对象。静态域也被称作类域。</p>
 <h3 id="4-4-2-静态常量"><a href="#4-4-2-静态常量" class="headerlink" title="4.4.2 静态常量"></a>4.4.2 静态常量</h3><p>静态变量使用得比较少，静态常量却很常用。比如之前提到的Math类的静态常量：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Math</span></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">double</span> PI = <span class="number">3.1415926</span>;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">public class Math&#123;
+    ...
+    public static final double PI = 3.1415926;
+    ...
+&#125;</code></pre>
 <p>使用<code>Math.PI</code>就可以获得这个常量。如果没有关键字<code>static</code>，PI就成为Math的一个实例域，则只能通过Math的对象来访问。</p>
 <p>最常用到的输出语句<code>System.out.println();</code>，<code>System.out</code>就是一个静态常量。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">System</span></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> PrintStream out = ... ;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>之前提到最好不要将累的域设为public，因为这样每个类对象都可以修改共有域，但是公有常量却没问题，因为被声明为final后的共有常量本来就不允许再进行更改了</p>
+<pre><code class="java">public class System&#123;
+    ...
+    public static final PrintStream out = ... ;
+    ...
+&#125;</code></pre>
+<p>之前提到最好不要将类的域设为public，因为这样每个类对象都可以修改公有域，但是公有常量却没问题，因为被声明为final后的共有常量本来就不允许再进行更改了</p>
 <h3 id="4-4-3-静态方法"><a href="#4-4-3-静态方法" class="headerlink" title="4.4.3 静态方法"></a>4.4.3 静态方法</h3><p><strong>静态方法</strong>可以直接通过类名调用，且不能向对象实施操作，即静态方法没有隐式参数，因此也不能访问类中的实例域，但是静态方法可以访问自身类中的静态域。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getNextId</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> nextId; <span class="comment">// return static field</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n = Employee.getNextId();</span><br></pre></td></tr></table></figure>
+<pre><code class="java">public static int getNextId()&#123;
+    return nextId; // return static field
+&#125;
 
+int n = Employee.getNextId();</code></pre>
 <p><strong>注意</strong>：理论上也可以通过对象来调用静态方法，但这样会造成混淆，最好不要使用。</p>
 <p>静态方法适用于：</p>
 <ol>
@@ -309,8 +401,11 @@
 <li>一个方法只需要访问类的静态域。</li>
 </ol>
 <h3 id="4-4-4-工厂方法"><a href="#4-4-4-工厂方法" class="headerlink" title="4.4.4 工厂方法"></a>4.4.4 工厂方法</h3><p>静态方法还有一个常见用途，可以作为静态静态工厂方法（factory method）来构造对象。比如<code>NumberFormat</code>类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();</span><br><span class="line">NumberFormat percentFormatter = NumberFormat.getPercentInstance();</span><br><span class="line"><span class="keyword">double</span> x = <span class="number">0.1</span>;</span><br><span class="line">System.out.println(currencyFormatter.format(x)); <span class="comment">// $0.10</span></span><br><span class="line">System.out.println(percentFormatter.format(x)); <span class="comment">// 10%</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
+NumberFormat percentFormatter = NumberFormat.getPercentInstance();
+double x = 0.1;
+System.out.println(currencyFormatter.format(x)); // $0.10
+System.out.println(percentFormatter.format(x)); // 10%</code></pre>
 <p>为什么<code>NumberFormat</code>不使用构造器来完成这些操作呢？因为：</p>
 <ol>
 <li>无法命名构造器。构造器的名字必须与类名相同，但是这里需要两个不同的构造器。</li>
@@ -323,8 +418,12 @@
 <li>前者不能修改传递值所对应的变量值，后者可以修改传递引用对应的变量值。</li>
 </ul>
 <p>在Java中，参数总是按值调用，方法得到的是始终只是参数值的一个拷贝，不能修改传给它的任何变量的内容。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tripleValue</span><span class="params">(<span class="keyword">double</span> x)</span> </span>&#123;</span><br><span class="line">    x *=<span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span> percent = <span class="number">10</span>;</span><br><span class="line">tripleValue(percent);</span><br></pre></td></tr></table></figure>
+<pre><code class="java">public static void tripleValue(double x) &#123;
+    x *= 3;
+&#125;
 
+double percent = 10;
+tripleValue(percent);</code></pre>
 <p>方法调用后percent的值还是10。具体执行过程为：</p>
 <ol>
 <li>x被初始化为percent值的一个拷贝即10；</li>
@@ -338,8 +437,12 @@
 <li>对象引用</li>
 </ol>
 <p>方法不能修改一个基本数据类型的参数，但是却可以修改对象引用的参数。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tripleSalary</span><span class="params">(Employee x)</span> </span>&#123;</span><br><span class="line">    x.raiseSalary(<span class="number">200</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">harry = <span class="keyword">new</span> Employee(...);</span><br><span class="line">tripleSalary(harry);</span><br></pre></td></tr></table></figure>
+<pre><code class="java">public static void tripleSalary(Employee x) &#123;
+    x.raiseSalary(200);
+&#125;
 
+harry = new Employee(...);
+tripleSalary(harry);</code></pre>
 <p>具体执行过程为：</p>
 <ol>
 <li>x被初始化为harry值的拷贝，这里被初始化为这个对象的一个新引用；</li>
@@ -348,8 +451,15 @@
 </ol>
 <p><img src="./images/1611780617992.png"></p>
 <p><strong>注意</strong>：参数为对象引用时，虽然能改变对象的内容，但是这并不代表这就和C、C++一样是在按引用调用了！</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(Employee x, Employee y)</span></span>&#123;</span><br><span class="line">    Employee temp = x;</span><br><span class="line">    x = y;</span><br><span class="line">    y = temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Employee a = <span class="keyword">new</span> Employee(<span class="string">&quot;Alice&quot;</span>...);</span><br><span class="line">Employee b = <span class="keyword">new</span> Employee(<span class="string">&quot;Bob&quot;</span>...);</span><br><span class="line">swap(a, b);</span><br></pre></td></tr></table></figure>
+<pre><code class="java">public static void swap(Employee x, Employee y)&#123;
+    Employee temp = x;
+    x = y;
+    y = temp;
+&#125;
 
+Employee a = new Employee(&quot;Alice&quot;...);
+Employee b = new Employee(&quot;Bob&quot;...);
+swap(a, b);</code></pre>
 <p>这个方法执行后，a依然是“Alice”，b依然是“Bob”，因为swap并没有改变存储在变量a和b中的对象引用，x和y只是a和b的值的拷贝，并不是a和b的引用，执行结束x和y被丢弃，a和b纹丝不动。</p>
 <p><img src="./images/1611780929446.png"></p>
 <p>总而言之，Java中方法的参数使用情况为：</p>
@@ -365,37 +475,81 @@
 <p>但是只要类中提供了至少一个构造器，系统就不会提供无参数的构造器。</p>
 <h3 id="4-6-4-显式域初始化"><a href="#4-6-4-显式域初始化" class="headerlink" title="4.6.4 显式域初始化"></a>4.6.4 显式域初始化</h3><p>通过重载类的构造器方法，可以采用多种形式设置类的实例域初始状态，确保不管怎么样调用构造器每个实例域都可以被设置为一个有意义的初值，这是一种很好的编程习惯。</p>
 <p>也可以在类的定义中，直接给域赋初始值，初始值也不一定是常量值，可以调用方法对域进行初始化。当一个类所有构造器都希望把相同的初值赋予某个特定实例域时这个方法很有用。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> nextId;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id = assignId();</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">assignId</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> r = nextId;</span><br><span class="line">        nextId++;</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">class Employee&#123;
+    private static int nextId;
+    private int id = assignId();
+    ...
+    private static int assignId()&#123;
+        int r = nextId;
+        nextId++;
+        return r;
+    &#125;
+&#125;</code></pre>
 <h3 id="4-6-5-参数名"><a href="#4-6-5-参数名" class="headerlink" title="4.6.5 参数名"></a>4.6.5 参数名</h3><p>通常，构造器的参数用单个字符命名。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Employee</span><span class="params">(String n, <span class="keyword">double</span> s)</span></span>&#123;</span><br><span class="line">    name = n;</span><br><span class="line">    salary = s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">public Employee(String n, double s)&#123;
+    name = n;
+    salary = s;
+&#125;</code></pre>
 <p>这个方法缺陷在于只看n和s会不明就里，也有一个办法是在域名前面加前缀“a”。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Employee</span><span class="params">(String aName, <span class="keyword">double</span> aSalary)</span></span>&#123;</span><br><span class="line">    name = aName;</span><br><span class="line">    salary = aSalary;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">public Employee(String aName, double aSalary)&#123;
+    name = aName;
+    salary = aSalary;
+&#125;</code></pre>
 <p>还有一种常用方法，参数变量使用和实例域的同名，但是使用<code>this</code>。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Employee</span><span class="params">(String name, <span class="keyword">double</span> salary)</span></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.salary = salary;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">public Employee(String name, double salary)&#123;
+    this.name = name;
+    this.salary = salary;
+&#125;</code></pre>
 <h3 id="4-6-6-调用另一个构造器"><a href="#4-6-6-调用另一个构造器" class="headerlink" title="4.6.6 调用另一个构造器"></a>4.6.6 调用另一个构造器</h3><p><code>this</code>除了指示方法的隐式参数，还可以指示同一个类的另一个构造器。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Employee</span><span class="params">(<span class="keyword">double</span> s)</span></span>&#123;</span><br><span class="line">    <span class="comment">// call Employee(String, double)</span></span><br><span class="line">    <span class="keyword">this</span>(<span class="string">&quot;Employee #&quot;</span> + nextId, s);</span><br><span class="line">    nextId++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">public Employee(double s)&#123;
+    // call Employee(String, double)
+    this(&quot;Employee #&quot; + nextId, s);
+    nextId++;
+&#125;</code></pre>
 <h3 id="4-6-7-初始化块"><a href="#4-6-7-初始化块" class="headerlink" title="4.6.7 初始化块"></a>4.6.7 初始化块</h3><p>前面的两种初始化数据域方法包括：</p>
 <ol>
 <li>在构造器中设置值</li>
 <li>在声明中赋值</li>
 </ol>
 <p>实际上还可以通过<strong>初始化块</strong>（initialization block）来初始化数据域。在一个类的声明中可以包含多个代码块，只要构造类的对象，这些块就会被执行。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> nextId;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> salary;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// object initialization block</span></span><br><span class="line">    &#123;</span><br><span class="line">        id = nextId;</span><br><span class="line">        nextId++;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Employee</span><span class="params">(String n, <span class="keyword">double</span> s)</span></span>&#123;</span><br><span class="line">        name = n;</span><br><span class="line">        salary = s;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Employee</span><span class="params">()</span></span>&#123;</span><br><span class="line">        name = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        salary = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="java">class Employee&#123;
+    private static int nextId;
 
+    private int id;
+    private String name;
+    private double salary;
+
+    // object initialization block
+    &#123;
+        id = nextId;
+        nextId++;
+    &#125;
+    ...
+
+    public Employee(String n, double s)&#123;
+        name = n;
+        salary = s;
+    &#125;
+
+    public Employee()&#123;
+        name = &quot;&quot;;
+        salary = 0;
+    &#125;
+&#125;</code></pre>
 <p>这段代码中无论哪个构造器被使用，id都已经在初始化块中被初始化。首先运行初始化块，然后才运行构造器的主体部分。这种机制不是必须的，也不常见。</p>
 <p>静态域可以通过提供一个初始化值，或者使用一个静态的初始化块来进行初始化。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> nextId = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="keyword">static</span>&#123;</span><br><span class="line">    Random generator = <span class="keyword">new</span> Random();</span><br><span class="line">    nextId = generator.nextId(<span class="number">10000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="java">private static int nextId = 1;
 
+// or
+static&#123;
+    Random generator = new Random();
+    nextId = generator.nextId(10000);
+&#125;</code></pre>
 <h2 id="4-7-包"><a href="#4-7-包" class="headerlink" title="4.7 包"></a>4.7 包</h2><p>Java允许使用<strong>包</strong>（package）将类组织起来，借助于包可以方便地组织自己的代码，并将自己的代码与别人提供的代码库分开管理。</p>
 <p>标准的Java类库分布于多个包中，包括<code>java.lang</code>、<code>java.util</code>、<code>java.net</code>等。标准的Java包具有一个层次结构，如同硬盘目录一样，也可以嵌套层次组织包。所有标准Java包都处于<code>java</code>和<code>javax</code>包层次中。</p>
 <p>使用包可以保证类名的唯一性，比如两个程序员都建立了Employee类，只要将这俩类放置在不同包中，就不会产生冲突。</p>
 <p>为了保证包名的绝对唯一性，Sun公司建议将公司的因特网域名（独一无二）以逆序形式作为包名，并对不同项目使用不同子包。比如vor.ink，包名就是ink.vor。</p>
-<h3 id="4-7-1-类的导入"><a href="#4-7-1-类的导入" class="headerlink" title="4.7.1 类的导入"></a>4.7.1 类的导入</h3><p>一个类可以使用其所属包中的所有类，以及其他包中的共有类（public class），可以采用两种方式访问其他包的共有类：</p>
+<h3 id="4-7-1-类的导入"><a href="#4-7-1-类的导入" class="headerlink" title="4.7.1 类的导入"></a>4.7.1 类的导入</h3><p>一个类可以使用其所属包中的所有类，以及其他包中的公有类（public class），可以采用两种方式访问其他包的公有类：</p>
 <ol>
 <li>在每个类名之前添加完整包名：<code>java.time.LocalData today = java.time.LocalData.now();</code></li>
 <li>使用import导入类：<code>import java.time.LocalData;</code>，使用时就不用加完整包名的前缀了：<code>LocalData today = LocalData.now();</code></li>
@@ -406,12 +560,15 @@
 <h3 id="4-7-2-静态导入"><a href="#4-7-2-静态导入" class="headerlink" title="4.7.2 静态导入"></a>4.7.2 静态导入</h3><p>import不仅可以导入类，还可以导入静态方法和静态域。</p>
 <p><code>import static java.lang.System.*;</code></p>
 <p>这条语句导入了System类的所有静态域和静态方法，因此要使用它们时就不用加前缀了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">out.println(<span class="string">&quot;Goodbye, cruel world!&quot;</span>); <span class="comment">// System.out</span></span><br><span class="line">exit(<span class="number">0</span>); <span class="comment">// System.exit</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">out.println(&quot;Goodbye, cruel world!&quot;); // System.out
+exit(0); // System.exit</code></pre>
 <p>也可以明确指出想要导入的特定静态域或静态方法。</p>
 <h3 id="4-7-3-将类放入包中"><a href="#4-7-3-将类放入包中" class="headerlink" title="4.7.3 将类放入包中"></a>4.7.3 将类放入包中</h3><p>想要将类放入包中，需要在源文件开头使用<code>package</code>语句，并将源文件放到与完整包名匹配的子目录下，比如包<code>com.horstman.corejava</code>的源文件放置于子目录<code>com/horstman/corejava</code>中。编译器也会将生成的类文件放在相同的目录结构中。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.horstman.corejava;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="java">package com.horstman.corejava;
 
+public class Employee&#123;
+    ...
+&#125;</code></pre>
 <p>如果一个源文件没有<code>package</code>语句，它将被放入一个<strong>默认包</strong>（default package）中，默认包是一个没有名字的包。</p>
 <h3 id="4-7-4-包作用域"><a href="#4-7-4-包作用域" class="headerlink" title="4.7.4 包作用域"></a>4.7.4 包作用域</h3><p>标记为<code>public</code>的部分可以被任意的类使用，标记为<code>private</code>的部分只能被定义它们的类使用，没有标记的部分（类、方法或变量）可以被同一个包中的所有方法访问。</p>
 <p>不做公有私有标记对类来说是合理的，但是对变量来说会破坏程序的封装性。</p>
@@ -437,26 +594,47 @@
 <h3 id="4-9-1-注释的插入"><a href="#4-9-1-注释的插入" class="headerlink" title="4.9.1 注释的插入"></a>4.9.1 注释的插入</h3><p>javadoc实用程序（utility）从下面几个特征中抽取信息：</p>
 <ul>
 <li>包</li>
-<li>共有类和接口</li>
-<li>共有的和受保护的构造器即方法</li>
-<li>共有的和受保护的域</li>
+<li>公有类和接口</li>
+<li>公有的和受保护的构造器及方法</li>
+<li>公有的和受保护的域</li>
 </ul>
 <p>应该为以上几个部分编写注释。注释应该放置在所描述特征的前面，以<code>/**</code>开始，<code>*/</code>结束，每个文档注释在标记后紧跟自由格式文本（free-form text），标记由<code>@</code>开始，比如<code>@author</code>或<code>@param</code>。</p>
 <p>自由格式文本的第一句应该是一个概要性的橘子，javadoc实用程序自动将这些句子抽取出来形成概要网页。自由格式文本中还可以实用HTML标签来进行格式修饰，如果有到其他文件（比如图片）的链接，将这些文件放置在子目录<code>doc-files</code>中。</p>
 <h3 id="4-9-2-类注释"><a href="#4-9-2-类注释" class="headerlink" title="4.9.2 类注释"></a>4.9.2 类注释</h3><p>类注释必须放在import语句之后，类定义之前。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span></span>&#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="java">import java.util.*;
 
+/**
+ *
+ *
+ *
+*/
+
+class Employee&#123;
+...
+&#125;</code></pre>
 <h3 id="4-9-3-方法注释"><a href="#4-9-3-方法注释" class="headerlink" title="4.9.3 方法注释"></a>4.9.3 方法注释</h3><p>每一个方法注释必须放在所描述的方法之前，除了通用标记外，还可以使用：</p>
 <ul>
 <li><code>@param</code>变量描述：对当前方法的“param”参数部分添加一个条目，这个描述可以占据多行并可以使用HTML标记。一个方法的所有<code>@param</code>标记必须放在一起。</li>
 <li><code>@return</code>描述：对当前方法添加“return”返回部分描述，这个描述可以占据多行并可以使用HTML标记。</li>
 <li><code>@throws</code>类描述：用于表示这个方法有可能抛出异常。</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Raises the salary of an employee.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> byPercent the percentage by which to raise the salary(e.g. 10 means 10%)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> the amount of the raise</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">raiseSalary</span><span class="params">(<span class="keyword">double</span> byPercent)</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> raise = salary * byPercent / <span class="number">100</span>;</span><br><span class="line">    salary += raise;</span><br><span class="line">    <span class="keyword">return</span> raise;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="java">/**
+ * Raises the salary of an employee.
+ * @param byPercent the percentage by which to raise the salary(e.g. 10 means 10%)
+ * @return the amount of the raise
+*/
 
+public double raiseSalary(double byPercent)&#123;
+    double raise = salary * byPercent / 100;
+    salary += raise;
+    return raise;
+&#125;</code></pre>
 <h3 id="4-9-4-域注释"><a href="#4-9-4-域注释" class="headerlink" title="4.9.4 域注释"></a>4.9.4 域注释</h3><p>只需要对公有域建立文档。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The &quot;Hearts&quot; card suit</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HEARTS = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<pre><code class="java">/**
+ * The &quot;Hearts&quot; card suit
+*/
 
+public static final int HEARTS = 1;</code></pre>
 <h3 id="4-9-5-通用注释"><a href="#4-9-5-通用注释" class="headerlink" title="4.9.5 通用注释"></a>4.9.5 通用注释</h3><p>下面的标记可以用在类文档的注释中。 </p>
 <ul>
 <li><code>@author</code>姓名：这个标记将产生一个“author”（作者）条目。可以使用多个<code>@author</code>标记，每个标记对应一个作者。</li>
@@ -487,7 +665,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2021年02月02日 10:38</p>
+        <p>最后更新： 2021年02月03日 12:29</p>
         <p>原始链接： <a class="post-url" href="/2021/01/27/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC4%E7%AB%A0%20%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/" title="Java核心技术卷I第4章 对象和类">http://vor.ink/2021/01/27/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC4%E7%AB%A0%20%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/</a></p>
         <footer>
             <a href="http://vor.ink">
@@ -615,6 +793,16 @@
 
 <nav id="article-nav">
   
+    <a href="/2021/02/03/Hexo%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E2%80%94%E2%80%94%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          Hexo博客美化——代码高亮
+        
+      </span>
+    </a>
+  
   
     <a href="/2021/01/23/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC3%E7%AB%A0%20%E5%9F%BA%E6%9C%AC%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%BB%93%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
       <span class="article-nav-title">Java核心技术卷I第3章 基本程序设计结构</span>
@@ -654,7 +842,7 @@
 </p>
 
 
-      <span class="post-count">本站博文总字数：88.3k</span>
+      <span class="post-count">本站博文总字数：89.4k</span>
       <p>
         Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
         Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
@@ -665,6 +853,17 @@
 </footer>
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<!--加载prettify代码高亮js-->
+  <script type="text/javascript" src="/google-code-prettify/prettify.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('pre').addClass('prettyprint linenums');
+      $('code').addClass('prettyprint');
+      prettyPrint();
+    })
+  </script>
+
 <script>
   var mihoConfig = {
       root: "http://vor.ink",
@@ -694,7 +893,7 @@
             <a class="category-link" href="/categories/Blog/">Blog</a><a class="category-link" href="/categories/C%E8%AF%AD%E8%A8%80/">C语言</a><a class="category-link" href="/categories/Essay/">Essay</a><a class="category-link" href="/categories/Java/">Java</a><a class="category-link" href="/categories/UML/">UML</a><a class="category-link" href="/categories/%E5%9B%BE%E8%AE%BA/">图论</a><a class="category-link" href="/categories/%E5%A4%A7%E5%AD%A6/">大学</a><a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><a class="category-link" href="/categories/%E6%B3%95%E8%AF%AD/">法语</a><a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F%E7%BA%A7/">系统级</a><a class="category-link" href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/">计算机接口与通信</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/Blog/" style="font-size: 15.71px;">Blog</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.86px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.43px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 12.86px;">Hexo</a> <a href="/tags/Java/" style="font-size: 14.29px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 11.43px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 14.29px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.14px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.29px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 14.29px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.57px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15.71px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.43px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 14.29px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.43px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
+            <a href="/tags/Blog/" style="font-size: 16.25px;">Blog</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.25px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Java/" style="font-size: 13.75px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 11.25px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 13.75px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.5px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.75px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 13.75px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.75px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.25px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.75px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.25px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -739,7 +938,7 @@
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/Blog/" style="font-size: 15.71px;">Blog</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.86px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.43px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 12.86px;">Hexo</a> <a href="/tags/Java/" style="font-size: 14.29px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 11.43px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 14.29px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.14px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.29px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 14.29px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.57px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15.71px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.43px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 14.29px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.43px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
+            <a href="/tags/Blog/" style="font-size: 16.25px;">Blog</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.25px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Java/" style="font-size: 13.75px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 11.25px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 13.75px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.5px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.75px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 13.75px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.75px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.25px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.75px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.25px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
         </div>
     </div>
 </div>

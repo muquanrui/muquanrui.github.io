@@ -8,12 +8,12 @@
   
     <meta name="keywords" content="VorSonnenaufgang,VorSonnenaufgang's Blog" />
   
-  <meta name="description" content="3.1 一个简单的Java程序12345public class FirstSample&amp;#123;    public static void main(String[] args)&amp;#123;        System.out.println(&quot;We will not use &amp;#x27;Hello, World!&amp;#x27;&quot;);    &amp;#125;&amp;#125;   J">
+  <meta name="description" content="3.1 一个简单的Java程序public class FirstSample&amp;#123;     public static void main(String[] args)&amp;#123;         System.out.println(&quot;We will not use &#39;Hello, World!&#39;&quot;);     &amp;#125; &amp;#125;  Java区">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java核心技术卷I第3章 基本程序设计结构">
 <meta property="og:url" content="http://vor.ink/2021/01/23/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC3%E7%AB%A0%20%E5%9F%BA%E6%9C%AC%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%BB%93%E6%9E%84/index.html">
 <meta property="og:site_name" content="VorSonnenaufgang&#39;s Blog">
-<meta property="og:description" content="3.1 一个简单的Java程序12345public class FirstSample&amp;#123;    public static void main(String[] args)&amp;#123;        System.out.println(&quot;We will not use &amp;#x27;Hello, World!&amp;#x27;&quot;);    &amp;#125;&amp;#125;   J">
+<meta property="og:description" content="3.1 一个简单的Java程序public class FirstSample&amp;#123;     public static void main(String[] args)&amp;#123;         System.out.println(&quot;We will not use &#39;Hello, World!&#39;&quot;);     &amp;#125; &amp;#125;  Java区">
 <meta property="og:locale">
 <meta property="og:image" content="http://vor.ink/2021/01/23/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC3%E7%AB%A0%20%E5%9F%BA%E6%9C%AC%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%BB%93%E6%9E%84/images/1611480813487.png">
 <meta property="og:image" content="http://vor.ink/2021/01/23/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC3%E7%AB%A0%20%E5%9F%BA%E6%9C%AC%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%BB%93%E6%9E%84/images/1611510891632.png">
@@ -32,8 +32,13 @@
     <link rel="icon" href="/favicon.ico">
   
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
   
 <link rel="stylesheet" href="/css/style.css">
+
+
+ <!--加载prettify代码高亮样式-->
+<link href="/google-code-prettify/tomorrow.css" type="text/css" rel="stylesheet" />
 
   
 <script src="/js/pace.min.js"></script>
@@ -199,8 +204,11 @@
 
       
             
-            <h2 id="3-1-一个简单的Java程序"><a href="#3-1-一个简单的Java程序" class="headerlink" title="3.1 一个简单的Java程序"></a>3.1 一个简单的Java程序</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FirstSample</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;We will not use &#x27;Hello, World!&#x27;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+            <h2 id="3-1-一个简单的Java程序"><a href="#3-1-一个简单的Java程序" class="headerlink" title="3.1 一个简单的Java程序"></a>3.1 一个简单的Java程序</h2><pre><code class="java">public class FirstSample&#123;
+    public static void main(String[] args)&#123;
+        System.out.println(&quot;We will not use &#39;Hello, World!&#39;&quot;);
+    &#125;
+&#125;</code></pre>
 <ul>
 <li>Java区分大小写。</li>
 <li>关键字public称为<strong>访问修饰符</strong>（access modifier），访问修饰符用于控制程序的其他部分对这段代码的访问级别。</li>
@@ -286,8 +294,8 @@
 <li>NaN（不是一个数字）：Double.NaN</li>
 </ol>
 <p><strong>注意</strong>：检测非数值时不能使用==，要使用isNaN方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(x == Double.NaN) <span class="comment">// is never true</span></span><br><span class="line"><span class="keyword">if</span>(Double.isNaN(x)) <span class="comment">// check whether x is &quot;not a number&quot;</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="Java">if(x == Double.NaN) // is never true
+if(Double.isNaN(x)) // check whether x is &quot;not a number&quot;</code></pre>
 <h3 id="3-3-3-char类型"><a href="#3-3-3-char类型" class="headerlink" title="3.3.3 char类型"></a>3.3.3 char类型</h3><p>char类型原本用于表示单个字符。但是现在有些Unicode字符可以用一个char表示，但是有些Unicode字符需要两个char。</p>
 <p>char的字面量的值需要<strong>单引号</strong>括起来。例如，’A’表示编码值为65所对应的字符常量，”A”则表示一个包含字符A的字符串。</p>
 <p>char类型的值可以表示为十六进制，范围从\u0000到\Uffff。</p>
@@ -344,8 +352,10 @@
 <p>UTF-16编码采用不同长度的编码表示所有Unicode码点。在基本的多语言级别中，每个字符用16位表示，通常被称为一个代码单元（code unit）；而辅助字符采用一对连续的代码单元进行编码。这样构成的编码值落入基本的多语言级别中空闲的2048字节内，通常被称为潜代区域（surrogate area）。<code>U+D800</code> ~ <code>U+DBFF</code>用于第一个代码单元，<code>U+DC00</code> ~ <code>U+DFFF</code>用于第二个代码单元。这样的设计使得一眼就能看出一个代码单元是一个字符的编码，还是一个辅助字符的第一或第二部分。</p>
 <p>Java中，char类型描述的就是UTF-16编码中的一个代码单元。建议不在程序中使用char类型，最好使用字符串。</p>
 <h3 id="3-3-5-boolean类型"><a href="#3-3-5-boolean类型" class="headerlink" title="3.3.5 boolean类型"></a>3.3.5 boolean类型</h3><p>boolean（布尔）类型有两个值：true和false，用来判断逻辑条件，整型和布尔值不能相互转换（不同于C++）。</p>
-<h2 id="3-4-变量"><a href="#3-4-变量" class="headerlink" title="3.4 变量"></a>3.4 变量</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> salary;</span><br><span class="line"><span class="keyword">int</span> vacationDays;</span><br><span class="line"><span class="keyword">long</span> earthPopulation;</span><br><span class="line"><span class="keyword">boolean</span> done;</span><br></pre></td></tr></table></figure>
-
+<h2 id="3-4-变量"><a href="#3-4-变量" class="headerlink" title="3.4 变量"></a>3.4 变量</h2><pre><code class="java">double salary;
+int vacationDays;
+long earthPopulation;
+boolean done;</code></pre>
 <p>Java的每个变量都有一个type，类型位于变量名之前。</p>
 <p>变量名是一个必须<strong>以字母开头</strong>并由字母和数字组成的序列。但是Java的字母和数字范围更大，字母包括大小写英文字母，_ ，$，或者其他语言中表示字母的任何Unicode字符。数字包括0～9和在其他语言中表示数字的Unicode字符。</p>
 <p><strong>提示</strong>：可以使用<code>Character</code>类的<code>isJavaIdentifierStart</code>和<code>isJavaIdentifierPart</code>来检某个查Unicode字符是否属于Java中的合法字母。</p>
@@ -353,12 +363,20 @@
 <p>Java不能使用保留字作为变量名。</p>
 <h3 id="3-4-1-变量初始化"><a href="#3-4-1-变量初始化" class="headerlink" title="3.4.1 变量初始化"></a>3.4.1 变量初始化</h3><p>声明一个变量后需要用赋值语句进行显示初始化，不要使用未初始化的变量。赋值语句使用<code>=</code>。声明尽可能靠近变量第一次使用的地方。</p>
 <h3 id="3-4-2-常量"><a href="#3-4-2-常量" class="headerlink" title="3.4.2 常量"></a>3.4.2 常量</h3><p>关键字<code>final</code>指示常量。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Constants</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">double</span> CM_PER_INCH = <span class="number">2.54</span>;</span><br><span class="line">        System.out.println(CM_PER_INCH);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">public class Constants&#123;
+    public void main(String[] args)&#123;
+        final double CM_PER_INCH = 2.54;
+        System.out.println(CM_PER_INCH);
+    &#125;
+&#125;</code></pre>
 <p>常量只能被赋值一次，之后不能更改，常量名一般使用全大写。</p>
 <p>如果希望某个常量能在一个类的多个方法中使用，可以使用关键字<code>static final</code>设置一个类常量。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Constants</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">double</span> CM_PER_INCH = <span class="number">2.54</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        System.out.println(CM_PER_INCH);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">public class Constants&#123;
+    public static final double CM_PER_INCH = 2.54;
+    public void main(String[] args)&#123;
+        System.out.println(CM_PER_INCH);
+    &#125;
+&#125;</code></pre>
 <h2 id="3-5-运算符"><a href="#3-5-运算符" class="headerlink" title="3.5 运算符"></a>3.5 运算符</h2><p>运算符<code>+</code>、<code>-</code>、<code>*</code>、<code>/</code>、<code>%</code>分别表示加减乘除和取模（求余）运算。</p>
 <p><strong>注意</strong>：</p>
 <ul>
@@ -396,8 +414,8 @@
 <li>6个实线箭头：无信息丢失的转换</li>
 <li>3个虚线箭头：可能有精度丢失的转换</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n = <span class="number">123456789</span>;</span><br><span class="line"><span class="keyword">float</span> f = n; <span class="comment">// f is 1.23456792E8</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">int n = 123456789;
+float f = n; // f is 1.23456792E8</code></pre>
 <p>当使用n和f进行二元操作时（例如n+f），先要将两个操作数转换为同一类型再进行计算。</p>
 <ul>
 <li>如果两个操作数有一个是double，另一个也会转换为double。</li>
@@ -407,19 +425,22 @@
 </ul>
 <h3 id="3-5-3-强制类型转换"><a href="#3-5-3-强制类型转换" class="headerlink" title="3.5.3 强制类型转换"></a>3.5.3 强制类型转换</h3><p>由上一小节可知在必要的时候int类型的值会自动转换为double类型，但是有时候也许要将double转换为int，Java允许这样的操作，虽然可能会丢失一些信息。</p>
 <p>强制类型转换（cast）可以实现这样的操作，比如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> x = <span class="number">9.997</span>;</span><br><span class="line"><span class="keyword">int</span> nx = (<span class="keyword">int</span>)x;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">double x = 9.997;
+int nx = (int)x;</code></pre>
 <p>nx的值是9，因为强制类型转换是结果是截断小数部分，并不是四舍五入。</p>
 <p>如果要进行四舍五入运算，得到最接近的整数，需要使用<code>Math.round</code>方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> x = <span class="number">9.997</span>;</span><br><span class="line"><span class="keyword">int</span> nx = (<span class="keyword">int</span>)Math.round(x);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">double x = 9.997;
+int nx = (int)Math.round(x);</code></pre>
 <p>nx的值是10。注意，调用round方法时仍然需要使用<code>(int)</code>，因为round的返回结果是long类型。</p>
 <h3 id="3-5-4-结合赋值和运算符"><a href="#3-5-4-结合赋值和运算符" class="headerlink" title="3.5.4 结合赋值和运算符"></a>3.5.4 结合赋值和运算符</h3><p>可以在赋值中使用二元运算符，比如<code>x+=4</code>等价于<code>x = x+4</code>。</p>
 <p><strong>注意</strong>：如果运算符得到的值类型与左侧操作数类型不同，会发生强制类型转换。比如x是int，<code>x+=3.5</code>是合法的，x将被设置为<code>(int)(x+3.5)</code>。</p>
 <h3 id="3-5-5-自增与自减运算符"><a href="#3-5-5-自增与自减运算符" class="headerlink" title="3.5.5 自增与自减运算符"></a>3.5.5 自增与自减运算符</h3><p>加1和减1可以表示为<code>n++</code>和<code>n--</code>。</p>
 <p>由于自增和自减运算会改变操作数的值，因此操作数不能是数值，应该是变量。</p>
 <p>自增与自减还可以表示为前缀形式<code>++n</code>和<code>--n</code>，单独使用时和后缀形式没有区别，但是出现在表达式中时，二者就有区别了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> m = <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> n = <span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> a = <span class="number">2</span> * ++m;</span><br><span class="line"><span class="keyword">int</span> b = <span class="number">2</span> * n++;</span><br></pre></td></tr></table></figure>
+<pre><code class="java">int m = 7;
+int n = 7;
+int a = 2 * ++m;
+int b = 2 * n++;</code></pre>
 <p>结果是，a = 16，m = 8，b = 14，n = 8。</p>
 <ul>
 <li>前缀形式会先完成加1，再参与运算，<code>int a = 2 * ++m</code>中先进行m+1=8，再进行2*8。</li>
@@ -539,32 +560,32 @@
 <li>结合性指运算符结合的顺序，比如<code>+=</code>是右结合，<code>a += b += c</code>等价于<code>a += (b += c)</code>，比如负号<code>-</code>是右结合，<code>1 + -2</code>等价于<code>1 + (-2)</code>。</li>
 <li>instanceof是判断对象是否是某个类或接口类型。</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String name = <span class="string">&quot;James&quot;</span>;</span><br><span class="line"><span class="keyword">boolean</span> result = name <span class="keyword">instanceof</span> String; <span class="comment">// 由于 name 是 String 类型，所以返回真</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">String name = &quot;James&quot;;
+boolean result = name instanceof String; // 由于 name 是 String 类型，所以返回真</code></pre>
 <ol start="4">
 <li>注意区分正负号和加减号，位操作符与逻辑运算符。</li>
 <li>实际开发中不用去刻意记忆和使用运算符优先级，多使用括号。</li>
 </ol>
 <h3 id="3-5-9-枚举类型"><a href="#3-5-9-枚举类型" class="headerlink" title="3.5.9 枚举类型"></a>3.5.9 枚举类型</h3><p>有时候变量取值局限在一个范围内，可以自定义枚举类型来表示这样的变量。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Size</span> </span>&#123;SMALL, MEDIUM, LARGE, EXTRA_LARGE&#125;;</span><br><span class="line">Size s = Size.MEDIUM;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">enum Size &#123;SMALL, MEDIUM, LARGE, EXTRA_LARGE&#125;;
+Size s = Size.MEDIUM;</code></pre>
 <p>Size类型的变量只能存储这个类型声明时给定的某个枚举值或者null，null表示这个变量没有设置任何值。</p>
 <h2 id="3-6-字符串"><a href="#3-6-字符串" class="headerlink" title="3.6 字符串"></a>3.6 字符串</h2><p>Java没有内置字符串类型，而是在标准Java库中提供了一个预定义类<code>String</code>。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String e = <span class="string">&quot;&quot;</span>;</span><br><span class="line">String greeting  = <span class="string">&quot;Hello&quot;</span>;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">String e = &quot;&quot;;
+String greeting  = &quot;Hello&quot;;</code></pre>
 <h3 id="3-6-1-子串"><a href="#3-6-1-子串" class="headerlink" title="3.6.1 子串"></a>3.6.1 子串</h3><p><code>String</code>类的<code>substring</code>方法可以提取一个子串。<code>substring(x, y)</code>的两个参数表示从提取x位开始到y-1位结束的子串，子串的长度是y-x。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String greeting  = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">String s = greeting.substring(<span class="number">0</span>, <span class="number">3</span>); <span class="comment">// s = &quot;Hel&quot;</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">String greeting  = &quot;Hello&quot;;
+String s = greeting.substring(0, 3); // s = &quot;Hel&quot;</code></pre>
 <h3 id="3-6-2-拼接"><a href="#3-6-2-拼接" class="headerlink" title="3.6.2 拼接"></a>3.6.2 拼接</h3><p>字符串通过<code>+</code>号进行拼接。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String expletive = <span class="string">&quot;Expletive&quot;</span>;</span><br><span class="line">Strng PG13 = <span class="string">&quot;deleted&quot;</span>;</span><br><span class="line">String message = expletive + PG13; <span class="comment">// message = &quot;Expletivedeleted&quot;</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">String expletive = &quot;Expletive&quot;;
+Strng PG13 = &quot;deleted&quot;;
+String message = expletive + PG13; // message = &quot;Expletivedeleted&quot;</code></pre>
 <p>注意拼接后中间不会存在空格。</p>
 <p>如果将一个字符串与一个非字符串的值进行拼接，后者将被转换为字符串。事实上任何一个Java对象都可以转换为字符串。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> age = <span class="number">13</span>;</span><br><span class="line">String rating = <span class="string">&quot;PG&quot;</span> + age; <span class="comment">// rating = &quot;PG13&quot;</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">int age = 13;
+String rating = &quot;PG&quot; + age; // rating = &quot;PG13&quot;</code></pre>
 <p><code>String</code>类提供静态方法<code>join</code>，将多个字符串按照一个分隔符进行拼接。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String all = String.join(<span class="string">&quot;/&quot;</span>, <span class="string">&quot;S&quot;</span>, <span class="string">&quot;M&quot;</span>, <span class="string">&quot;L&quot;</span>, <span class="string">&quot;XL&quot;</span>); <span class="comment">// all = &quot;S/M/L/XL&quot;</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">String all = String.join(&quot;/&quot;, &quot;S&quot;, &quot;M&quot;, &quot;L&quot;, &quot;XL&quot;); // all = &quot;S/M/L/XL&quot;</code></pre>
 <h3 id="3-6-3-不可变字符串"><a href="#3-6-3-不可变字符串" class="headerlink" title="3.6.3 不可变字符串"></a>3.6.3 不可变字符串</h3><p>String类没有提供修改字符串值的方法，比如对于字符串变量<code>greeting</code>的值”Hello”，不能通过修改最后两个字符直接将其修改为”Help!”（这与C语言明显不同），应该使用<code>greeting = greeting.substring(0,3)+&quot;p!&quot;</code>这样的语句来修改。</p>
 <p>实际上，Java文档中将String类的对象称为<strong>不可变字符串</strong>，好比对于一个数字3，它永远都是3，一个字符串“Hello”永远是这几个字母组成的序列，而不能修改其中的一个字符。</p>
 <p>当然，也可以通过直接修改字符串变量<code>greeting</code>，让它引用另一个字符串来达到修改内容的目的。</p>
@@ -577,18 +598,34 @@
 <h3 id="3-6-6-码点与代码单元"><a href="#3-6-6-码点与代码单元" class="headerlink" title="3.6.6 码点与代码单元"></a>3.6.6 码点与代码单元</h3><p>Java字符串事实上是由char值的序列组成，在探讨char类型时已经知道，char类型是一个采用UTF-16编码表示Unicode码点的代码单元。大多数Unicode字符使用一个代码单元表示，而辅助字符需要一对代码单元表示。</p>
 <p><code>length</code>方法返回采用UTF-16编码表示的给定字符串需要的代码单元数量，实际长度即码点数量使用<code>codePointCount</code>方法。</p>
 <p>对应的，<code>charAt(n)</code>返回位置n的代码单元，而第i个码点使用的是另一个方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">String greeting = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"><span class="keyword">int</span> n = greeting.length(); <span class="comment">// 5</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> cpCount = greeting.codePointCount(<span class="number">0</span>, greeting.length());</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> first = greeting.charAt(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> index = greeting.offsetByCodePoints(<span class="number">0</span>, i);</span><br><span class="line"><span class="keyword">int</span> cp = greeting.codePointAt(index);</span><br></pre></td></tr></table></figure>
+<pre><code class="java">String greeting = &quot;Hello&quot;;
+int n = greeting.length(); // 5
 
+int cpCount = greeting.codePointCount(0, greeting.length());
+
+char first = greeting.charAt(0);
+
+int index = greeting.offsetByCodePoints(0, i);
+int cp = greeting.codePointAt(index);</code></pre>
 <h3 id="3-6-7-String-API"><a href="#3-6-7-String-API" class="headerlink" title="3.6.7 String API"></a>3.6.7 String API</h3><p>Java的String类包含五十多个方法，大多数都频繁使用，可以上oracle官网阅读<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String类的API文档</a>。</p>
 <h3 id="3-6-8-构建字符串"><a href="#3-6-8-构建字符串" class="headerlink" title="3.6.8 构建字符串"></a>3.6.8 构建字符串</h3><p>有时候需要使用较短的字符串构建字符串，使用<code>+</code>号拼接得到新字符串的方式十分低效，每次拼接，都会构建一个新的String对象，耗时且浪费空间。原因在前面讨论过，String对象是不可改变的，每次使用String类中的一个方法时，都要在内存中创建一个新的String对象，这就需要为该新对象分配新的空间。</p>
 <p>可以使用<code>StringBuilder</code>来解决这个麻烦。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder builder = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">builder.append(ch); <span class="comment">// appends a char</span></span><br><span class="line">builder.append(str); <span class="comment">// appends a string</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">StringBuilder builder = new StringBuilder();
+builder.append(ch); // appends a char
+builder.append(str); // appends a string</code></pre>
 <p>需要构建字符串时使用<code>String completedString = builder.toString()</code>来得到一个String对象。</p>
 <h2 id="3-7-输入输出"><a href="#3-7-输入输出" class="headerlink" title="3.7 输入输出"></a>3.7 输入输出</h2><h3 id="3-7-1-读取输入"><a href="#3-7-1-读取输入" class="headerlink" title="3.7.1 读取输入"></a>3.7.1 读取输入</h3><p>打印输出到“标准输出流”（即控制台窗口），需要调用的是<code>System.out.println</code>方法，读取“标准输入流”则使用的是<code>System.in</code>，需要定义一个<code>Scanner</code>类的对象。</p>
 <p>因为<code>Scanner</code>类定义于<code>java.util</code>包中，因此需要在源文件开头导入<code>import java.util.*</code>。凡是使用没有定义在基本<code>java.lang</code>包中的类时，都要使用<code>import</code>来加载相应的包。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">&quot;What is your name?&quot;</span>);</span><br><span class="line">String name = in.nextLine(); <span class="comment">// 读取一行</span></span><br><span class="line"></span><br><span class="line">String firstName = in.next(); <span class="comment">// 读取一个单词，以空格为分隔符</span></span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">&quot;How old are you?&quot;</span>);</span><br><span class="line"><span class="keyword">int</span> age = in.nextInt(); <span class="comment">// 读取一个整数</span></span><br><span class="line"><span class="keyword">int</span> weight = in.nextDouble(); <span class="comment">// 读取一个浮点数</span></span><br></pre></td></tr></table></figure>
+<pre><code class="java">Scanner in = new Scanner(System.in);
 
+System.out.println(&quot;What is your name?&quot;);
+String name = in.nextLine(); // 读取一行
+
+String firstName = in.next(); // 读取一个单词，以空格为分隔符
+
+System.out.println(&quot;How old are you?&quot;);
+int age = in.nextInt(); // 读取一个整数
+int weight = in.nextDouble(); // 读取一个浮点数</code></pre>
 <h3 id="3-7-2-格式化输出"><a href="#3-7-2-格式化输出" class="headerlink" title="3.7.2 格式化输出"></a>3.7.2 格式化输出</h3><p><code>System.out.println(x)</code>默认以x对应数据类型的所允许最大非0数字位数打印输出，例如<code>double x = 1000.0/3.0</code>时，打印输出3333.3333333333335。</p>
 <p>如果要以特定小数位数输出，需要用到格式化输出，Java的格式化输出沿用C语言库函数重的printf方法。例如<code>System.out.println(&quot;%.2f&quot;, x);</code>，将打印输出3333.33。</p>
 <p>每一个以<code>%</code>字符开始的格式说明符都用相应的参数进行替换，格式说明符尾部的转换符指示被格式化的数值类型。</p>
@@ -596,36 +633,95 @@
 <p>此外，还有控制格式化输出的各种标志。比如对于逗号，<code>System.out.println(&quot;%,.2f&quot;, 1000.0/3.0);</code>，输出是3,333.33。</p>
 <p><img src="./images/1611523189223.png"></p>
 <h3 id="3-7-3-文件输入与输出"><a href="#3-7-3-文件输入与输出" class="headerlink" title="3.7.3 文件输入与输出"></a>3.7.3 文件输入与输出</h3><p>进行文件读取，需要用<code>File</code>对象构造一个<code>Scanner</code>对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Scanner in = <span class="keyword">new</span> Scanner(Paths.get(<span class="string">&quot;myfile.txt&quot;</span>), <span class="string">&quot;UTF-8&quot;</span>);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">Scanner in = new Scanner(Paths.get(&quot;myfile.txt&quot;), &quot;UTF-8&quot;);</code></pre>
 <p><strong>注意</strong>：如果文件名中包含反斜杠符号<code>\</code>，一定要在每个<code>\</code>前再加一个反斜杠，比如<code>c:\\mydirectory\\myfile.txt</code>。</p>
 <p>进行文件写入，需要构造一个<code>PrintWriter</code>对象。对象参数只需要提供文件名。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PrintWriter out = <span class="keyword">new</span> PrintWriter(<span class="string">&quot;myfile.txt&quot;</span>, <span class="string">&quot;UTF-8&quot;</span>);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">PrintWriter out = new PrintWriter(&quot;myfile.txt&quot;, &quot;UTF-8&quot;);</code></pre>
 <p>如果该文件不存在，则会创建该文件。之后如同标准输出一样使用<code>print</code>、<code>println</code>和<code>printf</code>进行写入。</p>
 <p><strong>注意</strong>：如果用一个不存在的文件构造一个<code>Scanner</code>，或者用一个不能被创建的文件构造<code>PrintWriter</code>，就会产生异常，因此需要在方法后添加<code>throws IOException</code>。</p>
 <h2 id="3-8-控制流程"><a href="#3-8-控制流程" class="headerlink" title="3.8 控制流程"></a>3.8 控制流程</h2><h3 id="3-8-1-块作用域"><a href="#3-8-1-块作用域" class="headerlink" title="3.8.1 块作用域"></a>3.8.1 块作用域</h3><p>块（block）即复合语句，是指由一对大括号括起来的若干条简单的Java语句，块确定了变量的作用域。一个块可以嵌套在另一个块中。</p>
 <p>与C和C++不同，Java不允许在嵌套关系的两个块中声明同名变量。</p>
 <h3 id="3-8-2-条件语句"><a href="#3-8-2-条件语句" class="headerlink" title="3.8.2 条件语句"></a>3.8.2 条件语句</h3><p><code>if(condition) statement</code></p>
 <p>条件必须用括号括起来，条件为真时如果执行单条语句，不需要大括号，多条语句时需要大括号。<code>if</code>可以和<code>else</code>或者和<code>else if</code>、<code>else</code>组合构成多种条件语句。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(yourSales &gt;= <span class="number">2</span>*target) &#123;</span><br><span class="line">    bonus = <span class="number">200</span>;</span><br><span class="line">    performance = <span class="string">&quot;Excellent&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(yourSales &gt;= target) &#123;</span><br><span class="line">    bonus = <span class="number">100</span>;</span><br><span class="line">    performance = <span class="string">&quot;Satisfactory&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Your loser.&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">if(yourSales &gt;= 2*target) &#123;
+    bonus = 200;
+    performance = &quot;Excellent&quot;;
+&#125;
+else if(yourSales &gt;= target) &#123;
+    bonus = 100;
+    performance = &quot;Satisfactory&quot;;
+&#125;
+else &#123;
+    System.out.println(&quot;Your loser.&quot;);
+&#125;</code></pre>
 <h3 id="3-8-3-循环"><a href="#3-8-3-循环" class="headerlink" title="3.8.3 循环"></a>3.8.3 循环</h3><p><code>while(condition) statement</code></p>
 <p>只要条件为真，循环体会重复执行，知道条件为false。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Retirement</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// read inputs</span></span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        </span><br><span class="line">        System,out.print(<span class="string">&quot;How much money do you need to retire? &quot;</span>); </span><br><span class="line">        <span class="keyword">double</span> goal = in.nextDouble();</span><br><span class="line">        </span><br><span class="line">        System.out.print(<span class="string">&quot;How much money will you contribute every year? &quot;</span>);</span><br><span class="line">        <span class="keyword">double</span> payment = in.nextDouble();</span><br><span class="line">        </span><br><span class="line">        System.out.print(<span class="string">&quot;Interest rate in %: &quot;</span>);</span><br><span class="line">        <span class="keyword">double</span> interestRate = in.nextDoubl();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">double</span> balance = <span class="number">0</span>; </span><br><span class="line">        <span class="keyword">int</span> years = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// update account balance while goal isn&#x27;t reached</span></span><br><span class="line">        <span class="keyword">while</span> (balance &lt; goal) &#123;</span><br><span class="line">            balance += payment;</span><br><span class="line">            <span class="keyword">double</span> interest = balance * interestRate / <span class="number">100</span>; </span><br><span class="line">            balance += interest;</span><br><span class="line">            years++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// add this year&#x27;s payment and interest</span></span><br><span class="line">        System.out.println(<span class="string">&quot;You can retire in &quot;</span> + years + <span class="string">&quot; years.&quot;</span>);	</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="java">public class Retirement &#123;
+    public static void main(String[] args) &#123;
+        // read inputs
+        Scanner in = new Scanner(System.in);
 
+        System,out.print(&quot;How much money do you need to retire? &quot;); 
+        double goal = in.nextDouble();
+
+        System.out.print(&quot;How much money will you contribute every year? &quot;);
+        double payment = in.nextDouble();
+
+        System.out.print(&quot;Interest rate in %: &quot;);
+        double interestRate = in.nextDoubl();
+
+        double balance = 0; 
+        int years = 0;
+
+        // update account balance while goal isn&#39;t reached
+        while (balance &lt; goal) &#123;
+            balance += payment;
+            double interest = balance * interestRate / 100; 
+            balance += interest;
+            years++;
+        &#125;
+        // add this year&#39;s payment and interest
+        System.out.println(&quot;You can retire in &quot; + years + &quot; years.&quot;);    
+    &#125;
+&#125;</code></pre>
 <p>while循环会先检查循环条件，因此循环体中的代码可能一次都不会被执行。</p>
 <p><code>do statement while(condition)</code></p>
 <p>使用do…while可以使循环体至少执行一次，再检测循环条件。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    balance += payment;</span><br><span class="line">            <span class="keyword">double</span> interest = balance * interestRate / <span class="number">100</span>; </span><br><span class="line">            balance += interest;</span><br><span class="line">            years++;</span><br><span class="line">            <span class="comment">// print current balance</span></span><br><span class="line">            System•out.printf(<span class="string">&quot;After year %d, your balance is %.2f%n&quot;</span>, year, balance);</span><br><span class="line">            <span class="comment">// ask if ready to retire and get input</span></span><br><span class="line">            System,out.print(<span class="string">&quot;Ready to retire? (Y/N) &quot;</span>);</span><br><span class="line">            input = in.nextO;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span>(input.equals(<span class="string">&quot;N&quot;</span>));</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-8-4-确定循环"><a href="#3-8-4-确定循环" class="headerlink" title="3.8.4 确定循环"></a>3.8.4 确定循环</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++)</span><br><span class="line">    System.out.println(i);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">do&#123;
+    balance += payment;
+            double interest = balance * interestRate / 100; 
+            balance += interest;
+            years++;
+            // print current balance
+            System•out.printf(&quot;After year %d, your balance is %.2f%n&quot;, year, balance);
+            // ask if ready to retire and get input
+            System,out.print(&quot;Ready to retire? (Y/N) &quot;);
+            input = in.nextO;
+&#125;
+while(input.equals(&quot;N&quot;));</code></pre>
+<h3 id="3-8-4-确定循环"><a href="#3-8-4-确定循环" class="headerlink" title="3.8.4 确定循环"></a>3.8.4 确定循环</h3><pre><code class="java">for(int i = 1; i &lt;= 10; i++)
+    System.out.println(i);</code></pre>
 <p>for循环是支持迭代的通用结构，第1部分用于初始化计数器，第2部分给出每一轮循环前要检测的循环条件，第3部分指示如何更新计数器。有一条不成文的规则：for语句的3部分应该对同一个计数器变量进行初始化、检测和更新。</p>
 <p>在for语句第1部分中声明的变量作用域为整个循环体，因此独立的for循环可以使用同名变量，但要在循环体外使用这个变量，就要在for循环语句前声明。</p>
 <p><strong>注意</strong>：检测浮点数是否相等时要十分小心，例如<code>for(double x = 0; x != 10; x += 0.1)</code>，这个循环可能永远不会结束，因为浮点数本身存在的误差，最终可能得不到精确值。</p>
-<h3 id="3-8-5-多重选择：switch语句"><a href="#3-8-5-多重选择：switch语句" class="headerlink" title="3.8.5 多重选择：switch语句"></a>3.8.5 多重选择：switch语句</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Scanner in = <span class="keyword">new</span> Scanner(System.in); System.out.printC<span class="string">&#x27;Select an option (1, 2, 3, 4) M); int choice = in.nextlnt();</span></span><br><span class="line"><span class="string">switch (choice) &#123;</span></span><br><span class="line"><span class="string">	case 1:</span></span><br><span class="line"><span class="string">		...</span></span><br><span class="line"><span class="string">		break; </span></span><br><span class="line"><span class="string">	case 2:</span></span><br><span class="line"><span class="string">		...</span></span><br><span class="line"><span class="string">		break; </span></span><br><span class="line"><span class="string">	case 3:</span></span><br><span class="line"><span class="string">		...</span></span><br><span class="line"><span class="string">		break; </span></span><br><span class="line"><span class="string">	case 4:</span></span><br><span class="line"><span class="string">		...</span></span><br><span class="line"><span class="string">		break; </span></span><br><span class="line"><span class="string">	default:</span></span><br><span class="line"><span class="string">		// bad input </span></span><br><span class="line"><span class="string">		break;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
-
+<h3 id="3-8-5-多重选择：switch语句"><a href="#3-8-5-多重选择：switch语句" class="headerlink" title="3.8.5 多重选择：switch语句"></a>3.8.5 多重选择：switch语句</h3><pre><code class="java">Scanner in = new Scanner(System.in); System.out.printC&#39;Select an option (1, 2, 3, 4) M); int choice = in.nextlnt();
+switch (choice) &#123;
+    case 1:
+        ...
+        break; 
+    case 2:
+        ...
+        break; 
+    case 3:
+        ...
+        break; 
+    case 4:
+        ...
+        break; 
+    default:
+        // bad input 
+        break;
+&#125;</code></pre>
 <p>switch语句将从与选项值匹配的case标签开始执行直到遇到break语句，或者switch语句的结束处停止（即如果一个case没有以break结束，则可能触发多个case）。如果没有相匹配的case，则执行default语句。</p>
 <p>case标签可以是：</p>
 <ul>
@@ -633,36 +729,62 @@
 <li>枚举常量</li>
 <li>Java SE 7开始，还可以是字符串字面量</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">String input = ...;</span><br><span class="line"><span class="keyword">switch</span> (input.toLowerCase())&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;yes&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">		...</span></span><br><span class="line"><span class="string">		break;</span></span><br><span class="line"><span class="string">	...</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Size sz = ...;</span></span><br><span class="line"><span class="string">switch(sz)&#123;</span></span><br><span class="line"><span class="string">	case SMALL:</span></span><br><span class="line"><span class="string">		...</span></span><br><span class="line"><span class="string">		break;</span></span><br><span class="line"><span class="string">	...</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="java">String input = ...;
+switch (input.toLowerCase())&#123;
+    case &quot;yes&quot;&quot;
+        ...
+        break;
+    ...
+&#125;
 
+Size sz = ...;
+switch(sz)&#123;
+    case SMALL:
+        ...
+        break;
+    ...
+&#125;</code></pre>
 <h3 id="3-8-6-中断控制流程语句"><a href="#3-8-6-中断控制流程语句" class="headerlink" title="3.8.6 中断控制流程语句"></a>3.8.6 中断控制流程语句</h3><p><code>break</code>用于退出switch语句或跳出当前循环体。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (years &lt;= <span class="number">100</span>)&#123;</span><br><span class="line">    balance += payment;</span><br><span class="line">    <span class="keyword">double</span> interest = balance * interestRate / <span class="number">100</span>;</span><br><span class="line">    balance += interest;</span><br><span class="line">    <span class="keyword">if</span>(balance &gt;= goal) <span class="keyword">break</span>;</span><br><span class="line">    years++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">while (years &lt;= 100)&#123;
+    balance += payment;
+    double interest = balance * interestRate / 100;
+    balance += interest;
+    if(balance &gt;= goal) break;
+    years++;
+&#125;</code></pre>
 <p><code>continue</code>用于跳过本次循环的后续语句，终止本次的循环，回到循环语句的首部。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"><span class="keyword">while</span> (sum &lt; goal)&#123;</span><br><span class="line">    System.out.print(<span class="string">&quot;Enter a number: &quot;</span>);</span><br><span class="line">    n = in.nextInt();</span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">    sum += n; <span class="comment">// not executed if n &lt; 0;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">Scanner in = new Scanner(System.in);
+while (sum &lt; goal)&#123;
+    System.out.print(&quot;Enter a number: &quot;);
+    n = in.nextInt();
+    if (n &lt; 0) continue;
+    sum += n; // not executed if n &lt; 0;
+&#125;</code></pre>
 <p>此外还有goto，带标签的break和continue，因为这样的语句会打破程序的正常执行逻辑，使程序变得很不易读且容易出错，不建议使用。</p>
 <h2 id="3-9-大数值"><a href="#3-9-大数值" class="headerlink" title="3.9 大数值"></a>3.9 大数值</h2><p><code>java.math</code>包中有两个类<code>BigInteger</code>和<code>BigDecimal</code>，这两个类可以处理包含任意长度数字序列的数值，用于处理基本整数和浮点数精度不能满足要求的情况。</p>
 <p><code>BigInteger</code>实现了任意精度的整数运算，<code>BigDecimal</code>实现了任意精度的浮点数运算。</p>
 <p>静态方法<code>valueOf</code>可以将普通数值转换为大数值。。</p>
 <p>大数值不能使用算术运算符进行操作，而要使用大数值类中的相应方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BigInteger a = valueOf(<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">BigInteger c = a.add(b);</span><br><span class="line">BigInteger d = c.multiply(b.add(BigInteger.valueOf(<span class="number">2</span>)));</span><br></pre></td></tr></table></figure>
+<pre><code class="java">BigInteger a = valueOf(100);
 
+BigInteger c = a.add(b);
+BigInteger d = c.multiply(b.add(BigInteger.valueOf(2)));</code></pre>
 <h2 id="3-10-数组"><a href="#3-10-数组" class="headerlink" title="3.10 数组"></a>3.10 数组</h2><p>数组是一种用来存储同一类型值集合的数据结构。通过一个整型下标可以访问数组中的每一个值。</p>
 <p><code>int[] a</code></p>
 <p>声明数组变量时，需要指出数组类型（数据元素类型紧跟[ ]）和数组变量名字。</p>
 <p><code>int[] a = new int[100]</code></p>
 <p>将a初始化为一个真正的数组，使用<code>new</code>运算符创建数组。这里的数组长度100不一定必须是常量。</p>
 <p>这个数组创建好后下标范围是0~99，可以给数组元素赋值，例如使用一个循环：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++)</span><br><span class="line">    a[i] = i;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">int[] a = new int[100];
+for(int i = 0; i &lt; 100; i++)
+    a[i] = i;</code></pre>
 <p>创建一个数字数组时，所有元素默认初始化为0；创建一个boolean数组时，所有元素默认初始化为false；创建一个对象数组时，所有元素默认初始化为null。</p>
 <p><strong>注意</strong>：如果创建一个100个元素的数组，但是试图访问a[100]，会引发”array index out of bounds”异常。</p>
 <p><code>array.length</code>可以用于获得数组中的元素个数（即数组的大小）。创建数组后，我们虽然能够修改每一个数组元素，但是数组的大小不能被改变，<strong>数组列表</strong>（array list）可以用于运行时动态扩展数组大小。</p>
 <h3 id="3-10-1-for-each循环"><a href="#3-10-1-for-each循环" class="headerlink" title="3.10.1 for each循环"></a>3.10.1 for each循环</h3><p><code>for(variable: collection) statement</code></p>
 <p>这种增强的for循环定义一个变量用于暂存集合中的每一个元素，并执行相应语句块。这里的collection集合必须是一个数组或者一个实现了<code>Iterable</code>接口的类对象（比如<code>ArrayList</code>）。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> element: a)</span><br><span class="line">    System.out.println(element);</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">for(int element: a)
+    System.out.println(element);</code></pre>
 <p>for each循环会遍历数组a的每个元素，而不需要使用下标。</p>
 <p>如果只是要打印数组中的所有值，可以使用<code>Array.toString(a)</code>，返回一个包含所有数组元素的字符串，这个字符串有括号将所有元素括起来，逗号分隔每个元素。</p>
 <h3 id="3-10-2-数组初始化及匿名数组"><a href="#3-10-2-数组初始化及匿名数组" class="headerlink" title="3.10.2 数组初始化及匿名数组"></a>3.10.2 数组初始化及匿名数组</h3><p>除了使用<code>new</code>来创建一个数组，还可以在创建数组同时进行赋值：</p>
@@ -670,8 +792,11 @@
 <p>还可以初始化一个匿名数组：</p>
 <p><code>new int[] &#123;2, 3, 5, 7, 11, 13&#125;</code></p>
 <p>这种方法将创建一个新数组并利用括号中的值进行初始化，数组的大小就是初始值的个数，这种语法可以在不创建新变量的情况下重新初始化一个数组。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">smallPrimes = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">17</span>, <span class="number">19</span>, <span class="number">23</span>, <span class="number">29</span>, <span class="number">31</span>, <span class="number">37</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line"><span class="keyword">int</span>[] anonymous = &#123;<span class="number">17</span>, <span class="number">19</span>, <span class="number">23</span>, <span class="number">29</span>, <span class="number">31</span>, <span class="number">37</span>&#125;;</span><br><span class="line">smallPrimes = anonymous;</span><br></pre></td></tr></table></figure>
+<pre><code class="java">smallPrimes = new int[] &#123;17, 19, 23, 29, 31, 37&#125;;
 
+//等价于
+int[] anonymous = &#123;17, 19, 23, 29, 31, 37&#125;;
+smallPrimes = anonymous;</code></pre>
 <p><strong>注意</strong>：Java允许数组长度为0，即可以创建一个长度为0的数组。</p>
 <h3 id="3-10-3-数组拷贝"><a href="#3-10-3-数组拷贝" class="headerlink" title="3.10.3 数组拷贝"></a>3.10.3 数组拷贝</h3><p>Java允许将一个数组变量拷贝给另一个数组变量，这时两个变量引用同一个数组。</p>
 <p><code>int[] luckyNumbers = smallPrimes;</code></p>
@@ -680,8 +805,18 @@
 <p>如果想要将一个数组里的所有数组元素值拷贝给一个新数组（即创建一个新的数组），需要使用：</p>
 <p><code>int[] copiedLuckyNumbers = Arrays.copyOf(luckyNumbers, luckyNumbers.length);</code></p>
 <p>第二个参数表示新数组的长度，可以通过扩大这个参数值来增加数组的大小，扩展后超出的部分没有给定的元素进行初始化，则按照之前的默认初始化规则进行赋值。如果指定的新数组长度小于原始数组长度，则只拷贝最前面的数组元素。</p>
-<h3 id="3-10-4-命令行参数"><a href="#3-10-4-命令行参数" class="headerlink" title="3.10.4 命令行参数"></a>3.10.4 命令行参数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Message</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(args.length == <span class="number">0</span> || args[<span class="number">0</span>].equals(<span class="string">&quot;-h&quot;</span>))</span><br><span class="line">            System.out.print(<span class="string">&quot;Hello,&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(args[<span class="number">0</span>].equals(<span class="string">&quot;-g&quot;</span>))</span><br><span class="line">            System.out.print(<span class="string">&quot;Goodbye,&quot;</span>);</span><br><span class="line">        <span class="comment">// print the other command-line arguments</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; args.length; i++)</span><br><span class="line">            System.out.print(<span class="string">&quot; &quot;</span> + args[i]);</span><br><span class="line">        System.out.println(<span class="string">&quot;!&quot;</span>); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h3 id="3-10-4-命令行参数"><a href="#3-10-4-命令行参数" class="headerlink" title="3.10.4 命令行参数"></a>3.10.4 命令行参数</h3><pre><code class="java">public class Message &#123;
+    public static void main(String[] args)&#123;
+        if(args.length == 0 || args[0].equals(&quot;-h&quot;))
+            System.out.print(&quot;Hello,&quot;);
+        else if(args[0].equals(&quot;-g&quot;))
+            System.out.print(&quot;Goodbye,&quot;);
+        // print the other command-line arguments
+        for(int i = 1; i &lt; args.length; i++)
+            System.out.print(&quot; &quot; + args[i]);
+        System.out.println(&quot;!&quot;); 
+    &#125;
+&#125;</code></pre>
 <p>对于<code>main</code>方法，都带有一个<code>String args[]</code>的参数，这表明它将接收一个字符串数组，也就是命令行参数。对于上面的程序，使用<code>java Message -g cruel world</code>运行上面的程序，<code>args[0] = &quot;-g&quot;</code>，<code>args[1] = &quot;cruel&quot;</code>，<code>args[2] = &quot;world&quot;</code>，打印结果是“Goodbye, cruel world!”。</p>
 <h3 id="3-10-5-数组排序"><a href="#3-10-5-数组排序" class="headerlink" title="3.10.5 数组排序"></a>3.10.5 数组排序</h3><p><code>Arrays.sort(a)</code></p>
 <p>这个方法使用优化的快速排序算法，被用来进行数组排序。</p>
@@ -694,11 +829,13 @@
 <h3 id="3-10-7-不规则数组"><a href="#3-10-7-不规则数组" class="headerlink" title="3.10.7 不规则数组"></a>3.10.7 不规则数组</h3><p>实际上，Java没有多维数组这种数据结构，只有一维数组，而多维数组被解释为“数组的数组”。</p>
 <p><img src="./images/1611573004329.png"></p>
 <p><code>balances[i]</code>引用第i个子数组，它本身也是一个数组，<code>balances[i][j]</code>引用这个子数组的第j项，可以单独存取balances这个数组的子数组。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span>[] temp = balances[i];</span><br><span class="line">balances[i] = balances[i+<span class="number">1</span>];</span><br><span class="line">balances[i+<span class="number">1</span>] = temp;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">double[] temp = balances[i];
+balances[i] = balances[i+1];
+balances[i+1] = temp;</code></pre>
 <p>利用这个特点，可以方便地构造一个“不规则”数组，即数组的每一行有不同的长度。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] odds = <span class="keyword">new</span> <span class="keyword">int</span>[NMAX + <span class="number">1</span>][];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">0</span>; n &lt;= NMAX; n++);</span><br><span class="line">    odds[n] = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">int[][] odds = new int[NMAX + 1][];
+for (int n = 0; n &lt;= NMAX; n++);
+    odds[n] = new int[n + 1];</code></pre>
 
             <div class="post-copyright">
     <div class="content">
@@ -879,7 +1016,7 @@
 </p>
 
 
-      <span class="post-count">本站博文总字数：88.3k</span>
+      <span class="post-count">本站博文总字数：89.4k</span>
       <p>
         Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
         Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
@@ -890,6 +1027,17 @@
 </footer>
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<!--加载prettify代码高亮js-->
+  <script type="text/javascript" src="/google-code-prettify/prettify.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('pre').addClass('prettyprint linenums');
+      $('code').addClass('prettyprint');
+      prettyPrint();
+    })
+  </script>
+
 <script>
   var mihoConfig = {
       root: "http://vor.ink",
@@ -919,7 +1067,7 @@
             <a class="category-link" href="/categories/Blog/">Blog</a><a class="category-link" href="/categories/C%E8%AF%AD%E8%A8%80/">C语言</a><a class="category-link" href="/categories/Essay/">Essay</a><a class="category-link" href="/categories/Java/">Java</a><a class="category-link" href="/categories/UML/">UML</a><a class="category-link" href="/categories/%E5%9B%BE%E8%AE%BA/">图论</a><a class="category-link" href="/categories/%E5%A4%A7%E5%AD%A6/">大学</a><a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><a class="category-link" href="/categories/%E6%B3%95%E8%AF%AD/">法语</a><a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F%E7%BA%A7/">系统级</a><a class="category-link" href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/">计算机接口与通信</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/Blog/" style="font-size: 15.71px;">Blog</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.86px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.43px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 12.86px;">Hexo</a> <a href="/tags/Java/" style="font-size: 14.29px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 11.43px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 14.29px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.14px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.29px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 14.29px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.57px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15.71px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.43px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 14.29px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.43px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
+            <a href="/tags/Blog/" style="font-size: 16.25px;">Blog</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.25px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Java/" style="font-size: 13.75px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 11.25px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 13.75px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.5px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.75px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 13.75px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.75px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.25px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.75px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.25px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -964,7 +1112,7 @@
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/Blog/" style="font-size: 15.71px;">Blog</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.86px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.43px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 12.86px;">Hexo</a> <a href="/tags/Java/" style="font-size: 14.29px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 11.43px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 14.29px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.14px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14.29px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 14.29px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.57px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15.71px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.43px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 14.29px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.43px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
+            <a href="/tags/Blog/" style="font-size: 16.25px;">Blog</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.25px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Java/" style="font-size: 13.75px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 11.25px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 13.75px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.5px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.75px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 13.75px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.75px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.25px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.75px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.25px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
         </div>
     </div>
 </div>

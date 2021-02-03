@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo博客美化——代码高亮 | VorSonnenaufgang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="VorSonnenaufgang,VorSonnenaufgang's Blog" />
+  
+  <meta name="description" content="因为最近学习Java，博客笔记里多了很多代码段，发现Hexo自带的代码高亮插件对语法的高亮支持得并不是很好，于是萌生了更换高亮插件的想法。  1. 禁用Hexo自带的highlight在Hexo根目录下的_config.yml文件中，修改关于highlight的设置。 highlight:   enable: true   line_number: true   auto_detect: fal">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo博客美化——代码高亮">
+<meta property="og:url" content="http://vor.ink/2021/02/03/Hexo%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E2%80%94%E2%80%94%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/index.html">
+<meta property="og:site_name" content="VorSonnenaufgang&#39;s Blog">
+<meta property="og:description" content="因为最近学习Java，博客笔记里多了很多代码段，发现Hexo自带的代码高亮插件对语法的高亮支持得并不是很好，于是萌生了更换高亮插件的想法。  1. 禁用Hexo自带的highlight在Hexo根目录下的_config.yml文件中，修改关于highlight的设置。 highlight:   enable: true   line_number: true   auto_detect: fal">
+<meta property="og:locale">
+<meta property="og:image" content="http://vor.ink/2021/02/03/Hexo%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E2%80%94%E2%80%94%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/images/1612356023833.png">
+<meta property="og:image" content="http://vor.ink/2021/02/03/Hexo%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E2%80%94%E2%80%94%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/images/1612356048976.png">
+<meta property="og:image" content="http://vor.ink/2021/02/03/Hexo%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E2%80%94%E2%80%94%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/images/1612356110235.png">
+<meta property="article:published_time" content="2021-02-03T12:27:51.000Z">
+<meta property="article:modified_time" content="2021-02-03T17:29:41.480Z">
+<meta property="article:author" content="VorSonnenaufgang">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://vor.ink/2021/02/03/Hexo%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E2%80%94%E2%80%94%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/images/1612356023833.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+ <!--加载prettify代码高亮样式-->
+<link href="/google-code-prettify/tomorrow.css" type="text/css" rel="stylesheet" />
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+
+  <!--加载条样式-->
+  <style>
+    .pace .pace-progress {
+    	background-image: linear-gradient(90deg, #F79533 0%, #F37055 15%, #EF4E7B 30%, #A166AB 44%, #5073B8 58%, #1098AD 72%, #07B39B 86%, #6DBA82 100%);
+    	height: 3px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+  </style>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+
+        <div id="header-menu" class="header-menu-pos animated">
+
+
+<a target="_blank" rel="noopener" href="https://github.com/VorSonnenaufgang" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#1E90FF; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">VorSonnenaufgang&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/categories">
+                        <i class="fa fa-book"></i>
+                        <span>Categories</span>
+                    </a>
+                    
+                    <a  href="/tags">
+                        <i class="fa fa-tags"></i>
+                        <span>Tags</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        VorSonnenaufgang&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Carpe diem.
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Home" target="_blank" href="//vor.ink">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/VorSonnenaufgang">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/vorsonnenaufgang">
+                            <i class="fa fa-copyright fa-2x"></i></a>
+                    
+                        <a title="Google" target="_blank" href="//google.com">
+                            <i class="fa fa-google fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Hexo博客美化——代码高亮" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Hexo博客美化——代码高亮
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Blog/">Blog</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-02-03
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>          
+        </li>
+      </ul>
+       <span class="post-count">文章字数:1.2k字 &nbsp &nbsp  
+         阅读时长:4分钟</span>
+    </div>
+  
+        
+          
+      </header>
+    
+
+    <div class="article-entry post-content" itemprop="articleBody">
+
+    
+    
+
+
+
+      
+            
+            <blockquote>
+<p>因为最近学习Java，博客笔记里多了很多代码段，发现Hexo自带的代码高亮插件对语法的高亮支持得并不是很好，于是萌生了更换高亮插件的想法。</p>
+</blockquote>
+<h2 id="1-禁用Hexo自带的highlight"><a href="#1-禁用Hexo自带的highlight" class="headerlink" title="1. 禁用Hexo自带的highlight"></a>1. 禁用Hexo自带的highlight</h2><p>在Hexo根目录下的<code>_config.yml</code>文件中，修改关于highlight的设置。</p>
+<pre><code class="yaml">highlight:
+  enable: true
+  line_number: true
+  auto_detect: false
+  tab_replace: &quot;    &quot;</code></pre>
+<p>修改为：</p>
+<pre><code class="yaml">highlight:
+  enable: false
+  line_number: false
+  auto_detect: false
+  tab_replace: false</code></pre>
+<p>可能在修改配置文件后，无论是本地使用<code>hexo s</code>查看还是生成部署到线上查看都没有实际取消默认代码高亮，这时需要使用<code>hexo clean</code>来清除缓存文件 (db.json) 和已生成的静态文件 (public)。</p>
+<h2 id="2-下载Google-Code-Prettify"><a href="#2-下载Google-Code-Prettify" class="headerlink" title="2. 下载Google Code Prettify"></a>2. 下载Google Code Prettify</h2><p>前往下载<a target="_blank" rel="noopener" href="https://github.com/googlearchive/code-prettify">Google Code Prettify</a>，直接把仓库的Zip下载到本地。</p>
+<p>然后到<code>distrib</code>文件夹下解压文件得到包含js和css源代码的文件夹<code>google-code-prettify</code>。</p>
+<p><img src="./images/1612356023833.png"></p>
+<p><img src="./images/1612356048976.png"></p>
+<p>把这个文件夹放入Hexo目前使用的主题文件的<code>source</code>目录下（放置的子目录可根据自己情况而定，我直接放在了source的根目录下）。</p>
+<p><img src="./images/1612356110235.png"></p>
+<h2 id="3-加载css和js使用Prettify高亮"><a href="#3-加载css和js使用Prettify高亮" class="headerlink" title="3. 加载css和js使用Prettify高亮"></a>3. 加载css和js使用Prettify高亮</h2><p>不同主题加载css和js的语句位置可能不一样，但是基本都是在head布局文件中的<code>&lt;head&gt;</code>标签内加载css，在footer布局文件中加载js。</p>
+<p>对于主题<code>miho</code>，在路径<code>/miho/layout/_partial </code>下打开<code>head.ejs</code>，在加载css样式的地方添加语句：</p>
+<pre><code class="html">&lt;!--加载prettify代码高亮样式--&gt;
+&lt;link href=&quot;/google-code-prettify/prettify.css&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot; /&gt;</code></pre>
+<p>同样的路径下，打开<code>after-footer.ejs</code>，在加载jQuery的语句后面添加：</p>
+<pre><code class="html">&lt;!--加载prettify代码高亮js--&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/google-code-prettify/prettify.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    $(document).ready(function()&#123;
+        $(&#39;pre&#39;).addClass(&#39;prettyprint linenums&#39;);
+        $(&#39;code&#39;).addClass(&#39;prettyprint&#39;);
+        prettyPrint();
+    &#125;)
+&lt;/script&gt;</code></pre>
+<p>这里因为Markdown文件生成HTML文件时，这些代码块会自动生成标签，但却并没有使用我们手动添加的第三方高亮css，所以要手动用jQuery语句为代码块添加prettify的高亮Class，这样才能使这些代码块在HTML页面上拥有高亮效果。</p>
+<h2 id="4-代码高亮样式的优化"><a href="#4-代码高亮样式的优化" class="headerlink" title="4. 代码高亮样式的优化"></a>4. 代码高亮样式的优化</h2><p>这时使用<code>hexo s</code>后在本地已经可以查看到prettify的默认高亮效果了，但是还存在一些问题：</p>
+<ol>
+<li>默认样式配色和背景都不好看；</li>
+<li>代码的行号只有每五行才有显示；</li>
+<li>一行代码过长时会超出代码块边界。</li>
+</ol>
+<p>尤其对于本站使用的主题<code>miho</code>，因为作者对高亮风格有添加相应的css文件，因此两个样式有很多冲突的地方，效果可以用乱七八糟来形容，因此不得不采取优化。</p>
+<p>首先，禁用<code>miho</code>自带的高亮样式。在路径<code>/miho/source/css</code>路径下，打开<code>style.styl</code>文件，将导入<code>highlight.styl</code>的语句注释掉。</p>
+<pre><code class="css">// @import &quot;_partial/highlight&quot;</code></pre>
+<p>前往下载<a target="_blank" rel="noopener" href="https://github.com/jmblog/color-themes-for-google-code-prettify">prettify主题</a>，在<code>dist/themes</code>目录下有多款主题，找到心仪的css文件，复制到路径<code>/miho/source/google-code-prettify</code>下，然后修改之前引入css的语句，比如我使用的高亮主题是<code>tomorrow.css</code>，所以将语句修改为：</p>
+<pre><code class="html">&lt;link href=&quot;/google-code-prettify/tomorrow.css&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot; /&gt;</code></pre>
+<p>此外，我还对tomorrow这个主题进行了一些修改：</p>
+<ol>
+<li>更改代码块背景色；</li>
+<li>更改代码内容的字体大小；</li>
+<li>让代码行号右对齐；</li>
+<li>当一行代码过长溢出时使用滚动条。</li>
+</ol>
+<p>更改后的css语句如下：</p>
+<pre><code class="css">.prettyprint &#123;
+  background: #f6f8fa;
+  font-family: Menlo, &quot;Bitstream Vera Sans Mono&quot;, &quot;DejaVu Sans Mono&quot;, Monaco, Consolas, monospace;
+  border: 0 !important;
+&#125;
+
+.pln &#123;
+  color: #4d4d4c;
+&#125;
+
+ol.linenums &#123;
+  margin: 8px 30px;
+  padding: 15px 15px;
+  color: #8e908c;
+&#125;
+
+pre&#123;
+  overflow: auto;
+&#125;
+
+ol.linenums li &#123; 
+  position: relative;
+&#125;
+
+ol.linenums li:before &#123; 
+    position: absolute;
+    display: inline-block;
+&#125;
+
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L4,
+li.L5,
+li.L6,
+li.L7,
+li.L8,
+li.L9 &#123;
+  font-size: 95%;
+  padding-left: 0.5em;
+  background-color: #f6f8fa;
+  list-style-type: decimal;
+&#125;</code></pre>
+<p>最后还有一个小优化没能解决，是关于代码行号的问题。在默认的高亮样式中，代码行号是通过单独的表格td元素来实现的，而在prettify中使用的是列表元素ol，这就导致出现行号带有dot，并且默认左对齐。</p>
+<p>我在stackoverflow上查找了许久，发现了可以分别解决这两个问题的办法，但是却不能同时使用，同时使用会导致出现两个列表，且样式重叠。咨询同学后一致认为对于自定义有序列表的样式编写比较麻烦，完全应该使用块级元素比如div或者span手动代替，但是在prettify里怕是不能实现了。</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年02月03日 18:29</p>
+        <p>原始链接： <a class="post-url" href="/2021/02/03/Hexo%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E2%80%94%E2%80%94%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/" title="Hexo博客美化——代码高亮">http://vor.ink/2021/02/03/Hexo%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E2%80%94%E2%80%94%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/</a></p>
+        <footer>
+            <a href="http://vor.ink">
+                <img src="/images/logo.png" alt="VorSonnenaufgang">
+                VorSonnenaufgang
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2021/02/03/Hexo%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E2%80%94%E2%80%94%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/&title=《Hexo博客美化——代码高亮》 — VorSonnenaufgang's Blog&pic=cover.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2021/02/03/Hexo%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E2%80%94%E2%80%94%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/&title=《Hexo博客美化——代码高亮》 — VorSonnenaufgang's Blog&source=Carpe diem." data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2021/02/03/Hexo%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E2%80%94%E2%80%94%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Hexo博客美化——代码高亮》 — VorSonnenaufgang's Blog&url=http://vor.ink/2021/02/03/Hexo%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E2%80%94%E2%80%94%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/&via=http://vor.ink" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2021/02/03/Hexo%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E2%80%94%E2%80%94%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2021/02/03/Hexo%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E2%80%94%E2%80%94%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Blog/" class="color5">Blog</a>
+      
+    <a href="/tags/Hexo/" class="color5">Hexo</a>
+      
+    <a href="/tags/CSS/" class="color4">CSS</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+        <div class= "post-toc-name">Toc</div>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-%E7%A6%81%E7%94%A8Hexo%E8%87%AA%E5%B8%A6%E7%9A%84highlight"><span class="post-toc-text">1. 禁用Hexo自带的highlight</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-%E4%B8%8B%E8%BD%BDGoogle-Code-Prettify"><span class="post-toc-text">2. 下载Google Code Prettify</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-%E5%8A%A0%E8%BD%BDcss%E5%92%8Cjs%E4%BD%BF%E7%94%A8Prettify%E9%AB%98%E4%BA%AE"><span class="post-toc-text">3. 加载css和js使用Prettify高亮</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E6%A0%B7%E5%BC%8F%E7%9A%84%E4%BC%98%E5%8C%96"><span class="post-toc-text">4. 代码高亮样式的优化</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2021/01/27/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC4%E7%AB%A0%20%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Java核心技术卷I第4章 对象和类</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="Hexo博客美化——代码高亮" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cyvaQ34l4';
+        var conf = 'dfbc2f31fdc91ffc75e2035195b4426d';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    |
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+    <div class="theme-info">
+</p>
+
+
+      <span class="post-count">本站博文总字数：89.4k</span>
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018~2021 VorSonnenaufgang<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<!--加载prettify代码高亮js-->
+  <script type="text/javascript" src="/google-code-prettify/prettify.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('pre').addClass('prettyprint linenums');
+      $('code').addClass('prettyprint');
+      prettyPrint();
+    })
+  </script>
+
+<script>
+  var mihoConfig = {
+      root: "http://vor.ink",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Blog/">Blog</a><a class="category-link" href="/categories/C%E8%AF%AD%E8%A8%80/">C语言</a><a class="category-link" href="/categories/Essay/">Essay</a><a class="category-link" href="/categories/Java/">Java</a><a class="category-link" href="/categories/UML/">UML</a><a class="category-link" href="/categories/%E5%9B%BE%E8%AE%BA/">图论</a><a class="category-link" href="/categories/%E5%A4%A7%E5%AD%A6/">大学</a><a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><a class="category-link" href="/categories/%E6%B3%95%E8%AF%AD/">法语</a><a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F%E7%BA%A7/">系统级</a><a class="category-link" href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/">计算机接口与通信</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Blog/" style="font-size: 16.25px;">Blog</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.25px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Java/" style="font-size: 13.75px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 11.25px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 13.75px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.5px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.75px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 13.75px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.75px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.25px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.75px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.25px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/categories">
+                    <i class="fa fa-book"></i><span>Categories</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/tags">
+                    <i class="fa fa-tags"></i><span>Tags</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Blog/" style="font-size: 16.25px;">Blog</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.25px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Java/" style="font-size: 13.75px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 11.25px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 13.75px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.5px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.75px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 13.75px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.75px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.25px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.75px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.25px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"react":{"opacity":0.8},"log":false});</script></body>
+</html>
+
+
+
