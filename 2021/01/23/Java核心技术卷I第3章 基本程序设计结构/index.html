@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://vor.ink/2021/01/23/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC3%E7%AB%A0%20%E5%9F%BA%E6%9C%AC%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%BB%93%E6%9E%84/images/1611571486567.png">
 <meta property="og:image" content="http://vor.ink/2021/01/23/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC3%E7%AB%A0%20%E5%9F%BA%E6%9C%AC%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%BB%93%E6%9E%84/images/1611573004329.png">
 <meta property="article:published_time" content="2021-01-23T09:15:18.000Z">
-<meta property="article:modified_time" content="2021-01-25T11:43:49.632Z">
+<meta property="article:modified_time" content="2021-02-05T16:48:01.202Z">
 <meta property="article:author" content="VorSonnenaufgang">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Java核心技术卷I">
@@ -186,8 +186,8 @@
           <span id="busuanzi_value_page_pv"></span>          
         </li>
       </ul>
-       <span class="post-count">文章字数:8.2k字 &nbsp &nbsp  
-         阅读时长:32分钟</span>
+       <span class="post-count">文章字数:6.7k字 &nbsp &nbsp  
+         阅读时长:27分钟</span>
     </div>
   
         
@@ -259,7 +259,6 @@
 </tr>
 </tbody> </table>
 
-<p>通常情况下，int是最为常用的类型。但是表示大数值比如地球人口数，就得使用long。byte和short主要用于特定场合，比如底层文件处理或者需要控制占用存储空间量的大数组。</p>
 <p>Java中，整型的表示范围与运行代码的机器无关，这解决了程序从一个平台到另一个平台或者一个平台的不同操作系统之间的移植问题。</p>
 <p>Java程序保证在所有机器上运行得到相同的结果，所以各种数据类型的取值范围是固定的。</p>
 <p>长整型数值有一个后缀L或l（40000000000L），十六进制数值有一个前缀0x或0X（0xCAFE），八进制有一个前缀0（010）。</p>
@@ -285,7 +284,7 @@
 </tr>
 </tbody> </table>
 
-<p>double表示这种类型的数值精度是float类型的两倍（双精度数值），绝大部分程序都采用double类型。只有很少的情况适合使用float，比如需要单精度数据的库，或者需要存储大量数据。</p>
+<p>double表示这种类型的数值精度是float类型的两倍（双精度数值），绝大部分程序都采用double类型。</p>
 <p>float类型的数值有一个后缀F或f（3.14F），没有后缀F的浮点数值（3.14）默认为double类型。浮点数值后缀也可以添加D或d（3.14D）。</p>
 <p>表示溢出和出错情况的特殊浮点数值：</p>
 <ol>
@@ -345,23 +344,21 @@ if(Double.isNaN(x)) // check whether x is &quot;not a number&quot;</code></pre>
 </tr>
 </tbody> </table>
 
-<p><strong>注意</strong>：<br>Unicode的转义序列在解析代码之前就被处理。比如，<code>&quot;\u0022+\u0022&quot;</code>并不能得到<code>&quot;+&quot;</code>这样的输出，\u0022在解析之前就转换为<code>&quot;</code>，这段代码变为<code>&quot;&quot;+&quot;&quot;</code>，输出是一个空字符串。</p>
-<p>此外使用注释时要当心\u，比如<code>// \u00A0 is a new line</code>，这时会产生语法错误，因为\u000A在读程序时已经被转换成换行符；比如<code> Look inside c:\users</code>，也会产生语法错误，因为\u后面后没有4个十六进制数。</p>
-<h3 id="3-3-4-Unicode和char类型"><a href="#3-3-4-Unicode和char类型" class="headerlink" title="3.3.4 Unicode和char类型"></a>3.3.4 Unicode和char类型</h3><p>Unicode打破了传统字符编码机制的限制。Unicode之前有美国的ASCII，西欧的ISO 8859-1，俄罗斯的KOI-8，中国的GB 18030和BIG-5等。这会产生两个问题：一是对于任意给定的代码，不同的编码方案可能产生不同的字母；二是大字符集的编码语言产生的编码长度可能不同，比如有的字符使用单字节编码，有的使用两个或更多。</p>
-<p>码点（code point）指一个与编码表中的某个字符对应的代码值，在Unicode中码点采用16进制并加上前缀U+，比如<code>U+0041</code>是拉丁字母A的码点。Unicode的码点分为17个代码级别（code plane）。第一个代码级别是基本的多语言级别（basic multilingual plane），码点从<code>U+0000</code>到<code>U+FFFF</code>，其中包括经典的Unicode代码；其余16个级别码点从<code>U+10000</code>到<code>U+10FFF</code>，其中包括一些辅助字符（supplementary character）。</p>
-<p>UTF-16编码采用不同长度的编码表示所有Unicode码点。在基本的多语言级别中，每个字符用16位表示，通常被称为一个代码单元（code unit）；而辅助字符采用一对连续的代码单元进行编码。这样构成的编码值落入基本的多语言级别中空闲的2048字节内，通常被称为潜代区域（surrogate area）。<code>U+D800</code> ~ <code>U+DBFF</code>用于第一个代码单元，<code>U+DC00</code> ~ <code>U+DFFF</code>用于第二个代码单元。这样的设计使得一眼就能看出一个代码单元是一个字符的编码，还是一个辅助字符的第一或第二部分。</p>
-<p>Java中，char类型描述的就是UTF-16编码中的一个代码单元。建议不在程序中使用char类型，最好使用字符串。</p>
-<h3 id="3-3-5-boolean类型"><a href="#3-3-5-boolean类型" class="headerlink" title="3.3.5 boolean类型"></a>3.3.5 boolean类型</h3><p>boolean（布尔）类型有两个值：true和false，用来判断逻辑条件，整型和布尔值不能相互转换（不同于C++）。</p>
+<p><strong>注意</strong>：<br>Unicode的转义序列在解析代码之前就被处理。比如，<code>&quot;\u0022+\u0022&quot;</code>并不能得到<code>&quot;+&quot;</code>，\u0022在解析之前就转换为<code>&quot;</code>，这段代码变为<code>&quot;&quot;+&quot;&quot;</code>，输出是一个空字符串。</p>
+<p>此外使用注释时要当心<code>\u</code>，比如<code>// \u00A0 is a new line</code>，这时会产生语法错误，因为\u00A0在读程序时已经被转换成换行符；比如<code> Look inside c:\users</code>，也会产生语法错误，因为\u后面后没有4个十六进制数。</p>
+<h3 id="3-3-4-Unicode和char类型"><a href="#3-3-4-Unicode和char类型" class="headerlink" title="3.3.4 Unicode和char类型"></a>3.3.4 Unicode和char类型</h3><p>（略）</p>
+<h3 id="3-3-5-boolean类型"><a href="#3-3-5-boolean类型" class="headerlink" title="3.3.5 boolean类型"></a>3.3.5 boolean类型</h3><p>boolean（布尔）类型有两个值：<code>true</code>和<code>false</code>，用来判断逻辑条件，整型和布尔值不能相互转换（不同于C++）。</p>
 <h2 id="3-4-变量"><a href="#3-4-变量" class="headerlink" title="3.4 变量"></a>3.4 变量</h2><pre><code class="java">double salary;
 int vacationDays;
 long earthPopulation;
 boolean done;</code></pre>
 <p>Java的每个变量都有一个type，类型位于变量名之前。</p>
-<p>变量名是一个必须<strong>以字母开头</strong>并由字母和数字组成的序列。但是Java的字母和数字范围更大，字母包括大小写英文字母，_ ，$，或者其他语言中表示字母的任何Unicode字符。数字包括0～9和在其他语言中表示数字的Unicode字符。</p>
+<p>变量名是一个必须<strong>以字母开头</strong>并由字母和数字组成的序列。字母包括大小写英文字母，_ ，$，或者其他语言中表示字母的任何Unicode字符。数字包括0～9和在其他语言中表示数字的Unicode字符。</p>
 <p><strong>提示</strong>：可以使用<code>Character</code>类的<code>isJavaIdentifierStart</code>和<code>isJavaIdentifierPart</code>来检某个查Unicode字符是否属于Java中的合法字母。</p>
 <p><strong>注意</strong>：$虽然是一个合法字符，但是要尽量避免使用。</p>
 <p>Java不能使用保留字作为变量名。</p>
-<h3 id="3-4-1-变量初始化"><a href="#3-4-1-变量初始化" class="headerlink" title="3.4.1 变量初始化"></a>3.4.1 变量初始化</h3><p>声明一个变量后需要用赋值语句进行显示初始化，不要使用未初始化的变量。赋值语句使用<code>=</code>。声明尽可能靠近变量第一次使用的地方。</p>
+<h3 id="3-4-1-变量初始化"><a href="#3-4-1-变量初始化" class="headerlink" title="3.4.1 变量初始化"></a>3.4.1 变量初始化</h3><p>声明一个变量后需要用赋值语句进行显式初始化，不要使用未初始化的变量。</p>
+<p>赋值语句使用<code>=</code>。声明尽可能靠近变量第一次使用的地方。</p>
 <h3 id="3-4-2-常量"><a href="#3-4-2-常量" class="headerlink" title="3.4.2 常量"></a>3.4.2 常量</h3><p>关键字<code>final</code>指示常量。</p>
 <pre><code class="java">public class Constants&#123;
     public void main(String[] args)&#123;
@@ -370,7 +367,7 @@ boolean done;</code></pre>
     &#125;
 &#125;</code></pre>
 <p>常量只能被赋值一次，之后不能更改，常量名一般使用全大写。</p>
-<p>如果希望某个常量能在一个类的多个方法中使用，可以使用关键字<code>static final</code>设置一个类常量。</p>
+<p>关键字<code>static final</code>设置一个类常量，类常量能在一个类的多个方法中使用。</p>
 <pre><code class="java">public class Constants&#123;
     public static final double CM_PER_INCH = 2.54;
     public void main(String[] args)&#123;
@@ -383,7 +380,7 @@ boolean done;</code></pre>
 <li>参与<code>\</code>运算的两个操作数都是整数时表示整数除法，否则表示浮点除法。</li>
 <li>整数被0除会产生异常，浮点数被0除则会得到无穷大或NaN。</li>
 </ul>
-<h3 id="3-5-1-科学函数与常量"><a href="#3-5-1-科学函数与常量" class="headerlink" title="3.5.1 科学函数与常量"></a>3.5.1 科学函数与常量</h3><p>在<code>Math</code>类中，包含了各种各样的数学函数。</p>
+<h3 id="3-5-1-数学函数与常量"><a href="#3-5-1-数学函数与常量" class="headerlink" title="3.5.1 数学函数与常量"></a>3.5.1 数学函数与常量</h3><p>在<code>Math</code>类中，包含了各种各样的数学函数。</p>
 <p>比如平方根和幂运算函数：</p>
 <ul>
 <li><code>Math.sqrt</code></li>
@@ -408,7 +405,6 @@ boolean done;</code></pre>
 <li><code>Math.PI</code></li>
 <li><code>Math.E</code></li>
 </ul>
-<p><strong>提示</strong>：如果在源文件的最开头使用<code>import static java.lang.Math.*;</code>，后面就不必再数学方法名和常量名前加前缀<code>Math.</code>，可以直接使用。</p>
 <h3 id="3-5-2-数值类型之间的转换"><a href="#3-5-2-数值类型之间的转换" class="headerlink" title="3.5.2 数值类型之间的转换"></a>3.5.2 数值类型之间的转换</h3><p><img src="./images/1611480813487.png"></p>
 <ul>
 <li>6个实线箭头：无信息丢失的转换</li>
@@ -416,22 +412,23 @@ boolean done;</code></pre>
 </ul>
 <pre><code class="java">int n = 123456789;
 float f = n; // f is 1.23456792E8</code></pre>
-<p>当使用n和f进行二元操作时（例如n+f），先要将两个操作数转换为同一类型再进行计算。</p>
+<p>当使用n和f进行二元操作时（例如n+f），会隐式地先将两个操作数转换为同一类型再进行计算。</p>
 <ul>
 <li>如果两个操作数有一个是double，另一个也会转换为double。</li>
 <li>否则，如果一个是float，另一个也会转换为float。</li>
 <li>否则，如果一个是long，另一个也会转换为long。</li>
 <li>否则，两个都被转换为int。</li>
 </ul>
-<h3 id="3-5-3-强制类型转换"><a href="#3-5-3-强制类型转换" class="headerlink" title="3.5.3 强制类型转换"></a>3.5.3 强制类型转换</h3><p>由上一小节可知在必要的时候int类型的值会自动转换为double类型，但是有时候也许要将double转换为int，Java允许这样的操作，虽然可能会丢失一些信息。</p>
-<p>强制类型转换（cast）可以实现这样的操作，比如：</p>
+<h3 id="3-5-3-强制类型转换"><a href="#3-5-3-强制类型转换" class="headerlink" title="3.5.3 强制类型转换"></a>3.5.3 强制类型转换</h3><p>虽然可能会丢失一些信息，但有时候也许要将double转换为int。</p>
+<p>强制类型转换（cast）可以实现可能丢失信息的类型转换，比如：</p>
 <pre><code class="java">double x = 9.997;
 int nx = (int)x;</code></pre>
-<p>nx的值是9，因为强制类型转换是结果是截断小数部分，并不是四舍五入。</p>
-<p>如果要进行四舍五入运算，得到最接近的整数，需要使用<code>Math.round</code>方法。</p>
+<p>nx的值是9，强制类型转换结果是截断小数部分。</p>
+<p><code>Math.round</code>方法：四舍五入运算得到最接近的整数。</p>
 <pre><code class="java">double x = 9.997;
 int nx = (int)Math.round(x);</code></pre>
-<p>nx的值是10。注意，调用round方法时仍然需要使用<code>(int)</code>，因为round的返回结果是long类型。</p>
+<p>nx的值是10。</p>
+<p><strong>注意</strong>：调用round方法时仍然需要使用<code>(int)</code>，因为round的返回结果是long类型。</p>
 <h3 id="3-5-4-结合赋值和运算符"><a href="#3-5-4-结合赋值和运算符" class="headerlink" title="3.5.4 结合赋值和运算符"></a>3.5.4 结合赋值和运算符</h3><p>可以在赋值中使用二元运算符，比如<code>x+=4</code>等价于<code>x = x+4</code>。</p>
 <p><strong>注意</strong>：如果运算符得到的值类型与左侧操作数类型不同，会发生强制类型转换。比如x是int，<code>x+=3.5</code>是合法的，x将被设置为<code>(int)(x+3.5)</code>。</p>
 <h3 id="3-5-5-自增与自减运算符"><a href="#3-5-5-自增与自减运算符" class="headerlink" title="3.5.5 自增与自减运算符"></a>3.5.5 自增与自减运算符</h3><p>加1和减1可以表示为<code>n++</code>和<code>n--</code>。</p>
@@ -462,7 +459,7 @@ int b = 2 * n++;</code></pre>
 <li>或：<code>||</code></li>
 </ul>
 <p>关系运算符和逻辑运算符得到的结果都是布尔值（true或false）。</p>
-<p><strong>注意</strong>：<code>&amp;&amp;</code>和<code>||</code>都是按照短路的方法来求值：如果第一个操作数（第一个条件）已经能够确定表达式的值，第二个操作数就不进行计算了，即使用<code>&amp;&amp;</code>时，第一个条件为false，则结果为false；使用<code>||</code>时，第一个条件为true，则结果为true。比如<code>x != 0 &amp;&amp; 1/ x &gt; x + y</code>，如果x为0，第一个条件结果为false，则不会进行第二个条件的计算，这可以用于规避错误。</p>
+<p><strong>注意</strong>：<code>&amp;&amp;</code>和<code>||</code>都是按照短路的方法来求值：如果第一个操作数（第一个条件）已经能够确定表达式的值，第二个操作数就不进行计算了，即使用<code>&amp;&amp;</code>时，第一个条件为false，则结果为false；使用<code>||</code>时，第一个条件为true，则结果为true。</p>
 <p>三元操作符：<code>condition ? expression1 : expression2</code></p>
 <p>condition为true，则执行expression1，为false，则执行expression2。</p>
 <h3 id="3-5-7-位运算符"><a href="#3-5-7-位运算符" class="headerlink" title="3.5.7 位运算符"></a>3.5.7 位运算符</h3><p>对于整型，可以用位运算符对它二进制表示的每一个位进行操作。位运算符包括：</p>
@@ -558,7 +555,7 @@ int b = 2 * n++;</code></pre>
 <ol>
 <li>表中优先级数字越小，优先级越高。</li>
 <li>结合性指运算符结合的顺序，比如<code>+=</code>是右结合，<code>a += b += c</code>等价于<code>a += (b += c)</code>，比如负号<code>-</code>是右结合，<code>1 + -2</code>等价于<code>1 + (-2)</code>。</li>
-<li>instanceof是判断对象是否是某个类或接口类型。</li>
+<li><code>instanceof</code>是判断对象是否是某个类或接口类型。</li>
 </ol>
 <pre><code class="java">String name = &quot;James&quot;;
 boolean result = name instanceof String; // 由于 name 是 String 类型，所以返回真</code></pre>
@@ -566,14 +563,14 @@ boolean result = name instanceof String; // 由于 name 是 String 类型，所�
 <li>注意区分正负号和加减号，位操作符与逻辑运算符。</li>
 <li>实际开发中不用去刻意记忆和使用运算符优先级，多使用括号。</li>
 </ol>
-<h3 id="3-5-9-枚举类型"><a href="#3-5-9-枚举类型" class="headerlink" title="3.5.9 枚举类型"></a>3.5.9 枚举类型</h3><p>有时候变量取值局限在一个范围内，可以自定义枚举类型来表示这样的变量。</p>
+<h3 id="3-5-9-枚举类型"><a href="#3-5-9-枚举类型" class="headerlink" title="3.5.9 枚举类型"></a>3.5.9 枚举类型</h3><p>变量取值局限在一个范围内时可以自定义枚举类型来表示。</p>
 <pre><code class="java">enum Size &#123;SMALL, MEDIUM, LARGE, EXTRA_LARGE&#125;;
 Size s = Size.MEDIUM;</code></pre>
 <p>Size类型的变量只能存储这个类型声明时给定的某个枚举值或者null，null表示这个变量没有设置任何值。</p>
 <h2 id="3-6-字符串"><a href="#3-6-字符串" class="headerlink" title="3.6 字符串"></a>3.6 字符串</h2><p>Java没有内置字符串类型，而是在标准Java库中提供了一个预定义类<code>String</code>。</p>
 <pre><code class="java">String e = &quot;&quot;;
 String greeting  = &quot;Hello&quot;;</code></pre>
-<h3 id="3-6-1-子串"><a href="#3-6-1-子串" class="headerlink" title="3.6.1 子串"></a>3.6.1 子串</h3><p><code>String</code>类的<code>substring</code>方法可以提取一个子串。<code>substring(x, y)</code>的两个参数表示从提取x位开始到y-1位结束的子串，子串的长度是y-x。</p>
+<h3 id="3-6-1-子串"><a href="#3-6-1-子串" class="headerlink" title="3.6.1 子串"></a>3.6.1 子串</h3><p><code>String</code>类的<code>substring(x, y)</code>，两个参数表示从提取x位开始到y-1位结束的子串，子串的长度是y-x。</p>
 <pre><code class="java">String greeting  = &quot;Hello&quot;;
 String s = greeting.substring(0, 3); // s = &quot;Hel&quot;</code></pre>
 <h3 id="3-6-2-拼接"><a href="#3-6-2-拼接" class="headerlink" title="3.6.2 拼接"></a>3.6.2 拼接</h3><p>字符串通过<code>+</code>号进行拼接。</p>
@@ -587,35 +584,25 @@ String rating = &quot;PG&quot; + age; // rating = &quot;PG13&quot;</code></pre>
 <p><code>String</code>类提供静态方法<code>join</code>，将多个字符串按照一个分隔符进行拼接。</p>
 <pre><code class="java">String all = String.join(&quot;/&quot;, &quot;S&quot;, &quot;M&quot;, &quot;L&quot;, &quot;XL&quot;); // all = &quot;S/M/L/XL&quot;</code></pre>
 <h3 id="3-6-3-不可变字符串"><a href="#3-6-3-不可变字符串" class="headerlink" title="3.6.3 不可变字符串"></a>3.6.3 不可变字符串</h3><p>String类没有提供修改字符串值的方法，比如对于字符串变量<code>greeting</code>的值”Hello”，不能通过修改最后两个字符直接将其修改为”Help!”（这与C语言明显不同），应该使用<code>greeting = greeting.substring(0,3)+&quot;p!&quot;</code>这样的语句来修改。</p>
-<p>实际上，Java文档中将String类的对象称为<strong>不可变字符串</strong>，好比对于一个数字3，它永远都是3，一个字符串“Hello”永远是这几个字母组成的序列，而不能修改其中的一个字符。</p>
+<p>String类的对象称为<strong>不可变字符串</strong>，好比对于一个数字3，它永远都是3，一个字符串“Hello”永远是这几个字母组成的序列，而不能修改其中的一个字符。</p>
 <p>当然，也可以通过直接修改字符串变量<code>greeting</code>，让它引用另一个字符串来达到修改内容的目的。</p>
-<h3 id="3-6-4-检测字符串是否相等"><a href="#3-6-4-检测字符串是否相等" class="headerlink" title="3.6.4 检测字符串是否相等"></a>3.6.4 检测字符串是否相等</h3><p><code>s.equals(t)</code>，可以用来检测两个字符串是否相等。如果s与t相等，返回true；否则返回false。其中s和t可以是字符串变量，也可以是字符串字面量。</p>
-<p><code>&quot;Hello&quot;.equalsIngoreCase(&quot;hello&quot;)</code>，可以在不区分大小写的情况下检测两个字符串是否相等。</p>
-<p><strong>注意</strong>：一定不要使用运算符<code>==</code>来检测两个字符串是否相等！可以想象将各种字符串存放在公共的存储池中，字符串变量指向存储池的相应位置。<code>==</code>只能用来确定两个字符串放置在同一位置，即如果两个字符串放置在同一位置上，才返回true。但是即使是两个相同的字符串，也可能存在于不同位置。</p>
-<h3 id="3-6-5-空串与Null串"><a href="#3-6-5-空串与Null串" class="headerlink" title="3.6.5 空串与Null串"></a>3.6.5 空串与Null串</h3><p>空串<code>&quot;&quot;</code>是长度为0的字符串。通过<code>str.leng()==0</code>或<code>str.equals(&quot;&quot;)</code>来检测字符串是否为空串。空串依然是一个Java对象，有长度（0）和内容（空）。</p>
-<p>但是字符串变量还可以赋值为<strong>null</strong>，这表示目前没有任何对象与该变量关联。使用<code>str == null</code>来检测字符串是否是null。</p>
-<p>在检查一个字符串既不是null也不是空串时，使用条件<code>if(str != null &amp;&amp; str.length() != 0)</code>，之所以检查null的条件放在前面是为了规避当str为null时调用方法产生的报错。</p>
-<h3 id="3-6-6-码点与代码单元"><a href="#3-6-6-码点与代码单元" class="headerlink" title="3.6.6 码点与代码单元"></a>3.6.6 码点与代码单元</h3><p>Java字符串事实上是由char值的序列组成，在探讨char类型时已经知道，char类型是一个采用UTF-16编码表示Unicode码点的代码单元。大多数Unicode字符使用一个代码单元表示，而辅助字符需要一对代码单元表示。</p>
-<p><code>length</code>方法返回采用UTF-16编码表示的给定字符串需要的代码单元数量，实际长度即码点数量使用<code>codePointCount</code>方法。</p>
-<p>对应的，<code>charAt(n)</code>返回位置n的代码单元，而第i个码点使用的是另一个方法。</p>
-<pre><code class="java">String greeting = &quot;Hello&quot;;
-int n = greeting.length(); // 5
-
-int cpCount = greeting.codePointCount(0, greeting.length());
-
-char first = greeting.charAt(0);
-
-int index = greeting.offsetByCodePoints(0, i);
-int cp = greeting.codePointAt(index);</code></pre>
-<h3 id="3-6-7-String-API"><a href="#3-6-7-String-API" class="headerlink" title="3.6.7 String API"></a>3.6.7 String API</h3><p>Java的String类包含五十多个方法，大多数都频繁使用，可以上oracle官网阅读<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html">String类的API文档</a>。</p>
-<h3 id="3-6-8-构建字符串"><a href="#3-6-8-构建字符串" class="headerlink" title="3.6.8 构建字符串"></a>3.6.8 构建字符串</h3><p>有时候需要使用较短的字符串构建字符串，使用<code>+</code>号拼接得到新字符串的方式十分低效，每次拼接，都会构建一个新的String对象，耗时且浪费空间。原因在前面讨论过，String对象是不可改变的，每次使用String类中的一个方法时，都要在内存中创建一个新的String对象，这就需要为该新对象分配新的空间。</p>
-<p>可以使用<code>StringBuilder</code>来解决这个麻烦。</p>
+<h3 id="3-6-4-检测字符串是否相等"><a href="#3-6-4-检测字符串是否相等" class="headerlink" title="3.6.4 检测字符串是否相等"></a>3.6.4 检测字符串是否相等</h3><p><code>s.equals(t)</code>：检测两个字符串是否相等。如果s与t相等，返回true；否则返回false。其中s和t可以是字符串变量，也可以是字符串字面量。</p>
+<p><code>&quot;Hello&quot;.equalsIngoreCase(&quot;hello&quot;)</code>：不区分大小写的情况下检测两个字符串是否相等。</p>
+<p><strong>注意</strong>：一定不要使用运算符<code>==</code>来检测两个字符串是否相等！可以想象将各种字符串存放在公共的存储池中，字符串变量指向存储池的相应位置。<code>==</code>只能用来确定两个字符串放置在同一位置，即只有两个字符串放置在同一位置上，才返回true。但是即使是两个相同的字符串，也可能存在于不同位置。</p>
+<h3 id="3-6-5-空串与Null串"><a href="#3-6-5-空串与Null串" class="headerlink" title="3.6.5 空串与Null串"></a>3.6.5 空串与Null串</h3><p>空串<code>&quot;&quot;</code>是长度为0的字符串。<code>str.leng()==0</code>或<code>str.equals(&quot;&quot;)</code>来检测字符串是否为空串。空串依然是一个Java对象，有长度（0）和内容（空）。</p>
+<p>字符串变量还可以赋值为<strong>null</strong>，表示目前没有任何对象与该变量关联。使用<code>str == null</code>来检测字符串是否是null。</p>
+<p>在检查一个字符串既不是null也不是空串时，使用条件<code>if(str != null &amp;&amp; str.length() != 0)</code>（利用短路）。</p>
+<h3 id="3-6-6-码点与代码单元"><a href="#3-6-6-码点与代码单元" class="headerlink" title="3.6.6 码点与代码单元"></a>3.6.6 码点与代码单元</h3><p>（略）</p>
+<h3 id="3-6-7-String-API"><a href="#3-6-7-String-API" class="headerlink" title="3.6.7 String API"></a>3.6.7 String API</h3><p>（略）</p>
+<h3 id="3-6-8-构建字符串"><a href="#3-6-8-构建字符串" class="headerlink" title="3.6.8 构建字符串"></a>3.6.8 构建字符串</h3><p>使用<code>+</code>号拼接得到新字符串的方式十分低效，每次拼接，都会构建一个新的String对象，耗时且浪费空间。因为String对象是不可改变的，每次使用String类中的一个方法时，都要在内存中创建一个新的String对象，这就需要为该新对象分配新的空间。</p>
+<p><code>StringBuilder</code>可以解决这个麻烦。</p>
 <pre><code class="java">StringBuilder builder = new StringBuilder();
 builder.append(ch); // appends a char
 builder.append(str); // appends a string</code></pre>
 <p>需要构建字符串时使用<code>String completedString = builder.toString()</code>来得到一个String对象。</p>
-<h2 id="3-7-输入输出"><a href="#3-7-输入输出" class="headerlink" title="3.7 输入输出"></a>3.7 输入输出</h2><h3 id="3-7-1-读取输入"><a href="#3-7-1-读取输入" class="headerlink" title="3.7.1 读取输入"></a>3.7.1 读取输入</h3><p>打印输出到“标准输出流”（即控制台窗口），需要调用的是<code>System.out.println</code>方法，读取“标准输入流”则使用的是<code>System.in</code>，需要定义一个<code>Scanner</code>类的对象。</p>
-<p>因为<code>Scanner</code>类定义于<code>java.util</code>包中，因此需要在源文件开头导入<code>import java.util.*</code>。凡是使用没有定义在基本<code>java.lang</code>包中的类时，都要使用<code>import</code>来加载相应的包。</p>
+<h2 id="3-7-输入输出"><a href="#3-7-输入输出" class="headerlink" title="3.7 输入输出"></a>3.7 输入输出</h2><h3 id="3-7-1-读取输入"><a href="#3-7-1-读取输入" class="headerlink" title="3.7.1 读取输入"></a>3.7.1 读取输入</h3><p><code>System.out.println</code>：打印输出到“标准输出流”（即控制台窗口）。</p>
+<p><code>System.in</code>：读取“标准输入流”，需要定义一个<code>Scanner</code>类的对象。</p>
+<p><code>Scanner</code>类定义于<code>java.util</code>包，需要在源文件开头<code>import java.util.*</code>。凡是使用没有定义在基本<code>java.lang</code>包中的类时，都要使用<code>import</code>来加载相应的包。</p>
 <pre><code class="java">Scanner in = new Scanner(System.in);
 
 System.out.println(&quot;What is your name?&quot;);
@@ -627,7 +614,7 @@ System.out.println(&quot;How old are you?&quot;);
 int age = in.nextInt(); // 读取一个整数
 int weight = in.nextDouble(); // 读取一个浮点数</code></pre>
 <h3 id="3-7-2-格式化输出"><a href="#3-7-2-格式化输出" class="headerlink" title="3.7.2 格式化输出"></a>3.7.2 格式化输出</h3><p><code>System.out.println(x)</code>默认以x对应数据类型的所允许最大非0数字位数打印输出，例如<code>double x = 1000.0/3.0</code>时，打印输出3333.3333333333335。</p>
-<p>如果要以特定小数位数输出，需要用到格式化输出，Java的格式化输出沿用C语言库函数重的printf方法。例如<code>System.out.println(&quot;%.2f&quot;, x);</code>，将打印输出3333.33。</p>
+<p>Java的格式化输出沿用C语言库函数重的printf方法。例如<code>System.out.println(&quot;%.2f&quot;, x);</code>，将打印输出3333.33。</p>
 <p>每一个以<code>%</code>字符开始的格式说明符都用相应的参数进行替换，格式说明符尾部的转换符指示被格式化的数值类型。</p>
 <p><img src="./images/1611510891632.png"></p>
 <p>此外，还有控制格式化输出的各种标志。比如对于逗号，<code>System.out.println(&quot;%,.2f&quot;, 1000.0/3.0);</code>，输出是3,333.33。</p>
@@ -642,7 +629,6 @@ int weight = in.nextDouble(); // 读取一个浮点数</code></pre>
 <h2 id="3-8-控制流程"><a href="#3-8-控制流程" class="headerlink" title="3.8 控制流程"></a>3.8 控制流程</h2><h3 id="3-8-1-块作用域"><a href="#3-8-1-块作用域" class="headerlink" title="3.8.1 块作用域"></a>3.8.1 块作用域</h3><p>块（block）即复合语句，是指由一对大括号括起来的若干条简单的Java语句，块确定了变量的作用域。一个块可以嵌套在另一个块中。</p>
 <p>与C和C++不同，Java不允许在嵌套关系的两个块中声明同名变量。</p>
 <h3 id="3-8-2-条件语句"><a href="#3-8-2-条件语句" class="headerlink" title="3.8.2 条件语句"></a>3.8.2 条件语句</h3><p><code>if(condition) statement</code></p>
-<p>条件必须用括号括起来，条件为真时如果执行单条语句，不需要大括号，多条语句时需要大括号。<code>if</code>可以和<code>else</code>或者和<code>else if</code>、<code>else</code>组合构成多种条件语句。</p>
 <pre><code class="java">if(yourSales &gt;= 2*target) &#123;
     bonus = 200;
     performance = &quot;Excellent&quot;;
@@ -654,8 +640,7 @@ else if(yourSales &gt;= target) &#123;
 else &#123;
     System.out.println(&quot;Your loser.&quot;);
 &#125;</code></pre>
-<h3 id="3-8-3-循环"><a href="#3-8-3-循环" class="headerlink" title="3.8.3 循环"></a>3.8.3 循环</h3><p><code>while(condition) statement</code></p>
-<p>只要条件为真，循环体会重复执行，知道条件为false。</p>
+<h3 id="3-8-3-while循环"><a href="#3-8-3-while循环" class="headerlink" title="3.8.3 while循环"></a>3.8.3 while循环</h3><p><code>while(condition) statement</code></p>
 <pre><code class="java">public class Retirement &#123;
     public static void main(String[] args) &#123;
         // read inputs
@@ -699,10 +684,9 @@ else &#123;
             input = in.nextO;
 &#125;
 while(input.equals(&quot;N&quot;));</code></pre>
-<h3 id="3-8-4-确定循环"><a href="#3-8-4-确定循环" class="headerlink" title="3.8.4 确定循环"></a>3.8.4 确定循环</h3><pre><code class="java">for(int i = 1; i &lt;= 10; i++)
+<h3 id="3-8-4-for循环"><a href="#3-8-4-for循环" class="headerlink" title="3.8.4 for循环"></a>3.8.4 for循环</h3><pre><code class="java">for(int i = 1; i &lt;= 10; i++)
     System.out.println(i);</code></pre>
-<p>for循环是支持迭代的通用结构，第1部分用于初始化计数器，第2部分给出每一轮循环前要检测的循环条件，第3部分指示如何更新计数器。有一条不成文的规则：for语句的3部分应该对同一个计数器变量进行初始化、检测和更新。</p>
-<p>在for语句第1部分中声明的变量作用域为整个循环体，因此独立的for循环可以使用同名变量，但要在循环体外使用这个变量，就要在for循环语句前声明。</p>
+<p>有一条不成文的规则：for语句的3部分应该对同一个计数器变量进行初始化、检测和更新。</p>
 <p><strong>注意</strong>：检测浮点数是否相等时要十分小心，例如<code>for(double x = 0; x != 10; x += 0.1)</code>，这个循环可能永远不会结束，因为浮点数本身存在的误差，最终可能得不到精确值。</p>
 <h3 id="3-8-5-多重选择：switch语句"><a href="#3-8-5-多重选择：switch语句" class="headerlink" title="3.8.5 多重选择：switch语句"></a>3.8.5 多重选择：switch语句</h3><pre><code class="java">Scanner in = new Scanner(System.in); System.out.printC&#39;Select an option (1, 2, 3, 4) M); int choice = in.nextlnt();
 switch (choice) &#123;
@@ -762,36 +746,35 @@ while (sum &lt; goal)&#123;
 &#125;</code></pre>
 <p>此外还有goto，带标签的break和continue，因为这样的语句会打破程序的正常执行逻辑，使程序变得很不易读且容易出错，不建议使用。</p>
 <h2 id="3-9-大数值"><a href="#3-9-大数值" class="headerlink" title="3.9 大数值"></a>3.9 大数值</h2><p><code>java.math</code>包中有两个类<code>BigInteger</code>和<code>BigDecimal</code>，这两个类可以处理包含任意长度数字序列的数值，用于处理基本整数和浮点数精度不能满足要求的情况。</p>
-<p><code>BigInteger</code>实现了任意精度的整数运算，<code>BigDecimal</code>实现了任意精度的浮点数运算。</p>
+<p><code>BigInteger</code>实现任意精度的整数运算，<code>BigDecimal</code>实现任意精度的浮点数运算。</p>
 <p>静态方法<code>valueOf</code>可以将普通数值转换为大数值。。</p>
 <p>大数值不能使用算术运算符进行操作，而要使用大数值类中的相应方法。</p>
-<pre><code class="java">BigInteger a = valueOf(100);
+<pre><code class="java">BigInteger a = BigInteger.valueOf(100);
 
 BigInteger c = a.add(b);
 BigInteger d = c.multiply(b.add(BigInteger.valueOf(2)));</code></pre>
 <h2 id="3-10-数组"><a href="#3-10-数组" class="headerlink" title="3.10 数组"></a>3.10 数组</h2><p>数组是一种用来存储同一类型值集合的数据结构。通过一个整型下标可以访问数组中的每一个值。</p>
 <p><code>int[] a</code></p>
-<p>声明数组变量时，需要指出数组类型（数据元素类型紧跟[ ]）和数组变量名字。</p>
+<p>声明数组变量时，需要指出数组类型（数据元素类型紧跟[ ]）和数组变量名。</p>
 <p><code>int[] a = new int[100]</code></p>
-<p>将a初始化为一个真正的数组，使用<code>new</code>运算符创建数组。这里的数组长度100不一定必须是常量。</p>
+<p>将a初始化为一个真正的数组，使用<code>new</code>运算符创建数组。数组长度不一定必须是常量。</p>
 <p>这个数组创建好后下标范围是0~99，可以给数组元素赋值，例如使用一个循环：</p>
 <pre><code class="java">int[] a = new int[100];
 for(int i = 0; i &lt; 100; i++)
     a[i] = i;</code></pre>
 <p>创建一个数字数组时，所有元素默认初始化为0；创建一个boolean数组时，所有元素默认初始化为false；创建一个对象数组时，所有元素默认初始化为null。</p>
 <p><strong>注意</strong>：如果创建一个100个元素的数组，但是试图访问a[100]，会引发”array index out of bounds”异常。</p>
-<p><code>array.length</code>可以用于获得数组中的元素个数（即数组的大小）。创建数组后，我们虽然能够修改每一个数组元素，但是数组的大小不能被改变，<strong>数组列表</strong>（array list）可以用于运行时动态扩展数组大小。</p>
+<p><code>array.length</code>可以用于获得数组中的元素个数（即数组的大小）。数组创建后大小不能被改变，<strong>数组列表</strong>（ArrayList）可以用于运行时动态扩展数组大小。</p>
 <h3 id="3-10-1-for-each循环"><a href="#3-10-1-for-each循环" class="headerlink" title="3.10.1 for each循环"></a>3.10.1 for each循环</h3><p><code>for(variable: collection) statement</code></p>
-<p>这种增强的for循环定义一个变量用于暂存集合中的每一个元素，并执行相应语句块。这里的collection集合必须是一个数组或者一个实现了<code>Iterable</code>接口的类对象（比如<code>ArrayList</code>）。</p>
+<p>这里的collection集合必须是一个数组或者一个实现了<code>Iterable</code>接口的类对象（比如<code>ArrayList</code>）。</p>
 <pre><code class="java">for(int element: a)
     System.out.println(element);</code></pre>
-<p>for each循环会遍历数组a的每个元素，而不需要使用下标。</p>
-<p>如果只是要打印数组中的所有值，可以使用<code>Array.toString(a)</code>，返回一个包含所有数组元素的字符串，这个字符串有括号将所有元素括起来，逗号分隔每个元素。</p>
+<p>如果只是要打印数组，可以使用<code>Array.toString(a)</code>。</p>
 <h3 id="3-10-2-数组初始化及匿名数组"><a href="#3-10-2-数组初始化及匿名数组" class="headerlink" title="3.10.2 数组初始化及匿名数组"></a>3.10.2 数组初始化及匿名数组</h3><p>除了使用<code>new</code>来创建一个数组，还可以在创建数组同时进行赋值：</p>
 <p><code>int[] smallPrimes = &#123;2, 3, 5, 7, 11, 13&#125;</code></p>
 <p>还可以初始化一个匿名数组：</p>
 <p><code>new int[] &#123;2, 3, 5, 7, 11, 13&#125;</code></p>
-<p>这种方法将创建一个新数组并利用括号中的值进行初始化，数组的大小就是初始值的个数，这种语法可以在不创建新变量的情况下重新初始化一个数组。</p>
+<p>这种语法可以在不创建新变量的情况下重新初始化一个数组。</p>
 <pre><code class="java">smallPrimes = new int[] &#123;17, 19, 23, 29, 31, 37&#125;;
 
 //等价于
@@ -804,7 +787,7 @@ smallPrimes = anonymous;</code></pre>
 <p>将数组变量拷贝给另一个数组实际上只是拷贝了一个引用，即这两个变量指向的是同一个数组，可以通过任何一个数组变量来访问这个数组和修改数组元素。</p>
 <p>如果想要将一个数组里的所有数组元素值拷贝给一个新数组（即创建一个新的数组），需要使用：</p>
 <p><code>int[] copiedLuckyNumbers = Arrays.copyOf(luckyNumbers, luckyNumbers.length);</code></p>
-<p>第二个参数表示新数组的长度，可以通过扩大这个参数值来增加数组的大小，扩展后超出的部分没有给定的元素进行初始化，则按照之前的默认初始化规则进行赋值。如果指定的新数组长度小于原始数组长度，则只拷贝最前面的数组元素。</p>
+<p>第二个参数表示新数组的长度，可以通过扩大这个参数值来增加数组的大小，扩展后超出的部分没有给定的元素进行初始化时则按照之前的默认初始化规则进行赋值。如果指定的新数组长度小于原始数组长度，则只拷贝最前面的数组元素。</p>
 <h3 id="3-10-4-命令行参数"><a href="#3-10-4-命令行参数" class="headerlink" title="3.10.4 命令行参数"></a>3.10.4 命令行参数</h3><pre><code class="java">public class Message &#123;
     public static void main(String[] args)&#123;
         if(args.length == 0 || args[0].equals(&quot;-h&quot;))
@@ -819,10 +802,9 @@ smallPrimes = anonymous;</code></pre>
 &#125;</code></pre>
 <p>对于<code>main</code>方法，都带有一个<code>String args[]</code>的参数，这表明它将接收一个字符串数组，也就是命令行参数。对于上面的程序，使用<code>java Message -g cruel world</code>运行上面的程序，<code>args[0] = &quot;-g&quot;</code>，<code>args[1] = &quot;cruel&quot;</code>，<code>args[2] = &quot;world&quot;</code>，打印结果是“Goodbye, cruel world!”。</p>
 <h3 id="3-10-5-数组排序"><a href="#3-10-5-数组排序" class="headerlink" title="3.10.5 数组排序"></a>3.10.5 数组排序</h3><p><code>Arrays.sort(a)</code></p>
-<p>这个方法使用优化的快速排序算法，被用来进行数组排序。</p>
+<p>这个方法使用优化的快速排序算法进行数组排序。</p>
 <h3 id="3-10-6-多维数组"><a href="#3-10-6-多维数组" class="headerlink" title="3.10.6 多维数组"></a>3.10.6 多维数组</h3><p>多维数组使用多个下标访问数组元素，适用于表示表格或更加复杂的排列形式。</p>
 <p><code>double[][] balances;</code></p>
-<p>这条语句声明了一个二维数组。与一维数组一样，此时没有完成初始化，该数组还不能使用。</p>
 <p><code>balances = new double[NYEARS][NRATES];</code></p>
 <p><code>int[][] magicSquare = &#123; &#123;16,3,2,13&#125;, &#123;5,10,11,8&#125;, &#123;9,6,7,12&#125;, &#123;4,15,14,1&#125;&#125;</code></p>
 <p>可以使用嵌套的for循环或for-each循环来遍历数组，<code>Arrays.deepToString(a)</code>可以返回二维数组a的字符串表示。</p>
@@ -839,7 +821,7 @@ for (int n = 0; n &lt;= NMAX; n++);
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2021年01月25日 12:43</p>
+        <p>最后更新： 2021年02月05日 17:48</p>
         <p>原始链接： <a class="post-url" href="/2021/01/23/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC3%E7%AB%A0%20%E5%9F%BA%E6%9C%AC%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%BB%93%E6%9E%84/" title="Java核心技术卷I第3章 基本程序设计结构">http://vor.ink/2021/01/23/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC3%E7%AB%A0%20%E5%9F%BA%E6%9C%AC%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%BB%93%E6%9E%84/</a></p>
         <footer>
             <a href="http://vor.ink">
@@ -960,7 +942,7 @@ for (int n = 0; n &lt;= NMAX; n++);
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
         <div class= "post-toc-name">Toc</div>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-1-%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84Java%E7%A8%8B%E5%BA%8F"><span class="post-toc-text">3.1 一个简单的Java程序</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-2-%E6%B3%A8%E9%87%8A"><span class="post-toc-text">3.2 注释</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-3-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">3.3 数据类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-1-%E6%95%B4%E5%9E%8B"><span class="post-toc-text">3.3.1 整型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-2-%E6%B5%AE%E7%82%B9%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">3.3.2 浮点类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-3-char%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">3.3.3 char类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-4-Unicode%E5%92%8Cchar%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">3.3.4 Unicode和char类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-5-boolean%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">3.3.5 boolean类型</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-4-%E5%8F%98%E9%87%8F"><span class="post-toc-text">3.4 变量</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-4-1-%E5%8F%98%E9%87%8F%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="post-toc-text">3.4.1 变量初始化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-4-2-%E5%B8%B8%E9%87%8F"><span class="post-toc-text">3.4.2 常量</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-5-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="post-toc-text">3.5 运算符</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-1-%E7%A7%91%E5%AD%A6%E5%87%BD%E6%95%B0%E4%B8%8E%E5%B8%B8%E9%87%8F"><span class="post-toc-text">3.5.1 科学函数与常量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-2-%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="post-toc-text">3.5.2 数值类型之间的转换</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-3-%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="post-toc-text">3.5.3 强制类型转换</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-4-%E7%BB%93%E5%90%88%E8%B5%8B%E5%80%BC%E5%92%8C%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="post-toc-text">3.5.4 结合赋值和运算符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-5-%E8%87%AA%E5%A2%9E%E4%B8%8E%E8%87%AA%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="post-toc-text">3.5.5 自增与自减运算符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-6-%E5%85%B3%E7%B3%BB%E5%92%8Cboolean%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="post-toc-text">3.5.6 关系和boolean运算符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-7-%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="post-toc-text">3.5.7 位运算符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-8-%E6%8B%AC%E5%8F%B7%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6%E7%BA%A7%E5%88%AB"><span class="post-toc-text">3.5.8 括号与运算符级别</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-9-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">3.5.9 枚举类型</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-6-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="post-toc-text">3.6 字符串</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-6-1-%E5%AD%90%E4%B8%B2"><span class="post-toc-text">3.6.1 子串</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-6-2-%E6%8B%BC%E6%8E%A5"><span class="post-toc-text">3.6.2 拼接</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-6-3-%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="post-toc-text">3.6.3 不可变字符串</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-6-4-%E6%A3%80%E6%B5%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%98%AF%E5%90%A6%E7%9B%B8%E7%AD%89"><span class="post-toc-text">3.6.4 检测字符串是否相等</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-6-5-%E7%A9%BA%E4%B8%B2%E4%B8%8ENull%E4%B8%B2"><span class="post-toc-text">3.6.5 空串与Null串</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-6-6-%E7%A0%81%E7%82%B9%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%8D%95%E5%85%83"><span class="post-toc-text">3.6.6 码点与代码单元</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-6-7-String-API"><span class="post-toc-text">3.6.7 String API</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-6-8-%E6%9E%84%E5%BB%BA%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="post-toc-text">3.6.8 构建字符串</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-7-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="post-toc-text">3.7 输入输出</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-7-1-%E8%AF%BB%E5%8F%96%E8%BE%93%E5%85%A5"><span class="post-toc-text">3.7.1 读取输入</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-7-2-%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA"><span class="post-toc-text">3.7.2 格式化输出</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-7-3-%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA"><span class="post-toc-text">3.7.3 文件输入与输出</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-8-%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B"><span class="post-toc-text">3.8 控制流程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-8-1-%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="post-toc-text">3.8.1 块作用域</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-8-2-%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5"><span class="post-toc-text">3.8.2 条件语句</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-8-3-%E5%BE%AA%E7%8E%AF"><span class="post-toc-text">3.8.3 循环</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-8-4-%E7%A1%AE%E5%AE%9A%E5%BE%AA%E7%8E%AF"><span class="post-toc-text">3.8.4 确定循环</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-8-5-%E5%A4%9A%E9%87%8D%E9%80%89%E6%8B%A9%EF%BC%9Aswitch%E8%AF%AD%E5%8F%A5"><span class="post-toc-text">3.8.5 多重选择：switch语句</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-8-6-%E4%B8%AD%E6%96%AD%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B%E8%AF%AD%E5%8F%A5"><span class="post-toc-text">3.8.6 中断控制流程语句</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-9-%E5%A4%A7%E6%95%B0%E5%80%BC"><span class="post-toc-text">3.9 大数值</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-10-%E6%95%B0%E7%BB%84"><span class="post-toc-text">3.10 数组</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-10-1-for-each%E5%BE%AA%E7%8E%AF"><span class="post-toc-text">3.10.1 for each循环</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-10-2-%E6%95%B0%E7%BB%84%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%8A%E5%8C%BF%E5%90%8D%E6%95%B0%E7%BB%84"><span class="post-toc-text">3.10.2 数组初始化及匿名数组</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-10-3-%E6%95%B0%E7%BB%84%E6%8B%B7%E8%B4%9D"><span class="post-toc-text">3.10.3 数组拷贝</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-10-4-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0"><span class="post-toc-text">3.10.4 命令行参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-10-5-%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F"><span class="post-toc-text">3.10.5 数组排序</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-10-6-%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="post-toc-text">3.10.6 多维数组</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-10-7-%E4%B8%8D%E8%A7%84%E5%88%99%E6%95%B0%E7%BB%84"><span class="post-toc-text">3.10.7 不规则数组</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-1-%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84Java%E7%A8%8B%E5%BA%8F"><span class="post-toc-text">3.1 一个简单的Java程序</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-2-%E6%B3%A8%E9%87%8A"><span class="post-toc-text">3.2 注释</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-3-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">3.3 数据类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-1-%E6%95%B4%E5%9E%8B"><span class="post-toc-text">3.3.1 整型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-2-%E6%B5%AE%E7%82%B9%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">3.3.2 浮点类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-3-char%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">3.3.3 char类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-4-Unicode%E5%92%8Cchar%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">3.3.4 Unicode和char类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-5-boolean%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">3.3.5 boolean类型</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-4-%E5%8F%98%E9%87%8F"><span class="post-toc-text">3.4 变量</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-4-1-%E5%8F%98%E9%87%8F%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="post-toc-text">3.4.1 变量初始化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-4-2-%E5%B8%B8%E9%87%8F"><span class="post-toc-text">3.4.2 常量</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-5-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="post-toc-text">3.5 运算符</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-1-%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0%E4%B8%8E%E5%B8%B8%E9%87%8F"><span class="post-toc-text">3.5.1 数学函数与常量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-2-%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="post-toc-text">3.5.2 数值类型之间的转换</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-3-%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="post-toc-text">3.5.3 强制类型转换</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-4-%E7%BB%93%E5%90%88%E8%B5%8B%E5%80%BC%E5%92%8C%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="post-toc-text">3.5.4 结合赋值和运算符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-5-%E8%87%AA%E5%A2%9E%E4%B8%8E%E8%87%AA%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="post-toc-text">3.5.5 自增与自减运算符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-6-%E5%85%B3%E7%B3%BB%E5%92%8Cboolean%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="post-toc-text">3.5.6 关系和boolean运算符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-7-%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="post-toc-text">3.5.7 位运算符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-8-%E6%8B%AC%E5%8F%B7%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6%E7%BA%A7%E5%88%AB"><span class="post-toc-text">3.5.8 括号与运算符级别</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-9-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">3.5.9 枚举类型</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-6-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="post-toc-text">3.6 字符串</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-6-1-%E5%AD%90%E4%B8%B2"><span class="post-toc-text">3.6.1 子串</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-6-2-%E6%8B%BC%E6%8E%A5"><span class="post-toc-text">3.6.2 拼接</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-6-3-%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="post-toc-text">3.6.3 不可变字符串</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-6-4-%E6%A3%80%E6%B5%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%98%AF%E5%90%A6%E7%9B%B8%E7%AD%89"><span class="post-toc-text">3.6.4 检测字符串是否相等</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-6-5-%E7%A9%BA%E4%B8%B2%E4%B8%8ENull%E4%B8%B2"><span class="post-toc-text">3.6.5 空串与Null串</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-6-6-%E7%A0%81%E7%82%B9%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%8D%95%E5%85%83"><span class="post-toc-text">3.6.6 码点与代码单元</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-6-7-String-API"><span class="post-toc-text">3.6.7 String API</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-6-8-%E6%9E%84%E5%BB%BA%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="post-toc-text">3.6.8 构建字符串</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-7-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="post-toc-text">3.7 输入输出</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-7-1-%E8%AF%BB%E5%8F%96%E8%BE%93%E5%85%A5"><span class="post-toc-text">3.7.1 读取输入</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-7-2-%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA"><span class="post-toc-text">3.7.2 格式化输出</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-7-3-%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA"><span class="post-toc-text">3.7.3 文件输入与输出</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-8-%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B"><span class="post-toc-text">3.8 控制流程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-8-1-%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="post-toc-text">3.8.1 块作用域</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-8-2-%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5"><span class="post-toc-text">3.8.2 条件语句</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-8-3-while%E5%BE%AA%E7%8E%AF"><span class="post-toc-text">3.8.3 while循环</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-8-4-for%E5%BE%AA%E7%8E%AF"><span class="post-toc-text">3.8.4 for循环</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-8-5-%E5%A4%9A%E9%87%8D%E9%80%89%E6%8B%A9%EF%BC%9Aswitch%E8%AF%AD%E5%8F%A5"><span class="post-toc-text">3.8.5 多重选择：switch语句</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-8-6-%E4%B8%AD%E6%96%AD%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B%E8%AF%AD%E5%8F%A5"><span class="post-toc-text">3.8.6 中断控制流程语句</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-9-%E5%A4%A7%E6%95%B0%E5%80%BC"><span class="post-toc-text">3.9 大数值</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-10-%E6%95%B0%E7%BB%84"><span class="post-toc-text">3.10 数组</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-10-1-for-each%E5%BE%AA%E7%8E%AF"><span class="post-toc-text">3.10.1 for each循环</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-10-2-%E6%95%B0%E7%BB%84%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%8A%E5%8C%BF%E5%90%8D%E6%95%B0%E7%BB%84"><span class="post-toc-text">3.10.2 数组初始化及匿名数组</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-10-3-%E6%95%B0%E7%BB%84%E6%8B%B7%E8%B4%9D"><span class="post-toc-text">3.10.3 数组拷贝</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-10-4-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0"><span class="post-toc-text">3.10.4 命令行参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-10-5-%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F"><span class="post-toc-text">3.10.5 数组排序</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-10-6-%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="post-toc-text">3.10.6 多维数组</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-10-7-%E4%B8%8D%E8%A7%84%E5%88%99%E6%95%B0%E7%BB%84"><span class="post-toc-text">3.10.7 不规则数组</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
@@ -1016,7 +998,7 @@ for (int n = 0; n &lt;= NMAX; n++);
 </p>
 
 
-      <span class="post-count">本站博文总字数：89.4k</span>
+      <span class="post-count">本站博文总字数：92.7k</span>
       <p>
         Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
         Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
@@ -1067,7 +1049,7 @@ for (int n = 0; n &lt;= NMAX; n++);
             <a class="category-link" href="/categories/Blog/">Blog</a><a class="category-link" href="/categories/C%E8%AF%AD%E8%A8%80/">C语言</a><a class="category-link" href="/categories/Essay/">Essay</a><a class="category-link" href="/categories/Java/">Java</a><a class="category-link" href="/categories/UML/">UML</a><a class="category-link" href="/categories/%E5%9B%BE%E8%AE%BA/">图论</a><a class="category-link" href="/categories/%E5%A4%A7%E5%AD%A6/">大学</a><a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><a class="category-link" href="/categories/%E6%B3%95%E8%AF%AD/">法语</a><a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F%E7%BA%A7/">系统级</a><a class="category-link" href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/">计算机接口与通信</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/Blog/" style="font-size: 16.25px;">Blog</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.25px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Java/" style="font-size: 13.75px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 11.25px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 13.75px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.5px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.75px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 13.75px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.75px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.25px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.75px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.25px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
+            <a href="/tags/Blog/" style="font-size: 16.25px;">Blog</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.25px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 12.5px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 13.75px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.5px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.75px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 13.75px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.75px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.25px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.75px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.25px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -1112,7 +1094,7 @@ for (int n = 0; n &lt;= NMAX; n++);
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/Blog/" style="font-size: 16.25px;">Blog</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.25px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Java/" style="font-size: 13.75px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 11.25px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 13.75px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.5px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.75px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 13.75px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.75px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.25px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.75px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.25px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
+            <a href="/tags/Blog/" style="font-size: 16.25px;">Blog</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.25px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 12.5px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 13.75px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.5px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.75px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 13.75px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.75px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.25px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.75px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.25px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
         </div>
     </div>
 </div>

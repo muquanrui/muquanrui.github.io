@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://vor.ink/2021/01/27/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC4%E7%AB%A0%20%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/images/1611780617992.png">
 <meta property="og:image" content="http://vor.ink/2021/01/27/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC4%E7%AB%A0%20%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/images/1611780929446.png">
 <meta property="article:published_time" content="2021-01-27T15:55:42.000Z">
-<meta property="article:modified_time" content="2021-02-03T11:29:03.317Z">
+<meta property="article:modified_time" content="2021-02-05T17:13:21.659Z">
 <meta property="article:author" content="VorSonnenaufgang">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Java核心技术卷I">
@@ -187,8 +187,8 @@
           <span id="busuanzi_value_page_pv"></span>          
         </li>
       </ul>
-       <span class="post-count">文章字数:7.6k字 &nbsp &nbsp  
-         阅读时长:29分钟</span>
+       <span class="post-count">文章字数:5.5k字 &nbsp &nbsp  
+         阅读时长:21分钟</span>
     </div>
   
         
@@ -208,7 +208,7 @@
             <h2 id="4-1-面向对象程序设计概述"><a href="#4-1-面向对象程序设计概述" class="headerlink" title="4.1 面向对象程序设计概述"></a>4.1 面向对象程序设计概述</h2><p>面向对象程序设计（OOP）是现在的主流程序设计范型。Java是完全面向对象的。</p>
 <p>传统的结构化程序要求用一系列的过程（算法）来求解问题，Pascal语言的设计者Niklaus Wirth将其著作命名为《Algorithm + Data Structures = Programs》，但是OOP却调换了这个顺序，首先关注数据，再考虑操作数据的算法。</p>
 <p>对于规模较小的问题分解为过程的开发方式比较理想，面向对象适合于解决规模较大的问题。</p>
-<h3 id="4-1-1-类"><a href="#4-1-1-类" class="headerlink" title="4.1.1 类"></a>4.1.1 类</h3><p><strong>类</strong>（class）是构造对象的模版或蓝图。由类构造（construct）对象的过程称为创建类的实例（instance）。</p>
+<h3 id="4-1-1-类"><a href="#4-1-1-类" class="headerlink" title="4.1.1 类"></a>4.1.1 类</h3><p><strong>类</strong>（class）是构造对象的模版或蓝图。由类<strong>构造</strong>（construct）对象的过程称为创建类的<strong>实例</strong>（instance）。</p>
 <p><strong>封装</strong>（encapsulation）从形式上看是将数据和行为组合在一个包中，并对对象的使用者隐藏了数据的实现方式。对象中的数据称为<strong>实例域</strong>（instance field），操纵数据的过程称为<strong>方法</strong>（method）。对于每个特定的对象都有一组特定的实例域值，这些值的集合表示这个对象的当前<strong>状态</strong>（state）。实现封装的关键在于绝对不能让类中的方法直接访问其他类的实例域。程序只能通过对象的方法与对象的数据进行交互。</p>
 <p><strong>继承</strong>（inheritance）指通过扩展一个类来建立另外一个新的类。事实上在Java中所有的类都源于Object类。扩展已有类时，扩展之后的新类拥有被扩展类的全部属性和方法，还有自己的新属性和新方法。</p>
 <h3 id="4-1-2-对象"><a href="#4-1-2-对象" class="headerlink" title="4.1.2 对象"></a>4.1.2 对象</h3><p>对象有三个主要特征：</p>
@@ -233,19 +233,19 @@ System.out.println(new Data());
 String s = new Data().toString();
 
 Data birthday = new Data();</code></pre>
-<p>在前三个例子中，对象仅被使用了一次，如果要多次使用对象，按照第四个例子将对象存放在一个变量中，这个变量引用这个对象。</p>
+<p>在前三个例子中，对象仅被使用了一次，如果要多次使用对象，将对象存放在一个变量中，这个变量引用这个对象。</p>
 <p><img src="./images/1611764565598.png"></p>
 <p>对象与变量有着重大区别，<code>Data deadline;</code>，这个语句定义了一个对象变量deadline，但是它本身不是一个对象，此时也没有引用任何对象，无法将Data类的方法用于这个变量。</p>
-<p>因此对象变量定义后一定要先进行初始化再使用，可以使用新构造的变量来初始化变量，也可以引用一个已经存在的对象。</p>
+<p>因此<strong>对象变量定义后一定要先进行初始化再使用</strong>，可以使用新构造的变量来初始化变量，也可以引用一个已经存在的对象。</p>
 <pre><code class="java">deadline = new Data();
 // or
 deadline = birthday;</code></pre>
 <p>此时变量<code>birthday</code>和<code>deadline</code>引用的是同一个对象。</p>
 <p><img src="./images/1611764811795.png"></p>
-<p>可以显示地将对象变量设置为<code>null</code>，表明这个变量目前没有引用任何对象，此时它也不能使用任何方法。</p>
+<p>可以显示地将对象变量设置为<code>null</code>，表明这个变量目前没有引用任何对象，也不能使用任何方法。</p>
 <p><strong>注意</strong>：对于局部变量，它们不会自动初始化为null！必须手动进行初始化。</p>
-<h3 id="4-2-2-更改器与访问器方法"><a href="#4-2-2-更改器与访问器方法" class="headerlink" title="4.2.2 更改器与访问器方法"></a>4.2.2 更改器与访问器方法</h3><p>更改器方法（mutator method）调用后会改变对象状态，比如最常见的<code>set</code>方法。</p>
-<p>访问器方法（accessor method）只访问对象但是不做任何修改，比如最常见的<code>get</code>方法。</p>
+<h3 id="4-2-2-更改器与访问器方法"><a href="#4-2-2-更改器与访问器方法" class="headerlink" title="4.2.2 更改器与访问器方法"></a>4.2.2 更改器与访问器方法</h3><p><strong>更改器方法</strong>（mutator method）调用后会改变对象状态，比如最常见的<code>set</code>方法。</p>
+<p><strong>访问器方法</strong>（accessor method）只访问对象但是不做任何修改，比如最常见的<code>get</code>方法。</p>
 <h2 id="4-3-用户自定义类"><a href="#4-3-用户自定义类" class="headerlink" title="4.3 用户自定义类"></a>4.3 用户自定义类</h2><h3 id="4-3-1-Employee类"><a href="#4-3-1-Employee类" class="headerlink" title="4.3.1 Employee类"></a>4.3.1 Employee类</h3><pre><code class="java">import java.time.*
 
 public class EmployeeTest &#123;
@@ -296,16 +296,14 @@ class Employee&#123;
         salary += raise;
     &#125;
 &#125;</code></pre>
-<p>注意， 在这个示例程序中包含两个类：<code>Employee</code>类和带有<code>public</code>访问修饰符的<code>EmployeeTest</code>类。 </p>
-<p><code>EmployeeTest</code>类包含了main方法，源文件名是<code>EmployeeTest.java</code>，这是因为文件名必须与<code>public</code>类的名字相匹配。 在一个源文件中， <strong>只能有一个公有类</strong>， 但可以有任意数目的非公有类。</p>
-<p>接下来， 当编译这段源代码的时候， 编译器将在目录下创建两个类文件: <code>EmployeeTest.class</code>和 <code>Employee.class</code>。</p>
-<p>将程序中包含 main 方法的类名提供给字节码解释器， 以便启动这个程序：<code>java EmployeeTest</code>。字节码解释器开始运行 EmployeeTest 类的 main 方法中的代码。</p>
-<h3 id="4-3-2-多个源文件使用"><a href="#4-3-2-多个源文件使用" class="headerlink" title="4.3.2 多个源文件使用"></a>4.3.2 多个源文件使用</h3><p>一般来说，许多程序员都习惯于每一个类都存在于一个单独的源文件中，例如<code>Employee</code>类存放在<code>Employee.java</code>，<code>EmployeeTest</code>类存放在<code>EmployeeTest.java</code>。</p>
+<p>这个示例程序中包含两个类：<code>Employee</code>类和带有<code>public</code>访问修饰符的<code>EmployeeTest</code>类。 </p>
+<p><code>EmployeeTest</code>类包含了main方法，源文件名是<code>EmployeeTest.java</code>，文件名必须与<code>public</code>类的名字相匹配。 在一个源文件中， <strong>只能有一个公有类</strong>， 但可以有任意数目的非公有类。</p>
+<h3 id="4-3-2-多个源文件使用"><a href="#4-3-2-多个源文件使用" class="headerlink" title="4.3.2 多个源文件使用"></a>4.3.2 多个源文件使用</h3><p>一般来说许多程序员都习惯于每一个类都存在于一个单独的源文件中，例如<code>Employee</code>类存放在<code>Employee.java</code>，<code>EmployeeTest</code>类存放在<code>EmployeeTest.java</code>。</p>
 <p>这时编译也不需要单独javac每一个源文件，直接<code>javac EmployeeTest.java</code>，编译器发现<code>EmployeeTest.java</code>使用<code>Employee</code>类时会查找名为<code>Employee.class</code>的文件。 如果没有找到这个文件，就会自动地搜索<code>Employeejava</code>， 然后对它进行编译。如果<code>Employee.java</code>版本较已有的<code>Employee.class</code> 文件版本更新，Java编译器就会自动地重新编译这个文件。（可以理解为Java编译器内置了make工具。）</p>
-<h3 id="4-3-3-剖析Employee类"><a href="#4-3-3-剖析Employee类" class="headerlink" title="4.3.3 剖析Employee类"></a>4.3.3 剖析Employee类</h3><p>这个类包含一个构造器和4个方法，且所有方法都被标记为<code>public</code>，这意味任何类的任何方法都可以调用这些方法。</p>
-<p>这个类包含三个实例域来存放将要操作的数据，且这些实例域被修饰为<code>private</code>，确保只有这个类自身的方法可以访问这些实例域，而其他类的方法不能读写。</p>
-<p>值得注意的是，这里的name和hireDay本身就分别是String类和LocalData类的对象，这种情况十分常见：类通常包括类型属于某个类类型的实例域。</p>
-<h3 id="4-3-4-从构造器开始"><a href="#4-3-4-从构造器开始" class="headerlink" title="4.3.4 从构造器开始"></a>4.3.4 从构造器开始</h3><ul>
+<h3 id="4-3-3-剖析Employee类"><a href="#4-3-3-剖析Employee类" class="headerlink" title="4.3.3 剖析Employee类"></a>4.3.3 剖析Employee类</h3><p>这个类所有方法都被标记为<code>public</code>，任何类的任何方法都可以调用这些方法。</p>
+<p>这个类包含三个<code>private</code>实例域来存放将要操作的数据，，确保只有这个类自身的方法可以访问这些实例域，而其他类的方法不能读写。</p>
+<p>这里的name和hireDay本身就分别是String类和LocalData类的对象，这种情况十分常见：类通常包括类型属于某个类类型的实例域。</p>
+<h3 id="4-3-4-构造器"><a href="#4-3-4-构造器" class="headerlink" title="4.3.4 构造器"></a>4.3.4 构造器</h3><ul>
 <li>构造器与类同名。</li>
 <li>每个类可以有一个以上的构造器。</li>
 <li>构造器可以有0个、1个或多个参数。</li>
@@ -324,8 +322,7 @@ class Employee&#123;
     double raise = this.salary * byPercent/100;
     this.salary += raise;
 &#125;</code></pre>
-<h3 id="4-3-6-封装的优点"><a href="#4-3-6-封装的优点" class="headerlink" title="4.3.6 封装的优点"></a>4.3.6 封装的优点</h3><p>在上面的程序中，对每一个实例域都有一个对应的get方法，这些就是典型的域访问器。</p>
-<p>为了不破坏程序的封装，通常不会使用public来标记这些实例域，此时要获得或设置实例域的值，采用的方法是：</p>
+<h3 id="4-3-6-实现封装"><a href="#4-3-6-实现封装" class="headerlink" title="4.3.6 实现封装"></a>4.3.6 实现封装</h3><p>为了不破坏程序的封装，通常不会使用public来标记这些实例域，此时要获得或设置实例域的值，采用的方法是：</p>
 <ul>
 <li>一个private的数据域；</li>
 <li>一个public的域访问器方法；</li>
@@ -355,7 +352,7 @@ d.setTime(d.getTime() -(long) tenYearsInMilliSeconds);
         returen (Data) hireDay.clone(); // Good
     &#125;
 &#125;</code></pre>
-<h3 id="4-3-7-基于类的访问权限"><a href="#4-3-7-基于类的访问权限" class="headerlink" title="4.3.7 基于类的访问权限"></a>4.3.7 基于类的访问权限</h3><p>通过调用一个对象的方法，可以访问这个调用对象的私有数据。同时，调用方法还可以访问所属类的<strong>所有对象</strong>的私有数据。</p>
+<h3 id="4-3-7-基于类的访问权限"><a href="#4-3-7-基于类的访问权限" class="headerlink" title="4.3.7 基于类的访问权限"></a>4.3.7 基于类的访问权限</h3><p>通过调用一个对象的方法，可以访问这个调用对象的私有数据。调用方法还可以访问所属类的<strong>所有对象</strong>的私有数据。</p>
 <pre><code class="java">class Employee&#123;
     ...
     public boolean equals(Employee other)&#123;
@@ -363,11 +360,11 @@ d.setTime(d.getTime() -(long) tenYearsInMilliSeconds);
     &#125;
 &#125;</code></pre>
 <p><code>if(harry.equals(boss))...</code></p>
-<p>这个时候，<code>equals</code>方法访问了harry的私有域，同时，还访问了boss的私有域，这时合法的，因为harry和boss都是Employee类的对象，Employee类的方法可以访问这个类的任何一个对象的私有域。</p>
-<h3 id="4-3-8-私有方法"><a href="#4-3-8-私有方法" class="headerlink" title="4.3.8 私有方法"></a>4.3.8 私有方法</h3><p>有时希望将一个计算代码划分成若干个独立的辅助方法，由于它们往往与当前的实现机制非常紧密或者需要一个特别的协议以及一个特别的调用次序，这些辅助方法不应该成为公有接口的一部分，可以用<code>private</code>关键字来实现私有方法。</p>
-<h3 id="4-3-9-final实例域"><a href="#4-3-9-final实例域" class="headerlink" title="4.3.9 final实例域"></a>4.3.9 final实例域</h3><p>可以将实例域定义为<code>fianl</code>，构建对象时必须要初始化这样的域，即一个构造器执行后这个域将被设置，并且在后面的操作中不能够再对它进行修改。</p>
+<p>这个时候，<code>equals</code>方法访问了harry的私有域，同时，还访问了boss的私有域，因为harry和boss都是Employee类的对象，Employee类的方法可以访问这个类的任何一个对象的私有域。</p>
+<h3 id="4-3-8-私有方法"><a href="#4-3-8-私有方法" class="headerlink" title="4.3.8 私有方法"></a>4.3.8 私有方法</h3><p>用<code>private</code>关键字来实现私有方法。</p>
+<h3 id="4-3-9-final实例域"><a href="#4-3-9-final实例域" class="headerlink" title="4.3.9 final实例域"></a>4.3.9 final实例域</h3><p><strong>fianl实例域</strong>：构建对象时必须要被初始化，且在后面的操作中不能够更改。</p>
 <p><code>final</code>大都应用于基本（primitive）类型域，或不可变（immutable）类的域。如果类中的每个方法都不能修改其对象，这种类就是不可变类，比如String类。</p>
-<h2 id="4-4-静态域与静态方法"><a href="#4-4-静态域与静态方法" class="headerlink" title="4.4 静态域与静态方法"></a>4.4 静态域与静态方法</h2><h3 id="4-4-1-静态域"><a href="#4-4-1-静态域" class="headerlink" title="4.4.1 静态域"></a>4.4.1 静态域</h3><p>如果将域定义为<code>static</code>，每个类中只有一个这样的静态域。而每一个对象对于所有实例域都有自己的一份拷贝。</p>
+<h2 id="4-4-静态域与静态方法"><a href="#4-4-静态域与静态方法" class="headerlink" title="4.4 静态域与静态方法"></a>4.4 静态域与静态方法</h2><h3 id="4-4-1-静态域"><a href="#4-4-1-静态域" class="headerlink" title="4.4.1 静态域"></a>4.4.1 静态域</h3><p><strong>static域</strong>：每个类中只有一个这样的静态域。而每一个对象对于所有实例域都有自己的一份拷贝。</p>
 <pre><code class="java">class Employee&#123;
     private static int nextId = 1;
     private int id;
@@ -380,15 +377,10 @@ d.setTime(d.getTime() -(long) tenYearsInMilliSeconds);
     public static final double PI = 3.1415926;
     ...
 &#125;</code></pre>
-<p>使用<code>Math.PI</code>就可以获得这个常量。如果没有关键字<code>static</code>，PI就成为Math的一个实例域，则只能通过Math的对象来访问。</p>
-<p>最常用到的输出语句<code>System.out.println();</code>，<code>System.out</code>就是一个静态常量。</p>
-<pre><code class="java">public class System&#123;
-    ...
-    public static final PrintStream out = ... ;
-    ...
-&#125;</code></pre>
-<p>之前提到最好不要将类的域设为public，因为这样每个类对象都可以修改公有域，但是公有常量却没问题，因为被声明为final后的共有常量本来就不允许再进行更改了</p>
-<h3 id="4-4-3-静态方法"><a href="#4-4-3-静态方法" class="headerlink" title="4.4.3 静态方法"></a>4.4.3 静态方法</h3><p><strong>静态方法</strong>可以直接通过类名调用，且不能向对象实施操作，即静态方法没有隐式参数，因此也不能访问类中的实例域，但是静态方法可以访问自身类中的静态域。</p>
+<p>使用<code>Math.PI</code>就可以获得这个常量。</p>
+<p>最好不要将类的域设为public，因为这样每个类对象都可以修改公有域，但是静态常量可以设为public，因为被声明为final后的本来就不允许再进行更改了。</p>
+<h3 id="4-4-3-静态方法"><a href="#4-4-3-静态方法" class="headerlink" title="4.4.3 静态方法"></a>4.4.3 静态方法</h3><p><strong>静态方法</strong>：可以直接通过类名调用，且不能向对象实施操作。</p>
+<p>静态方法没有隐式参数，因此不能访问类中的实例域，但是静态方法可以访问自身类中的静态域。</p>
 <pre><code class="java">public static int getNextId()&#123;
     return nextId; // return static field
 &#125;
@@ -400,13 +392,13 @@ int n = Employee.getNextId();</code></pre>
 <li>一个方法不需要访问对象状态，其所需参数都是通过显示参数提供的。</li>
 <li>一个方法只需要访问类的静态域。</li>
 </ol>
-<h3 id="4-4-4-工厂方法"><a href="#4-4-4-工厂方法" class="headerlink" title="4.4.4 工厂方法"></a>4.4.4 工厂方法</h3><p>静态方法还有一个常见用途，可以作为静态静态工厂方法（factory method）来构造对象。比如<code>NumberFormat</code>类：</p>
+<h3 id="4-4-4-工厂方法"><a href="#4-4-4-工厂方法" class="headerlink" title="4.4.4 工厂方法"></a>4.4.4 工厂方法</h3><p>静态方法还有一个常见用途，可以作为静态工厂方法（factory method）来构造对象。比如<code>NumberFormat</code>类：</p>
 <pre><code class="java">NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
 NumberFormat percentFormatter = NumberFormat.getPercentInstance();
 double x = 0.1;
 System.out.println(currencyFormatter.format(x)); // $0.10
 System.out.println(percentFormatter.format(x)); // 10%</code></pre>
-<p>为什么<code>NumberFormat</code>不使用构造器来完成这些操作呢？因为：</p>
+<p>为什么<code>NumberFormat</code>不使用构造器来完成这些操作呢？</p>
 <ol>
 <li>无法命名构造器。构造器的名字必须与类名相同，但是这里需要两个不同的构造器。</li>
 <li>当使用构造器时，无法改变所构造的对象类型。而这里的工厂方法将返回一个DecimalFormat类对象，这个类是NumberFormat的子类。</li>
@@ -470,11 +462,11 @@ swap(a, b);</code></pre>
 </ul>
 <h2 id="4-6-对象构造"><a href="#4-6-对象构造" class="headerlink" title="4.6 对象构造"></a>4.6 对象构造</h2><h3 id="4-6-1-重载"><a href="#4-6-1-重载" class="headerlink" title="4.6.1 重载"></a>4.6.1 重载</h3><p>如果多个方法有相同的名字、不同的参数，就产生<strong>重载</strong>（overload）。有些类有多个构造器，它们拥有不同的构造参数。</p>
 <h3 id="4-6-2-默认域初始化"><a href="#4-6-2-默认域初始化" class="headerlink" title="4.6.2 默认域初始化"></a>4.6.2 默认域初始化</h3><p>如果在构造器中没有显式地给域赋予初值，那么就会被自动赋值为默认值：数值0，布尔值false，对象引用为null（局部变量必须被明确初始化，不会默认赋值）。但是这不是一个好的编程习惯。</p>
-<h3 id="4-6-3-无参数的构造器"><a href="#4-6-3-无参数的构造器" class="headerlink" title="4.6.3 无参数的构造器"></a>4.6.3 无参数的构造器</h3><p>很多类都包含一个无参数的构造函数，对象由无参数构造函数创建时，其状态会被设置为适当的默认值。</p>
-<p>如果在编写一个类时没有编写构造器，那么系统会提供一个无参数构造器，这个构造器将所有的实例域设置为默认值。</p>
+<h3 id="4-6-3-无参数的构造器"><a href="#4-6-3-无参数的构造器" class="headerlink" title="4.6.3 无参数的构造器"></a>4.6.3 无参数的构造器</h3><p>对象由无参数构造器创建时，其状态会被设置为适当的默认值。</p>
+<p>如果在编写一个类时没有编写构造器，系统会提供一个无参数构造器，这个构造器将所有的实例域设置为默认值。</p>
 <p>但是只要类中提供了至少一个构造器，系统就不会提供无参数的构造器。</p>
-<h3 id="4-6-4-显式域初始化"><a href="#4-6-4-显式域初始化" class="headerlink" title="4.6.4 显式域初始化"></a>4.6.4 显式域初始化</h3><p>通过重载类的构造器方法，可以采用多种形式设置类的实例域初始状态，确保不管怎么样调用构造器每个实例域都可以被设置为一个有意义的初值，这是一种很好的编程习惯。</p>
-<p>也可以在类的定义中，直接给域赋初始值，初始值也不一定是常量值，可以调用方法对域进行初始化。当一个类所有构造器都希望把相同的初值赋予某个特定实例域时这个方法很有用。</p>
+<h3 id="4-6-4-显式域初始化"><a href="#4-6-4-显式域初始化" class="headerlink" title="4.6.4 显式域初始化"></a>4.6.4 显式域初始化</h3><p>通过重载类的构造器方法，可以采用多种形式设置类的实例域初始状态。</p>
+<p>也可以在类的定义中，直接给域赋初始值，初始值不一定是常量值，可以调用方法对域进行初始化。当一个类所有构造器都希望把相同的初值赋予某个特定实例域时这个方法很有用。</p>
 <pre><code class="java">class Employee&#123;
     private static int nextId;
     private int id = assignId();
@@ -511,7 +503,7 @@ swap(a, b);</code></pre>
 <li>在构造器中设置值</li>
 <li>在声明中赋值</li>
 </ol>
-<p>实际上还可以通过<strong>初始化块</strong>（initialization block）来初始化数据域。在一个类的声明中可以包含多个代码块，只要构造类的对象，这些块就会被执行。</p>
+<p>还可以通过<strong>初始化块</strong>（initialization block）来初始化数据域。在一个类的声明中可以包含多个代码块，只要构造类的对象，这些块就会被执行。</p>
 <pre><code class="java">class Employee&#123;
     private static int nextId;
 
@@ -536,7 +528,6 @@ swap(a, b);</code></pre>
         salary = 0;
     &#125;
 &#125;</code></pre>
-<p>这段代码中无论哪个构造器被使用，id都已经在初始化块中被初始化。首先运行初始化块，然后才运行构造器的主体部分。这种机制不是必须的，也不常见。</p>
 <p>静态域可以通过提供一个初始化值，或者使用一个静态的初始化块来进行初始化。</p>
 <pre><code class="java">private static int nextId = 1;
 
@@ -546,7 +537,7 @@ static&#123;
     nextId = generator.nextId(10000);
 &#125;</code></pre>
 <h2 id="4-7-包"><a href="#4-7-包" class="headerlink" title="4.7 包"></a>4.7 包</h2><p>Java允许使用<strong>包</strong>（package）将类组织起来，借助于包可以方便地组织自己的代码，并将自己的代码与别人提供的代码库分开管理。</p>
-<p>标准的Java类库分布于多个包中，包括<code>java.lang</code>、<code>java.util</code>、<code>java.net</code>等。标准的Java包具有一个层次结构，如同硬盘目录一样，也可以嵌套层次组织包。所有标准Java包都处于<code>java</code>和<code>javax</code>包层次中。</p>
+<p>标准的Java类库分布于多个包中，包括<code>java.lang</code>、<code>java.util</code>、<code>java.net</code>等。</p>
 <p>使用包可以保证类名的唯一性，比如两个程序员都建立了Employee类，只要将这俩类放置在不同包中，就不会产生冲突。</p>
 <p>为了保证包名的绝对唯一性，Sun公司建议将公司的因特网域名（独一无二）以逆序形式作为包名，并对不同项目使用不同子包。比如vor.ink，包名就是ink.vor。</p>
 <h3 id="4-7-1-类的导入"><a href="#4-7-1-类的导入" class="headerlink" title="4.7.1 类的导入"></a>4.7.1 类的导入</h3><p>一个类可以使用其所属包中的所有类，以及其他包中的公有类（public class），可以采用两种方式访问其他包的公有类：</p>
@@ -570,89 +561,14 @@ public class Employee&#123;
     ...
 &#125;</code></pre>
 <p>如果一个源文件没有<code>package</code>语句，它将被放入一个<strong>默认包</strong>（default package）中，默认包是一个没有名字的包。</p>
-<h3 id="4-7-4-包作用域"><a href="#4-7-4-包作用域" class="headerlink" title="4.7.4 包作用域"></a>4.7.4 包作用域</h3><p>标记为<code>public</code>的部分可以被任意的类使用，标记为<code>private</code>的部分只能被定义它们的类使用，没有标记的部分（类、方法或变量）可以被同一个包中的所有方法访问。</p>
+<h3 id="4-7-4-包作用域"><a href="#4-7-4-包作用域" class="headerlink" title="4.7.4 包作用域"></a>4.7.4 包作用域</h3><ul>
+<li>标记为<code>public</code>的部分可以被任意的类使用。</li>
+<li>标记为<code>private</code>的部分只能被定义它们的类使用。</li>
+<li>没有标记的部分（类、方法或变量）可以被同一个包中的所有方法访问。</li>
+</ul>
 <p>不做公有私有标记对类来说是合理的，但是对变量来说会破坏程序的封装性。</p>
-<h2 id="4-8-类路径"><a href="#4-8-类路径" class="headerlink" title="4.8 类路径"></a>4.8 类路径</h2><p>前面看到，类存储在文件系统的子目录中，路径与包名匹配。</p>
-<p>类文件还可以存储在<strong>JAR</strong>（Java归档）文件中，在一个JAR文件中，可以包含多个压缩形式的类文件和子目录。在程序中用到第三方（third-party）库时，通常会给出一个或多个需要包含的JAR文件。JAR文件使用ZIP格式组织文件和子目录。</p>
-<p>为了类能被多个程序共享，需要做到：</p>
-<ol>
-<li>把类放在一个目录中，例如<code>/home/user/classdir</code>，这个目录是包树状结构的基目录。对于一个类<code>com.horstman.corejava.Employee</code>，添加到其中时位于子目录<code>/home/user/classdir/com/horstman/corejava</code>。</li>
-<li>将JAR文件放在一个目录中，例如<code>/home/user/archives</code>。</li>
-<li>设置类路径（class path）。类路径是所有包含类文件的路径的集合。UNIX中类路径不同项目之间采用<code>:</code>分隔：<code>/home/user/classdir:.:/home/user/archives/archive.jar</code>，Win环境采用<code>;</code>分隔：<code>c:\classdir;.;c:\archives\archive.jar</code>。其中<code>.</code>表示当前目录。</li>
-</ol>
-<p>类路径包括：</p>
-<ul>
-<li>基目录（/home/user/classdir）</li>
-<li>当前目录（.）</li>
-<li>JAR文件（/home/user/archives/archive.jar）</li>
-</ul>
-<p>由于运行时库文件（rt.jar和在jre/lib与jre/lib/ext目录下的一些其他JAR文件）会被自动搜索，因此不必显式列入类路径中。</p>
-<h3 id="4-8-1-设置类路径"><a href="#4-8-1-设置类路径" class="headerlink" title="4.8.1 设置类路径"></a>4.8.1 设置类路径</h3><p>使用<code>-classpath或-cp</code>选项指定类路径：<br><code>java -classpath /home/user/classdir:.:/home/user/archives/archive.jar MyProg</code></p>
-<p>这个指令很长还必须写在一行，可以考虑放在shell脚本或批处理文件中。</p>
-<p>还可以通过设置<code>CLASSPATH</code>环境变量来完成这个操作，区别在于<code>-classpath</code>选项只针对当前程序，而 <code>CLASSPATH</code>环境变量可以设置到操作系统的环境变量中从而可以针对所有程序。</p>
-<h2 id="4-9-文档注释"><a href="#4-9-文档注释" class="headerlink" title="4.9 文档注释"></a>4.9 文档注释</h2><p>JDK包含一个很有用的工具<code>javadoc</code>，它可以由源文件生成一个HTML文档，如果在源代码中添加以<code>/**</code>开始的注释，可以很容易生成一个看上去具有专业水准的文档，这种方式还能保持代码与注释在一个地方，修改代码的同时重新运行javadoc就能生成新的文档。</p>
-<h3 id="4-9-1-注释的插入"><a href="#4-9-1-注释的插入" class="headerlink" title="4.9.1 注释的插入"></a>4.9.1 注释的插入</h3><p>javadoc实用程序（utility）从下面几个特征中抽取信息：</p>
-<ul>
-<li>包</li>
-<li>公有类和接口</li>
-<li>公有的和受保护的构造器及方法</li>
-<li>公有的和受保护的域</li>
-</ul>
-<p>应该为以上几个部分编写注释。注释应该放置在所描述特征的前面，以<code>/**</code>开始，<code>*/</code>结束，每个文档注释在标记后紧跟自由格式文本（free-form text），标记由<code>@</code>开始，比如<code>@author</code>或<code>@param</code>。</p>
-<p>自由格式文本的第一句应该是一个概要性的橘子，javadoc实用程序自动将这些句子抽取出来形成概要网页。自由格式文本中还可以实用HTML标签来进行格式修饰，如果有到其他文件（比如图片）的链接，将这些文件放置在子目录<code>doc-files</code>中。</p>
-<h3 id="4-9-2-类注释"><a href="#4-9-2-类注释" class="headerlink" title="4.9.2 类注释"></a>4.9.2 类注释</h3><p>类注释必须放在import语句之后，类定义之前。</p>
-<pre><code class="java">import java.util.*;
-
-/**
- *
- *
- *
-*/
-
-class Employee&#123;
-...
-&#125;</code></pre>
-<h3 id="4-9-3-方法注释"><a href="#4-9-3-方法注释" class="headerlink" title="4.9.3 方法注释"></a>4.9.3 方法注释</h3><p>每一个方法注释必须放在所描述的方法之前，除了通用标记外，还可以使用：</p>
-<ul>
-<li><code>@param</code>变量描述：对当前方法的“param”参数部分添加一个条目，这个描述可以占据多行并可以使用HTML标记。一个方法的所有<code>@param</code>标记必须放在一起。</li>
-<li><code>@return</code>描述：对当前方法添加“return”返回部分描述，这个描述可以占据多行并可以使用HTML标记。</li>
-<li><code>@throws</code>类描述：用于表示这个方法有可能抛出异常。</li>
-</ul>
-<pre><code class="java">/**
- * Raises the salary of an employee.
- * @param byPercent the percentage by which to raise the salary(e.g. 10 means 10%)
- * @return the amount of the raise
-*/
-
-public double raiseSalary(double byPercent)&#123;
-    double raise = salary * byPercent / 100;
-    salary += raise;
-    return raise;
-&#125;</code></pre>
-<h3 id="4-9-4-域注释"><a href="#4-9-4-域注释" class="headerlink" title="4.9.4 域注释"></a>4.9.4 域注释</h3><p>只需要对公有域建立文档。</p>
-<pre><code class="java">/**
- * The &quot;Hearts&quot; card suit
-*/
-
-public static final int HEARTS = 1;</code></pre>
-<h3 id="4-9-5-通用注释"><a href="#4-9-5-通用注释" class="headerlink" title="4.9.5 通用注释"></a>4.9.5 通用注释</h3><p>下面的标记可以用在类文档的注释中。 </p>
-<ul>
-<li><code>@author</code>姓名：这个标记将产生一个“author”（作者）条目。可以使用多个<code>@author</code>标记，每个标记对应一个作者。</li>
-<li><code>@version</code>文本：这个标记将产生一个“since”（始于）条目。这里的text可以是对引入特性的版本描述。例如：<code>@since version 1.7.1</code>。</li>
-<li><code>@deprecated</code>文本：这个标记将对类、方法或变量添加一个不再使用的注释。这的text给出取代的建议。例如：<code>@deprecated Use &lt;code&gt; setVisible(true) &lt;/code&gt; instead</code>。</li>
-<li><code>@see</code>引用：这个标记将在“see also”部分增加一个超级链接。它可以用于类中，也可以用于方法中。</li>
-</ul>
-<h3 id="4-9-6-包与概述注释"><a href="#4-9-6-包与概述注释" class="headerlink" title="4.9.6 包与概述注释"></a>4.9.6 包与概述注释</h3><p>可以直接将类、方法和变量的注释放置在Java源文件中，只要用<code>/** ... */</code>文档注释界定就可以。但是要产生包注释，就需要在每一个包目录中添加一个单独的文件。可以有如下选择：</p>
-<ul>
-<li>提供一个以<code>package.html</code>命名的HTML文件，在标记<code>&lt;body&gt;...&lt;/body&gt;</code>之间的所有文本会被抽取出来。</li>
-<li>提供一个以<code>package-info.java</code>命名的Java文件。这个文件必须包含一个初始的以<code>/** ... */</code>界定的Javadoc注释，跟随在一个包语句之后，它不应该包含更多的代码或注释。</li>
-<li>提供一个概述性的注释，这个注释将被放在一个名为<code>overview.html</code>的文件中，这个文件位于包含所有源文件的父目录中。在标记<code>&lt;body&gt;...&lt;/body&gt;</code>之间的所有文本会被抽取出来。用户从导航栏中选择“Overview”时，就会显示出这些注释内容。</li>
-</ul>
-<h3 id="4-9-7-注释的抽取"><a href="#4-9-7-注释的抽取" class="headerlink" title="4.9.7 注释的抽取"></a>4.9.7 注释的抽取</h3><p>假设HTML文件将被存放在目录docDirectory下。</p>
-<ol>
-<li>切换到包含想要生成文档的源文件目录。如果有嵌套的包要生成文档，例如<code>com.horstmann.corejava</code>，就必须切换到包含子目录com的目录。</li>
-<li>如果是一个包，运行命令：<code>javadoc -d docDirectory nameOfPackage</code>，如果是多个包生成文档，运行命令：<code>javadoc -d docDirectory nameOfPackage1 nameOfPackage2...</code>，如果文件在默认包中，运行命令：<code>javadoc -d docDirectory *.java</code></li>
-</ol>
+<h2 id="4-8-类路径"><a href="#4-8-类路径" class="headerlink" title="4.8 类路径"></a>4.8 类路径</h2><p>（略）</p>
+<h2 id="4-9-文档注释"><a href="#4-9-文档注释" class="headerlink" title="4.9 文档注释"></a>4.9 文档注释</h2><p>（略）</p>
 <h2 id="4-10-类设计技巧"><a href="#4-10-类设计技巧" class="headerlink" title="4.10 类设计技巧"></a>4.10 类设计技巧</h2><ol>
 <li>一定要保证数据私有</li>
 <li>一定要对数据初始化</li>
@@ -665,7 +581,7 @@ public static final int HEARTS = 1;</code></pre>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2021年02月03日 12:29</p>
+        <p>最后更新： 2021年02月05日 18:13</p>
         <p>原始链接： <a class="post-url" href="/2021/01/27/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC4%E7%AB%A0%20%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/" title="Java核心技术卷I第4章 对象和类">http://vor.ink/2021/01/27/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC4%E7%AB%A0%20%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/</a></p>
         <footer>
             <a href="http://vor.ink">
@@ -786,19 +702,19 @@ public static final int HEARTS = 1;</code></pre>
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
         <div class= "post-toc-name">Toc</div>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-1-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%A6%82%E8%BF%B0"><span class="post-toc-text">4.1 面向对象程序设计概述</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-1-%E7%B1%BB"><span class="post-toc-text">4.1.1 类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-2-%E5%AF%B9%E8%B1%A1"><span class="post-toc-text">4.1.2 对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-3-%E8%AF%86%E5%88%AB%E7%B1%BB"><span class="post-toc-text">4.1.3 识别类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-4-%E7%B1%BB%E4%B8%8E%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="post-toc-text">4.1.4 类与类之间的关系</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-2-%E4%BD%BF%E7%94%A8%E9%A2%84%E5%AE%9A%E4%B9%89%E7%B1%BB"><span class="post-toc-text">4.2 使用预定义类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-2-1-%E5%AF%B9%E8%B1%A1%E4%B8%8E%E5%AF%B9%E8%B1%A1%E5%8F%98%E9%87%8F"><span class="post-toc-text">4.2.1 对象与对象变量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-2-2-%E6%9B%B4%E6%94%B9%E5%99%A8%E4%B8%8E%E8%AE%BF%E9%97%AE%E5%99%A8%E6%96%B9%E6%B3%95"><span class="post-toc-text">4.2.2 更改器与访问器方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-3-%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB"><span class="post-toc-text">4.3 用户自定义类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-1-Employee%E7%B1%BB"><span class="post-toc-text">4.3.1 Employee类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-2-%E5%A4%9A%E4%B8%AA%E6%BA%90%E6%96%87%E4%BB%B6%E4%BD%BF%E7%94%A8"><span class="post-toc-text">4.3.2 多个源文件使用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-3-%E5%89%96%E6%9E%90Employee%E7%B1%BB"><span class="post-toc-text">4.3.3 剖析Employee类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-4-%E4%BB%8E%E6%9E%84%E9%80%A0%E5%99%A8%E5%BC%80%E5%A7%8B"><span class="post-toc-text">4.3.4 从构造器开始</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-5-%E9%9A%90%E5%BC%8F%E5%8F%82%E6%95%B0%E4%B8%8E%E6%98%BE%E7%A4%BA%E5%8F%82%E6%95%B0"><span class="post-toc-text">4.3.5 隐式参数与显示参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-6-%E5%B0%81%E8%A3%85%E7%9A%84%E4%BC%98%E7%82%B9"><span class="post-toc-text">4.3.6 封装的优点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-7-%E5%9F%BA%E4%BA%8E%E7%B1%BB%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90"><span class="post-toc-text">4.3.7 基于类的访问权限</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-8-%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95"><span class="post-toc-text">4.3.8 私有方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-9-final%E5%AE%9E%E4%BE%8B%E5%9F%9F"><span class="post-toc-text">4.3.9 final实例域</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-4-%E9%9D%99%E6%80%81%E5%9F%9F%E4%B8%8E%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="post-toc-text">4.4 静态域与静态方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-4-1-%E9%9D%99%E6%80%81%E5%9F%9F"><span class="post-toc-text">4.4.1 静态域</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-4-2-%E9%9D%99%E6%80%81%E5%B8%B8%E9%87%8F"><span class="post-toc-text">4.4.2 静态常量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-4-3-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="post-toc-text">4.4.3 静态方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-4-4-%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95"><span class="post-toc-text">4.4.4 工厂方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-4-5-main%E6%96%B9%E6%B3%95"><span class="post-toc-text">4.4.5 main方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-5-%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0"><span class="post-toc-text">4.5 方法参数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-6-%E5%AF%B9%E8%B1%A1%E6%9E%84%E9%80%A0"><span class="post-toc-text">4.6 对象构造</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-6-1-%E9%87%8D%E8%BD%BD"><span class="post-toc-text">4.6.1 重载</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-6-2-%E9%BB%98%E8%AE%A4%E5%9F%9F%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="post-toc-text">4.6.2 默认域初始化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-6-3-%E6%97%A0%E5%8F%82%E6%95%B0%E7%9A%84%E6%9E%84%E9%80%A0%E5%99%A8"><span class="post-toc-text">4.6.3 无参数的构造器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-6-4-%E6%98%BE%E5%BC%8F%E5%9F%9F%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="post-toc-text">4.6.4 显式域初始化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-6-5-%E5%8F%82%E6%95%B0%E5%90%8D"><span class="post-toc-text">4.6.5 参数名</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-6-6-%E8%B0%83%E7%94%A8%E5%8F%A6%E4%B8%80%E4%B8%AA%E6%9E%84%E9%80%A0%E5%99%A8"><span class="post-toc-text">4.6.6 调用另一个构造器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-6-7-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%9D%97"><span class="post-toc-text">4.6.7 初始化块</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-7-%E5%8C%85"><span class="post-toc-text">4.7 包</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-7-1-%E7%B1%BB%E7%9A%84%E5%AF%BC%E5%85%A5"><span class="post-toc-text">4.7.1 类的导入</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-7-2-%E9%9D%99%E6%80%81%E5%AF%BC%E5%85%A5"><span class="post-toc-text">4.7.2 静态导入</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-7-3-%E5%B0%86%E7%B1%BB%E6%94%BE%E5%85%A5%E5%8C%85%E4%B8%AD"><span class="post-toc-text">4.7.3 将类放入包中</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-7-4-%E5%8C%85%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="post-toc-text">4.7.4 包作用域</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-8-%E7%B1%BB%E8%B7%AF%E5%BE%84"><span class="post-toc-text">4.8 类路径</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-8-1-%E8%AE%BE%E7%BD%AE%E7%B1%BB%E8%B7%AF%E5%BE%84"><span class="post-toc-text">4.8.1 设置类路径</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-9-%E6%96%87%E6%A1%A3%E6%B3%A8%E9%87%8A"><span class="post-toc-text">4.9 文档注释</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-9-1-%E6%B3%A8%E9%87%8A%E7%9A%84%E6%8F%92%E5%85%A5"><span class="post-toc-text">4.9.1 注释的插入</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-9-2-%E7%B1%BB%E6%B3%A8%E9%87%8A"><span class="post-toc-text">4.9.2 类注释</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-9-3-%E6%96%B9%E6%B3%95%E6%B3%A8%E9%87%8A"><span class="post-toc-text">4.9.3 方法注释</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-9-4-%E5%9F%9F%E6%B3%A8%E9%87%8A"><span class="post-toc-text">4.9.4 域注释</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-9-5-%E9%80%9A%E7%94%A8%E6%B3%A8%E9%87%8A"><span class="post-toc-text">4.9.5 通用注释</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-9-6-%E5%8C%85%E4%B8%8E%E6%A6%82%E8%BF%B0%E6%B3%A8%E9%87%8A"><span class="post-toc-text">4.9.6 包与概述注释</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-9-7-%E6%B3%A8%E9%87%8A%E7%9A%84%E6%8A%BD%E5%8F%96"><span class="post-toc-text">4.9.7 注释的抽取</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-10-%E7%B1%BB%E8%AE%BE%E8%AE%A1%E6%8A%80%E5%B7%A7"><span class="post-toc-text">4.10 类设计技巧</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-1-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%A6%82%E8%BF%B0"><span class="post-toc-text">4.1 面向对象程序设计概述</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-1-%E7%B1%BB"><span class="post-toc-text">4.1.1 类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-2-%E5%AF%B9%E8%B1%A1"><span class="post-toc-text">4.1.2 对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-3-%E8%AF%86%E5%88%AB%E7%B1%BB"><span class="post-toc-text">4.1.3 识别类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-4-%E7%B1%BB%E4%B8%8E%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="post-toc-text">4.1.4 类与类之间的关系</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-2-%E4%BD%BF%E7%94%A8%E9%A2%84%E5%AE%9A%E4%B9%89%E7%B1%BB"><span class="post-toc-text">4.2 使用预定义类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-2-1-%E5%AF%B9%E8%B1%A1%E4%B8%8E%E5%AF%B9%E8%B1%A1%E5%8F%98%E9%87%8F"><span class="post-toc-text">4.2.1 对象与对象变量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-2-2-%E6%9B%B4%E6%94%B9%E5%99%A8%E4%B8%8E%E8%AE%BF%E9%97%AE%E5%99%A8%E6%96%B9%E6%B3%95"><span class="post-toc-text">4.2.2 更改器与访问器方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-3-%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB"><span class="post-toc-text">4.3 用户自定义类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-1-Employee%E7%B1%BB"><span class="post-toc-text">4.3.1 Employee类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-2-%E5%A4%9A%E4%B8%AA%E6%BA%90%E6%96%87%E4%BB%B6%E4%BD%BF%E7%94%A8"><span class="post-toc-text">4.3.2 多个源文件使用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-3-%E5%89%96%E6%9E%90Employee%E7%B1%BB"><span class="post-toc-text">4.3.3 剖析Employee类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-4-%E6%9E%84%E9%80%A0%E5%99%A8"><span class="post-toc-text">4.3.4 构造器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-5-%E9%9A%90%E5%BC%8F%E5%8F%82%E6%95%B0%E4%B8%8E%E6%98%BE%E7%A4%BA%E5%8F%82%E6%95%B0"><span class="post-toc-text">4.3.5 隐式参数与显示参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-6-%E5%AE%9E%E7%8E%B0%E5%B0%81%E8%A3%85"><span class="post-toc-text">4.3.6 实现封装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-7-%E5%9F%BA%E4%BA%8E%E7%B1%BB%E7%9A%84%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90"><span class="post-toc-text">4.3.7 基于类的访问权限</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-8-%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95"><span class="post-toc-text">4.3.8 私有方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-9-final%E5%AE%9E%E4%BE%8B%E5%9F%9F"><span class="post-toc-text">4.3.9 final实例域</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-4-%E9%9D%99%E6%80%81%E5%9F%9F%E4%B8%8E%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="post-toc-text">4.4 静态域与静态方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-4-1-%E9%9D%99%E6%80%81%E5%9F%9F"><span class="post-toc-text">4.4.1 静态域</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-4-2-%E9%9D%99%E6%80%81%E5%B8%B8%E9%87%8F"><span class="post-toc-text">4.4.2 静态常量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-4-3-%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="post-toc-text">4.4.3 静态方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-4-4-%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95"><span class="post-toc-text">4.4.4 工厂方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-4-5-main%E6%96%B9%E6%B3%95"><span class="post-toc-text">4.4.5 main方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-5-%E6%96%B9%E6%B3%95%E5%8F%82%E6%95%B0"><span class="post-toc-text">4.5 方法参数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-6-%E5%AF%B9%E8%B1%A1%E6%9E%84%E9%80%A0"><span class="post-toc-text">4.6 对象构造</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-6-1-%E9%87%8D%E8%BD%BD"><span class="post-toc-text">4.6.1 重载</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-6-2-%E9%BB%98%E8%AE%A4%E5%9F%9F%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="post-toc-text">4.6.2 默认域初始化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-6-3-%E6%97%A0%E5%8F%82%E6%95%B0%E7%9A%84%E6%9E%84%E9%80%A0%E5%99%A8"><span class="post-toc-text">4.6.3 无参数的构造器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-6-4-%E6%98%BE%E5%BC%8F%E5%9F%9F%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="post-toc-text">4.6.4 显式域初始化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-6-5-%E5%8F%82%E6%95%B0%E5%90%8D"><span class="post-toc-text">4.6.5 参数名</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-6-6-%E8%B0%83%E7%94%A8%E5%8F%A6%E4%B8%80%E4%B8%AA%E6%9E%84%E9%80%A0%E5%99%A8"><span class="post-toc-text">4.6.6 调用另一个构造器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-6-7-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%9D%97"><span class="post-toc-text">4.6.7 初始化块</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-7-%E5%8C%85"><span class="post-toc-text">4.7 包</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-7-1-%E7%B1%BB%E7%9A%84%E5%AF%BC%E5%85%A5"><span class="post-toc-text">4.7.1 类的导入</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-7-2-%E9%9D%99%E6%80%81%E5%AF%BC%E5%85%A5"><span class="post-toc-text">4.7.2 静态导入</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-7-3-%E5%B0%86%E7%B1%BB%E6%94%BE%E5%85%A5%E5%8C%85%E4%B8%AD"><span class="post-toc-text">4.7.3 将类放入包中</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-7-4-%E5%8C%85%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="post-toc-text">4.7.4 包作用域</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-8-%E7%B1%BB%E8%B7%AF%E5%BE%84"><span class="post-toc-text">4.8 类路径</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-9-%E6%96%87%E6%A1%A3%E6%B3%A8%E9%87%8A"><span class="post-toc-text">4.9 文档注释</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-10-%E7%B1%BB%E8%AE%BE%E8%AE%A1%E6%8A%80%E5%B7%A7"><span class="post-toc-text">4.10 类设计技巧</span></a></li></ol>
         </nav>
     </aside>
     
 
 <nav id="article-nav">
   
-    <a href="/2021/02/03/Hexo%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96%E2%80%94%E2%80%94%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/02/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC5%E7%AB%A0%20%E7%BB%A7%E6%89%BF/" id="article-nav-newer" class="article-nav-link-wrap">
 
       <span class="article-nav-title">
         <i class="fa fa-hand-o-left" aria-hidden="true"></i>
         
-          Hexo博客美化——代码高亮
+          Java核心技术卷I第5章 继承
         
       </span>
     </a>
@@ -842,7 +758,7 @@ public static final int HEARTS = 1;</code></pre>
 </p>
 
 
-      <span class="post-count">本站博文总字数：89.4k</span>
+      <span class="post-count">本站博文总字数：92.7k</span>
       <p>
         Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
         Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
@@ -893,7 +809,7 @@ public static final int HEARTS = 1;</code></pre>
             <a class="category-link" href="/categories/Blog/">Blog</a><a class="category-link" href="/categories/C%E8%AF%AD%E8%A8%80/">C语言</a><a class="category-link" href="/categories/Essay/">Essay</a><a class="category-link" href="/categories/Java/">Java</a><a class="category-link" href="/categories/UML/">UML</a><a class="category-link" href="/categories/%E5%9B%BE%E8%AE%BA/">图论</a><a class="category-link" href="/categories/%E5%A4%A7%E5%AD%A6/">大学</a><a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><a class="category-link" href="/categories/%E6%B3%95%E8%AF%AD/">法语</a><a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F%E7%BA%A7/">系统级</a><a class="category-link" href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/">计算机接口与通信</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/Blog/" style="font-size: 16.25px;">Blog</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.25px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Java/" style="font-size: 13.75px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 11.25px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 13.75px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.5px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.75px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 13.75px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.75px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.25px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.75px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.25px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
+            <a href="/tags/Blog/" style="font-size: 16.25px;">Blog</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.25px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 12.5px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 13.75px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.5px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.75px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 13.75px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.75px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.25px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.75px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.25px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -938,7 +854,7 @@ public static final int HEARTS = 1;</code></pre>
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/Blog/" style="font-size: 16.25px;">Blog</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.25px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Java/" style="font-size: 13.75px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 11.25px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 13.75px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.5px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.75px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 13.75px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.75px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.25px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.75px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.25px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
+            <a href="/tags/Blog/" style="font-size: 16.25px;">Blog</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.5px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.25px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 13.75px;">Hexo</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 12.5px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 13.75px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.5px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.75px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 13.75px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.75px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.25px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.75px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.25px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
         </div>
     </div>
 </div>
