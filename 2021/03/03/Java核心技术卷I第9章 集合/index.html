@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java核心技术卷I第9章 集合 | VorSonnenaufgang&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="VorSonnenaufgang,VorSonnenaufgang's Blog" />
+  
+  <meta name="description" content="9.1 Java集合框架9.1.1 将集合的接口与实现分离Java集合类库将接口与实现分离。 例如队列（queue）。 pubic interface Queue&lt;E&gt;&amp;#123;     void add(E element);     E remove();     int size(); &amp;#125; 队列接口指出可以在尾部添加元素，在头部删除元素，并可以查看队列中的元素个数。但">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java核心技术卷I第9章 集合">
+<meta property="og:url" content="http://vor.ink/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/index.html">
+<meta property="og:site_name" content="VorSonnenaufgang&#39;s Blog">
+<meta property="og:description" content="9.1 Java集合框架9.1.1 将集合的接口与实现分离Java集合类库将接口与实现分离。 例如队列（queue）。 pubic interface Queue&lt;E&gt;&amp;#123;     void add(E element);     E remove();     int size(); &amp;#125; 队列接口指出可以在尾部添加元素，在头部删除元素，并可以查看队列中的元素个数。但">
+<meta property="og:locale">
+<meta property="og:image" content="http://vor.ink/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614812720789.png">
+<meta property="og:image" content="http://vor.ink/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614812895701.png">
+<meta property="og:image" content="http://vor.ink/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614813052441.png">
+<meta property="og:image" content="http://vor.ink/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614813555968.png">
+<meta property="og:image" content="http://vor.ink/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614813576202.png">
+<meta property="og:image" content="http://vor.ink/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614813918832.png">
+<meta property="og:image" content="http://vor.ink/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614813940034.png">
+<meta property="og:image" content="http://vor.ink/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1615277124258.png">
+<meta property="og:image" content="http://vor.ink/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1615277753287.png">
+<meta property="og:image" content="http://vor.ink/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1615290310040.png">
+<meta property="og:image" content="http://vor.ink/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1616497245975.png">
+<meta property="article:published_time" content="2021-03-03T22:44:08.000Z">
+<meta property="article:modified_time" content="2021-03-23T10:14:50.000Z">
+<meta property="article:author" content="VorSonnenaufgang">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Java核心技术卷I">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://vor.ink/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614812720789.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+ <!--加载prettify代码高亮样式-->
+<link href="/google-code-prettify/tomorrow.css" type="text/css" rel="stylesheet" />
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+
+  <!--加载条样式-->
+  <style>
+    .pace .pace-progress {
+    	background-image: linear-gradient(90deg, #F79533 0%, #F37055 15%, #EF4E7B 30%, #A166AB 44%, #5073B8 58%, #1098AD 72%, #07B39B 86%, #6DBA82 100%);
+    	height: 3px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+  </style>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+
+        <div id="header-menu" class="header-menu-pos animated">
+
+
+<a target="_blank" rel="noopener" href="https://github.com/VorSonnenaufgang" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#1E90FF; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">VorSonnenaufgang&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/categories">
+                        <i class="fa fa-book"></i>
+                        <span>Categories</span>
+                    </a>
+                    
+                    <a  href="/tags">
+                        <i class="fa fa-tags"></i>
+                        <span>Tags</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        VorSonnenaufgang&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Carpe diem.
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Home" target="_blank" href="//vor.ink">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/VorSonnenaufgang">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/vorsonnenaufgang">
+                            <i class="fa fa-copyright fa-2x"></i></a>
+                    
+                        <a title="Google" target="_blank" href="//google.com">
+                            <i class="fa fa-google fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Java核心技术卷I第9章 集合" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Java核心技术卷I第9章 集合
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Java/">Java</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-03-03
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>          
+        </li>
+      </ul>
+       <span class="post-count">文章字数:5.2k字 &nbsp &nbsp  
+         阅读时长:19分钟</span>
+    </div>
+  
+        
+          
+      </header>
+    
+
+    <div class="article-entry post-content" itemprop="articleBody">
+
+    
+    
+
+
+
+      
+            
+            <h2 id="9-1-Java集合框架"><a href="#9-1-Java集合框架" class="headerlink" title="9.1 Java集合框架"></a>9.1 Java集合框架</h2><h3 id="9-1-1-将集合的接口与实现分离"><a href="#9-1-1-将集合的接口与实现分离" class="headerlink" title="9.1.1 将集合的接口与实现分离"></a>9.1.1 将集合的接口与实现分离</h3><p>Java集合类库将接口与实现分离。</p>
+<p>例如队列（queue）。</p>
+<pre><code class="java">pubic interface Queue&lt;E&gt;&#123;
+    void add(E element);
+    E remove();
+    int size();
+&#125;</code></pre>
+<p>队列接口指出可以在尾部添加元素，在头部删除元素，并可以查看队列中的元素个数。但是接口并不说明队列是如何实现的，队列有两种实现方式：循环数组和链表。</p>
+<p>在程序中使用队列时，一旦构建了集合就不需要知道具体的实现方式，因此可以使用接口类型来存放集合的引用。</p>
+<p><code>Queue&lt;Customer&gt; expressLane = new LinkedListQueue&lt;&gt;();</code></p>
+<h3 id="9-1-2-Collection接口"><a href="#9-1-2-Collection接口" class="headerlink" title="9.1.2 Collection接口"></a>9.1.2 Collection接口</h3><p>在Java类库中，集合类的基本接口是Collection接口。</p>
+<pre><code class="java">public interface Collection&lt;E&gt;&#123;
+    boolean add(E element);
+    Iterator&lt;E&gt; iterator();
+&#125;</code></pre>
+<p>这个接口有两个基本方法，add方法用于向集合添加元素，如果添加元素改变了集合就返回true，如果没有则返回false（比如添加集合中已经存在的对象）。</p>
+<p>iterator方法用于返回一个实现了Iterator接口的对象，可以使用这个迭代器对象依次访问集合中的元素。</p>
+<h3 id="9-1-3-迭代器"><a href="#9-1-3-迭代器" class="headerlink" title="9.1.3 迭代器"></a>9.1.3 迭代器</h3><p>Iterator接口包括4个方法。</p>
+<pre><code class="java">public interface Iterator&lt;E&gt;&#123;
+    E next();
+    boolean hasNext();
+    void remove;
+    default void forEachRemaining(Consumer &lt;? super E&gt; action);
+&#125;</code></pre>
+<p>通过反复调用next方法可以逐个访问集合中的每个元素，如果到达集合末尾将抛出NoSuchElementException，因此在调用next之前需要调用hasNext进行判断，如果还有多个供访问元素，hasNext返回true。</p>
+<pre><code class="java">Collection&lt;String&gt; c = ...;
+Iterator&lt;String&gt; iter = c.iterator();
+while(iter.hasNext())&#123;
+    String element = iter.next();
+    do something...
+&#125;</code></pre>
+<p>或者使用for each。</p>
+<pre><code class="java">for(String element: c)&#123;
+    do something
+&#125;</code></pre>
+<p>for each循环可以与任何实现了Iterable接口的对象一起工作，这个接口只包含一个抽象方法。</p>
+<pre><code class="java">public interface Iterable&lt;E&gt;&#123;
+    Iterator&lt;E&gt; iterator();
+&#125;</code></pre>
+<p>Collection接口扩展了Iterable接口，因此标准类库中的任何集合都可以使用for each循环。</p>
+<p>元素的访问顺序取决于集合类型，如果对于ArrayList进行迭代，迭代器从索引0开始，每迭代一次，索引加一。如果访问HashSet，每个元素会按照某种随机的顺序出现，可以确定遍历所有元素，但是无法预知元素被访问的顺序。</p>
+<p>Java迭代器可以被认为位于两个元素之间，调用next时，迭代器越过下一个元素，并返回刚刚越过的那个元素的引用。</p>
+<p><img src="./images/1614812720789.png"></p>
+<p>对next方法和remove方法的调用具有互相依赖性，如果调用remove之前没有调用next将被视为不合法，抛出IllegalStateException。</p>
+<pre><code class="java">it.remove();
+it.next();
+it.remove();</code></pre>
+<h3 id="9-1-4-泛型实用方法"><a href="#9-1-4-泛型实用方法" class="headerlink" title="9.1.4 泛型实用方法"></a>9.1.4 泛型实用方法</h3><p>事实上Collection接口声明了很多有用的方法，所有的实现类都必须提供这些方法。</p>
+<p><img src="./images/1614812895701.png"></p>
+<p>如果实现Collection接口的每一个类都要提供这么多的方法是很烦人的，所以Java类库提供了一个AbstractCollection，它将基础方法size和iterator抽象化，并在此提供了例行方法，实现更为容易。</p>
+<h3 id="9-1-5-集合框架中的接口"><a href="#9-1-5-集合框架中的接口" class="headerlink" title="9.1.5 集合框架中的接口"></a>9.1.5 集合框架中的接口</h3><p><img src="./images/1614813052441.png"></p>
+<p>集合有两个基本接口：Collection和Map。</p>
+<ul>
+<li>对于Collection，插入元素使用<code>boolean add(E element)</code>，对于Map，插入元素使用<code>V put(K key, V value)</code>；</li>
+<li>对于Collection，读取元素使用迭代器，对于Map，读取元素使用<code>V get(K key)</code>。</li>
+</ul>
+<p>List是一个有序集合，元素会增加到容器中的特定位置，可以使用迭代器访问元素（顺序访问），也可以使用整数索引访问（随机访问）。ListIterator接口是Iterator的一个子接口，定义了一个可以用于在迭代器当前位置前增加元素的add方法（中间插入元素）。</p>
+<p>Set接口等同于Collection接口，但是其方法的行为定义更严谨。set的add方法不允许增加重复元素。</p>
+<p>SortedSet和SortedMap接口会提供用于排序的比较器对象，这两个接口定义了可以得到集合子集视图的方法。</p>
+<p>Java SE 6引入了接口NavigableSet和NavigableMap，其中包含一些用于搜索和遍历有续集和映射的方法。TreeSet和TreeMap类实现了这些接口。</p>
+<h2 id="9-2-具体的集合"><a href="#9-2-具体的集合" class="headerlink" title="9.2 具体的集合"></a>9.2 具体的集合</h2><p><img src="./images/1614813555968.png"></p>
+<p><img src="./images/1614813576202.png"></p>
+<h3 id="9-2-1-链表"><a href="#9-2-1-链表" class="headerlink" title="9.2.1 链表"></a>9.2.1 链表</h3><p>数组和数组列表的重大缺陷在于，从中间位置删除一个元素要付出很大代机，因为被删除元素后面的元素都要向前移动，中间插入元素也存在这个问题。</p>
+<p><strong>链表</strong>（linked list）将每个对象存放在独立的节点中，每个节点还存放着序列中下一个结点的引用。Java中的链表是双向链接的，即每个结点还存放着指向前驱结点的引用。</p>
+<p><img src="./images/1614813918832.png"></p>
+<p><img src="./images/1614813940034.png"></p>
+<p>从链表中删除一个元素需要更新被删除元素附近的链接即可。</p>
+<p><img src="./images/1615277124258.png"></p>
+<pre><code class="java">List&lt;String&gt; staff = new LinkedList&lt;&gt;(); // Linkedlist implements List
+staff.add(&quot;Amy&quot;);
+staff.add(&quot;Bob&quot;);
+staff.add(&quot;Carl&quot;);
+Iterator iter = staff.iterator();
+String first = iter.next(); // visit first element
+String second = iter.next(); // visit second element
+iter.remove(); // remove last visited element</code></pre>
+<p>链表与泛型集合之间的重要区别在于，链表是一个<strong>有序集合</strong>（ordered collection），每个对象的位置十分重要。LinkedList.add方法直接将对象添加到链表的尾部，如果要添加到链表中间，需要描述集合中位置的迭代器的add方法。</p>
+<p>只有对自然有序集合使用迭代器添加元素才有意义，例如set这样的集合其中元素是无序的，因此Iterator接口没有add方法，而它的子接口ListIterator提供了add方法。</p>
+<pre><code class="java">interface ListIterator&lt;E&gt; extends Iterator&lt;E&gt;&#123;
+    void add(E element);
+    ...
+&#125;</code></pre>
+<p>这个add方法与Collection.add不同，它不返回boolean，因为它的操作总会改变链表。</p>
+<p>ListIterator还有两个方法用来反向遍历链表：<code>E previous()</code>，<code>boolean hasPrevious()</code>。</p>
+<p>与next方法一样，previous方法返回越过的对象。</p>
+<pre><code class="java">List&lt;String&gt; staff = new LinkedList&lt;&gt;(); 
+staff.add(&quot;Amy&quot;);
+staff.add(&quot;Bob&quot;);
+staff.add(&quot;Carl&quot;);
+ListIterator&lt;String&gt; iter = staff.listIterator();
+iter.next(); // skip past first element
+iter.add(&quot;Juliet&quot;);</code></pre>
+<p><img src="./images/1615277753287.png"></p>
+<p>如果多次调用add方法，将按照提供的次序依次添加到迭代器当前位置之前。如果链表有n个元素，则有n+1个位置可以插入新元素（包括添加新表头和新表尾）。</p>
+<p>set方法可以用一个新元素取代next或previous方法返回的上一个元素。</p>
+<pre><code class="java">ListIterator&lt;String&gt; iter = list.listIterator();
+String oldValue = iter.next; // return first element
+iter.set(newValue); // set first element to newValue</code></pre>
+<p>如果两个迭代器同时进行遍历，其中一个迭代器修改了元素，就会发生混乱，抛出ConcurrentModificationException异常。</p>
+<p>为了避免发生并发修改的异常，要遵循以下规则：可以根据需要给容器附加许多的迭代器，但是这些迭代器只允许读取列表。另外，再单独附加一个既能读又能写的迭代器。</p>
+<p>使用链表的目的在于尽可能减少在列表中间插入或删除元素所付出的代价，如果需要对集合进行随机访问，就是用数组或ArrayList。</p>
+<h3 id="9-2-2-数组列表"><a href="#9-2-2-数组列表" class="headerlink" title="9.2.2 数组列表"></a>9.2.2 数组列表</h3><p>在上一节中介绍的是List接口和实现了这个接口的LinkedList类，List接口用于描述一个有序集合，并且集合中每个元素的位置很重要。有两种访问元素的协议：一种用迭代器，另一种用get和set方法随机访问。后者不适用于链表，但对数组很有用。ArrayList类也实现了List接口，封装了一个动态再分配的对象数组。</p>
+<h3 id="9-2-3-散列集"><a href="#9-2-3-散列集" class="headerlink" title="9.2.3 散列集"></a>9.2.3 散列集</h3><p>链表和数组按照人们的意愿排列元素次序，想要查看某个指定元素却忘记位置则需要访问所有元素直到找到为止。如果集合中包含的元素很多，将会很消耗时间。</p>
+<p><strong>散列表</strong>（hash  table）可以快速查找所需要对象，缺点是无法控制元素出现的次序。hash table为每个对象计算一个整数，称为散列码（hash code），散列码是由对象的实例域产生的一个整数，具有不同数据域的对象产生不同的散列码。</p>
+<p>Java中每个hash table用链表数组实现，每个列表称为桶（bucket），查找表中对象的位置就要先计算它的散列码，然后与桶的总数取余，得到的结果就是保存这个元素的桶的索引。比如某个对象散列码为76268，有128个桶，对象就保存在108号桶中。如果这个桶中没有其他元素，此时将元素直接插入到桶中，如果桶被占满，则出现散列冲突（hash collision）。这是需要将新对象与桶内所有对象比较，查看是否存在该对象。</p>
+<p>想要更多控制散列表的运行性能，需要指定一个初始的桶数（用于收集具有相同散列值的桶的数目），通常将桶数设置为预计元素个数的75%～150%。</p>
+<p>如果散列表太满，需要再散列（rehashed），需要创建一个桶数更多的表，并将所有元素插入到这个新表，丢弃原来的表。装填因子（load factor）决定何时对散列表进行再散列。例如装填因子为0.75（默认值），表中超过75%的位置已经填入元素，就会用双倍的桶数自动进行再散列。</p>
+<p>hash table可以用来实现几个重要的数据结构，比如set。set是没有重复元素的集合，set的add方法首先集中查找要添加的对象，如果不存在再添加这个对象。</p>
+<p>Java集合类库提供HashSet类，实现了基于hash table的set。add方法添加元素，contains方法查看某个元素是否在set中。</p>
+<p>HashSet迭代器依次访问所有桶，由于散列将元素分散在表的各个位置上，访问顺序几乎是随机的。不关心集合中元素顺序时可以使用HashSet。</p>
+<h3 id="9-2-4-树集"><a href="#9-2-4-树集" class="headerlink" title="9.2.4 树集"></a>9.2.4 树集</h3><p>TreeSet与HashSet十分类似，但是它是一个<strong>有序集合</strong>（sorted collection），可以以任意顺序将元素插入到集合中，在对集合进行遍历时，每个值将自动按照排序后的顺序呈现。</p>
+<p>TreeSet排序是用树结构完成的，迭代器总是以排好序的顺序访问每个元素。</p>
+<p>将一个元素添加到TreeSet中比添加到HashTable中慢，但是比数组和链表快。</p>
+<h3 id="9-2-5-队列与双端队列"><a href="#9-2-5-队列与双端队列" class="headerlink" title="9.2.5 队列与双端队列"></a>9.2.5 队列与双端队列</h3><p><strong>队列</strong>可以有效地在尾部添加元素，在头部删除元素（先进先出）。有两个端头的队列即<strong>双端队列</strong>，可以有效地在头部和尾部同时添加或删除元素，但不支持在队列中间添加元素。</p>
+<h3 id="9-2-6-优先级队列"><a href="#9-2-6-优先级队列" class="headerlink" title="9.2.6 优先级队列"></a>9.2.6 优先级队列</h3><p><strong>优先级队列</strong>（priority queue）中的元素可以按照任意顺序插入，但是总是按照排序的顺序进行检索。优先级队列使用堆（heap）。堆是一个可以自我调整的二叉树，对树执行add和remore操作，可以让最小的元素移动到根，不必对元素进行排序。</p>
+<p>使用优先级队列的典型是任务调度，每一个任务有有一个优先级，任务可以随机添加到队列中，每当启动一个新任务，都将优先级最高的任务从队列中删除（最小的元素）。</p>
+<h2 id="9-3-映射"><a href="#9-3-映射" class="headerlink" title="9.3 映射"></a>9.3 映射</h2><p><strong>映射</strong>（map）存放键值对，提供key就能找到value。</p>
+<h3 id="9-3-1-基本映射操作"><a href="#9-3-1-基本映射操作" class="headerlink" title="9.3.1 基本映射操作"></a>9.3.1 基本映射操作</h3><p>Java类库提供map的两个通用实现：<strong>HashMap</strong>和<strong>TreeMap</strong>，这两个类都实现了Map接口。</p>
+<p>HashMap对key进行hash，TreeMap用key的整体顺序对元素进行排序，并将其组织成搜索树。Hash或比较函数只能用于key，而不能用于value。</p>
+<p>HashMap更快，如果不需要按照顺序访问key，就使用HashMap。</p>
+<pre><code class="java">Map&lt;String, Employee&gt; staff = new HashMap&lt;&gt;();
+Employee harry = new Employee(&quot;Harry Hacker&quot;);
+staff.put(&quot;987-98-9996&quot;, harry);</code></pre>
+<p>检索对象使用的是key。</p>
+<pre><code class="java">String id = &quot;987-98-9996&quot;;
+e = staff.get(id);</code></pre>
+<p>如果map中没有对应的kay/value对，get将返回null。</p>
+<p>可以设定一个代替null的默认值：<code>int score = scores.getOrDefault(id, 0);</code>，如果id不存在则返回0。</p>
+<p>key必须是唯一的，不可能同时存在两个相同的key。</p>
+<p>remove方法删除给定key的元素，size返回元素个数。</p>
+<h3 id="9-3-2-更新映射项"><a href="#9-3-2-更新映射项" class="headerlink" title="9.3.2 更新映射项"></a>9.3.2 更新映射项</h3><p>一般情况下，可以得到一个与key关联的value，更新后放回新值。不过key第一次出现则不能使用这种方法。</p>
+<p>比如统计单词出现的次数，看到word计数器加1：<code>counts.put(word, counts.get(word)+1);</code>，如果word第一次出现，get返回null，将出现NullPointerException异常。</p>
+<p>可以使用getOrDefault方法补救：<code>counts.put(word, counts.getOrDefault(word, 0)+1);</code>。</p>
+<p>或者首先调用putIfAbsent方法，只有当key原先存在时才会放入一个值：<code>counts.putIfAbsent(word, 0);</code>，然后再进行更新。</p>
+<p>merge方法可以简化这个操作：<code>counts.merge(word, 1, Integer::sum);</code>，把word与1关联，否则将原值加1。</p>
+<h3 id="9-3-3-映射视图"><a href="#9-3-3-映射视图" class="headerlink" title="9.3.3 映射视图"></a>9.3.3 映射视图</h3><p>集合框架不认为map本身是一个集合。不过可以得到map的视图（view）——实现了Collection接口或某个子接口的对象。</p>
+<p>有三种视图：键集，值集（不是一个set，因为可能存在相同的value），以及键值对集。</p>
+<pre><code class="java">Set&lt;K&gt; keySet()
+Collection&lt;V&gt; values()
+Set&lt;Map.Entry&lt;K, V&gt;&gt; entrySet()</code></pre>
+<p>这三个方法会分别返回这三个视图。其中keySet不是HashSet或TreeSet，而是实现了Set接口的另外某个类的对象。Set接口扩展了Collection接口，可以像使用set一样使用keySet。</p>
+<pre><code class="java">Set&lt;String&gt; keys = map.keySet();
+for(String key: keys)&#123;
+    do something with key
+&#125;</code></pre>
+<p>也可以同时查看key和value。</p>
+<pre><code class="java">for(Map.Entry&lt;String, Employee&gt; entry: staff.entrySet())&#123;
+    String k = entry.getKey();
+    Employee v = entry.getValue();
+    do something with k, v
+&#125;</code></pre>
+<p>如果在键集视图上调用迭代器的remove方法，会从map中删除这个key与它对应的value。但是不能对键集视图使用add方法。</p>
+<h3 id="9-3-4-弱散列映射"><a href="#9-3-4-弱散列映射" class="headerlink" title="9.3.4 弱散列映射"></a>9.3.4 弱散列映射</h3><p>WeakHashMap为了解决一个值对应的键已经不再被使用的问题。假定某个键的最后一次引用已经消亡，不再有任何途径引用这个值的对象，由于在程序中的任何部分都没有再出现这个键，这个键值对就无法删除。</p>
+<p>垃圾回收器也不能删除它，因为垃圾回收器跟踪活动的对象，只要映射对象是活动的，其中的所有桶也是活动的，它们不能被回收。</p>
+<p>WeakHashMap可以完成这项工作，当对键的唯一引用来自散列条目时，它将与垃圾回收器协同工作一起删除键值对。</p>
+<h3 id="9-3-5-链接散列集与映射"><a href="#9-3-5-链接散列集与映射" class="headerlink" title="9.3.5 链接散列集与映射"></a>9.3.5 链接散列集与映射</h3><p>LinkedHashSet和LinkedHashMap类用来记住插入元素项的顺序，可以避免在列表中的项从表面上看是随机排列的。</p>
+<p><img src="./images/1615290310040.png"></p>
+<h3 id="9-3-6-枚举集与映射"><a href="#9-3-6-枚举集与映射" class="headerlink" title="9.3.6 枚举集与映射"></a>9.3.6 枚举集与映射</h3><p>EnumSet是一个枚举类型元素集的高效实现，枚举类型的实例是有限的，所以EnumSet内部用位序列实现，如果对应的值在集中，相应的位置被置为1。</p>
+<p>EnumMap是一个键类型为枚举类型的映射，可以直接高效地用一个值数组实现。</p>
+<h3 id="9-3-7-标识散列映射"><a href="#9-3-7-标识散列映射" class="headerlink" title="9.3.7 标识散列映射"></a>9.3.7 标识散列映射</h3><p>IdentityHashMap类中键的散列值不是用hashCode方法计算的，而是用System.identityHashCode方法计算，这是Object.hashCode方法根据对象的内存地址来计算hash code时使用的方式。对两个对象进行比较时，IdentityHashMap类使用<code>==</code>，而不是<code>equals</code>。</p>
+<p>也就是说不同的键对象即使内容相同也被视为不同对象。在实现对象遍历算法时这个类很有用，可以用来跟踪每个对象的遍历状况。</p>
+<h2 id="9-4-视图与包装器"><a href="#9-4-视图与包装器" class="headerlink" title="9.4 视图与包装器"></a>9.4 视图与包装器</h2><p> ### 9.4.1 轻量级集合包装器</p>
+<p> Arrays类的静态方法asList将返回一个包装了普通Java数组的List包装器。这个方法可以将数组传递给一个期望得到列表或集合参数的方法。</p>
+<pre><code class="java">Card[] cardDeck = new Card[52];
+...
+List&lt;Card&gt; cardList = Arrays.asList(cardDeck);</code></pre>
+<p>返回的对象不是ArrayList，而是一个视图对象，带有访问底层数组的get和set方法。</p>
+<h3 id="9-4-2-子范围"><a href="#9-4-2-子范围" class="headerlink" title="9.4.2 子范围"></a>9.4.2 子范围</h3><p>可以为很多集合建立<strong>子范围</strong>（subrange）视图。</p>
+<p><code>List group2 = staff.subList(10,20);</code></p>
+<p>返回10～19号元素。</p>
+<h3 id="9-4-3-不可修改的视图"><a href="#9-4-3-不可修改的视图" class="headerlink" title="9.4.3 不可修改的视图"></a>9.4.3 不可修改的视图</h3><p>不可修改视图（unmodifiable views）对现有集合增加一个运行时检查，如果发现试图修改集合，就会抛出异常。Collections提供了8种方法来获得不可修改视图。</p>
+<h3 id="9-4-4-同步视图"><a href="#9-4-4-同步视图" class="headerlink" title="9.4.4 同步视图"></a>9.4.4 同步视图</h3><p>如果多个线程访问集合，就要确保集不会被意外破坏。视图机制可以确保常规集合的线程安全，例如Collections的静态方法synchronizedMap方法可以将任何一个map转换成具有同步访问方法的map。</p>
+<h3 id="9-4-5-受查视图"><a href="#9-4-5-受查视图" class="headerlink" title="9.4.5 受查视图"></a>9.4.5 受查视图</h3><p>受查视图用来对泛型类型发生问题时提供调试支持，例如Collections的静态方法checkedList可以定义一个安全列表，使用add方法时将检测插入对象是否属于给定类。</p>
+<h2 id="9-5-算法"><a href="#9-5-算法" class="headerlink" title="9.5 算法"></a>9.5 算法</h2><p>泛型集合接口的一大优点在于，算法只需要实现一次。</p>
+<h3 id="9-5-1-排序与混排"><a href="#9-5-1-排序与混排" class="headerlink" title="9.5.1 排序与混排"></a>9.5.1 排序与混排</h3><p>Collections的sort方法实现了对List接口的集合进行排序。</p>
+<pre><code class="java"> List&lt;String&gt; staff = new Linkedlist&lt;&gt;();
+ Collections.sort(staff);</code></pre>
+<p> 这个方法假定列表元素实现了Comparable接口。如果想采用其他方式进行排序，可以使用List接口的sort方法并传入一个Comparator对象，比如按工资排序：</p>
+<p> <code>staff.sort(Comparator.comparingDouble(Employee::getSalary));</code></p>
+<p> 如果降序排列：</p>
+<p> <code>staff.sort(Comparator.reverseOrder())</code></p>
+<p>  如果按照工资降序排列：</p>
+<p>  <code>staff.sort(Comparator.comparingDouble(Employee::getSalary).reversed())</code></p>
+<h3 id="9-5-2-二分查找"><a href="#9-5-2-二分查找" class="headerlink" title="9.5.2 二分查找"></a>9.5.2 二分查找</h3><p>对于排序好的集合，使用binarySearch方法可以实现二分查找。要查找某个元素，需要提供集合（这个集合要实现List接口）以及要查找的元素。如果集合没有采用Comparable接口的compareTo方法排序还需要提供一个Comparator对象。</p>
+<pre><code class="java">i = Collections.binarySearch(c, element);
+i = Collections.binarySearch(c, element, comparator);</code></pre>
+<p>如果返回负值，代表没有匹配元素。</p>
+<h3 id="9-5-3-简单算法"><a href="#9-5-3-简单算法" class="headerlink" title="9.5.3 简单算法"></a>9.5.3 简单算法</h3><p>Collections类中还包含了几个简单实用的算法，比如列表的复制，一个常量值填充容器，逆置一个列表的元素顺序。</p>
+<h3 id="9-5-4-批操作"><a href="#9-5-4-批操作" class="headerlink" title="9.5.4 批操作"></a>9.5.4 批操作</h3><p>从coll1中删除coll2中出现的所有元素：<code>coll1.removeAll(coll2);</code>。</p>
+<p>从coll1中删除未在coll2中出现的所有元素：<code>coll1.retainAll(coll2);</code>。</p>
+<h3 id="9-5-5-集合与数组的转换"><a href="#9-5-5-集合与数组的转换" class="headerlink" title="9.5.5 集合与数组的转换"></a>9.5.5 集合与数组的转换</h3><p>数组转换为集合：Arrays.asList包装器。</p>
+<pre><code class="java">String[] values = ...;
+HashSet&lt;String&gt; staff = new HashSet&lt;&gt;(Arrays.asList(values));</code></pre>
+<p>集合转换为数组可以使用toArray方法，但是得到的是一个Object[]数组，不能使用强制类型转换。</p>
+<pre><code class="java">Object[] values = staff.toArray();
+String[] values = (String[]) staff.toArray(); // Error!</code></pre>
+<p>应该使用一个变化的形式，提供一个所需类型且长度为0的数组。</p>
+<p><code>String[] values = staff.toArray(new String[0]);</code></p>
+<h3 id="9-5-6-编写自己的算法"><a href="#9-5-6-编写自己的算法" class="headerlink" title="9.5.6 编写自己的算法"></a>9.5.6 编写自己的算法</h3><p>如果编写自己的算法，尽可能使用接口。</p>
+<h2 id="9-6-遗留的集合"><a href="#9-6-遗留的集合" class="headerlink" title="9.6 遗留的集合"></a>9.6 遗留的集合</h2><p><img src="./images/1616497245975.png"></p>
+<h3 id="9-6-1-Hashtable类"><a href="#9-6-1-Hashtable类" class="headerlink" title="9.6.1 Hashtable类"></a>9.6.1 Hashtable类</h3><p>Hashtable类与HashMap类的作用一样，拥有相同的接口。与Vector类一样，Hashtable的方法也是同步的。</p>
+<p>如果对同步性或遗留代码的兼容性没有任何要求，就应该使用HashMap，如果需要并发访问，则需要使用ConcurrentHashMap。</p>
+<h3 id="9-6-2-枚举"><a href="#9-6-2-枚举" class="headerlink" title="9.6.2 枚举"></a>9.6.2 枚举</h3><p>Enumeration接口可以对元素序列进行遍历，它有两个方法：hashMoreElements和nextElements。与Iterator接口的hasNext方法和next方法十分类似。</p>
+<h3 id="9-6-3-属性映射"><a href="#9-6-3-属性映射" class="headerlink" title="9.6.3 属性映射"></a>9.6.3 属性映射</h3><p>property map是一个类型非常特殊的映射结构，它的特性有：</p>
+<ol>
+<li>key和value都是字符串。</li>
+<li>表可以保存在一个文件中，从文件中加载。</li>
+<li>使用一个默认的辅助表。</li>
+</ol>
+<p>实现属性映射的是Properties类，通常用于程序的特殊配置选项。</p>
+<h3 id="9-6-4-栈"><a href="#9-6-4-栈" class="headerlink" title="9.6.4 栈"></a>9.6.4 栈</h3><p>Stack类有push和pop方法，扩展为Vector类，可以使用不属于栈操作的insert和remove方法，即可以在任意位置插入或删除。</p>
+<h3 id="9-6-5-位集"><a href="#9-6-5-位集" class="headerlink" title="9.6.5 位集"></a>9.6.5 位集</h3><p>BitSet类用于存放一个位序列，如果需要高效储存序列可以使用位集。</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年03月23日 11:14</p>
+        <p>原始链接： <a class="post-url" href="/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/" title="Java核心技术卷I第9章 集合">http://vor.ink/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/</a></p>
+        <footer>
+            <a href="http://vor.ink">
+                <img src="/images/logo.png" alt="VorSonnenaufgang">
+                VorSonnenaufgang
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/&title=《Java核心技术卷I第9章 集合》 — VorSonnenaufgang's Blog&pic=cover.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/&title=《Java核心技术卷I第9章 集合》 — VorSonnenaufgang's Blog&source=Carpe diem." data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java核心技术卷I第9章 集合》 — VorSonnenaufgang's Blog&url=http://vor.ink/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/&via=http://vor.ink" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Java/" class="color5">Java</a>
+      
+    <a href="/tags/Java核心技术卷I/" class="color1">Java核心技术卷I</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+        <div class= "post-toc-name">Toc</div>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9-1-Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6"><span class="post-toc-text">9.1 Java集合框架</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-1-1-%E5%B0%86%E9%9B%86%E5%90%88%E7%9A%84%E6%8E%A5%E5%8F%A3%E4%B8%8E%E5%AE%9E%E7%8E%B0%E5%88%86%E7%A6%BB"><span class="post-toc-text">9.1.1 将集合的接口与实现分离</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-1-2-Collection%E6%8E%A5%E5%8F%A3"><span class="post-toc-text">9.1.2 Collection接口</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-1-3-%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="post-toc-text">9.1.3 迭代器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-1-4-%E6%B3%9B%E5%9E%8B%E5%AE%9E%E7%94%A8%E6%96%B9%E6%B3%95"><span class="post-toc-text">9.1.4 泛型实用方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-1-5-%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E4%B8%AD%E7%9A%84%E6%8E%A5%E5%8F%A3"><span class="post-toc-text">9.1.5 集合框架中的接口</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9-2-%E5%85%B7%E4%BD%93%E7%9A%84%E9%9B%86%E5%90%88"><span class="post-toc-text">9.2 具体的集合</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-2-1-%E9%93%BE%E8%A1%A8"><span class="post-toc-text">9.2.1 链表</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-2-2-%E6%95%B0%E7%BB%84%E5%88%97%E8%A1%A8"><span class="post-toc-text">9.2.2 数组列表</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-2-3-%E6%95%A3%E5%88%97%E9%9B%86"><span class="post-toc-text">9.2.3 散列集</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-2-4-%E6%A0%91%E9%9B%86"><span class="post-toc-text">9.2.4 树集</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-2-5-%E9%98%9F%E5%88%97%E4%B8%8E%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97"><span class="post-toc-text">9.2.5 队列与双端队列</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-2-6-%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97"><span class="post-toc-text">9.2.6 优先级队列</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9-3-%E6%98%A0%E5%B0%84"><span class="post-toc-text">9.3 映射</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-3-1-%E5%9F%BA%E6%9C%AC%E6%98%A0%E5%B0%84%E6%93%8D%E4%BD%9C"><span class="post-toc-text">9.3.1 基本映射操作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-3-2-%E6%9B%B4%E6%96%B0%E6%98%A0%E5%B0%84%E9%A1%B9"><span class="post-toc-text">9.3.2 更新映射项</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-3-3-%E6%98%A0%E5%B0%84%E8%A7%86%E5%9B%BE"><span class="post-toc-text">9.3.3 映射视图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-3-4-%E5%BC%B1%E6%95%A3%E5%88%97%E6%98%A0%E5%B0%84"><span class="post-toc-text">9.3.4 弱散列映射</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-3-5-%E9%93%BE%E6%8E%A5%E6%95%A3%E5%88%97%E9%9B%86%E4%B8%8E%E6%98%A0%E5%B0%84"><span class="post-toc-text">9.3.5 链接散列集与映射</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-3-6-%E6%9E%9A%E4%B8%BE%E9%9B%86%E4%B8%8E%E6%98%A0%E5%B0%84"><span class="post-toc-text">9.3.6 枚举集与映射</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-3-7-%E6%A0%87%E8%AF%86%E6%95%A3%E5%88%97%E6%98%A0%E5%B0%84"><span class="post-toc-text">9.3.7 标识散列映射</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9-4-%E8%A7%86%E5%9B%BE%E4%B8%8E%E5%8C%85%E8%A3%85%E5%99%A8"><span class="post-toc-text">9.4 视图与包装器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-4-2-%E5%AD%90%E8%8C%83%E5%9B%B4"><span class="post-toc-text">9.4.2 子范围</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-4-3-%E4%B8%8D%E5%8F%AF%E4%BF%AE%E6%94%B9%E7%9A%84%E8%A7%86%E5%9B%BE"><span class="post-toc-text">9.4.3 不可修改的视图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-4-4-%E5%90%8C%E6%AD%A5%E8%A7%86%E5%9B%BE"><span class="post-toc-text">9.4.4 同步视图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-4-5-%E5%8F%97%E6%9F%A5%E8%A7%86%E5%9B%BE"><span class="post-toc-text">9.4.5 受查视图</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9-5-%E7%AE%97%E6%B3%95"><span class="post-toc-text">9.5 算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-5-1-%E6%8E%92%E5%BA%8F%E4%B8%8E%E6%B7%B7%E6%8E%92"><span class="post-toc-text">9.5.1 排序与混排</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-5-2-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="post-toc-text">9.5.2 二分查找</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-5-3-%E7%AE%80%E5%8D%95%E7%AE%97%E6%B3%95"><span class="post-toc-text">9.5.3 简单算法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-5-4-%E6%89%B9%E6%93%8D%E4%BD%9C"><span class="post-toc-text">9.5.4 批操作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-5-5-%E9%9B%86%E5%90%88%E4%B8%8E%E6%95%B0%E7%BB%84%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="post-toc-text">9.5.5 集合与数组的转换</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-5-6-%E7%BC%96%E5%86%99%E8%87%AA%E5%B7%B1%E7%9A%84%E7%AE%97%E6%B3%95"><span class="post-toc-text">9.5.6 编写自己的算法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9-6-%E9%81%97%E7%95%99%E7%9A%84%E9%9B%86%E5%90%88"><span class="post-toc-text">9.6 遗留的集合</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-6-1-Hashtable%E7%B1%BB"><span class="post-toc-text">9.6.1 Hashtable类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-6-2-%E6%9E%9A%E4%B8%BE"><span class="post-toc-text">9.6.2 枚举</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-6-3-%E5%B1%9E%E6%80%A7%E6%98%A0%E5%B0%84"><span class="post-toc-text">9.6.3 属性映射</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-6-4-%E6%A0%88"><span class="post-toc-text">9.6.4 栈</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-6-5-%E4%BD%8D%E9%9B%86"><span class="post-toc-text">9.6.5 位集</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2021/03/02/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Java核心技术卷I第8章 泛型程序设计</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="Java核心技术卷I第9章 集合" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cyvaQ34l4';
+        var conf = 'dfbc2f31fdc91ffc75e2035195b4426d';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    |
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+    <div class="theme-info">
+</p>
+
+
+      <span class="post-count">本站博文总字数：106.1k</span>
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018~2021 VorSonnenaufgang<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<!--加载prettify代码高亮js-->
+  <script type="text/javascript" src="/google-code-prettify/prettify.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('pre').addClass('prettyprint linenums');
+      $('code').addClass('prettyprint');
+      prettyPrint();
+    })
+  </script>
+
+<script>
+  var mihoConfig = {
+      root: "http://vor.ink",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Blog/">Blog</a><a class="category-link" href="/categories/C%E8%AF%AD%E8%A8%80/">C语言</a><a class="category-link" href="/categories/Essay/">Essay</a><a class="category-link" href="/categories/Java/">Java</a><a class="category-link" href="/categories/UML/">UML</a><a class="category-link" href="/categories/%E5%9B%BE%E8%AE%BA/">图论</a><a class="category-link" href="/categories/%E5%A4%A7%E5%AD%A6/">大学</a><a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><a class="category-link" href="/categories/%E6%B3%95%E8%AF%AD/">法语</a><a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F%E7%BA%A7/">系统级</a><a class="category-link" href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/">计算机接口与通信</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Blog/" style="font-size: 15.56px;">Blog</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.22px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.11px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/Java/" style="font-size: 18.89px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 16.67px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 13.33px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.78px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.33px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 13.33px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.89px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 14.44px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.11px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.33px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.11px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/categories">
+                    <i class="fa fa-book"></i><span>Categories</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/tags">
+                    <i class="fa fa-tags"></i><span>Tags</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Blog/" style="font-size: 15.56px;">Blog</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 12.22px;">C语言</a> <a href="/tags/Essay/" style="font-size: 11.11px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/Java/" style="font-size: 18.89px;">Java</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7/" style="font-size: 10px;">Java核心技术卷</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 16.67px;">Java核心技术卷I</a> <a href="/tags/Jupyter-Notebook/" style="font-size: 10px;">Jupyter Notebook</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/UML/" style="font-size: 13.33px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">口语</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 17.78px;">大学</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">学习笔记</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.33px;">数据库</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B1%87%E7%BC%96/" style="font-size: 13.33px;">汇编</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 18.89px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 14.44px;">法语语法</a> <a href="/tags/%E7%A4%BC%E4%BB%AA/" style="font-size: 10px;">礼仪</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 11.11px;">离散数学</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E7%BA%A7/" style="font-size: 10px;">系统级</a> <a href="/tags/%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">解析器</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.33px;">计算机网络</a> <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.11px;">语法</a> <a href="/tags/%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">语音</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"react":{"opacity":0.8},"log":false});</script></body>
+</html>
+
+
+
