@@ -3,19 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: 图 | VorSonnenaufgang&#39;s Blog</title>
+  <title>Java核心技术卷I第13章 部署Java应用程序 | VorSonnenaufgang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="VorSonnenaufgang,VorSonnenaufgang's Blog" />
   
-  <meta name="description" content="Carpe diem.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="VorSonnenaufgang&#39;s Blog">
-<meta property="og:url" content="http://vor.ink/tags/%E5%9B%BE/index.html">
+  <meta name="description" content="13.1 JAR文件Java归档（JAR）既可以包含类文件，也可以包含其他类型文件，因此JAR文件是压缩的。 13.1.1 创建JAR文件jar cvf JARFileName File1 File2 ... 例如： jar cvf CalculatorClasses.jar *.class icon.gif 13.1.2 清单文件每个JAR文件包含一个用于描述归档特征的清单文件（manifest">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java核心技术卷I第13章 部署Java应用程序">
+<meta property="og:url" content="http://vor.ink/2021/04/02/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC13%E7%AB%A0%20%E9%83%A8%E7%BD%B2Java%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/index.html">
 <meta property="og:site_name" content="VorSonnenaufgang&#39;s Blog">
-<meta property="og:description" content="Carpe diem.">
+<meta property="og:description" content="13.1 JAR文件Java归档（JAR）既可以包含类文件，也可以包含其他类型文件，因此JAR文件是压缩的。 13.1.1 创建JAR文件jar cvf JARFileName File1 File2 ... 例如： jar cvf CalculatorClasses.jar *.class icon.gif 13.1.2 清单文件每个JAR文件包含一个用于描述归档特征的清单文件（manifest">
 <meta property="og:locale">
+<meta property="article:published_time" content="2021-04-02T02:20:00.000Z">
+<meta property="article:modified_time" content="2021-04-02T00:36:36.000Z">
 <meta property="article:author" content="VorSonnenaufgang">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Java核心技术卷I">
 <meta name="twitter:card" content="summary">
   
   
@@ -149,62 +153,221 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap">
-  
-  
+        <section id="main" class="body-wrap"><article id="post-Java核心技术卷I第13章 部署Java应用程序" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/11/20/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  <time datetime="2020-11-20T14:06:49.000Z" itemprop="datePublished">11-20</time>
-</a>
-      
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/20/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/"  >离散数学第10章  图的不完全笔记
-      <br>
-      <span class="article-count">文章字数:1.7k字 &nbsp &nbsp  
-         阅读时长:6分钟</span>
-
-      </a>
+    <h1 class="post-title" itemprop="name">
+      Java核心技术卷I第13章 部署Java应用程序
     </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Java/">Java</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-04-02
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>          
+        </li>
+      </ul>
+       <span class="post-count">文章字数:249字 &nbsp &nbsp  
+         阅读时长:1分钟</span>
+    </div>
+  
+        
+          
+      </header>
+    
+
+    <div class="article-entry post-content" itemprop="articleBody">
 
     
-  
+    
 
-    </header>
+
+
       
-        <div class="archive-post-footer">
+            
+            <h2 id="13-1-JAR文件"><a href="#13-1-JAR文件" class="headerlink" title="13.1 JAR文件"></a>13.1 JAR文件</h2><p>Java归档（JAR）既可以包含类文件，也可以包含其他类型文件，因此JAR文件是压缩的。</p>
+<h3 id="13-1-1-创建JAR文件"><a href="#13-1-1-创建JAR文件" class="headerlink" title="13.1.1 创建JAR文件"></a>13.1.1 创建JAR文件</h3><p><code>jar cvf JARFileName File1 File2 ...</code></p>
+<p>例如：</p>
+<p><code>jar cvf CalculatorClasses.jar *.class icon.gif</code></p>
+<h3 id="13-1-2-清单文件"><a href="#13-1-2-清单文件" class="headerlink" title="13.1.2 清单文件"></a>13.1.2 清单文件</h3><p>每个JAR文件包含一个用于描述归档特征的清单文件（manifest）——MANIFEST.MF，它位于JAR文件的META-INF子目录中。</p>
+<h3 id="13-1-3-可执行JAR文件"><a href="#13-1-3-可执行JAR文件" class="headerlink" title="13.1.3 可执行JAR文件"></a>13.1.3 可执行JAR文件</h3><p>jar命令中的e选项指定程序入口点：</p>
+<p><code>jar cvfe MyProgram.jar com.mycompany.mypkg.MainAppClass files to add</code></p>
+<p>或者在清单中指定：</p>
+<p><code>Main-Class: com.mycompany.mypkg.MainAppClass</code></p>
+<p>启动程序：</p>
+<p><code>java -jar MyProgram.jar</code></p>
+<h2 id="13-2-应用首选项的存储"><a href="#13-2-应用首选项的存储" class="headerlink" title="13.2 应用首选项的存储"></a>13.2 应用首选项的存储</h2><h3 id="13-2-1-属性映射"><a href="#13-2-1-属性映射" class="headerlink" title="13.2.1 属性映射"></a>13.2.1 属性映射</h3><p>属性映射（property map）存储key/value，属性映射用来存储配置信息：</p>
+<ol>
+<li>key和value都是字符串。</li>
+<li>映射可以很容易存入文件以及从文件加载。</li>
+<li>有一个二级表保存默认值。</li>
+</ol>
+<p>实现属性映射的Java类是Properties。</p>
+<h3 id="13-2-2-首选项API"><a href="#13-2-2-首选项API" class="headerlink" title="13.2.2 首选项API"></a>13.2.2 首选项API</h3><p>（略）</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年04月02日 02:36</p>
+        <p>原始链接： <a class="post-url" href="/2021/04/02/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC13%E7%AB%A0%20%E9%83%A8%E7%BD%B2Java%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/" title="Java核心技术卷I第13章 部署Java应用程序">http://vor.ink/2021/04/02/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC13%E7%AB%A0%20%E9%83%A8%E7%BD%B2Java%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/</a></p>
+        <footer>
+            <a href="http://vor.ink">
+                <img src="/images/logo.png" alt="VorSonnenaufgang">
+                VorSonnenaufgang
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2021/04/02/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC13%E7%AB%A0%20%E9%83%A8%E7%BD%B2Java%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/&title=《Java核心技术卷I第13章 部署Java应用程序》 — VorSonnenaufgang's Blog&pic=cover.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2021/04/02/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC13%E7%AB%A0%20%E9%83%A8%E7%BD%B2Java%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/&title=《Java核心技术卷I第13章 部署Java应用程序》 — VorSonnenaufgang's Blog&source=Carpe diem." data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2021/04/02/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC13%E7%AB%A0%20%E9%83%A8%E7%BD%B2Java%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java核心技术卷I第13章 部署Java应用程序》 — VorSonnenaufgang's Blog&url=http://vor.ink/2021/04/02/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC13%E7%AB%A0%20%E9%83%A8%E7%BD%B2Java%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/&via=http://vor.ink" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2021/04/02/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC13%E7%AB%A0%20%E9%83%A8%E7%BD%B2Java%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2021/04/02/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC13%E7%AB%A0%20%E9%83%A8%E7%BD%B2Java%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
             
   <li class="article-footer-tags">
     <i class="fa fa-tags"></i>
       
-    <a href="/tags/图/" class="color2">图</a>
+    <a href="/tags/Java/" class="color5">Java</a>
       
-    <a href="/tags/离散数学/" class="color5">离散数学</a>
+    <a href="/tags/Java核心技术卷I/" class="color1">Java核心技术卷I</a>
       
   </li>
 
-        </div>
-      
+        </ul>
+        
+    </footer>
   </div>
 </article>
 
-  
-  
-    </div></section>
-  
 
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+        <div class= "post-toc-name">Toc</div>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#13-1-JAR%E6%96%87%E4%BB%B6"><span class="post-toc-text">13.1 JAR文件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#13-1-1-%E5%88%9B%E5%BB%BAJAR%E6%96%87%E4%BB%B6"><span class="post-toc-text">13.1.1 创建JAR文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#13-1-2-%E6%B8%85%E5%8D%95%E6%96%87%E4%BB%B6"><span class="post-toc-text">13.1.2 清单文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#13-1-3-%E5%8F%AF%E6%89%A7%E8%A1%8CJAR%E6%96%87%E4%BB%B6"><span class="post-toc-text">13.1.3 可执行JAR文件</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#13-2-%E5%BA%94%E7%94%A8%E9%A6%96%E9%80%89%E9%A1%B9%E7%9A%84%E5%AD%98%E5%82%A8"><span class="post-toc-text">13.2 应用首选项的存储</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#13-2-1-%E5%B1%9E%E6%80%A7%E6%98%A0%E5%B0%84"><span class="post-toc-text">13.2.1 属性映射</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#13-2-2-%E9%A6%96%E9%80%89%E9%A1%B9API"><span class="post-toc-text">13.2.2 首选项API</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2021/03/03/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Java核心技术卷I第9章 集合</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="Java核心技术卷I第13章 部署Java应用程序" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cyvaQ34l4';
+        var conf = 'dfbc2f31fdc91ffc75e2035195b4426d';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
 </section>
         
       </div>
