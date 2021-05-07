@@ -3,46 +3,46 @@
 <head>
   <meta charset="utf-8">
   
-  <title>TC（Traffic Control）实现QoS流量控制机制 | VorSonnenaufgang&#39;s Blog</title>
+  <title>L&#39;utilisation TC (Traffic Control) pour QoS | VorSonnenaufgang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="VorSonnenaufgang,VorSonnenaufgang's Blog" />
   
-  <meta name="description" content="1 安装net-tools如果是新装的ubuntu虚拟机可能连最基本的ifconfig等网络工具命令都没有，所以首先安装net-tools。 sudo apt install net-tools 2 安装jperfiperf是一个网络性能测量和调整工具，可以提供网络的时延，吞吐量、丢包率、网络抖动等信息，jperf在iperf的基础上提供了图形化界面。 首先安装iperf： sudo apt-ge">
+  <meta name="description" content="1 Installer net-toolsS’il s’agit d’une machine virtuelle ubuntu nouvellement installée, il se peut qu’elle ne dispose même pas des commandes d’outils réseau les plus élémentaires telles que ifconfig,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TC（Traffic Control）实现QoS流量控制机制">
-<meta property="og:url" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/index.html">
+<meta property="og:title" content="L&#39;utilisation TC (Traffic Control) pour QoS">
+<meta property="og:url" content="http://vor.ink/2021/05/07/L'utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/index.html">
 <meta property="og:site_name" content="VorSonnenaufgang&#39;s Blog">
-<meta property="og:description" content="1 安装net-tools如果是新装的ubuntu虚拟机可能连最基本的ifconfig等网络工具命令都没有，所以首先安装net-tools。 sudo apt install net-tools 2 安装jperfiperf是一个网络性能测量和调整工具，可以提供网络的时延，吞吐量、丢包率、网络抖动等信息，jperf在iperf的基础上提供了图形化界面。 首先安装iperf： sudo apt-ge">
+<meta property="og:description" content="1 Installer net-toolsS’il s’agit d’une machine virtuelle ubuntu nouvellement installée, il se peut qu’elle ne dispose même pas des commandes d’outils réseau les plus élémentaires telles que ifconfig,">
 <meta property="og:locale">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620312872217.png">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620319178474.png">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620319201597.png">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620319809856.png">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620320110641.png">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620319860539.png">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620319902531.png">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620319939912.png">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620320005020.png">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620320026911.png">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620320064665.png">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620312872217.png">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620340060870.png">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620340647979.png">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620340792241.png">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620342790272.png">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620342822508.png">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620342844306.png">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620343923375.png">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620343984628.png">
-<meta property="og:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620343944152.png">
-<meta property="article:published_time" content="2021-05-06T14:50:48.000Z">
-<meta property="article:modified_time" content="2021-05-07T00:45:00.155Z">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620312872217.png">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620319178474.png">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620319201597.png">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620319809856.png">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620320110641.png">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620319860539.png">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620319902531.png">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620319939912.png">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620320005020.png">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620320026911.png">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620320064665.png">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620312872217.png">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620340060870.png">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620340647979.png">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620340792241.png">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620342790272.png">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620342822508.png">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620342844306.png">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620343923375.png">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620343984628.png">
+<meta property="og:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620343944152.png">
+<meta property="article:published_time" content="2021-05-06T23:36:48.000Z">
+<meta property="article:modified_time" content="2021-05-06T23:26:12.000Z">
 <meta property="article:author" content="VorSonnenaufgang">
 <meta property="article:tag" content="计算机网络">
 <meta property="article:tag" content="QoS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/images/1620312872217.png">
+<meta name="twitter:image" content="http://vor.ink/2021/05/07/L%27utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/images/1620312872217.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -175,14 +175,14 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-TC（Traffic Control）实现QoS流量控制机制" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-L&#39;utilisation TC (Traffic Control) pour QoS" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      TC（Traffic Control）实现QoS流量控制机制
+      L&#39;utilisation TC (Traffic Control) pour QoS
     </h1>
     <div class="post-title-bar">
       <ul>
@@ -195,15 +195,15 @@
               </li>
           
         <li>
-          <i class="fa fa-calendar"></i>  2021-05-06
+          <i class="fa fa-calendar"></i>  2021-05-07
         </li>
         <li>
           <i class="fa fa-eye"></i>
           <span id="busuanzi_value_page_pv"></span>          
         </li>
       </ul>
-       <span class="post-count">文章字数:2.7k字 &nbsp &nbsp  
-         阅读时长:11分钟</span>
+       <span class="post-count">文章字数:2k字 &nbsp &nbsp  
+         阅读时长:12分钟</span>
     </div>
   
         
@@ -220,35 +220,34 @@
 
       
             
-            <h2 id="1-安装net-tools"><a href="#1-安装net-tools" class="headerlink" title="1 安装net-tools"></a>1 安装net-tools</h2><p>如果是新装的ubuntu虚拟机可能连最基本的ifconfig等网络工具命令都没有，所以首先安装net-tools。</p>
+            <h2 id="1-Installer-net-tools"><a href="#1-Installer-net-tools" class="headerlink" title="1 Installer net-tools"></a>1 Installer net-tools</h2><p>S’il s’agit d’une machine virtuelle ubuntu nouvellement installée, il se peut qu’elle ne dispose même pas des commandes d’outils réseau les plus élémentaires telles que ifconfig, alors installez d’abord net-tools.</p>
 <pre><code>sudo apt install net-tools</code></pre>
-<h2 id="2-安装jperf"><a href="#2-安装jperf" class="headerlink" title="2 安装jperf"></a>2 安装jperf</h2><p>iperf是一个网络性能测量和调整工具，可以提供网络的时延，吞吐量、丢包率、网络抖动等信息，jperf在iperf的基础上提供了图形化界面。</p>
-<p>首先安装iperf：</p>
+<h2 id="2-Installer-jperf"><a href="#2-Installer-jperf" class="headerlink" title="2 Installer jperf"></a>2 Installer jperf</h2><p>iperf est un outil de mesure et d’ajustement des performances du réseau qui peut fournir des informations telles que le delay, le débit, le taux de perte de paquets etc, jperf fournit une interface graphique basée sur iperf.</p>
+<p>Installez d’abord iperf:</p>
 <pre><code>sudo apt-get install iperf </code></pre>
-<p>然后安装jperf，因为jperf依赖jre环境来运行图形化程序，因此首先检查是否安装Java，如果没有则使用以下命令：</p>
+<p>Ensuite, installez jperf, comme jperf s’appuie sur l’environnement JRE pour exécuter des programmes graphiques, alors vérifiez d’abord si Java est installé, sinon utilisez la commande suivante:</p>
 <pre><code>sudo apt install openjdk-8-jdk</code></pre>
-<p>然后在<a target="_blank" rel="noopener" href="https://code.google.com/archive/p/xjperf/downloads">xjperf Google CodePage</a>下载最新版本的jperf。</p>
-<p>解压缩后，进入目录下赋予权限后运行bash文件：</p>
-<pre><code>sudo chmod u+x jperf.sh  # or  sudo chmod a+x jperf.sh command
+<p>Ensuite, téléchargez la dernière version de jperf dans <a target="_blank" rel="noopener" href="https://code.google.com/archive/p/xjperf/downloads">xjperf Google CodePage</a>.</p>
+<p>Après la décompression, entrez dans le répertoire et exécutez le fichier bash après avoir accordé les autorisations:</p>
+<pre><code>sudo chmod u+x jperf.sh  # or sudo chmod a+x jperf.sh command
 ./jperf.sh</code></pre>
-<p>就可以看到jperf的图形化界面了。</p>
-<h2 id="3-实验使用的拓扑结构"><a href="#3-实验使用的拓扑结构" class="headerlink" title="3 实验使用的拓扑结构"></a>3 实验使用的拓扑结构</h2><p><img src="./images/1620312872217.png"></p>
-<h2 id="4-配置虚拟机"><a href="#4-配置虚拟机" class="headerlink" title="4 配置虚拟机"></a>4 配置虚拟机</h2><p>可以看到上面的拓扑结构由两台路由器+三台主机构成，因此我们可以采用5台虚拟机模拟的方式来搭建拓扑：</p>
+<h2 id="3-Topologie-utilisee-par-le-projet"><a href="#3-Topologie-utilisee-par-le-projet" class="headerlink" title="3 Topologie utilisée par le projet"></a>3 Topologie utilisée par le projet</h2><p><img src="./images/1620312872217.png"></p>
+<h2 id="4-Configurer-la-machine-virtuelle"><a href="#4-Configurer-la-machine-virtuelle" class="headerlink" title="4 Configurer la machine virtuelle"></a>4 Configurer la machine virtuelle</h2><p>On peut voir que la topologie ci-dessus est composée de deux routeurs + trois hôtes, nous pouvons donc utiliser 5 machines virtuelles pour simuler la topologie pour la construire.</p>
 <ol>
-<li>Ubuntu Router 0：模拟Router 0</li>
-<li>Ubuntu PC 1：模拟PC 0</li>
-<li>Ubuntu PC 2：模拟PC 1</li>
-<li>Ubuntu Router 1：模拟Router 1</li>
-<li>Ubuntu PC 3：模拟Server</li>
+<li>Ubuntu Router 0：simuler Router 0</li>
+<li>Ubuntu PC 1：simuler PC 0</li>
+<li>Ubuntu PC 2：simuler PC 1</li>
+<li>Ubuntu Router 1：simuler Router 1</li>
+<li>Ubuntu PC 3：simuler Server</li>
 </ol>
-<p>首先在原来的虚拟机上复制出另外4台虚拟机，注意MAC地址设定选择重新生成地址。</p>
+<p>Copiez d’abord les 4 autres machines virtuelles sur la machine virtuelle d’origine, faites attention au paramètre d’adresse MAC et choisissez de régénérer l’adresse.</p>
 <p><img src="./images/1620319178474.png"></p>
 <p><img src="./images/1620319201597.png"></p>
 <p><img src="./images/1620319809856.png"></p>
-<p>根据拓扑结构可以得出网络使用三个网段，因此可以用过三个虚拟网卡接口来模拟。</p>
-<p>打开virtual box主机网络管理器新建三个虚拟网卡并配置对应拓扑图上的IP地址。</p>
+<p>Selon la structure topologique, on peut conclure que le réseau utilise trois segments de réseau, donc trois interfaces de carte réseau virtuelle peuvent être utilisées pour simuler.</p>
+<p>Ouvrez &lt;&lt;le gestionnaire de réseau hôte&gt;&gt; pour créer trois cartes réseau virtuelles et configurer les adresses IP.</p>
 <p><img src="./images/1620320110641.png"></p>
-<p>依次设置每个虚拟机的网卡，连接方式都是Host-Only，注意两台Router要配置两个网卡，PC只用配置一个网卡。</p>
+<p>Définissez la carte réseau de chaque machine virtuelle. La méthode de connexion est Host-Only. Notez que deux routeurs doivent être configurés avec deux cartes réseau et que le PC ne doit être configuré qu’avec une seule carte réseau.</p>
 <p>Router 0</p>
 <p><img src="./images/1620319860539.png"></p>
 <p><img src="./images/1620319902531.png"></p>
@@ -259,8 +258,8 @@
 <p><img src="./images/1620320026911.png"></p>
 <p>PC 2</p>
 <p><img src="./images/1620320064665.png"></p>
-<h2 id="5-虚拟机模拟拓扑结构"><a href="#5-虚拟机模拟拓扑结构" class="headerlink" title="5 虚拟机模拟拓扑结构"></a>5 虚拟机模拟拓扑结构</h2><p>接下来按照拓扑结构为每个虚拟机依次配置网络信息。注意首先要关闭系统的网络服务，不然DHCP服务会改变我们手动设置的IP地址等信息。</p>
-<p>PC 0和PC 1要配置IP地址和网关地址。</p>
+<h2 id="5-Utiliser-des-machines-virtuelles-pour-simuler-la-topologie"><a href="#5-Utiliser-des-machines-virtuelles-pour-simuler-la-topologie" class="headerlink" title="5 Utiliser des machines virtuelles pour simuler la topologie"></a>5 Utiliser des machines virtuelles pour simuler la topologie</h2><p>Ensuite, configurez le réseau pour chaque machine virtuelle à tour de rôle en fonction de la topologie. Notez que le service réseau du système doit d’abord être désactivé, sinon le service DHCP changera l’adresse IP et les autres informations que on a définies manuellement.。</p>
+<p>Le PC 0 et le PC 1 doivent être configurés avec une adresse IP et une adresse de gateway.</p>
 <p>PC 0</p>
 <pre><code>sudo service network-manager stop
 sudo ip link set enp0s3 down
@@ -275,7 +274,7 @@ sudo ip link set enp0s3 name eth0
 sudo ip link set eth0 up</code></pre>
 <pre><code>sudo ifconfig eth0 192.168.56.2 netmask 255.255.255.0
 sudo route add default gw 192.168.56.254</code></pre>
-<p>路由器不仅要配置两个接口的IP地址，还要配置转发表。</p>
+<p>Le routeur doit non seulement configurer les adresses IP des deux interfaces, mais également configurer la table de routage.</p>
 <p>Router 0</p>
 <pre><code>sudo service network-manager stop
 sudo ip link set enp0s3 down
@@ -289,10 +288,10 @@ sudo ifconfig eth1 192.168.57.1 netmask 255.255.255.0
 sudo ip route add 192.168.56.0/24 via 192.168.56.254
 sudo ip route add 192.168.57.0/24 via 192.168.57.1
 sudo ip route add 192.168.58.0/24 via 192.168.57.2</code></pre>
-<p>因为我们用的Linux的虚拟机模拟路由器的行为，所以要把Linux系统的转发功能打开。</p>
-<p>在root权限下，使用命令：</p>
+<p>Étant donné que la machine virtuelle Linux que on utilise simule le comportement du routeur, la fonction de transfert du système Linux doit être activée.</p>
+<p>Sous l’autorité root, utilisez la commande:</p>
 <pre><code>echo 1 &gt; /proc/sys/net/ipv4/ip_forward</code></pre>
-<p>如果是刚新建的虚拟机，没设置root密码，可以用以下命令设置新密码：</p>
+<p>S’il s’agit d’une machine virtuelle nouvellement créée et qu’aucun mot de passe root n’est défini, vous pouvez utiliser la commande suivante pour définir un nouveau mot de passe:</p>
 <pre><code>sudo passwd root</code></pre>
 <p>Router 1</p>
 <pre><code>sudo service network-manager stop
@@ -307,7 +306,7 @@ sudo ifconfig eth1 192.168.57.2 netmask 255.255.255.0
 sudo ip route add 192.168.56.0/24 via 192.168.57.1
 sudo ip route add 192.168.57.0/24 via 192.168.57.2
 sudo ip route add 192.168.58.0/24 via 192.168.58.254</code></pre>
-<p>root权限下</p>
+<p>Sous l’autorité racine</p>
 <pre><code>echo 1 &gt; /proc/sys/net/ipv4/ip_forward</code></pre>
 <p>PC 2</p>
 <pre><code>sudo service network-manager stop
@@ -316,93 +315,93 @@ sudo ip link set enp0s3 name eth0
 sudo ip link set eth0 up</code></pre>
 <pre><code>sudo ifconfig eth0 192.168.58.1 netmask 255.255.255.0
 sudo route add default gw 192.168.58.254</code></pre>
-<p>设置完之后进行测试，保证各个网段的主机和路由器之间都能ping通。</p>
-<h2 id="6-QoS模块——TC介绍"><a href="#6-QoS模块——TC介绍" class="headerlink" title="6 QoS模块——TC介绍"></a>6 QoS模块——TC介绍</h2><h3 id="6-1-TC流量控制方式"><a href="#6-1-TC流量控制方式" class="headerlink" title="6.1 TC流量控制方式"></a>6.1 TC流量控制方式</h3><p>在Linux操作系统中，实现QoS的工具是流量控制器TC（Traffic Control），它利用队列规定建立处理数据包的队列，并定义队列中的数据包被发送的方式， 从而实现对流量的控制。</p>
-<p>流量控制的方式主要有：</p>
+<p>Effectuez un test après la configuration pour assurer que les hôtes et les routeurs de chaque segment de réseau peuvent faire à un ping.</p>
+<h2 id="6-Introduction-au-module-QoS-TC"><a href="#6-Introduction-au-module-QoS-TC" class="headerlink" title="6 Introduction au module QoS - TC"></a>6 Introduction au module QoS - TC</h2><h3 id="6-1-Methode-de-controle-de-flux-dans-TC"><a href="#6-1-Methode-de-controle-de-flux-dans-TC" class="headerlink" title="6.1 Méthode de contrôle de flux dans TC"></a>6.1 Méthode de contrôle de flux dans TC</h3><p>Dans le système d’exploitation Linux, l’outil utilisé pour implémenter la QoS est TC (Traffic Control), qui utilise des règles pour établir une file d’attente pour le traitement des paquets de données.</p>
+<p>Les principales méthodes de contrôle de traffic sont:</p>
 <ol>
-<li>SHAPING(限制)：当流量被限制，它的传输速率就被控制在某个值以下。限制值可以大大小于有效带宽，这样可以平滑突发数据流量，使网络更为稳定。shaping（限制）只适用于向外的流量。</li>
-<li>SCHEDULING(调度)：通过调度数据包的传输，可以在带宽范围内，按照优先级分配带宽。SCHEDULING(调度)也只适于向外的流量。</li>
-<li>POLICING(策略)：SHAPING用于处理向外的流量，而POLICIING(策略)用于处理接收到的数据。</li>
-<li>DROPPING(丢弃)：如果流量超过某个设定的带宽，就丢弃数据包，不管是向内还是向外。</li>
+<li><strong>SHAPING</strong></li>
+<li><strong>SCHEDULING</strong></li>
+<li><strong>POLICING</strong></li>
+<li><strong>DROPPING</strong></li>
 </ol>
-<h3 id="6-2-TC规则建立"><a href="#6-2-TC规则建立" class="headerlink" title="6.2 TC规则建立"></a>6.2 TC规则建立</h3><p>TC对流量的处理由三种对象控制：qdisc(排队规则)、class(类别)和filter(过滤器)。</p>
-<p><strong>qdisc</strong>(排队规则)是queueing discipline的简写，Linux内核通过某个网络接口发送数据包时，都需要按照为这个接口配置的qdisc(排队规则)把数据包加入队列。然后，内核会尽可能多地从qdisc里面取出数据包，把它们交给网络适配器驱动模块。</p>
-<p>最简单的QDisc是pfifo它不对进入的数据包做任何的处理，数据包采用FIFO的方式通过队列。而对于没能及时处理的数据包，会进行缓存。</p>
-<p>qdisc的分为classless qdisc和classful qdisc，即不可分类QDisc和可分类QDisc。</p>
+<h3 id="6-2-Etablissement-de-regles-TC"><a href="#6-2-Etablissement-de-regles-TC" class="headerlink" title="6.2 Établissement de règles TC"></a>6.2 Établissement de règles TC</h3><p>Le traitement du trafic par TC est établi par trois types d’objets: qdisc, class et filter.</p>
+<p><strong>qdisc</strong>, queueing discipline. Quand le noyau Linux envoie des paquets de données via une certaine interface réseau, il doit ajouter les paquets de données à la file d’attente selon le qdisc configuré pour cette interface. Ensuite, le noyau sortir autant de paquets de données que possible de qdisc et les remettra au module de pilote de la carte réseau.</p>
+<p>Le qdisc le plus simple est pfifo, qui n’effectue aucun traitement sur les paquets de données entrants, et les paquets de données passent par la file d’attente de manière FIFO.</p>
+<p>Qdisc est divisé en qdisc sans classe et qdisc avec classe.</p>
 <p><strong>classless qdisc：</strong></p>
 <ol>
-<li><code>[p|b]fifo</code>：使用最简单的qdisc，纯粹的先进先出。只有一个参数：limit，用来设置队列的长度,pfifo是以数据包的个数为单位；bfifo是以字节数为单位。</li>
-<li><code>pfifo_fast</code>：如果打开了Linux内核的高级路由器(Advanced Router)编译选项，pfifo_fast就是系统的标准qdisc。它的队列包括三个波段(band)。在每个波段里面，使用先进先出规则。</li>
-<li><code>red</code>：Random Early Detection(随机早期探测)。如果使用这种qdisc，当带宽的占用接近于规定的带宽时，系统会随机地丢弃一些数据包。它非常适合高带宽应用。</li>
-<li><code>sfq</code>：Stochastic Fairness Queueing（随机公平队列）。按照会话(session–对应于每个TCP连接或者UDP流)为流量进行排序，然后循环发送每个会话的数据包。</li>
-<li><code>tbf</code>：Token Bucket Filter的简写。使用令牌桶算法构造一个缓冲区，适合于把流速降低到某个值。</li>
+<li><code>[p|b]fifo</code>：FIFO</li>
+<li><code>pfifo_fast</code>：qdisc standard</li>
+<li><code>red</code>：Random Early Detection</li>
+<li><code>sfq</code>：Stochastic Fairness Queueing</li>
+<li><code>tbf</code>：Token Bucket Filter</li>
 </ol>
 <p><strong>classful qdisc：</strong></p>
 <ol>
-<li><code>CBQ</code>：Class Based Queueing(基于类别排队)的缩写。它实现了一个丰富的连接共享类别结构，既有限制(shaping)带宽的能力，也具有带宽优先级管理的能力。</li>
-<li><code>HTB</code>：Hierarchy Token Bucket（层次令牌桶）的缩写。HTB通过TBF(Token Bucket Filter)实现带宽限制，也能够划分类别的优先级。HTB不仅可以保证每个类别的带宽，还可以设定带宽上限，并且允许特定的类突破带宽上限，占用别的类的带宽。</li>
-<li><code>PRIO</code>：PRIO QDisc不能限制带宽，它只能划分流量优先级。使用PRIO QDisc可以很容易对流量进行优先级管理，只有属于高优先级类别的数据包全部发送完毕，才会发送属于低优先级类别的数据包。</li>
+<li><code>CBQ</code>：Class Based Queueing. Il implémente une structure de catégorie de partage de connexion riche, qui a la capacité de shaping et la capacité de gérer la priorité.</li>
+<li><code>HTB</code>：Hierarchy Token Bucket。HTB implémente la limitation de la bande passante via TBF (Token Bucket Filter) et peut également définir des priorités. HTB peut non seulement garantir la bande passante de chaque class, mais également définir la limite supérieure de bande passante et permettre à des classes spécifiques de dépasser la limite supérieure de bande passante et d’occuper la bande passante d’autres classes.</li>
+<li><code>PRIO</code>：PRIO QDisc。Il ne peut que classer la priorité du trafic, sans mise en œuvre shaping, et envoyer des paquets en fonction de la priorité.</li>
 </ol>
-<p>类<strong>class</strong>基于qdisc，针对一个队列需建立一个根分类，然后再在其上建立子分类。通过创建类来构建一个树结构，对流量进行类别划分，并对每个class提供相应的流量规则。</p>
-<p>过滤器<strong>filter</strong>服务于分类，用于实现不同的流量到分类的映射，比如把来自不同IP地址、使用不同协议类型（端口号）的流量映射到不同的分类。</p>
-<h2 id="7-TC实现QoS实例"><a href="#7-TC实现QoS实例" class="headerlink" title="7 TC实现QoS实例"></a>7 TC实现QoS实例</h2><p><img src="./images/1620312872217.png"></p>
-<p>假设在上图的服务器中，提供HTTP（Web）、SMTP（E-mail）、Telnet三种协议的服务，我们希望根据实际使用场景给三种协议提供不同的带宽来保证服务质量，给Telnet独立分配20Mbit/s，剩下80Mbit/s的分配给HTTP和SMTP共享，保证他们的带宽下限为40Mbit/s，但同时又能够互相借用对方的带宽。</p>
+<p>La classe (<strong>class</strong>) est basée sur qdisc, une classe racine doit être établie pour une qdisc, puis une sous-classification y est établie. Construisez une arbre en créant des classes, classifiez le trafic et fournissez les règles de trafic correspondantes pour chaque classe.</p>
+<p>Le filtre (<strong>filtre</strong>) sert aux classe, il est utilisé pour mapper différents trafics à des classes, telles que le mappage du trafic de différentes adresses IP ou protocoles (ports) vers différentes classifications.</p>
+<h2 id="7-Un-exemple-de-mise-en-oeuvre-de-QoS-par-TC"><a href="#7-Un-exemple-de-mise-en-oeuvre-de-QoS-par-TC" class="headerlink" title="7 Un exemple de mise en œuvre de QoS par TC"></a>7 Un exemple de mise en œuvre de QoS par TC</h2><p><img src="./images/1620312872217.png"></p>
+<p>Supposons que le serveur de la figure ci-dessus fournisse des services de trois protocoles: HTTP (Web), SMTP (E-mail) et Telnet. On espére utiliser shaping pour garantir QoS. On veut allouer indépendamment 20 Mbit / s à Telnet, laissant 80 Mbit / s au partage de HTTP et SMTP, pour s’assurer que leur limite inférieure de bande passante est de 40 Mbit / s, mais en même temps, ils peuvent emprunter la bande passante de l’autre.</p>
 <p><img src="./images/1620340060870.png"></p>
-<p>在模拟Router1的虚拟机上对数据的出端口eth0，使用如下TC命令：</p>
-<pre><code># 1. 建立队列
+<p>Utilisez la commande TC suivante sur le port eth0 sur la machine virtuelle simulant Router1:</p>
+<pre><code># 1. Créer une qdisc
 tc qdisc add dev eth0 root handle 1: htb default 20
 
-# 2. 建立分类
+# 2. Créer des classes
 
-# 1）为Telnet建立子分类1:1，分配带宽20Mbit
+# 1）Créer une sous-class 1: 1 pour Telnet et allouez une bande passante de 20 Mbits
 tc class add dev eth0 parent 1:0 classid 1:1 htb rate 20Mbit ceil 20Mbit  
 
-# 2）建立子分类1:2，分配剩余的带宽80Mbit
+# 2）Créer une sous-class 1: 2 et allouez une bande passante de 80 Mbits
 tc class add dev eth0 parent 1:0 classid 1:2 htb rate 80Mbit ceil 80Mbit
 
-# 3）为SMTP建立1:2的子分类1:21，保证带宽40Mbit，上限带宽80Mbit
+# 3）Créer une sous-class 1: 21 pour SMTP, bande passante garantie 40 Mbit, bande passante limite supérieure 80 Mbit
 tc class add dev eth0 parent 1:0 classid 1:21 htb rate 40Mbit ceil 80Mbit
 
-# 4）为HTTP建立1:2的子分类1:22，保证带宽40Mbit，上限带宽80Mbit
+# 4）Créer une sous-class 1: 22 pour HTTP，Bande passante garantie 40 Mbit, bande passante limite supérieure 80 Mbit
 tc class add dev eth0 parent 1:0 classid 1:22 htb rate 40Mbit ceil 80Mbit
 
-# 3. 建立过滤器
+# 3. Créer des filters
 
-# 1) 绑定Telnet即端口号23到分类1:1
+# 1) Liez Telnet, le port 23 à la catégorie 1: 1
 tc filter add dev eth0 protocol ip parent 1:0 prio 1 u32 match ip dport 23 0xffff flowid 1:1
 
-# 2) 绑定SMTP即端口号25到分类1:21
+# 2) Liez SMTP, le port 23 à la catégorie 1: 21
 tc filter add dev eth0 protocol ip parent 1:0 prio 1 u32 match ip dport 25 0xffff flowid 1:21
 
-# 3) 绑定HTTP即端口号80到分类1:22
+# 3) Liez HTTP, le port 80 à la catégorie 1: 22
 tc filter add dev eth0 protocol ip parent 1:0 prio 1 u32 match ip dport 80 0xffff flowid 1:22</code></pre>
-<p>使用jperf进行流量监测，为了避免端口冲突，假定三项服务对应的端口号分别为5023，5025，5080（修改对应的filter）。</p>
-<p>在模拟Server的虚拟机上使用<code>./jperf.sh</code>运行三个jperf，然后用三个不同主机上的客户端jperf去发送数据。</p>
+<p>Utilisez jperf pour la surveillance du trafic. Afin d’éviter les conflits de port, supposez que les ports correspondant aux trois services sont 5023, 5025 et 5080 (modifiez le filtre correspondant). Dans le même temps, afin de faciliter l’observation, la bande passante ci-dessus est réduite à un dixième, à savoir 2Mbit, 4Mbit, 4Mbit.</p>
+<p>Utilisez <code>. / Jperf.sh</code> pour exécuter trois jperf sur une machine virtuelle qui simule Server, puis utilisez le client jperf sur trois hôtes différents pour envoyer des données.    </p>
 <p><img src="./images/1620340647979.png"></p>
 <p><img src="./images/1620340792241.png"></p>
-<p>在没有添加TC规则的时候：</p>
-<p>23端口</p>
+<p>Lorsqu’aucune règle TC n’est ajoutée:</p>
+<p>port 23</p>
 <p><img src="./images/1620342790272.png"></p>
-<p>25端口</p>
+<p>port 25</p>
 <p><img src="./images/1620342822508.png"></p>
-<p>80端口</p>
+<p>port 80</p>
 <p><img src="./images/1620342844306.png"></p>
-<p>添加TC规则后：</p>
-<p>23端口</p>
+<p>Après avoir ajouté des règles TC:</p>
+<p>port 23</p>
 <p><img src="./images/1620343923375.png"></p>
-<p>25端口</p>
+<p>port 25</p>
 <p><img src="./images/1620343984628.png"></p>
-<p>80端口</p>
+<p>port 80</p>
 <p><img src="./images/1620343944152.png"></p>
 <blockquote>
-<p>在虚拟机环境进行这个实验有一个严重缺点，当多个jperf客户端服务器同时通信时，会导致CPU占用率过高，导致主机端的发送时延增大从而使数据变得不准确，因此最好的实验环境还是实体主机。</p>
-<p>此外，按照以上的步骤，可以对这一个拓扑结构通过不同的TC规则实现更多的QoS机制，也可以改变拓扑结构，对其他网络进行QoS机制的建立。</p>
+<p>La réalisation de cette projet dans un environnement de machine virtuelle présente un sérieux inconvénient. Quand plusieurs serveurs-clients jperf communiquent en même temps, l’utilisation du CPU sera trop élevée, ce qui augmentera le délai d’envoi des paquets et rendra les résultats de jperf inexactes. Le meilleur environnement est des hôtes physique.</p>
+<p>De plus, en suivant les étapes ci-dessus, plus de mécanismes de QoS peuvent être mis en œuvre pour cette topologie via différentes règles TC, et la topologie peut également être modifiée pour simuler des mécanismes de QoS pour d’autres réseaux.</p>
 </blockquote>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2021年05月07日 02:45</p>
-        <p>原始链接： <a class="post-url" href="/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/" title="TC（Traffic Control）实现QoS流量控制机制">http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/</a></p>
+        <p>最后更新： 2021年05月07日 01:26</p>
+        <p>原始链接： <a class="post-url" href="/2021/05/07/L'utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/" title="L&#39;utilisation TC (Traffic Control) pour QoS">http://vor.ink/2021/05/07/L&#39;utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/</a></p>
         <footer>
             <a href="http://vor.ink">
                 <img src="/images/logo.png" alt="VorSonnenaufgang">
@@ -459,7 +458,7 @@ tc filter add dev eth0 protocol ip parent 1:0 prio 1 u32 match ip dport 80 0xfff
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/&title=《TC（Traffic Control）实现QoS流量控制机制》 — VorSonnenaufgang's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2021/05/07/L'utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/&title=《L'utilisation TC (Traffic Control) pour QoS》 — VorSonnenaufgang's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -469,22 +468,22 @@ tc filter add dev eth0 protocol ip parent 1:0 prio 1 u32 match ip dport 80 0xfff
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/&title=《TC（Traffic Control）实现QoS流量控制机制》 — VorSonnenaufgang's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2021/05/07/L'utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/&title=《L'utilisation TC (Traffic Control) pour QoS》 — VorSonnenaufgang's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2021/05/07/L'utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《TC（Traffic Control）实现QoS流量控制机制》 — VorSonnenaufgang's Blog&url=http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《L'utilisation TC (Traffic Control) pour QoS》 — VorSonnenaufgang's Blog&url=http://vor.ink/2021/05/07/L'utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/&via=http://vor.ink" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2021/05/07/L'utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -494,7 +493,7 @@ tc filter add dev eth0 protocol ip parent 1:0 prio 1 u32 match ip dport 80 0xfff
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2021/05/07/L'utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -522,26 +521,26 @@ tc filter add dev eth0 protocol ip parent 1:0 prio 1 u32 match ip dport 80 0xfff
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
         <div class= "post-toc-name">Toc</div>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-%E5%AE%89%E8%A3%85net-tools"><span class="post-toc-text">1 安装net-tools</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-%E5%AE%89%E8%A3%85jperf"><span class="post-toc-text">2 安装jperf</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-%E5%AE%9E%E9%AA%8C%E4%BD%BF%E7%94%A8%E7%9A%84%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84"><span class="post-toc-text">3 实验使用的拓扑结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="post-toc-text">4 配置虚拟机</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A8%A1%E6%8B%9F%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84"><span class="post-toc-text">5 虚拟机模拟拓扑结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-QoS%E6%A8%A1%E5%9D%97%E2%80%94%E2%80%94TC%E4%BB%8B%E7%BB%8D"><span class="post-toc-text">6 QoS模块——TC介绍</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-1-TC%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F"><span class="post-toc-text">6.1 TC流量控制方式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-2-TC%E8%A7%84%E5%88%99%E5%BB%BA%E7%AB%8B"><span class="post-toc-text">6.2 TC规则建立</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-TC%E5%AE%9E%E7%8E%B0QoS%E5%AE%9E%E4%BE%8B"><span class="post-toc-text">7 TC实现QoS实例</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-Installer-net-tools"><span class="post-toc-text">1 Installer net-tools</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-Installer-jperf"><span class="post-toc-text">2 Installer jperf</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-Topologie-utilisee-par-le-projet"><span class="post-toc-text">3 Topologie utilisée par le projet</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-Configurer-la-machine-virtuelle"><span class="post-toc-text">4 Configurer la machine virtuelle</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-Utiliser-des-machines-virtuelles-pour-simuler-la-topologie"><span class="post-toc-text">5 Utiliser des machines virtuelles pour simuler la topologie</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-Introduction-au-module-QoS-TC"><span class="post-toc-text">6 Introduction au module QoS - TC</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-1-Methode-de-controle-de-flux-dans-TC"><span class="post-toc-text">6.1 Méthode de contrôle de flux dans TC</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-2-Etablissement-de-regles-TC"><span class="post-toc-text">6.2 Établissement de règles TC</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-Un-exemple-de-mise-en-oeuvre-de-QoS-par-TC"><span class="post-toc-text">7 Un exemple de mise en œuvre de QoS par TC</span></a></li></ol>
         </nav>
     </aside>
     
 
 <nav id="article-nav">
   
-    <a href="/2021/05/07/L'utilisation%20TC%20(Traffic%20Control)%20pour%20QoS/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/05/07/L'utilisation%20de%20TC%20(Traffic%20Control)%20pour%20QoS/" id="article-nav-newer" class="article-nav-link-wrap">
 
       <span class="article-nav-title">
         <i class="fa fa-hand-o-left" aria-hidden="true"></i>
         
-          L&#39;utilisation TC (Traffic Control) pour QoS
+          L&#39;utilisation de TC (Traffic Control) pour QoS
         
       </span>
     </a>
   
   
-    <a href="/2021/04/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part6%20%E5%BA%94%E7%94%A8%E5%B1%82/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">计算机网络笔记Part6 应用层</span>
+    <a href="/2021/05/06/TC%EF%BC%88Traffic%20Control%EF%BC%89%E5%AE%9E%E7%8E%B0QoS%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E6%9C%BA%E5%88%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">TC（Traffic Control）实现QoS流量控制机制</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   
@@ -550,7 +549,7 @@ tc filter add dev eth0 protocol ip parent 1:0 prio 1 u32 match ip dport 80 0xfff
 
 
     
-        <div id="SOHUCS" sid="TC（Traffic Control）实现QoS流量控制机制" ></div>
+        <div id="SOHUCS" sid="L&#39;utilisation TC (Traffic Control) pour QoS" ></div>
 <script type="text/javascript">
     (function(){
         var appid = 'cyvaQ34l4';
