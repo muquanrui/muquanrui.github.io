@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="VorSonnenaufgang&#39;s Blog">
 <meta property="og:description" content="一、SpringMVC简介1、什么是MVCMVC是一种软件架构的思想，将软件按照模型、视图、控制器来划分 M：Model，模型层，指工程中的JavaBean，作用是处理数据 JavaBean分为两类：  一类称为实体类Bean：专门存储业务数据的，如 Student、User 等 一类称为业务处理 Bean：指 Service 或 Dao 对象，专门用于处理业务逻辑和数据访问。  V：View，视">
 <meta property="og:locale">
-<meta property="og:image" content="http://vor.ink/2021/12/17/SpringMVC%E7%AC%94%E8%AE%B0/img%5Cimg001.png">
+<meta property="og:image" content="http://vor.ink/2021/12/17/SpringMVC%E7%AC%94%E8%AE%B0/img/img001.png">
 <meta property="og:image" content="http://vor.ink/2021/12/17/SpringMVC%E7%AC%94%E8%AE%B0/img/img002.png">
 <meta property="og:image" content="http://vor.ink/2021/12/17/SpringMVC%E7%AC%94%E8%AE%B0/img/img003.png">
 <meta property="og:image" content="http://vor.ink/2021/12/17/SpringMVC%E7%AC%94%E8%AE%B0/img/img004.png">
@@ -25,12 +25,12 @@
 <meta property="og:image" content="http://vor.ink/2021/12/17/SpringMVC%E7%AC%94%E8%AE%B0/img/img008.png">
 <meta property="og:image" content="http://vor.ink/2021/12/17/SpringMVC%E7%AC%94%E8%AE%B0/img/img009.png">
 <meta property="article:published_time" content="2021-12-17T03:08:11.000Z">
-<meta property="article:modified_time" content="2021-12-17T03:36:48.281Z">
+<meta property="article:modified_time" content="2022-01-05T22:01:05.730Z">
 <meta property="article:author" content="VorSonnenaufgang">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="SpringMVC">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://vor.ink/2021/12/17/SpringMVC%E7%AC%94%E8%AE%B0/img%5Cimg001.png">
+<meta name="twitter:image" content="http://vor.ink/2021/12/17/SpringMVC%E7%AC%94%E8%AE%B0/img/img001.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -266,7 +266,7 @@
     &lt;/dependency&gt;
 &lt;/dependencies&gt;</code></pre>
 <p>注：由于 Maven 的传递性，我们不必将所有需要的包全部配置依赖，而是配置最顶端的依赖，其他靠传递性导入。</p>
-<p><img src="img%5Cimg001.png" alt="images"></p>
+<p><img src="./img/img001.png"></p>
 <h3 id="3、配置web-xml"><a href="#3、配置web-xml" class="headerlink" title="3、配置web.xml"></a>3、配置web.xml</h3><p>注册SpringMVC的前端控制器DispatcherServlet</p>
 <h4 id="a-gt-默认配置方式"><a href="#a-gt-默认配置方式" class="headerlink" title="a&gt;默认配置方式"></a>a&gt;默认配置方式</h4><p>此配置作用下，SpringMVC的配置文件默认位于WEB-INF下，默认名称为&lt;servlet-name&gt;-servlet.xml，例如，以下配置所对应SpringMVC的配置文件位于WEB-INF下，文件名为springMVC-servlet.xml</p>
 <pre><code class="xml">&lt;!-- 配置SpringMVC的前端控制器，对浏览器发送的请求统一进行处理 --&gt;
@@ -617,7 +617,7 @@ public String testApplication(HttpSession session)&#123;
 public String testHello()&#123;
     return &quot;hello&quot;;
 &#125;</code></pre>
-<p><img src="img/img002.png"></p>
+<p><img src="./img/img002.png"></p>
 <h3 id="2、转发视图"><a href="#2、转发视图" class="headerlink" title="2、转发视图"></a>2、转发视图</h3><p>SpringMVC中默认的转发视图是InternalResourceView</p>
 <p>SpringMVC中创建转发视图的情况：</p>
 <p>当控制器方法中所设置的视图名称以”forward:”为前缀时，创建InternalResourceView视图，此时的视图名称不会被SpringMVC配置文件中所配置的视图解析器解析，而是会将前缀”forward:”去掉，剩余部分作为最终路径通过转发的方式实现跳转</p>
@@ -626,7 +626,7 @@ public String testHello()&#123;
 public String testForward()&#123;
     return &quot;forward:/testHello&quot;;
 &#125;</code></pre>
-<p><img src="img/img003.png" alt="image-20210706201316593"></p>
+<p><img src="./img/img003.png"></p>
 <h3 id="3、重定向视图"><a href="#3、重定向视图" class="headerlink" title="3、重定向视图"></a>3、重定向视图</h3><p>SpringMVC中默认的重定向视图是RedirectView</p>
 <p>当控制器方法中所设置的视图名称以”redirect:”为前缀时，创建RedirectView视图，此时的视图名称不会被SpringMVC配置文件中所配置的视图解析器解析，而是会将前缀”redirect:”去掉，剩余部分作为最终路径通过重定向的方式实现跳转</p>
 <p>例如”redirect:/“，”redirect:/employee”</p>
@@ -634,7 +634,7 @@ public String testForward()&#123;
 public String testRedirect()&#123;
     return &quot;redirect:/testHello&quot;;
 &#125;</code></pre>
-<p><img src="img/img004.png" alt="image-20210706201602267"></p>
+<p><img src="./img/img004.png"></p>
 <blockquote>
 <p>注：</p>
 <p>重定向视图在解析时，会先将redirect:前缀去掉，然后会判断剩余部分是否以/开头，若是则会自动拼接上下文路径</p>
@@ -1368,7 +1368,7 @@ public String index()&#123;
 </ul>
 <p>作用：将模型数据通过页面展示给用户</p>
 <h3 id="2、DispatcherServlet初始化过程"><a href="#2、DispatcherServlet初始化过程" class="headerlink" title="2、DispatcherServlet初始化过程"></a>2、DispatcherServlet初始化过程</h3><p>DispatcherServlet 本质上是一个 Servlet，所以天然的遵循 Servlet 的生命周期。所以宏观上是 Servlet 生命周期来进行调度。</p>
-<p><img src="img/img005.png" alt="images"></p>
+<p><img src="./img/img005.png"></p>
 <h4 id="a-gt-初始化WebApplicationContext"><a href="#a-gt-初始化WebApplicationContext" class="headerlink" title="a&gt;初始化WebApplicationContext"></a>a&gt;初始化WebApplicationContext</h4><p>所在类：org.springframework.web.servlet.FrameworkServlet</p>
 <pre><code class="java">protected WebApplicationContext initWebApplicationContext() &#123;
     WebApplicationContext rootContext =
@@ -1703,11 +1703,11 @@ protected void doService(HttpServletRequest request, HttpServletResponse respons
 <p>a) 不存在</p>
 <p>i. 再判断是否配置了mvc:default-servlet-handler</p>
 <p>ii. 如果没配置，则控制台报映射查找不到，客户端展示404错误</p>
-<p><img src="img/img006.png" alt="image-20210709214911404"></p>
-<p><img src="img/img007.png" alt="image-20210709214947432"></p>
+<p><img src="./img/img006.png"></p>
+<p><img src="./img/img007.png"></p>
 <p>iii. 如果有配置，则访问目标资源（一般为静态资源，如：JS,CSS,HTML），找不到客户端也会展示404错误</p>
-<p><img src="img/img008.png" alt="image-20210709215255693"></p>
-<p><img src="img/img009.png" alt="image-20210709215336097"></p>
+<p><img src="./img/img008.png"></p>
+<p><img src="./img/img009.png"></p>
 <p>b) 存在则执行下面的流程</p>
 <ol start="3">
 <li><p>根据该URI，调用HandlerMapping获得该Handler配置的所有相关的对象（包括Handler对象以及Handler对象对应的拦截器），最后以HandlerExecutionChain执行链对象的形式返回。</p>
@@ -1741,7 +1741,7 @@ protected void doService(HttpServletRequest request, HttpServletResponse respons
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2021年12月17日 04:36</p>
+        <p>最后更新： 2022年01月05日 23:01</p>
         <p>原始链接： <a class="post-url" href="/2021/12/17/SpringMVC%E7%AC%94%E8%AE%B0/" title="SpringMVC笔记">http://vor.ink/2021/12/17/SpringMVC%E7%AC%94%E8%AE%B0/</a></p>
         <footer>
             <a href="http://vor.ink">
@@ -1869,6 +1869,16 @@ protected void doService(HttpServletRequest request, HttpServletResponse respons
 
 <nav id="article-nav">
   
+    <a href="/2022/01/09/Spark%20cluster%20construction%20(using%20three%20virtual%20machines)/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          Spark cluster construction (using three virtual machines)
+        
+      </span>
+    </a>
+  
   
     <a href="/2021/12/05/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
       <span class="article-nav-title">MySQL学习笔记</span>
@@ -1908,11 +1918,11 @@ protected void doService(HttpServletRequest request, HttpServletResponse respons
 </p>
 
 
-      <span class="post-count">本站博文总字数：195.3k</span>
+      <span class="post-count">本站博文总字数：197.1k</span>
       <p>
         Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
         Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
-      &copy; 2018~2021 VorSonnenaufgang<br>
+      &copy; 2018~2022 VorSonnenaufgang<br>
       </p>
     </div>
   </div>
@@ -1956,10 +1966,10 @@ protected void doService(HttpServletRequest request, HttpServletResponse respons
 <div class="sidebar-menu-box" id="sidebar-menu-box">
     <div class="sidebar-menu-box-container">
         <div id="sidebar-menu-box-categories">
-            <a class="category-link" href="/categories/Blog/">Blog</a><a class="category-link" href="/categories/Essay/">Essay</a><a class="category-link" href="/categories/Java/">Java</a><a class="category-link" href="/categories/Programming/">Programming</a><a class="category-link" href="/categories/Spring/">Spring</a><a class="category-link" href="/categories/UML/">UML</a><a class="category-link" href="/categories/%E5%9B%BE%E8%AE%BA/">图论</a><a class="category-link" href="/categories/%E5%A5%87%E6%B7%AB%E5%B7%A7%E6%8A%80/">奇淫巧技</a><a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><a class="category-link" href="/categories/%E6%97%A0%E5%90%8D%E5%90%88%E9%9B%86/">无名合集</a><a class="category-link" href="/categories/%E6%B3%95%E8%AF%AD/">法语</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3/">计算机接口</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+            <a class="category-link" href="/categories/Big-Data/">Big Data</a><a class="category-link" href="/categories/Blog/">Blog</a><a class="category-link" href="/categories/Essay/">Essay</a><a class="category-link" href="/categories/Java/">Java</a><a class="category-link" href="/categories/Programming/">Programming</a><a class="category-link" href="/categories/Spring/">Spring</a><a class="category-link" href="/categories/UML/">UML</a><a class="category-link" href="/categories/%E5%9B%BE%E8%AE%BA/">图论</a><a class="category-link" href="/categories/%E5%A5%87%E6%B7%AB%E5%B7%A7%E6%8A%80/">奇淫巧技</a><a class="category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><a class="category-link" href="/categories/%E6%97%A0%E5%90%8D%E5%90%88%E9%9B%86/">无名合集</a><a class="category-link" href="/categories/%E6%B3%95%E8%AF%AD/">法语</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3/">计算机接口</a><a class="category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/Blog/" style="font-size: 14.17px;">Blog</a> <a href="/tags/B%E7%AB%99%E5%B0%9A%E7%A1%85%E8%B0%B7/" style="font-size: 13.33px;">B站尚硅谷</a> <a href="/tags/B%E7%AB%99%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/" style="font-size: 14.17px;">B站王道考研</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">C语言</a> <a href="/tags/ENSEEIHT/" style="font-size: 15px;">ENSEEIHT</a> <a href="/tags/Essay/" style="font-size: 10.83px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Java/" style="font-size: 19.17px;">Java</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 15px;">Java基础</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 16.67px;">Java核心技术卷I</a> <a href="/tags/Java%E7%AC%94%E8%AE%B0/" style="font-size: 17.5px;">Java笔记</a> <a href="/tags/Java%E9%AB%98%E7%BA%A7/" style="font-size: 15.83px;">Java高级</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/OneNote/" style="font-size: 10px;">OneNote</a> <a href="/tags/QoS/" style="font-size: 11.67px;">QoS</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/UML/" style="font-size: 12.5px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/macOS/" style="font-size: 12.5px;">macOS</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 10.83px;">图论</a> <a href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" style="font-size: 20px;">大学课程</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10.83px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.33px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 16.67px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">法语口语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">法语语法</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">法语语音</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 10.83px;">离散数学</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/" style="font-size: 12.5px;">计算机接口与通信</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.33px;">计算机网络</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
+            <a href="/tags/Big-Data/" style="font-size: 10px;">Big Data</a> <a href="/tags/Blog/" style="font-size: 14.17px;">Blog</a> <a href="/tags/B%E7%AB%99%E5%B0%9A%E7%A1%85%E8%B0%B7/" style="font-size: 13.33px;">B站尚硅谷</a> <a href="/tags/B%E7%AB%99%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/" style="font-size: 14.17px;">B站王道考研</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">C语言</a> <a href="/tags/ENSEEIHT/" style="font-size: 15px;">ENSEEIHT</a> <a href="/tags/Essay/" style="font-size: 10.83px;">Essay</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Java/" style="font-size: 19.17px;">Java</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 15px;">Java基础</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 16.67px;">Java核心技术卷I</a> <a href="/tags/Java%E7%AC%94%E8%AE%B0/" style="font-size: 17.5px;">Java笔记</a> <a href="/tags/Java%E9%AB%98%E7%BA%A7/" style="font-size: 15.83px;">Java高级</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/OneNote/" style="font-size: 10px;">OneNote</a> <a href="/tags/QoS/" style="font-size: 11.67px;">QoS</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/Spark/" style="font-size: 10px;">Spark</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/UML/" style="font-size: 12.5px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/macOS/" style="font-size: 12.5px;">macOS</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 10.83px;">图论</a> <a href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" style="font-size: 20px;">大学课程</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10.83px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.33px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 16.67px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">法语口语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">法语语法</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">法语语音</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 10.83px;">离散数学</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/" style="font-size: 12.5px;">计算机接口与通信</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.33px;">计算机网络</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -2004,7 +2014,7 @@ protected void doService(HttpServletRequest request, HttpServletResponse respons
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/Blog/" style="font-size: 14.17px;">Blog</a> <a href="/tags/B%E7%AB%99%E5%B0%9A%E7%A1%85%E8%B0%B7/" style="font-size: 13.33px;">B站尚硅谷</a> <a href="/tags/B%E7%AB%99%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/" style="font-size: 14.17px;">B站王道考研</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">C语言</a> <a href="/tags/ENSEEIHT/" style="font-size: 15px;">ENSEEIHT</a> <a href="/tags/Essay/" style="font-size: 10.83px;">Essay</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Java/" style="font-size: 19.17px;">Java</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 15px;">Java基础</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 16.67px;">Java核心技术卷I</a> <a href="/tags/Java%E7%AC%94%E8%AE%B0/" style="font-size: 17.5px;">Java笔记</a> <a href="/tags/Java%E9%AB%98%E7%BA%A7/" style="font-size: 15.83px;">Java高级</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/OneNote/" style="font-size: 10px;">OneNote</a> <a href="/tags/QoS/" style="font-size: 11.67px;">QoS</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/UML/" style="font-size: 12.5px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/macOS/" style="font-size: 12.5px;">macOS</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 10.83px;">图论</a> <a href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" style="font-size: 20px;">大学课程</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10.83px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.33px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 16.67px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">法语口语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">法语语法</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">法语语音</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 10.83px;">离散数学</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/" style="font-size: 12.5px;">计算机接口与通信</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.33px;">计算机网络</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
+            <a href="/tags/Big-Data/" style="font-size: 10px;">Big Data</a> <a href="/tags/Blog/" style="font-size: 14.17px;">Blog</a> <a href="/tags/B%E7%AB%99%E5%B0%9A%E7%A1%85%E8%B0%B7/" style="font-size: 13.33px;">B站尚硅谷</a> <a href="/tags/B%E7%AB%99%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/" style="font-size: 14.17px;">B站王道考研</a> <a href="/tags/C%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">C语言</a> <a href="/tags/ENSEEIHT/" style="font-size: 15px;">ENSEEIHT</a> <a href="/tags/Essay/" style="font-size: 10.83px;">Essay</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a> <a href="/tags/Java/" style="font-size: 19.17px;">Java</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 15px;">Java基础</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 16.67px;">Java核心技术卷I</a> <a href="/tags/Java%E7%AC%94%E8%AE%B0/" style="font-size: 17.5px;">Java笔记</a> <a href="/tags/Java%E9%AB%98%E7%BA%A7/" style="font-size: 15.83px;">Java高级</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/OneNote/" style="font-size: 10px;">OneNote</a> <a href="/tags/QoS/" style="font-size: 11.67px;">QoS</a> <a href="/tags/SVN/" style="font-size: 10px;">SVN</a> <a href="/tags/Spark/" style="font-size: 10px;">Spark</a> <a href="/tags/SpringMVC/" style="font-size: 10px;">SpringMVC</a> <a href="/tags/UML/" style="font-size: 12.5px;">UML</a> <a href="/tags/YAML/" style="font-size: 10px;">YAML</a> <a href="/tags/macOS/" style="font-size: 12.5px;">macOS</a> <a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 10.83px;">图论</a> <a href="/tags/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B/" style="font-size: 20px;">大学课程</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10.83px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13.33px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%B3%95%E8%AF%AD/" style="font-size: 16.67px;">法语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E5%8F%A3%E8%AF%AD/" style="font-size: 10px;">法语口语</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E6%B3%95/" style="font-size: 15px;">法语语法</a> <a href="/tags/%E6%B3%95%E8%AF%AD%E8%AF%AD%E9%9F%B3/" style="font-size: 10px;">法语语音</a> <a href="/tags/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/" style="font-size: 10.83px;">离散数学</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/" style="font-size: 12.5px;">计算机接口与通信</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 18.33px;">计算机网络</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" style="font-size: 10px;">软件工程</a>
         </div>
     </div>
 </div>
