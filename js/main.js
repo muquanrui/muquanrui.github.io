@@ -109,6 +109,7 @@
         showBusuanzi: function () {
             $("#busuanzi_container_site_uv").css('display', "inline");
             $("#busuanzi_container_site_pv").css('display', "inline");
+            $("#busuanzi_value_page_pv").css('display', "inline");
         },
 
         showMobileHeaderMenu: function (status) {
@@ -264,8 +265,8 @@
 
     // 获取resize事件
     w.addEventListener('resize', function() {
-        clientHeight = d.documentElement.clientHeight, // 获取可视区的高度
-        curWidth = $(window).width(),
+        clientHeight = d.documentElement.clientHeight;
+        curWidth = $(window).width();
         Blog.showWithResize();
     });
 
