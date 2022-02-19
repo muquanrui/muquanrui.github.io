@@ -1,0 +1,135 @@
+/*! Color themes for Google Code Prettify | MIT License | github.com/jmblog/color-themes-for-google-code-prettify */
+.prettyprint {
+  background: #2f3640;
+  font-family: Monaco, Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
+  /*border: 0 !important;*/
+}
+
+p .prettyprint, ol:not(.linenums) .prettyprint, ul .prettyprint {
+  background: rgba(230,230,250,0.5);
+  border-radius: 3px;
+  color: #FF4500;
+  font-size: 0.9em;
+  padding: 3px;
+}
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums {
+  margin: 15px 20px;
+  padding: 0 20px;
+  color: #656d78;
+}
+
+pre.linenums {
+  overflow: auto;
+  border-radius: 10px;
+  margin-top: 1.6em;
+  margin-bottom: 1.6em;
+}
+
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L4,
+li.L5,
+li.L6,
+li.L7,
+li.L8,
+li.L9 {
+  font-size: 90%;
+  padding-left: 0.5em;
+  background-color: #2f3640;
+  list-style-type: decimal;
+}
+
+@media screen {
+
+  ol.linenums .pln {
+  color: #e6e9ed;
+}
+
+  /* string content */
+
+  ol.linenums .str {
+    color: #ffce54;
+  }
+
+  /* keyword */
+
+  ol.linenums .kwd {
+    color: #4fc1e9;
+  }
+
+  /* comment */
+
+  ol.linenums .com {
+    color: #656d78;
+  }
+
+  /* type name */
+
+  ol.linenums .typ {
+    color: #4fc1e9;
+  }
+
+  /* literal value */
+
+  ol.linenums .lit {
+    color: #ac92ec;
+  }
+
+  /* punctuation */
+
+  ol.linenums .pun {
+    color: #e6e9ed;
+  }
+
+  /* lisp open bracket */
+
+  ol.linenums .opn {
+    color: #e6e9ed;
+  }
+
+  /* lisp close bracket */
+
+  ol.linenums .clo {
+    color: #e6e9ed;
+  }
+
+  /* markup tag name */
+
+  ol.linenums .tag {
+    color: #ed5565;
+  }
+
+  /* markup attribute name */
+
+  ol.linenums .atn {
+    color: #a0d468;
+  }
+
+  /* markup attribute value */
+
+  ol.linenums .atv {
+    color: #ffce54;
+  }
+
+  /* declaration */
+
+  ol.linenums .dec {
+    color: #ac92ec;
+  }
+
+  /* variable name */
+
+  ol.linenums .var {
+    color: #e6e9ed;
+  }
+
+  /* function name */
+
+  ol.linenums .fun {
+    color: #e6e9ed;
+  }
+}

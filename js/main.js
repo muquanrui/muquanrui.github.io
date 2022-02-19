@@ -12,7 +12,14 @@
         mobileHeaderMenu = $("#mobile-header-menu-nav"),
         _mobileHeaderMenuLocked = false,
         sideMenuBoxIsOpen = true,
-        clientHeight = d.documentElement.clientHeight; //获取可视区的高度
+        headerHeight = d.getElementById("header").offsetHeight, // 获取header高度
+        clientHeight = d.documentElement.clientHeight, // 获取可视区的高度
+        curWidth = $(window).width(), //获取可视区的宽度
+        bodyHeight= d.body.scrollHeight, // 获取可滚动内容的元素总高度
+        articleHeight = d.getElementsByClassName("article-inner")[0].offsetHeight, // 获取article内容的高度
+        sidebar = $(".sidebar"), // 获取div sidebar
+        girl = $("#live2d-widget"); // 获取小姐姐
+
     var Blog = {
         showHeaderMenu: function (scrollTop) {
             if (scrollTop > clientHeight * 0.1) {
@@ -58,16 +65,50 @@
             }
         },
         showToc: function (scrollTop) {
-            // 网页正文全文高
-            var bodyHeight= document.body.scrollHeight
-            if (scrollTop / clientHeight >= 0.5 && bodyHeight-scrollTop>=1400 && $(window).width()>1050) {
+            // 1443：可显示目录的最小视窗宽度
+            // 30：header，footer和article的margin
+            if (curWidth >= 1443 && scrollTop >= headerHeight + 30 && scrollTop <= headerHeight + 30 + articleHeight - clientHeight) {
                 $(".post-toc-name").css("display","block"); 
                 toc.removeClass("post-toc-top");
                 toc.addClass("post-toc-not-top");
-            } else {
+            }
+            else{
+                $(".post-toc-name").css("display","none"); 
                 toc.removeClass("post-toc-not-top");
                 toc.addClass("post-toc-top");
             }
+
+        },
+
+        showSidebar: function () {
+            // 535：sidebar显示的最小视窗高度
+            // 1060：sidebar显示的最小视窗宽度
+            sidebar.css("display", (clientHeight >= 535 && curWidth >= 1060) ? "block" : "none");
+        },
+
+        showGirl: function () {
+            // 730：小姐姐显示的最小视窗高度
+            // 1180：小姐姐显示的最小视窗宽度
+            girl.css("display", (clientHeight >= 730 && curWidth >= 1180) ? "block" : "none");
+        },
+
+        showWithScroll: function () {
+            var scrollTop = d.documentElement.scrollTop || d.body.scrollTop;
+            Blog.showHeaderMenu(scrollTop);
+            Blog.showBackTop(scrollTop);
+            Blog.showToc(scrollTop);
+        },
+
+        showWithResize: function () {
+            var scrollTop = d.documentElement.scrollTop || d.body.scrollTop;
+            Blog.showToc(scrollTop);
+            Blog.showSidebar();
+            Blog.showGirl();
+        },
+
+        showBusuanzi: function () {
+            $("#busuanzi_container_site_uv").css('display', "inline");
+            $("#busuanzi_container_site_pv").css('display', "inline");
         },
 
         showMobileHeaderMenu: function (status) {
@@ -205,14 +246,34 @@
         }, 500);
     });
 
-    //获取滚动事件
+    // 获取document加载完成事件
+    d.addEventListener('DOMContentLoaded',function(){
+        Blog.showWithScroll();
+        Blog.showWithResize();
+    });
+
+    // 获取window加载完成事件
+    w.addEventListener('load',function(){
+        bodyHeight = d.body.scrollHeight;
+        articleHeight = d.getElementsByClassName('article-inner')[0].offsetHeight;
+        girl = $("#live2d-widget");
+        Blog.showBusuanzi();
+        Blog.showWithScroll();
+        Blog.showWithResize();
+    });
+
+    // 获取resize事件
+    w.addEventListener('resize', function() {
+        clientHeight = d.documentElement.clientHeight, // 获取可视区的高度
+        curWidth = $(window).width(),
+        Blog.showWithResize();
+    });
+
+    // 获取滚动事件
     d.addEventListener('scroll', function () {
-        var scrollTop = d.documentElement.scrollTop || d.body.scrollTop;
-        Blog.showHeaderMenu(scrollTop);
-        Blog.showBackTop(scrollTop);
-        Blog.showToc(scrollTop);
+        Blog.showWithScroll();
     }, false);
-    
+
     //Mobile Menu
     $(".mobile-header-menu-button").click(function () {
         if (_mobileHeaderMenuLocked) {
@@ -261,28 +322,5 @@
     if(Depth==2){
         $(".post-toc-level-"+level).css("display","none");
     }
-
-
-    //toc隐藏
-    $.tocOperate = {
-        hideToc: function(scrollTop){
-            var curWidth = $(window).width();
-            if(curWidth > 1050 && scrollTop / clientHeight >= 0.4){
-                $(".post-toc-name").css("display","block"); 
-                toc.removeClass("post-toc-top");
-                toc.addClass("post-toc-not-top");
-            }
-            else{
-                $(".post-toc-name").css("display","none"); 
-                toc.removeClass("post-toc-not-top");
-                toc.addClass("post-toc-top");
-            }
-        }
-    }
-
-    $(window).resize(function(){
-        var scrollTop = d.documentElement.scrollTop || d.body.scrollTop;
-        $.tocOperate.hideToc(scrollTop);
-    });
 
 })(window, document);
