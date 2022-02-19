@@ -16,7 +16,7 @@ p .prettyprint, ol:not(.linenums) .prettyprint, ul .prettyprint {
 /* Specify class=linenums on a pre to get line numbering */
 ol.linenums {
   margin: 15px 20px;
-  padding: 0 20px;
+  padding: 0 30px;
   color: #656d78;
 }
 
