@@ -8,12 +8,12 @@
   
     <meta name="keywords" content="VorSonnenaufgang,VorSonnenaufgang's Blog" />
   
-  <meta name="description" content="2022.2.17 更新资源，样式和动态效果新的背景图放置在&#x2F;Users&#x2F;muquanrui&#x2F;Documents&#x2F;Hexo&#x2F;themes&#x2F;miho&#x2F;source&#x2F;css&#x2F;banner.jpg。  新的头像放置在&#x2F;Users&#x2F;muquanrui&#x2F;Documents&#x2F;Hexo&#x2F;themes&#x2F;miho&#x2F;source&#x2F;images&#x2F;logo.png。  themes&#x2F;miho&#x2F;source&#x2F;css&#x2F;_va">
+  <meta name="description" content="2022.2.21 解决背景和小姐姐不适配iPhone&#x2F;iPad问题小姐姐在11寸iPad横屏的情况下因为是视窗高度不满足设定条件消失了，其实这个高度是可以让她继续存在的，因此&#x2F;Users&#x2F;muquanrui&#x2F;Documents&#x2F;Hexo&#x2F;themes&#x2F;miho&#x2F;source&#x2F;js&#x2F;main.js，调整判断条件。 showGirl: function () &amp;#123;             &#x2F;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Blog更新记录">
 <meta property="og:url" content="http://vor.ink/2020/09/23/Blog%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="VorSonnenaufgang&#39;s Blog">
-<meta property="og:description" content="2022.2.17 更新资源，样式和动态效果新的背景图放置在&#x2F;Users&#x2F;muquanrui&#x2F;Documents&#x2F;Hexo&#x2F;themes&#x2F;miho&#x2F;source&#x2F;css&#x2F;banner.jpg。  新的头像放置在&#x2F;Users&#x2F;muquanrui&#x2F;Documents&#x2F;Hexo&#x2F;themes&#x2F;miho&#x2F;source&#x2F;images&#x2F;logo.png。  themes&#x2F;miho&#x2F;source&#x2F;css&#x2F;_va">
+<meta property="og:description" content="2022.2.21 解决背景和小姐姐不适配iPhone&#x2F;iPad问题小姐姐在11寸iPad横屏的情况下因为是视窗高度不满足设定条件消失了，其实这个高度是可以让她继续存在的，因此&#x2F;Users&#x2F;muquanrui&#x2F;Documents&#x2F;Hexo&#x2F;themes&#x2F;miho&#x2F;source&#x2F;js&#x2F;main.js，调整判断条件。 showGirl: function () &amp;#123;             &#x2F;">
 <meta property="og:locale">
 <meta property="og:image" content="http://vor.ink/2020/09/23/Blog%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95/images/1645304657105.jpg">
 <meta property="og:image" content="http://vor.ink/2020/09/23/Blog%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95/images/1645131847273.png">
@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://vor.ink/2020/09/23/Blog%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95/images/1618300365203.png">
 <meta property="og:image" content="http://vor.ink/2020/09/23/Blog%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95/images/1618300390603.png">
 <meta property="article:published_time" content="2020-09-23T13:24:15.000Z">
-<meta property="article:modified_time" content="2022-02-19T21:12:05.717Z">
+<meta property="article:modified_time" content="2022-02-21T11:34:24.408Z">
 <meta property="article:author" content="VorSonnenaufgang">
 <meta property="article:tag" content="Blog">
 <meta property="article:tag" content="前端">
@@ -73,6 +73,7 @@
 
 
 <body>
+  <div id="background"></div><!--背景颜色/图片-->
   <div id="container">
       <header id="header">
     <div id="banner"></div>
@@ -191,8 +192,8 @@
           <span id="busuanzi_value_page_pv"></span>          
         </li>
       </ul>
-       <span class="post-count">文章字数:2.8k字 &nbsp &nbsp  
-         阅读时长:13分钟</span>
+       <span class="post-count">文章字数:3.2k字 &nbsp &nbsp  
+         阅读时长:15分钟</span>
     </div>
   
         
@@ -209,7 +210,34 @@
 
       
             
-            <h2 id="2022-2-17-更新资源，样式和动态效果"><a href="#2022-2-17-更新资源，样式和动态效果" class="headerlink" title="2022.2.17 更新资源，样式和动态效果"></a>2022.2.17 更新资源，样式和动态效果</h2><p>新的背景图放置在<code>/Users/muquanrui/Documents/Hexo/themes/miho/source/css/banner.jpg</code>。</p>
+            <h2 id="2022-2-21-解决背景和小姐姐不适配iPhone-iPad问题"><a href="#2022-2-21-解决背景和小姐姐不适配iPhone-iPad问题" class="headerlink" title="2022.2.21 解决背景和小姐姐不适配iPhone/iPad问题"></a>2022.2.21 解决背景和小姐姐不适配iPhone/iPad问题</h2><p>小姐姐在11寸iPad横屏的情况下因为是视窗高度不满足设定条件消失了，其实这个高度是可以让她继续存在的，因此<code>/Users/muquanrui/Documents/Hexo/themes/miho/source/js/main.js</code>，调整判断条件。</p>
+<pre><code class="javascript">showGirl: function () &#123;
+            // 725：小姐姐显示的最小视窗高度
+            // 1180：小姐姐显示的最小视窗宽度
+            girl.css(&quot;display&quot;, (clientHeight &gt;= 725 &amp;&amp; curWidth &gt;= 1180) ? &quot;block&quot; : &quot;none&quot;);
+        &#125;,</code></pre>
+<p>另外一个问题是背景图在iPhone或者iPad上不管是Safari还是其他浏览器，都没有像在PC或Mac端一样在视窗被固定，而是随着页面的滚动而滚动，这导致整个背景图不正确的被缩放，效果十分丑陋。</p>
+<p>查询原因是<code>background-attachment:fixed</code>在iPhone/iPad被禁用，解决办法是直接取消在<code>body</code>上设置背景，使用一个单独的div作为背景图片。</p>
+<p><code>/Users/muquanrui/Documents/Hexo/themes/miho/layout/layout.ejs</code>，增加div。</p>
+<pre><code class="html">&lt;div id=&quot;background&quot;&gt;&lt;/div&gt;&lt;!--背景颜色/图片--&gt;</code></pre>
+<p><code>/Users/muquanrui/Documents/Hexo/themes/miho/source/css/style.styl</code>，删除body的css中关于background属性的设置，并且增加background的css。</p>
+<pre><code class="css">body
+  font-family: font-family
+  margin: 0px
+  font-size: font-size
+  -webkit-text-size-adjust: 100%
+  position: relative
+
+#background
+  background: url(banner.jpg)
+  background-size: cover
+  background-repeat: no-repeat
+  background-position: center
+  position: fixed
+  height: 100vh
+  width: 100vw</code></pre>
+<p>问题解决。要注意这里的<code>height</code>和<code>width</code>的设置，如果使用<code>100%</code>，在移动端的Safari缩放时会让背景也跟着缩放，还是应该使用视窗大小。</p>
+<h2 id="2022-2-17-更新资源，样式和动态效果"><a href="#2022-2-17-更新资源，样式和动态效果" class="headerlink" title="2022.2.17 更新资源，样式和动态效果"></a>2022.2.17 更新资源，样式和动态效果</h2><p>新的背景图放置在<code>/Users/muquanrui/Documents/Hexo/themes/miho/source/css/banner.jpg</code>。</p>
 <p><img src="./images/1645304657105.jpg"></p>
 <p>新的头像放置在<code>/Users/muquanrui/Documents/Hexo/themes/miho/source/images/logo.png</code>。</p>
 <p><img src="./images/1645131847273.png"></p>
@@ -459,6 +487,7 @@ w.addEventListener(&#39;resize&#39;, function() &#123;
 d.addEventListener(&#39;scroll&#39;, function () &#123;
     Blog.showWithScroll();
 &#125;, false);</code></pre>
+<p>2.19日完成。</p>
 <h2 id="2022-2-17-安装置顶文章插件"><a href="#2022-2-17-安装置顶文章插件" class="headerlink" title="2022.2.17 安装置顶文章插件"></a>2022.2.17 安装置顶文章插件</h2><pre><code>npm install hexo-generator-index --save</code></pre>
 <p>修改根目录下<code> _config.yml</code>，添加（如果已经存在<code>index_generator</code>设置项则不用更改）：</p>
 <pre><code class="yaml"># hexo-generator-index
@@ -571,7 +600,7 @@ changyan_appkey: dfbc2f31fdc91ffc75e2035195b4426d</code></pre>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2022年02月19日 22:12</p>
+        <p>最后更新： 2022年02月21日 12:34</p>
         <p>原始链接： <a class="post-url" href="/2020/09/23/Blog%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95/" title="Blog更新记录">http://vor.ink/2020/09/23/Blog%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95/</a></p>
         <footer>
             <a href="http://vor.ink">
@@ -696,7 +725,7 @@ changyan_appkey: dfbc2f31fdc91ffc75e2035195b4426d</code></pre>
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
         <div class= "post-toc-name">Table of Contents</div>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2022-2-17-%E6%9B%B4%E6%96%B0%E8%B5%84%E6%BA%90%EF%BC%8C%E6%A0%B7%E5%BC%8F%E5%92%8C%E5%8A%A8%E6%80%81%E6%95%88%E6%9E%9C"><span class="post-toc-text">2022.2.17 更新资源，样式和动态效果</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2022-2-17-%E5%AE%89%E8%A3%85%E7%BD%AE%E9%A1%B6%E6%96%87%E7%AB%A0%E6%8F%92%E4%BB%B6"><span class="post-toc-text">2022.2.17 安装置顶文章插件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2021-4-13-%E7%95%85%E8%A8%80%E5%8F%96%E6%B6%88%E7%83%AD%E8%AF%84%E8%AF%9D%E9%A2%98%E6%98%BE%E7%A4%BA"><span class="post-toc-text">2021.4.13 畅言取消热评话题显示</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2021-2-3-%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE"><span class="post-toc-text">2021.2.3 代码高亮</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2020-12-9-%E8%AE%BF%E5%AE%A2%E6%95%B0%E5%92%8C%E8%AE%BF%E9%97%AE%E9%87%8F%E6%98%BE%E7%A4%BA"><span class="post-toc-text">2020.12.9 访客数和访问量显示</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2020-11-25-%E7%95%85%E8%A8%80id"><span class="post-toc-text">2020.11.25 畅言id</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2020-11-24-%E6%A0%87%E9%A2%98%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F"><span class="post-toc-text">2020.11.24 标题字体大小</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2020-11-20-%E6%94%B6%E6%AC%BE%E7%A0%81"><span class="post-toc-text">2020.11.20 收款码</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2020-9-24-%E7%9B%AE%E5%BD%95%E5%8A%A8%E6%80%81%E6%98%BE%E7%A4%BA"><span class="post-toc-text">2020.9.24 目录动态显示</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2020-9-23-%E4%BF%AE%E6%94%B9%E5%AD%97%E4%BD%93"><span class="post-toc-text">2020.9.23 修改字体</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2022-2-21-%E8%A7%A3%E5%86%B3%E8%83%8C%E6%99%AF%E5%92%8C%E5%B0%8F%E5%A7%90%E5%A7%90%E4%B8%8D%E9%80%82%E9%85%8DiPhone-iPad%E9%97%AE%E9%A2%98"><span class="post-toc-text">2022.2.21 解决背景和小姐姐不适配iPhone&#x2F;iPad问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2022-2-17-%E6%9B%B4%E6%96%B0%E8%B5%84%E6%BA%90%EF%BC%8C%E6%A0%B7%E5%BC%8F%E5%92%8C%E5%8A%A8%E6%80%81%E6%95%88%E6%9E%9C"><span class="post-toc-text">2022.2.17 更新资源，样式和动态效果</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2022-2-17-%E5%AE%89%E8%A3%85%E7%BD%AE%E9%A1%B6%E6%96%87%E7%AB%A0%E6%8F%92%E4%BB%B6"><span class="post-toc-text">2022.2.17 安装置顶文章插件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2021-4-13-%E7%95%85%E8%A8%80%E5%8F%96%E6%B6%88%E7%83%AD%E8%AF%84%E8%AF%9D%E9%A2%98%E6%98%BE%E7%A4%BA"><span class="post-toc-text">2021.4.13 畅言取消热评话题显示</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2021-2-3-%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE"><span class="post-toc-text">2021.2.3 代码高亮</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2020-12-9-%E8%AE%BF%E5%AE%A2%E6%95%B0%E5%92%8C%E8%AE%BF%E9%97%AE%E9%87%8F%E6%98%BE%E7%A4%BA"><span class="post-toc-text">2020.12.9 访客数和访问量显示</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2020-11-25-%E7%95%85%E8%A8%80id"><span class="post-toc-text">2020.11.25 畅言id</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2020-11-24-%E6%A0%87%E9%A2%98%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F"><span class="post-toc-text">2020.11.24 标题字体大小</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2020-11-20-%E6%94%B6%E6%AC%BE%E7%A0%81"><span class="post-toc-text">2020.11.20 收款码</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2020-9-24-%E7%9B%AE%E5%BD%95%E5%8A%A8%E6%80%81%E6%98%BE%E7%A4%BA"><span class="post-toc-text">2020.9.24 目录动态显示</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2020-9-23-%E4%BF%AE%E6%94%B9%E5%AD%97%E4%BD%93"><span class="post-toc-text">2020.9.23 修改字体</span></a></li></ol>
         </nav>
     </aside>
     
@@ -752,7 +781,7 @@ changyan_appkey: dfbc2f31fdc91ffc75e2035195b4426d</code></pre>
 </p>
 
 
-      <span class="post-count">本站博文总字数：203.7k</span>
+      <span class="post-count">本站博文总字数：204.1k</span>
       <p>
         Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
         Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>

@@ -87,9 +87,9 @@
         },
 
         showGirl: function () {
-            // 730：小姐姐显示的最小视窗高度
+            // 725：小姐姐显示的最小视窗高度
             // 1180：小姐姐显示的最小视窗宽度
-            girl.css("display", (clientHeight >= 730 && curWidth >= 1180) ? "block" : "none");
+            girl.css("display", (clientHeight >= 725 && curWidth >= 1180) ? "block" : "none");
         },
 
         showWithScroll: function () {
