@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://vor.ink/2020/09/23/Blog%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95/images/1618300365203.png">
 <meta property="og:image" content="http://vor.ink/2020/09/23/Blog%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95/images/1618300390603.png">
 <meta property="article:published_time" content="2020-09-23T13:24:15.000Z">
-<meta property="article:modified_time" content="2022-02-21T11:34:24.408Z">
+<meta property="article:modified_time" content="2022-02-21T18:10:07.511Z">
 <meta property="article:author" content="VorSonnenaufgang">
 <meta property="article:tag" content="Blog">
 <meta property="article:tag" content="前端">
@@ -192,7 +192,7 @@
           <span id="busuanzi_value_page_pv"></span>          
         </li>
       </ul>
-       <span class="post-count">文章字数:3.2k字 &nbsp &nbsp  
+       <span class="post-count">文章字数:3.3k字 &nbsp &nbsp  
          阅读时长:15分钟</span>
     </div>
   
@@ -223,6 +223,9 @@
 <p><code>/Users/muquanrui/Documents/Hexo/themes/miho/source/css/style.styl</code>，删除body的css中关于background属性的设置，并且增加background的css。</p>
 <pre><code class="css">body
   font-family: font-family
+  background-color: #181C3C
+  background-size: cover;
+  background-attachment: fixed
   margin: 0px
   font-size: font-size
   -webkit-text-size-adjust: 100%
@@ -236,7 +239,7 @@
   position: fixed
   height: 100vh
   width: 100vw</code></pre>
-<p>问题解决。要注意这里的<code>height</code>和<code>width</code>的设置，如果使用<code>100%</code>，在移动端的Safari缩放时会让背景也跟着缩放，还是应该使用视窗大小。</p>
+<p>问题解决。要注意这里的<code>height</code>和<code>width</code>的设置，如果使用<code>100%</code>，在移动端的Safari缩放时会让背景也跟着缩放，使用<code>100vh</code>同样会带来问题，因为缩放时由于标签栏的消失，视窗高度依然会改变，背景下方会增加内容，出现闪现的效果，这个问题目前还没找到有效的解决办法，可以参考<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/37112218/css3-100vh-not-constant-in-mobile-browser">CSS3 100vh not constant in mobile browser</a>，只能通过给body增加一个背景色让之前白色的闪现不那么突兀了。</p>
 <h2 id="2022-2-17-更新资源，样式和动态效果"><a href="#2022-2-17-更新资源，样式和动态效果" class="headerlink" title="2022.2.17 更新资源，样式和动态效果"></a>2022.2.17 更新资源，样式和动态效果</h2><p>新的背景图放置在<code>/Users/muquanrui/Documents/Hexo/themes/miho/source/css/banner.jpg</code>。</p>
 <p><img src="./images/1645304657105.jpg"></p>
 <p>新的头像放置在<code>/Users/muquanrui/Documents/Hexo/themes/miho/source/images/logo.png</code>。</p>
@@ -600,7 +603,7 @@ changyan_appkey: dfbc2f31fdc91ffc75e2035195b4426d</code></pre>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2022年02月21日 12:34</p>
+        <p>最后更新： 2022年02月21日 19:10</p>
         <p>原始链接： <a class="post-url" href="/2020/09/23/Blog%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95/" title="Blog更新记录">http://vor.ink/2020/09/23/Blog%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95/</a></p>
         <footer>
             <a href="http://vor.ink">
@@ -781,7 +784,7 @@ changyan_appkey: dfbc2f31fdc91ffc75e2035195b4426d</code></pre>
 </p>
 
 
-      <span class="post-count">本站博文总字数：204.1k</span>
+      <span class="post-count">本站博文总字数：204.2k</span>
       <p>
         Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
         Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
