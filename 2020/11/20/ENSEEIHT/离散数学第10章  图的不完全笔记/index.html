@@ -11,21 +11,21 @@
   <meta name="description" content="10.1 图和图的模型定义1一个图G&#x3D;(V, E)由顶点的非空集V和边的集合E构成。每条边有一个或两个顶点与它相连，这样的顶点称为边的端点。 简单图：每条边都连接两个不同的顶点，且没有两条不同的边连接一对相同顶点。多重图：多重边连接同一对顶点。 环：一条连接顶点自身的边。伪图：包含环或多重边连接同一对顶点或同一个顶点的图。 定义2一个有向图(V, E)由一个非空顶点集V和一个有向边（或弧）集E组成">
 <meta property="og:type" content="article">
 <meta property="og:title" content="离散数学第10章  图的不完全笔记">
-<meta property="og:url" content="http://vor.ink/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:url" content="http://muquanrui.com/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Quanrui&#39;s Blog">
 <meta property="og:description" content="10.1 图和图的模型定义1一个图G&#x3D;(V, E)由顶点的非空集V和边的集合E构成。每条边有一个或两个顶点与它相连，这样的顶点称为边的端点。 简单图：每条边都连接两个不同的顶点，且没有两条不同的边连接一对相同顶点。多重图：多重边连接同一对顶点。 环：一条连接顶点自身的边。伪图：包含环或多重边连接同一对顶点或同一个顶点的图。 定义2一个有向图(V, E)由一个非空顶点集V和一个有向边（或弧）集E组成">
 <meta property="og:locale">
-<meta property="og:image" content="http://vor.ink/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881366137.png">
-<meta property="og:image" content="http://vor.ink/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881491338.png">
-<meta property="og:image" content="http://vor.ink/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881504358.png">
-<meta property="og:image" content="http://vor.ink/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881549851.png">
-<meta property="og:image" content="http://vor.ink/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881554042.png">
-<meta property="og:image" content="http://vor.ink/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881578121.png">
-<meta property="og:image" content="http://vor.ink/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881595840.png">
-<meta property="og:image" content="http://vor.ink/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881616066.png">
-<meta property="og:image" content="http://vor.ink/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881663631.png">
-<meta property="og:image" content="http://vor.ink/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605882618373.png">
-<meta property="og:image" content="http://vor.ink/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881696323.png">
+<meta property="og:image" content="http://muquanrui.com/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881366137.png">
+<meta property="og:image" content="http://muquanrui.com/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881491338.png">
+<meta property="og:image" content="http://muquanrui.com/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881504358.png">
+<meta property="og:image" content="http://muquanrui.com/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881549851.png">
+<meta property="og:image" content="http://muquanrui.com/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881554042.png">
+<meta property="og:image" content="http://muquanrui.com/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881578121.png">
+<meta property="og:image" content="http://muquanrui.com/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881595840.png">
+<meta property="og:image" content="http://muquanrui.com/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881616066.png">
+<meta property="og:image" content="http://muquanrui.com/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881663631.png">
+<meta property="og:image" content="http://muquanrui.com/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605882618373.png">
+<meta property="og:image" content="http://muquanrui.com/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881696323.png">
 <meta property="article:published_time" content="2020-11-20T07:06:49.000Z">
 <meta property="article:modified_time" content="2021-07-15T01:39:02.145Z">
 <meta property="article:author" content="MU Quanrui">
@@ -33,7 +33,7 @@
 <meta property="article:tag" content="离散数学">
 <meta property="article:tag" content="图论">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://vor.ink/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881366137.png">
+<meta name="twitter:image" content="http://muquanrui.com/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/images/1605881366137.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -270,9 +270,9 @@
             <div class="post-copyright">
     <div class="content">
         <p>最后更新： 2021年07月15日 09:39</p>
-        <p>原始链接： <a class="post-url" href="/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/" title="离散数学第10章  图的不完全笔记">http://vor.ink/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/</a></p>
+        <p>原始链接： <a class="post-url" href="/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/" title="离散数学第10章  图的不完全笔记">http://muquanrui.com/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/</a></p>
         <footer>
-            <a href="http://vor.ink">
+            <a href="http://muquanrui.com">
                 <img src="/images/logo.png" alt="MU Quanrui">
                 MU Quanrui
             </a>
@@ -327,7 +327,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/&title=《离散数学第10章  图的不完全笔记》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/&title=《离散数学第10章  图的不完全笔记》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -337,22 +337,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/&title=《离散数学第10章  图的不完全笔记》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/&title=《离散数学第10章  图的不完全笔记》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《离散数学第10章  图的不完全笔记》 — Quanrui's Blog&url=http://vor.ink/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《离散数学第10章  图的不完全笔记》 — Quanrui's Blog&url=http://muquanrui.com/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/&via=http://muquanrui.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -362,7 +362,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2020/11/20/ENSEEIHT/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E7%AC%AC10%E7%AB%A0%20%20%E5%9B%BE%E7%9A%84%E4%B8%8D%E5%AE%8C%E5%85%A8%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -472,7 +472,7 @@
 
 <script>
   var mihoConfig = {
-      root: "http://vor.ink",
+      root: "http://muquanrui.com",
       animate: true,
       isHome: false,
       share: true,

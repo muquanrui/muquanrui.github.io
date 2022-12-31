@@ -11,22 +11,22 @@
   <meta name="description" content="1 数组与集合集合与数组存储数据概述：  集合、数组都是对多个数据进行存储操作的结构，简称Java容器。 说明：此时的存储，主要指的是内存层面的存储，不涉及到持久化的存储（.txt,.jpg,.avi，数据库中)  数组存储的特点：  一旦初始化以后，其长度就确定了。 数组一旦定义好，其元素的类型也就确定了。我们也就只能操作指定类型的数据了。比如：String[] arr;int[] arr1;O">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java笔记十一：集合">
-<meta property="og:url" content="http://vor.ink/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/index.html">
+<meta property="og:url" content="http://muquanrui.com/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/index.html">
 <meta property="og:site_name" content="Quanrui&#39;s Blog">
 <meta property="og:description" content="1 数组与集合集合与数组存储数据概述：  集合、数组都是对多个数据进行存储操作的结构，简称Java容器。 说明：此时的存储，主要指的是内存层面的存储，不涉及到持久化的存储（.txt,.jpg,.avi，数据库中)  数组存储的特点：  一旦初始化以后，其长度就确定了。 数组一旦定义好，其元素的类型也就确定了。我们也就只能操作指定类型的数据了。比如：String[] arr;int[] arr1;O">
 <meta property="og:locale">
-<meta property="og:image" content="http://vor.ink/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/images/1631363839431.png">
-<meta property="og:image" content="http://vor.ink/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/images/1631364270245.png">
-<meta property="og:image" content="http://vor.ink/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/images/1631368357127.png">
-<meta property="og:image" content="http://vor.ink/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/images/1631369517698.png">
-<meta property="og:image" content="http://vor.ink/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/images/1631369636444.png">
+<meta property="og:image" content="http://muquanrui.com/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/images/1631363839431.png">
+<meta property="og:image" content="http://muquanrui.com/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/images/1631364270245.png">
+<meta property="og:image" content="http://muquanrui.com/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/images/1631368357127.png">
+<meta property="og:image" content="http://muquanrui.com/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/images/1631369517698.png">
+<meta property="og:image" content="http://muquanrui.com/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/images/1631369636444.png">
 <meta property="article:published_time" content="2021-09-11T06:31:04.000Z">
 <meta property="article:modified_time" content="2021-09-14T07:09:56.000Z">
 <meta property="article:author" content="MU Quanrui">
 <meta property="article:tag" content="Java笔记">
 <meta property="article:tag" content="Java高级">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://vor.ink/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/images/1631363839431.png">
+<meta name="twitter:image" content="http://muquanrui.com/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/images/1631363839431.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -635,9 +635,9 @@ public static void main(String[] args)  &#123;
             <div class="post-copyright">
     <div class="content">
         <p>最后更新： 2021年09月14日 15:09</p>
-        <p>原始链接： <a class="post-url" href="/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/" title="Java笔记十一：集合">http://vor.ink/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/</a></p>
+        <p>原始链接： <a class="post-url" href="/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/" title="Java笔记十一：集合">http://muquanrui.com/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/</a></p>
         <footer>
-            <a href="http://vor.ink">
+            <a href="http://muquanrui.com">
                 <img src="/images/logo.png" alt="MU Quanrui">
                 MU Quanrui
             </a>
@@ -692,7 +692,7 @@ public static void main(String[] args)  &#123;
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/&title=《Java笔记十一：集合》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/&title=《Java笔记十一：集合》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -702,22 +702,22 @@ public static void main(String[] args)  &#123;
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/&title=《Java笔记十一：集合》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/&title=《Java笔记十一：集合》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java笔记十一：集合》 — Quanrui's Blog&url=http://vor.ink/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java笔记十一：集合》 — Quanrui's Blog&url=http://muquanrui.com/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/&via=http://muquanrui.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -727,7 +727,7 @@ public static void main(String[] args)  &#123;
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2021/09/11/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%B8%80%EF%BC%9A%E9%9B%86%E5%90%88/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -835,7 +835,7 @@ public static void main(String[] args)  &#123;
 
 <script>
   var mihoConfig = {
-      root: "http://vor.ink",
+      root: "http://muquanrui.com",
       animate: true,
       isHome: false,
       share: true,

@@ -11,54 +11,54 @@
   <meta name="description" content="1 NIO 基础1.1 三大组件non-blocking io 即「非阻塞IO」。 Channel &amp; Bufferchannel 有一点类似于 stream，它就是读写数据的双向通道，可以从 channel 将数据读入 buffer，也可以将 buffer 的数据写入 channel，而之前的 stream 要么是输入，要么是输出，即单工通道，channel 比 stream 更为底层。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Netty学习笔记">
-<meta property="og:url" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:url" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Quanrui&#39;s Blog">
 <meta property="og:description" content="1 NIO 基础1.1 三大组件non-blocking io 即「非阻塞IO」。 Channel &amp; Bufferchannel 有一点类似于 stream，它就是读写数据的双向通道，可以从 channel 将数据读入 buffer，也可以将 buffer 的数据写入 channel，而之前的 stream 要么是输入，要么是输出，即单工通道，channel 比 stream 更为底层。">
 <meta property="og:locale">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0021-8285561.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0018-8285561.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0019-8285561.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0020-8285561.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0021-8285561.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0022-8285561.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0023-8285561.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0033-8285561.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0039-8285561.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0035-8285561.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0038-8285561.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0037-8285561.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0034-8285561.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0036-8285561.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0024-8285561.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0025-8285561.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0026-8285561.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0027-8285561.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0005.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0006.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0007.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0040.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0042.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0041.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0044.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0048.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0047.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0008.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0009.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0010.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0011.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0012.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0049.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0051.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0031.jpg">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0013.png">
-<meta property="og:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0032.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0021-8285561.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0018-8285561.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0019-8285561.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0020-8285561.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0021-8285561.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0022-8285561.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0023-8285561.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0033-8285561.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0039-8285561.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0035-8285561.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0038-8285561.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0037-8285561.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0034-8285561.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0036-8285561.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0024-8285561.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0025-8285561.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0026-8285561.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0027-8285561.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0005.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0006.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0007.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0040.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0042.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0041.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0044.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0048.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0047.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0008.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0009.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0010.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0011.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0012.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0049.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0051.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0031.jpg">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0013.png">
+<meta property="og:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0032.png">
 <meta property="article:published_time" content="2022-07-17T02:26:11.000Z">
 <meta property="article:modified_time" content="2022-08-09T01:29:47.942Z">
 <meta property="article:author" content="MU Quanrui">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Netty">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0021-8285561.png">
+<meta name="twitter:image" content="http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/images/0021-8285561.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -6105,9 +6105,9 @@ while (iter.hasNext()) &#123;
             <div class="post-copyright">
     <div class="content">
         <p>最后更新： 2022年08月09日 09:29</p>
-        <p>原始链接： <a class="post-url" href="/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Netty学习笔记">http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></p>
+        <p>原始链接： <a class="post-url" href="/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Netty学习笔记">http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></p>
         <footer>
-            <a href="http://vor.ink">
+            <a href="http://muquanrui.com">
                 <img src="/images/logo.png" alt="MU Quanrui">
                 MU Quanrui
             </a>
@@ -6162,7 +6162,7 @@ while (iter.hasNext()) &#123;
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《Netty学习笔记》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《Netty学习笔记》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -6172,22 +6172,22 @@ while (iter.hasNext()) &#123;
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《Netty学习笔记》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=《Netty学习笔记》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Netty学习笔记》 — Quanrui's Blog&url=http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Netty学习笔记》 — Quanrui's Blog&url=http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&via=http://muquanrui.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -6197,7 +6197,7 @@ while (iter.hasNext()) &#123;
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2022/07/17/Java/Netty%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -6305,7 +6305,7 @@ while (iter.hasNext()) &#123;
 
 <script>
   var mihoConfig = {
-      root: "http://vor.ink",
+      root: "http://muquanrui.com",
       animate: true,
       isHome: false,
       share: true,

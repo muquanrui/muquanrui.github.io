@@ -11,77 +11,77 @@
   <meta name="description" content="1 内存的基础知识内存（Memory）是用于存放数据的硬件，程序执行前需要先被放到内存中才能被CPU处理。   程序员编写的代码会编译成CPU能够识别的二进制指令，指令告诉CPU要去内存的哪个地址存取数据，以及对数据做对应的处理。 内存中的地址分为物理地址和逻辑地址：  物理地址：绝对地址。 逻辑地址：相对地址。找到逻辑地址对应的起点，就能找到对应的物理地址。   装入操作，就是将逻辑地址装入内存">
 <meta property="og:type" content="article">
 <meta property="og:title" content="操作系统Part3：内存管理">
-<meta property="og:url" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:url" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/index.html">
 <meta property="og:site_name" content="Quanrui&#39;s Blog">
 <meta property="og:description" content="1 内存的基础知识内存（Memory）是用于存放数据的硬件，程序执行前需要先被放到内存中才能被CPU处理。   程序员编写的代码会编译成CPU能够识别的二进制指令，指令告诉CPU要去内存的哪个地址存取数据，以及对数据做对应的处理。 内存中的地址分为物理地址和逻辑地址：  物理地址：绝对地址。 逻辑地址：相对地址。找到逻辑地址对应的起点，就能找到对应的物理地址。   装入操作，就是将逻辑地址装入内存">
 <meta property="og:locale">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519132228587.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519132311181.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519133036501.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519154022245.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519154241223.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519154428409.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519154559948.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519154709933.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519154810112.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519154914305.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519155355420.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519155050796.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519155448481.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519155200166.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519155558186.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519155816922.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220520092430130.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220520092532415.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220520092756356.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220520092823201.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220520092855001.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220520092950598.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525081813346.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525081859619.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525082557326.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525082634140.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525082727615.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525082948821.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083014495.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083203047.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083251987.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083330763.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083607346.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083637474.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083714875.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083738141.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083816383.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083907308.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083951471.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525084054172.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525084201244.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525084227574.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525084300666.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525084329705.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525084403780.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525103243257.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525103319660.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525103404695.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525103433014.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525103507036.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525103556296.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525103739438.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525104151048.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525104216675.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525104254919.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525104335886.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525104417421.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525104529042.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525104547736.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525111141050.png">
-<meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525114845986.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519132228587.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519132311181.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519133036501.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519154022245.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519154241223.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519154428409.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519154559948.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519154709933.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519154810112.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519154914305.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519155355420.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519155050796.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519155448481.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519155200166.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519155558186.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519155816922.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220520092430130.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220520092532415.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220520092756356.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220520092823201.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220520092855001.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220520092950598.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525081813346.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525081859619.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525082557326.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525082634140.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525082727615.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525082948821.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083014495.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083203047.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083251987.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083330763.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083607346.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083637474.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083714875.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083738141.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083816383.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083907308.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525083951471.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525084054172.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525084201244.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525084227574.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525084300666.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525084329705.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525084403780.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525103243257.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525103319660.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525103404695.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525103433014.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525103507036.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525103556296.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525103739438.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525104151048.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525104216675.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525104254919.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525104335886.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525104417421.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525104529042.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525104547736.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525111141050.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525114845986.png">
 <meta property="article:published_time" content="2022-05-19T05:15:45.000Z">
 <meta property="article:modified_time" content="2022-05-25T03:49:35.805Z">
 <meta property="article:author" content="MU Quanrui">
 <meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519132228587.png">
+<meta name="twitter:image" content="http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519132228587.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -482,9 +482,9 @@
             <div class="post-copyright">
     <div class="content">
         <p>最后更新： 2022年05月25日 11:49</p>
-        <p>原始链接： <a class="post-url" href="/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="操作系统Part3：内存管理">http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</a></p>
+        <p>原始链接： <a class="post-url" href="/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="操作系统Part3：内存管理">http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</a></p>
         <footer>
-            <a href="http://vor.ink">
+            <a href="http://muquanrui.com">
                 <img src="/images/logo.png" alt="MU Quanrui">
                 MU Quanrui
             </a>
@@ -539,7 +539,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/&title=《操作系统Part3：内存管理》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/&title=《操作系统Part3：内存管理》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -549,22 +549,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/&title=《操作系统Part3：内存管理》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/&title=《操作系统Part3：内存管理》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《操作系统Part3：内存管理》 — Quanrui's Blog&url=http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《操作系统Part3：内存管理》 — Quanrui's Blog&url=http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/&via=http://muquanrui.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -574,7 +574,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -680,7 +680,7 @@
 
 <script>
   var mihoConfig = {
-      root: "http://vor.ink",
+      root: "http://muquanrui.com",
       animate: true,
       isHome: false,
       share: true,

@@ -11,43 +11,43 @@
   <meta name="description" content="1 基本概念物理层解决如何在连接各种计算机的传输媒体上传输数据比特流，而不指具体的传输媒体。 主要任务：确定与传输媒体接口有关的一些特性——定义标准。  机械特性：定义物理连接的特性。比如物理连接时采用的规格、接口形状、引线数目、引脚数量和排列情况。 电气特性：规定传输二进制位时，线路上信号的电压范围、阻抗匹配、传输速率和距离限制等。 功能特性：指明某条线上出现的某一电平表示何种意义，接口部件的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机网络笔记Part2 物理层">
-<meta property="og:url" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/index.html">
+<meta property="og:url" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/index.html">
 <meta property="og:site_name" content="Quanrui&#39;s Blog">
 <meta property="og:description" content="1 基本概念物理层解决如何在连接各种计算机的传输媒体上传输数据比特流，而不指具体的传输媒体。 主要任务：确定与传输媒体接口有关的一些特性——定义标准。  机械特性：定义物理连接的特性。比如物理连接时采用的规格、接口形状、引线数目、引脚数量和排列情况。 电气特性：规定传输二进制位时，线路上信号的电压范围、阻抗匹配、传输速率和距离限制等。 功能特性：指明某条线上出现的某一电平表示何种意义，接口部件的">
 <meta property="og:locale">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617554389501.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617527704828.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617527843451.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617528293255.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617530544767.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617530807248.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617531156547.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617531611817.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617542401994.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617542622817.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617542688325.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617542810401.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617543029020.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617543199793.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617543292821.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617548444889.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617548144179.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617549261804.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617549275140.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617549566454.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617550080947.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617550275708.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617550329888.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617552703966.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617552614601.png">
-<meta property="og:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617552848777.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617554389501.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617527704828.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617527843451.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617528293255.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617530544767.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617530807248.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617531156547.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617531611817.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617542401994.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617542622817.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617542688325.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617542810401.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617543029020.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617543199793.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617543292821.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617548444889.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617548144179.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617549261804.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617549275140.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617549566454.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617550080947.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617550275708.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617550329888.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617552703966.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617552614601.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617552848777.png">
 <meta property="article:published_time" content="2021-04-04T02:56:11.000Z">
 <meta property="article:modified_time" content="2021-07-15T01:46:15.045Z">
 <meta property="article:author" content="MU Quanrui">
 <meta property="article:tag" content="计算机网络">
 <meta property="article:tag" content="B站王道考研">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617554389501.png">
+<meta name="twitter:image" content="http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/images/1617554389501.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -408,9 +408,9 @@
             <div class="post-copyright">
     <div class="content">
         <p>最后更新： 2021年07月15日 09:46</p>
-        <p>原始链接： <a class="post-url" href="/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/" title="计算机网络笔记Part2 物理层">http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/</a></p>
+        <p>原始链接： <a class="post-url" href="/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/" title="计算机网络笔记Part2 物理层">http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/</a></p>
         <footer>
-            <a href="http://vor.ink">
+            <a href="http://muquanrui.com">
                 <img src="/images/logo.png" alt="MU Quanrui">
                 MU Quanrui
             </a>
@@ -465,7 +465,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/&title=《计算机网络笔记Part2 物理层》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/&title=《计算机网络笔记Part2 物理层》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -475,22 +475,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/&title=《计算机网络笔记Part2 物理层》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/&title=《计算机网络笔记Part2 物理层》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《计算机网络笔记Part2 物理层》 — Quanrui's Blog&url=http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《计算机网络笔记Part2 物理层》 — Quanrui's Blog&url=http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/&via=http://muquanrui.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -500,7 +500,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2021/04/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -608,7 +608,7 @@
 
 <script>
   var mihoConfig = {
-      root: "http://vor.ink",
+      root: "http://muquanrui.com",
       animate: true,
       isHome: false,
       share: true,

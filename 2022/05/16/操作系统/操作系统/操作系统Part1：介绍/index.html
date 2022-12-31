@@ -11,20 +11,20 @@
   <meta name="description" content="1 操作系统的概念、功能和目标操作系统（Operating System, OS）控制和管理整个计算机系统的硬件和软件资源，并合理组织调度计算机的工作和资源分配，以提供给用户和其他软件方便的接口和环境，它是计算机系统中最基本的系统软件。 操作系统提供的功能主要有：  作为系统资源管理者：文件管理，存储器管理，处理器管理，设备管理。  作为用户和计算机硬件之间的接口：提供    允许用户直接访问的命">
 <meta property="og:type" content="article">
 <meta property="og:title" content="操作系统Part1：介绍">
-<meta property="og:url" content="http://vor.ink/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:url" content="http://muquanrui.com/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/index.html">
 <meta property="og:site_name" content="Quanrui&#39;s Blog">
 <meta property="og:description" content="1 操作系统的概念、功能和目标操作系统（Operating System, OS）控制和管理整个计算机系统的硬件和软件资源，并合理组织调度计算机的工作和资源分配，以提供给用户和其他软件方便的接口和环境，它是计算机系统中最基本的系统软件。 操作系统提供的功能主要有：  作为系统资源管理者：文件管理，存储器管理，处理器管理，设备管理。  作为用户和计算机硬件之间的接口：提供    允许用户直接访问的命">
 <meta property="og:locale">
-<meta property="og:image" content="http://vor.ink/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/images/image-20220516171003439.png">
-<meta property="og:image" content="http://vor.ink/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/images/image-20220516175543983.png">
-<meta property="og:image" content="http://vor.ink/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/images/image-20220516180455401.png">
-<meta property="og:image" content="http://vor.ink/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/images/image-20220516180850428.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/images/image-20220516171003439.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/images/image-20220516175543983.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/images/image-20220516180455401.png">
+<meta property="og:image" content="http://muquanrui.com/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/images/image-20220516180850428.png">
 <meta property="article:published_time" content="2022-05-16T06:59:27.000Z">
 <meta property="article:modified_time" content="2022-05-16T10:14:35.688Z">
 <meta property="article:author" content="MU Quanrui">
 <meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://vor.ink/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/images/image-20220516171003439.png">
+<meta name="twitter:image" content="http://muquanrui.com/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/images/image-20220516171003439.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -343,9 +343,9 @@
             <div class="post-copyright">
     <div class="content">
         <p>最后更新： 2022年05月16日 18:14</p>
-        <p>原始链接： <a class="post-url" href="/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/" title="操作系统Part1：介绍">http://vor.ink/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/</a></p>
+        <p>原始链接： <a class="post-url" href="/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/" title="操作系统Part1：介绍">http://muquanrui.com/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/</a></p>
         <footer>
-            <a href="http://vor.ink">
+            <a href="http://muquanrui.com">
                 <img src="/images/logo.png" alt="MU Quanrui">
                 MU Quanrui
             </a>
@@ -400,7 +400,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/&title=《操作系统Part1：介绍》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/&title=《操作系统Part1：介绍》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -410,22 +410,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/&title=《操作系统Part1：介绍》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/&title=《操作系统Part1：介绍》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《操作系统Part1：介绍》 — Quanrui's Blog&url=http://vor.ink/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《操作系统Part1：介绍》 — Quanrui's Blog&url=http://muquanrui.com/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/&via=http://muquanrui.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -435,7 +435,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2022/05/16/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart1%EF%BC%9A%E4%BB%8B%E7%BB%8D/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -541,7 +541,7 @@
 
 <script>
   var mihoConfig = {
-      root: "http://vor.ink",
+      root: "http://muquanrui.com",
       animate: true,
       isHome: false,
       share: true,

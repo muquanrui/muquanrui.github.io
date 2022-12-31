@@ -11,18 +11,18 @@
   <meta name="description" content="1 基础介绍简单来说Redis就是一个使用C语言开发的数据库，不过与传统数据库不同的是Redis的数据是存在内存中的，也就是它是内存数据库，所以读写速度非常快，因此Redis被广泛应用于缓存方向。 另外，Redis除了做缓存之外，也经常用来做分布式锁，甚至是消息队列。 Redis提供了多种数据类型来支持不同的业务场景。Redis还支持事务、持久化、Lua脚本、多种集群方案。 分布式缓存常见的技术选">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis八股文">
-<meta property="og:url" content="http://vor.ink/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/index.html">
+<meta property="og:url" content="http://muquanrui.com/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/index.html">
 <meta property="og:site_name" content="Quanrui&#39;s Blog">
 <meta property="og:description" content="1 基础介绍简单来说Redis就是一个使用C语言开发的数据库，不过与传统数据库不同的是Redis的数据是存在内存中的，也就是它是内存数据库，所以读写速度非常快，因此Redis被广泛应用于缓存方向。 另外，Redis除了做缓存之外，也经常用来做分布式锁，甚至是消息队列。 Redis提供了多种数据类型来支持不同的业务场景。Redis还支持事务、持久化、Lua脚本、多种集群方案。 分布式缓存常见的技术选">
 <meta property="og:locale">
-<meta property="og:image" content="http://vor.ink/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/images/%E5%8A%A0%E5%85%A5%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8%E5%90%8E%E7%9A%84%E7%BC%93%E5%AD%98%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.79596186.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/images/%E5%8A%A0%E5%85%A5%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8%E5%90%8E%E7%9A%84%E7%BC%93%E5%AD%98%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.79596186.png">
 <meta property="article:published_time" content="2022-06-13T10:07:24.000Z">
 <meta property="article:modified_time" content="2022-09-21T07:00:01.934Z">
 <meta property="article:author" content="MU Quanrui">
 <meta property="article:tag" content="八股文">
 <meta property="article:tag" content="Redis">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://vor.ink/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/images/%E5%8A%A0%E5%85%A5%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8%E5%90%8E%E7%9A%84%E7%BC%93%E5%AD%98%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.79596186.png">
+<meta name="twitter:image" content="http://muquanrui.com/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/images/%E5%8A%A0%E5%85%A5%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8%E5%90%8E%E7%9A%84%E7%BC%93%E5%AD%98%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.79596186.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -737,9 +737,9 @@ OK</code></pre>
             <div class="post-copyright">
     <div class="content">
         <p>最后更新： 2022年09月21日 15:00</p>
-        <p>原始链接： <a class="post-url" href="/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/" title="Redis八股文">http://vor.ink/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/</a></p>
+        <p>原始链接： <a class="post-url" href="/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/" title="Redis八股文">http://muquanrui.com/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/</a></p>
         <footer>
-            <a href="http://vor.ink">
+            <a href="http://muquanrui.com">
                 <img src="/images/logo.png" alt="MU Quanrui">
                 MU Quanrui
             </a>
@@ -794,7 +794,7 @@ OK</code></pre>
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/&title=《Redis八股文》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/&title=《Redis八股文》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -804,22 +804,22 @@ OK</code></pre>
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/&title=《Redis八股文》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/&title=《Redis八股文》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Redis八股文》 — Quanrui's Blog&url=http://vor.ink/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Redis八股文》 — Quanrui's Blog&url=http://muquanrui.com/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/&via=http://muquanrui.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -829,7 +829,7 @@ OK</code></pre>
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2022/06/13/%E9%9D%A2%E8%AF%95/Redis%E5%85%AB%E8%82%A1%E6%96%87/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -937,7 +937,7 @@ OK</code></pre>
 
 <script>
   var mihoConfig = {
-      root: "http://vor.ink",
+      root: "http://muquanrui.com",
       animate: true,
       isHome: false,
       share: true,

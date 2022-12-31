@@ -11,18 +11,18 @@
   <meta name="description" content="8.1 为什么要使用泛型程序设计泛型程序设计（Generic programming）意味着编写的代码可以被很多不同类型的对象所重用。 8.1.1 类型参数的好处泛型提供了类型参数（type parameter）：ArrayList&lt;String&gt; files &#x3D; new ArrayList&lt;String&gt;() 调用get时，不需要进行强制类型转换：String filen">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java核心技术卷I第8章 泛型程序设计">
-<meta property="og:url" content="http://vor.ink/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:url" content="http://muquanrui.com/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/index.html">
 <meta property="og:site_name" content="Quanrui&#39;s Blog">
 <meta property="og:description" content="8.1 为什么要使用泛型程序设计泛型程序设计（Generic programming）意味着编写的代码可以被很多不同类型的对象所重用。 8.1.1 类型参数的好处泛型提供了类型参数（type parameter）：ArrayList&lt;String&gt; files &#x3D; new ArrayList&lt;String&gt;() 调用get时，不需要进行强制类型转换：String filen">
 <meta property="og:locale">
-<meta property="og:image" content="http://vor.ink/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/images/1614722086954.png">
+<meta property="og:image" content="http://muquanrui.com/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/images/1614722086954.png">
 <meta property="article:published_time" content="2021-03-02T07:17:05.000Z">
 <meta property="article:modified_time" content="2021-07-15T01:43:52.886Z">
 <meta property="article:author" content="MU Quanrui">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Java核心技术卷I">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://vor.ink/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/images/1614722086954.png">
+<meta name="twitter:image" content="http://muquanrui.com/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/images/1614722086954.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -327,9 +327,9 @@ pair.setSecond(aDate);</code></pre>
             <div class="post-copyright">
     <div class="content">
         <p>最后更新： 2021年07月15日 09:43</p>
-        <p>原始链接： <a class="post-url" href="/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" title="Java核心技术卷I第8章 泛型程序设计">http://vor.ink/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</a></p>
+        <p>原始链接： <a class="post-url" href="/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" title="Java核心技术卷I第8章 泛型程序设计">http://muquanrui.com/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</a></p>
         <footer>
-            <a href="http://vor.ink">
+            <a href="http://muquanrui.com">
                 <img src="/images/logo.png" alt="MU Quanrui">
                 MU Quanrui
             </a>
@@ -384,7 +384,7 @@ pair.setSecond(aDate);</code></pre>
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/&title=《Java核心技术卷I第8章 泛型程序设计》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/&title=《Java核心技术卷I第8章 泛型程序设计》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -394,22 +394,22 @@ pair.setSecond(aDate);</code></pre>
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/&title=《Java核心技术卷I第8章 泛型程序设计》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/&title=《Java核心技术卷I第8章 泛型程序设计》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java核心技术卷I第8章 泛型程序设计》 — Quanrui's Blog&url=http://vor.ink/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java核心技术卷I第8章 泛型程序设计》 — Quanrui's Blog&url=http://muquanrui.com/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/&via=http://muquanrui.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -419,7 +419,7 @@ pair.setSecond(aDate);</code></pre>
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2021/03/02/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC8%E7%AB%A0%20%E6%B3%9B%E5%9E%8B%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -527,7 +527,7 @@ pair.setSecond(aDate);</code></pre>
 
 <script>
   var mihoConfig = {
-      root: "http://vor.ink",
+      root: "http://muquanrui.com",
       animate: true,
       isHome: false,
       share: true,

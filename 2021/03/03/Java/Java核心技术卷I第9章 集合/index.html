@@ -11,28 +11,28 @@
   <meta name="description" content="9.1 Java集合框架9.1.1 将集合的接口与实现分离Java集合类库将接口与实现分离。 例如队列（queue）。 pubic interface Queue&lt;E&gt;&amp;#123;     void add(E element);     E remove();     int size(); &amp;#125; 队列接口指出可以在尾部添加元素，在头部删除元素，并可以查看队列中的元素个数。但">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java核心技术卷I第9章 集合">
-<meta property="og:url" content="http://vor.ink/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/index.html">
+<meta property="og:url" content="http://muquanrui.com/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/index.html">
 <meta property="og:site_name" content="Quanrui&#39;s Blog">
 <meta property="og:description" content="9.1 Java集合框架9.1.1 将集合的接口与实现分离Java集合类库将接口与实现分离。 例如队列（queue）。 pubic interface Queue&lt;E&gt;&amp;#123;     void add(E element);     E remove();     int size(); &amp;#125; 队列接口指出可以在尾部添加元素，在头部删除元素，并可以查看队列中的元素个数。但">
 <meta property="og:locale">
-<meta property="og:image" content="http://vor.ink/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614812720789.png">
-<meta property="og:image" content="http://vor.ink/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614812895701.png">
-<meta property="og:image" content="http://vor.ink/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614813052441.png">
-<meta property="og:image" content="http://vor.ink/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614813555968.png">
-<meta property="og:image" content="http://vor.ink/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614813576202.png">
-<meta property="og:image" content="http://vor.ink/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614813918832.png">
-<meta property="og:image" content="http://vor.ink/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614813940034.png">
-<meta property="og:image" content="http://vor.ink/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1615277124258.png">
-<meta property="og:image" content="http://vor.ink/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1615277753287.png">
-<meta property="og:image" content="http://vor.ink/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1615290310040.png">
-<meta property="og:image" content="http://vor.ink/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1616497245975.png">
+<meta property="og:image" content="http://muquanrui.com/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614812720789.png">
+<meta property="og:image" content="http://muquanrui.com/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614812895701.png">
+<meta property="og:image" content="http://muquanrui.com/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614813052441.png">
+<meta property="og:image" content="http://muquanrui.com/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614813555968.png">
+<meta property="og:image" content="http://muquanrui.com/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614813576202.png">
+<meta property="og:image" content="http://muquanrui.com/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614813918832.png">
+<meta property="og:image" content="http://muquanrui.com/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614813940034.png">
+<meta property="og:image" content="http://muquanrui.com/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1615277124258.png">
+<meta property="og:image" content="http://muquanrui.com/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1615277753287.png">
+<meta property="og:image" content="http://muquanrui.com/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1615290310040.png">
+<meta property="og:image" content="http://muquanrui.com/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1616497245975.png">
 <meta property="article:published_time" content="2021-03-03T15:44:08.000Z">
 <meta property="article:modified_time" content="2021-07-15T01:43:54.596Z">
 <meta property="article:author" content="MU Quanrui">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Java核心技术卷I">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://vor.ink/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614812720789.png">
+<meta name="twitter:image" content="http://muquanrui.com/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/images/1614812720789.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -427,9 +427,9 @@ String[] values = (String[]) staff.toArray(); // Error!</code></pre>
             <div class="post-copyright">
     <div class="content">
         <p>最后更新： 2021年07月15日 09:43</p>
-        <p>原始链接： <a class="post-url" href="/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/" title="Java核心技术卷I第9章 集合">http://vor.ink/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/</a></p>
+        <p>原始链接： <a class="post-url" href="/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/" title="Java核心技术卷I第9章 集合">http://muquanrui.com/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/</a></p>
         <footer>
-            <a href="http://vor.ink">
+            <a href="http://muquanrui.com">
                 <img src="/images/logo.png" alt="MU Quanrui">
                 MU Quanrui
             </a>
@@ -484,7 +484,7 @@ String[] values = (String[]) staff.toArray(); // Error!</code></pre>
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/&title=《Java核心技术卷I第9章 集合》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/&title=《Java核心技术卷I第9章 集合》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -494,22 +494,22 @@ String[] values = (String[]) staff.toArray(); // Error!</code></pre>
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/&title=《Java核心技术卷I第9章 集合》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/&title=《Java核心技术卷I第9章 集合》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java核心技术卷I第9章 集合》 — Quanrui's Blog&url=http://vor.ink/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java核心技术卷I第9章 集合》 — Quanrui's Blog&url=http://muquanrui.com/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/&via=http://muquanrui.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -519,7 +519,7 @@ String[] values = (String[]) staff.toArray(); // Error!</code></pre>
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2021/03/03/Java/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I%E7%AC%AC9%E7%AB%A0%20%E9%9B%86%E5%90%88/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -627,7 +627,7 @@ String[] values = (String[]) staff.toArray(); // Error!</code></pre>
 
 <script>
   var mihoConfig = {
-      root: "http://vor.ink",
+      root: "http://muquanrui.com",
       animate: true,
       isHome: false,
       share: true,

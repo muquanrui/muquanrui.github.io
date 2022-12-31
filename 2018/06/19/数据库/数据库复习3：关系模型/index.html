@@ -11,7 +11,7 @@
   <meta name="description" content="一、基本术语关系数据结构关系：关系是由行和列组成的表。 属性：属性是关系中命名的列。 域：域是一个或多个属性的取值集合。用户可以通过它来集中定义属性取值的含义与范围。 元组：关系中的每一行。 关系的结构、域说明以及所有取值约束，统称为关系的内涵（intension），通常是固定的，除非关系的意义发生改变而需要加入另外的属性。元组集成为关系的外延（extension）或状态（state），经常发生改">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库复习3：关系模型">
-<meta property="og:url" content="http://vor.ink/2018/06/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A03%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:url" content="http://muquanrui.com/2018/06/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A03%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Quanrui&#39;s Blog">
 <meta property="og:description" content="一、基本术语关系数据结构关系：关系是由行和列组成的表。 属性：属性是关系中命名的列。 域：域是一个或多个属性的取值集合。用户可以通过它来集中定义属性取值的含义与范围。 元组：关系中的每一行。 关系的结构、域说明以及所有取值约束，统称为关系的内涵（intension），通常是固定的，除非关系的意义发生改变而需要加入另外的属性。元组集成为关系的外延（extension）或状态（state），经常发生改">
 <meta property="og:locale">
@@ -240,9 +240,9 @@
             <div class="post-copyright">
     <div class="content">
         <p>最后更新： 2021年07月15日 09:15</p>
-        <p>原始链接： <a class="post-url" href="/2018/06/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A03%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/" title="数据库复习3：关系模型">http://vor.ink/2018/06/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A03%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/</a></p>
+        <p>原始链接： <a class="post-url" href="/2018/06/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A03%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/" title="数据库复习3：关系模型">http://muquanrui.com/2018/06/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A03%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/</a></p>
         <footer>
-            <a href="http://vor.ink">
+            <a href="http://muquanrui.com">
                 <img src="/images/logo.png" alt="MU Quanrui">
                 MU Quanrui
             </a>
@@ -297,7 +297,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2018/06/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A03%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/&title=《数据库复习3：关系模型》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2018/06/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A03%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/&title=《数据库复习3：关系模型》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -307,22 +307,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2018/06/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A03%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/&title=《数据库复习3：关系模型》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2018/06/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A03%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/&title=《数据库复习3：关系模型》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2018/06/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A03%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2018/06/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A03%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据库复习3：关系模型》 — Quanrui's Blog&url=http://vor.ink/2018/06/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A03%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据库复习3：关系模型》 — Quanrui's Blog&url=http://muquanrui.com/2018/06/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A03%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/&via=http://muquanrui.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2018/06/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A03%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2018/06/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A03%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -332,7 +332,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2018/06/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A03%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2018/06/19/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A03%EF%BC%9A%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -440,7 +440,7 @@
 
 <script>
   var mihoConfig = {
-      root: "http://vor.ink",
+      root: "http://muquanrui.com",
       animate: true,
       isHome: false,
       share: true,

@@ -11,23 +11,23 @@
   <meta name="description" content="1 面向对象的特征二：继承性1.1 继承性的优点 减少了代码的冗余，提高了代码的复用性 便于功能的扩展 为之后多态性的使用，提供了前提   1.2 Java继承的格式和说明class A extends B&amp;#123;&amp;#125;  A：子类、派生类、subclass B：父类、超类、基类、superclass  子类继承父类后：  体现：一旦子类A继承父类B以后，子类A中就获取了父类B中声明的所">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java笔记五：面向对象-中">
-<meta property="og:url" content="http://vor.ink/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/index.html">
+<meta property="og:url" content="http://muquanrui.com/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/index.html">
 <meta property="og:site_name" content="Quanrui&#39;s Blog">
 <meta property="og:description" content="1 面向对象的特征二：继承性1.1 继承性的优点 减少了代码的冗余，提高了代码的复用性 便于功能的扩展 为之后多态性的使用，提供了前提   1.2 Java继承的格式和说明class A extends B&amp;#123;&amp;#125;  A：子类、派生类、subclass B：父类、超类、基类、superclass  子类继承父类后：  体现：一旦子类A继承父类B以后，子类A中就获取了父类B中声明的所">
 <meta property="og:locale">
-<meta property="og:image" content="http://vor.ink/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/images/1629814368426.png">
-<meta property="og:image" content="http://vor.ink/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/images/1629815489881.png">
-<meta property="og:image" content="http://vor.ink/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/images/1629817773923.png">
-<meta property="og:image" content="http://vor.ink/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/images/1629818821851.png">
-<meta property="og:image" content="http://vor.ink/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/images/1629820804592.png">
-<meta property="og:image" content="http://vor.ink/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/images/1629820860185.png">
+<meta property="og:image" content="http://muquanrui.com/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/images/1629814368426.png">
+<meta property="og:image" content="http://muquanrui.com/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/images/1629815489881.png">
+<meta property="og:image" content="http://muquanrui.com/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/images/1629817773923.png">
+<meta property="og:image" content="http://muquanrui.com/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/images/1629818821851.png">
+<meta property="og:image" content="http://muquanrui.com/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/images/1629820804592.png">
+<meta property="og:image" content="http://muquanrui.com/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/images/1629820860185.png">
 <meta property="article:published_time" content="2021-08-24T08:08:02.000Z">
 <meta property="article:modified_time" content="2021-08-25T06:50:28.069Z">
 <meta property="article:author" content="MU Quanrui">
 <meta property="article:tag" content="Java笔记">
 <meta property="article:tag" content="Java基础">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://vor.ink/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/images/1629814368426.png">
+<meta name="twitter:image" content="http://muquanrui.com/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/images/1629814368426.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -427,9 +427,9 @@ class Driver&#123;
             <div class="post-copyright">
     <div class="content">
         <p>最后更新： 2021年08月25日 14:50</p>
-        <p>原始链接： <a class="post-url" href="/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/" title="Java笔记五：面向对象-中">http://vor.ink/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/</a></p>
+        <p>原始链接： <a class="post-url" href="/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/" title="Java笔记五：面向对象-中">http://muquanrui.com/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/</a></p>
         <footer>
-            <a href="http://vor.ink">
+            <a href="http://muquanrui.com">
                 <img src="/images/logo.png" alt="MU Quanrui">
                 MU Quanrui
             </a>
@@ -484,7 +484,7 @@ class Driver&#123;
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/&title=《Java笔记五：面向对象-中》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/&title=《Java笔记五：面向对象-中》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -494,22 +494,22 @@ class Driver&#123;
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/&title=《Java笔记五：面向对象-中》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/&title=《Java笔记五：面向对象-中》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java笔记五：面向对象-中》 — Quanrui's Blog&url=http://vor.ink/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java笔记五：面向对象-中》 — Quanrui's Blog&url=http://muquanrui.com/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/&via=http://muquanrui.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -519,7 +519,7 @@ class Driver&#123;
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2021/08/24/Java/Java%E7%AC%94%E8%AE%B0%E4%BA%94%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%AD/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -627,7 +627,7 @@ class Driver&#123;
 
 <script>
   var mihoConfig = {
-      root: "http://vor.ink",
+      root: "http://muquanrui.com",
       animate: true,
       isHome: false,
       share: true,

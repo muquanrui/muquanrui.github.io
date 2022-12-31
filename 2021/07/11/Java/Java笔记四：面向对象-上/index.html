@@ -11,19 +11,19 @@
   <meta name="description" content="1 类与对象1.1 基本思想面向对象学习的三条主线：  Java类及类的成员：属性、方法、构造器；代码块、内部类 面向对象的大特征：封装性、继承性、多态性、(抽象性) 其它关键字：this、super、static、final、abstract、interface、package、import等  面向对象与面向过程（理解）：  面向过程：强调的是功能行为，以函数为最小单位，考虑怎么做。 面向对象">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java笔记四：面向对象-上">
-<meta property="og:url" content="http://vor.ink/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/index.html">
+<meta property="og:url" content="http://muquanrui.com/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/index.html">
 <meta property="og:site_name" content="Quanrui&#39;s Blog">
 <meta property="og:description" content="1 类与对象1.1 基本思想面向对象学习的三条主线：  Java类及类的成员：属性、方法、构造器；代码块、内部类 面向对象的大特征：封装性、继承性、多态性、(抽象性) 其它关键字：this、super、static、final、abstract、interface、package、import等  面向对象与面向过程（理解）：  面向过程：强调的是功能行为，以函数为最小单位，考虑怎么做。 面向对象">
 <meta property="og:locale">
-<meta property="og:image" content="http://vor.ink/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/images/1626015431895.png">
-<meta property="og:image" content="http://vor.ink/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/images/1626015595393.png">
-<meta property="og:image" content="http://vor.ink/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/images/1626015603609.png">
-<meta property="og:image" content="http://vor.ink/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/images/1626017512865.png">
-<meta property="og:image" content="http://vor.ink/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/images/1626017518818.png">
-<meta property="og:image" content="http://vor.ink/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/images/1626017884938.png">
-<meta property="og:image" content="http://vor.ink/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/images/1626018322076.png">
-<meta property="og:image" content="http://vor.ink/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/images/1626018334431.png">
-<meta property="og:image" content="http://vor.ink/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/images/1626018348077.png">
+<meta property="og:image" content="http://muquanrui.com/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/images/1626015431895.png">
+<meta property="og:image" content="http://muquanrui.com/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/images/1626015595393.png">
+<meta property="og:image" content="http://muquanrui.com/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/images/1626015603609.png">
+<meta property="og:image" content="http://muquanrui.com/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/images/1626017512865.png">
+<meta property="og:image" content="http://muquanrui.com/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/images/1626017518818.png">
+<meta property="og:image" content="http://muquanrui.com/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/images/1626017884938.png">
+<meta property="og:image" content="http://muquanrui.com/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/images/1626018322076.png">
+<meta property="og:image" content="http://muquanrui.com/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/images/1626018334431.png">
+<meta property="og:image" content="http://muquanrui.com/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/images/1626018348077.png">
 <meta property="article:published_time" content="2021-07-11T08:55:15.000Z">
 <meta property="article:modified_time" content="2021-07-15T01:55:04.599Z">
 <meta property="article:author" content="MU Quanrui">
@@ -31,7 +31,7 @@
 <meta property="article:tag" content="Java基础">
 <meta property="article:tag" content="B站尚硅谷">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://vor.ink/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/images/1626015431895.png">
+<meta name="twitter:image" content="http://muquanrui.com/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/images/1626015431895.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -675,9 +675,9 @@ public double getRadius()&#123;
             <div class="post-copyright">
     <div class="content">
         <p>最后更新： 2021年07月15日 09:55</p>
-        <p>原始链接： <a class="post-url" href="/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/" title="Java笔记四：面向对象-上">http://vor.ink/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/</a></p>
+        <p>原始链接： <a class="post-url" href="/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/" title="Java笔记四：面向对象-上">http://muquanrui.com/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/</a></p>
         <footer>
-            <a href="http://vor.ink">
+            <a href="http://muquanrui.com">
                 <img src="/images/logo.png" alt="MU Quanrui">
                 MU Quanrui
             </a>
@@ -732,7 +732,7 @@ public double getRadius()&#123;
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/&title=《Java笔记四：面向对象-上》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/&title=《Java笔记四：面向对象-上》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -742,22 +742,22 @@ public double getRadius()&#123;
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/&title=《Java笔记四：面向对象-上》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/&title=《Java笔记四：面向对象-上》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java笔记四：面向对象-上》 — Quanrui's Blog&url=http://vor.ink/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java笔记四：面向对象-上》 — Quanrui's Blog&url=http://muquanrui.com/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/&via=http://muquanrui.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -767,7 +767,7 @@ public double getRadius()&#123;
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2021/07/11/Java/Java%E7%AC%94%E8%AE%B0%E5%9B%9B%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E4%B8%8A/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -877,7 +877,7 @@ public double getRadius()&#123;
 
 <script>
   var mihoConfig = {
-      root: "http://vor.ink",
+      root: "http://muquanrui.com",
       animate: true,
       isHome: false,
       share: true,

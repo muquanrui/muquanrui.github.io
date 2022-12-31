@@ -11,36 +11,36 @@
   <meta name="description" content="1 概述1.1 简介设计模式（Design Pattern）代表了开发的最佳实践，通常被有经验的面向对象软件开发人员所采用。设计模式是软件开发人员在软件开发过程中面临的一般问题的解决方案，这些解决方案是众多软件开发人员经过相当长的一段时间的试验和错误总结出来的。 设计模式是一套被反复使用的、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了重用代码、让代码更容易被他人理解、保证代">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式">
-<meta property="og:url" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:url" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="Quanrui&#39;s Blog">
 <meta property="og:description" content="1 概述1.1 简介设计模式（Design Pattern）代表了开发的最佳实践，通常被有经验的面向对象软件开发人员所采用。设计模式是软件开发人员在软件开发过程中面临的一般问题的解决方案，这些解决方案是众多软件开发人员经过相当长的一段时间的试验和错误总结出来的。 设计模式是一套被反复使用的、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了重用代码、让代码更容易被他人理解、保证代">
 <meta property="og:locale">
-<meta property="og:image" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-71b22158f5b09dffa57a123d72ec4653_1440w.webp">
-<meta property="og:image" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-5c69cd9ff703377f7bbf37cee8199451_1440w.webp">
-<meta property="og:image" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-e39bdff5514c38e7797848372ac51365_1440w.webp">
-<meta property="og:image" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/16e6ec5ae3c30a3a~tplv-t2oaga2asx-zoom-in-crop-mark:4536:0:0:0.png">
-<meta property="og:image" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-b421c9c15219feba7dd9cf7681070682_1440w.webp">
-<meta property="og:image" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-e6a48521352fff8270e753ea4a79d9fb_1440w.webp">
-<meta property="og:image" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-04064db11797cf36229d67407fea1b83_1440w.webp">
-<meta property="og:image" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-616c153ec74d496a811ac50c83c3653c_1440w.webp">
-<meta property="og:image" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-3f331f3dc075abb4215413014688638f_1440w.webp">
-<meta property="og:image" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-431e044bbf26778a20dd788968e22aac_1440w.webp">
-<meta property="og:image" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-82cb160ed1566d1d04ea320575b54d5f_1440w.webp">
-<meta property="og:image" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-e651244eeca9c0881cbdd2add429e850_1440w.webp">
-<meta property="og:image" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/image-20221015224041919.png">
-<meta property="og:image" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/1419489-20190628144601084-563759643.png">
-<meta property="og:image" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/1419489-20190628154133368-906051111.png">
-<meta property="og:image" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/1419489-20190628170705865-1781414242.png">
-<meta property="og:image" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/20210315-builder-pattern.svg">
-<meta property="og:image" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/image-20221018134740838.png">
-<meta property="og:image" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/image-20221018134943141.png">
+<meta property="og:image" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-71b22158f5b09dffa57a123d72ec4653_1440w.webp">
+<meta property="og:image" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-5c69cd9ff703377f7bbf37cee8199451_1440w.webp">
+<meta property="og:image" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-e39bdff5514c38e7797848372ac51365_1440w.webp">
+<meta property="og:image" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/16e6ec5ae3c30a3a~tplv-t2oaga2asx-zoom-in-crop-mark:4536:0:0:0.png">
+<meta property="og:image" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-b421c9c15219feba7dd9cf7681070682_1440w.webp">
+<meta property="og:image" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-e6a48521352fff8270e753ea4a79d9fb_1440w.webp">
+<meta property="og:image" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-04064db11797cf36229d67407fea1b83_1440w.webp">
+<meta property="og:image" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-616c153ec74d496a811ac50c83c3653c_1440w.webp">
+<meta property="og:image" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-3f331f3dc075abb4215413014688638f_1440w.webp">
+<meta property="og:image" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-431e044bbf26778a20dd788968e22aac_1440w.webp">
+<meta property="og:image" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-82cb160ed1566d1d04ea320575b54d5f_1440w.webp">
+<meta property="og:image" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-e651244eeca9c0881cbdd2add429e850_1440w.webp">
+<meta property="og:image" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/image-20221015224041919.png">
+<meta property="og:image" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/1419489-20190628144601084-563759643.png">
+<meta property="og:image" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/1419489-20190628154133368-906051111.png">
+<meta property="og:image" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/1419489-20190628170705865-1781414242.png">
+<meta property="og:image" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/20210315-builder-pattern.svg">
+<meta property="og:image" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/image-20221018134740838.png">
+<meta property="og:image" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/image-20221018134943141.png">
 <meta property="article:published_time" content="2022-10-15T13:41:58.000Z">
 <meta property="article:modified_time" content="2022-10-28T15:59:17.689Z">
 <meta property="article:author" content="MU Quanrui">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-71b22158f5b09dffa57a123d72ec4653_1440w.webp">
+<meta name="twitter:image" content="http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/images/v2-71b22158f5b09dffa57a123d72ec4653_1440w.webp">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -3316,9 +3316,9 @@ public class FileLogger extends AbstractLogger &#123;
             <div class="post-copyright">
     <div class="content">
         <p>最后更新： 2022年10月28日 23:59</p>
-        <p>原始链接： <a class="post-url" href="/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</a></p>
+        <p>原始链接： <a class="post-url" href="/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</a></p>
         <footer>
-            <a href="http://vor.ink">
+            <a href="http://muquanrui.com">
                 <img src="/images/logo.png" alt="MU Quanrui">
                 MU Quanrui
             </a>
@@ -3373,7 +3373,7 @@ public class FileLogger extends AbstractLogger &#123;
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/&title=《设计模式》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/&title=《设计模式》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -3383,22 +3383,22 @@ public class FileLogger extends AbstractLogger &#123;
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/&title=《设计模式》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/&title=《设计模式》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《设计模式》 — Quanrui's Blog&url=http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《设计模式》 — Quanrui's Blog&url=http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/&via=http://muquanrui.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -3408,7 +3408,7 @@ public class FileLogger extends AbstractLogger &#123;
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2022/10/15/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -3516,7 +3516,7 @@ public class FileLogger extends AbstractLogger &#123;
 
 <script>
   var mihoConfig = {
-      root: "http://vor.ink",
+      root: "http://muquanrui.com",
       animate: true,
       isHome: false,
       share: true,

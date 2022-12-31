@@ -11,53 +11,53 @@
   <meta name="description" content="1 数据库基础数据库、数据库管理系统、数据库系统、数据库管理员 数据库：DataBase（DB）是信息的集合。或者说，数据库是由数据库管理系统管理的数据的集合。 数据库管理系统：Database Management System（DBMS）是一种操纵和管理数据库的大型软件，通常用于建立、使用和维护数据库。 数据库系统：Data Base System（DBS）通常由软件、数据库和数据管理员组成。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL八股文">
-<meta property="og:url" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/index.html">
+<meta property="og:url" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/index.html">
 <meta property="og:site_name" content="Quanrui&#39;s Blog">
 <meta property="og:description" content="1 数据库基础数据库、数据库管理系统、数据库系统、数据库管理员 数据库：DataBase（DB）是信息的集合。或者说，数据库是由数据库管理系统管理的数据的集合。 数据库管理系统：Database Management System（DBMS）是一种操纵和管理数据库的大型软件，通常用于建立、使用和维护数据库。 数据库系统：Data Base System（DBS）通常由软件、数据库和数据管理员组成。">
 <meta property="og:locale">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/E-R.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220604101814748.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220609125835526.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220609130007884.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220610091056527.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220610120415057.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220610120953750.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220610134450333.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220611115955692.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220611195455021.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220611195739813.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220611195455021.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220611195739813.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220611200506256.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220611200918415.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220611201203407.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220612105753676.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220612110622226.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220612110755663.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220612110725380.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/11.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/12.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/02-20220305234738688.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/03-20220305234742460.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/04-20220305234747840.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/02-20220305234828662.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/03-20220305235104445.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/04-20220305234956774.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/05-20220305234937243.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/06-20220305234907651.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220613100523252.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220613101057288.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220613101628665.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220613104506615.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220613104758765.png">
-<meta property="og:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220613175735717.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/E-R.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220604101814748.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220609125835526.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220609130007884.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220610091056527.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220610120415057.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220610120953750.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220610134450333.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220611115955692.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220611195455021.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220611195739813.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220611195455021.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220611195739813.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220611200506256.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220611200918415.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220611201203407.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220612105753676.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220612110622226.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220612110755663.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220612110725380.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/11.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/12.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/02-20220305234738688.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/03-20220305234742460.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/04-20220305234747840.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/02-20220305234828662.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/03-20220305235104445.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/04-20220305234956774.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/05-20220305234937243.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/06-20220305234907651.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220613100523252.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220613101057288.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220613101628665.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220613104506615.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220613104758765.png">
+<meta property="og:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220613175735717.png">
 <meta property="article:published_time" content="2022-06-03T23:39:08.000Z">
 <meta property="article:modified_time" content="2022-09-15T07:03:33.729Z">
 <meta property="article:author" content="MU Quanrui">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="八股文">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/E-R.png">
+<meta name="twitter:image" content="http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/images/E-R.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -1210,9 +1210,9 @@ creator_trx_id = 20</code></pre>
             <div class="post-copyright">
     <div class="content">
         <p>最后更新： 2022年09月15日 15:03</p>
-        <p>原始链接： <a class="post-url" href="/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/" title="MySQL八股文">http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/</a></p>
+        <p>原始链接： <a class="post-url" href="/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/" title="MySQL八股文">http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/</a></p>
         <footer>
-            <a href="http://vor.ink">
+            <a href="http://muquanrui.com">
                 <img src="/images/logo.png" alt="MU Quanrui">
                 MU Quanrui
             </a>
@@ -1267,7 +1267,7 @@ creator_trx_id = 20</code></pre>
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/&title=《MySQL八股文》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/&title=《MySQL八股文》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -1277,22 +1277,22 @@ creator_trx_id = 20</code></pre>
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/&title=《MySQL八股文》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/&title=《MySQL八股文》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《MySQL八股文》 — Quanrui's Blog&url=http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《MySQL八股文》 — Quanrui's Blog&url=http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/&via=http://muquanrui.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -1302,7 +1302,7 @@ creator_trx_id = 20</code></pre>
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2022/06/04/%E9%9D%A2%E8%AF%95/MySQL%E5%85%AB%E8%82%A1%E6%96%87/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -1410,7 +1410,7 @@ creator_trx_id = 20</code></pre>
 
 <script>
   var mihoConfig = {
-      root: "http://vor.ink",
+      root: "http://muquanrui.com",
       animate: true,
       isHome: false,
       share: true,

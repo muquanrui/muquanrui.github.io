@@ -11,21 +11,21 @@
   <meta name="description" content="指令（Instruction）  计算机的指令，通常包含操作码（Opcode）和操作数（Operand）两部分，操作码指出操作的性质，操作数给出操作的对象。 寻址方式就是指令中说明操作数所在地址的方法。 指令有单操作数、双操作数和无操作数之分。如果是双操作数，要用逗号分开，右边的为源操作数，左边的为目的操作数。  8086的寻址方式有以下几种：  立即数寻址：可直接从指令队列中取数，指令执行速度较">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机接口与通信 第3章 1">
-<meta property="og:url" content="http://vor.ink/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/index.html">
+<meta property="og:url" content="http://muquanrui.com/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/index.html">
 <meta property="og:site_name" content="Quanrui&#39;s Blog">
 <meta property="og:description" content="指令（Instruction）  计算机的指令，通常包含操作码（Opcode）和操作数（Operand）两部分，操作码指出操作的性质，操作数给出操作的对象。 寻址方式就是指令中说明操作数所在地址的方法。 指令有单操作数、双操作数和无操作数之分。如果是双操作数，要用逗号分开，右边的为源操作数，左边的为目的操作数。  8086的寻址方式有以下几种：  立即数寻址：可直接从指令队列中取数，指令执行速度较">
 <meta property="og:locale">
-<meta property="og:image" content="http://vor.ink/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/images/1546244620994.png">
-<meta property="og:image" content="http://vor.ink/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/images/1546245422919.png">
-<meta property="og:image" content="http://vor.ink/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/images/1546246015069.png">
-<meta property="og:image" content="http://vor.ink/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/images/1546246301135.png">
+<meta property="og:image" content="http://muquanrui.com/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/images/1546244620994.png">
+<meta property="og:image" content="http://muquanrui.com/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/images/1546245422919.png">
+<meta property="og:image" content="http://muquanrui.com/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/images/1546246015069.png">
+<meta property="og:image" content="http://muquanrui.com/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/images/1546246301135.png">
 <meta property="article:published_time" content="2018-12-31T08:08:47.000Z">
 <meta property="article:modified_time" content="2021-07-15T01:23:23.742Z">
 <meta property="article:author" content="MU Quanrui">
 <meta property="article:tag" content="大学课程">
 <meta property="article:tag" content="计算机接口与通信">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://vor.ink/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/images/1546244620994.png">
+<meta name="twitter:image" content="http://muquanrui.com/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/images/1546244620994.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -354,9 +354,9 @@ IN   AL，DX    ；AL←端口213H中的内容</code></pre>
             <div class="post-copyright">
     <div class="content">
         <p>最后更新： 2021年07月15日 09:23</p>
-        <p>原始链接： <a class="post-url" href="/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/" title="计算机接口与通信 第3章 1">http://vor.ink/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/</a></p>
+        <p>原始链接： <a class="post-url" href="/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/" title="计算机接口与通信 第3章 1">http://muquanrui.com/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/</a></p>
         <footer>
-            <a href="http://vor.ink">
+            <a href="http://muquanrui.com">
                 <img src="/images/logo.png" alt="MU Quanrui">
                 MU Quanrui
             </a>
@@ -411,7 +411,7 @@ IN   AL，DX    ；AL←端口213H中的内容</code></pre>
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/&title=《计算机接口与通信 第3章 1》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/&title=《计算机接口与通信 第3章 1》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -421,22 +421,22 @@ IN   AL，DX    ；AL←端口213H中的内容</code></pre>
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/&title=《计算机接口与通信 第3章 1》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/&title=《计算机接口与通信 第3章 1》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《计算机接口与通信 第3章 1》 — Quanrui's Blog&url=http://vor.ink/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《计算机接口与通信 第3章 1》 — Quanrui's Blog&url=http://muquanrui.com/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/&via=http://muquanrui.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -446,7 +446,7 @@ IN   AL，DX    ；AL←端口213H中的内容</code></pre>
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2018/12/31/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1%20%E7%AC%AC3%E7%AB%A0%201/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -554,7 +554,7 @@ IN   AL，DX    ；AL←端口213H中的内容</code></pre>
 
 <script>
   var mihoConfig = {
-      root: "http://vor.ink",
+      root: "http://muquanrui.com",
       animate: true,
       isHome: false,
       share: true,

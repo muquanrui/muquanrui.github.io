@@ -11,21 +11,21 @@
   <meta name="description" content="1 安装MySQL直接使用apt进行安装，默认将安装最新版本的MySQL（2022年3月最新版本为8.0.28）。 sudo apt-get install mysql-server  查看MySQL服务，如果已经成功启动说明安装成功。 systemctl status mysql  2 设置root用户的密码mysql -uroot -p 此时使用root账户登录数据库发现并不需要输入密码，直接">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu20.04安装MySQL记录">
-<meta property="og:url" content="http://vor.ink/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:url" content="http://muquanrui.com/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Quanrui&#39;s Blog">
 <meta property="og:description" content="1 安装MySQL直接使用apt进行安装，默认将安装最新版本的MySQL（2022年3月最新版本为8.0.28）。 sudo apt-get install mysql-server  查看MySQL服务，如果已经成功启动说明安装成功。 systemctl status mysql  2 设置root用户的密码mysql -uroot -p 此时使用root账户登录数据库发现并不需要输入密码，直接">
 <meta property="og:locale">
-<meta property="og:image" content="http://vor.ink/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647477925688.png">
-<meta property="og:image" content="http://vor.ink/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647478430003.png">
-<meta property="og:image" content="http://vor.ink/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647478688133.png">
-<meta property="og:image" content="http://vor.ink/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647479264810.png">
-<meta property="og:image" content="http://vor.ink/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647479456086.png">
-<meta property="og:image" content="http://vor.ink/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647479596501.png">
-<meta property="og:image" content="http://vor.ink/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647481428463.png">
-<meta property="og:image" content="http://vor.ink/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647481676716.png">
-<meta property="og:image" content="http://vor.ink/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647481913185.png">
-<meta property="og:image" content="http://vor.ink/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647482106911.png">
-<meta property="og:image" content="http://vor.ink/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647482407489.png">
+<meta property="og:image" content="http://muquanrui.com/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647477925688.png">
+<meta property="og:image" content="http://muquanrui.com/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647478430003.png">
+<meta property="og:image" content="http://muquanrui.com/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647478688133.png">
+<meta property="og:image" content="http://muquanrui.com/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647479264810.png">
+<meta property="og:image" content="http://muquanrui.com/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647479456086.png">
+<meta property="og:image" content="http://muquanrui.com/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647479596501.png">
+<meta property="og:image" content="http://muquanrui.com/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647481428463.png">
+<meta property="og:image" content="http://muquanrui.com/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647481676716.png">
+<meta property="og:image" content="http://muquanrui.com/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647481913185.png">
+<meta property="og:image" content="http://muquanrui.com/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647482106911.png">
+<meta property="og:image" content="http://muquanrui.com/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647482407489.png">
 <meta property="article:published_time" content="2022-03-16T17:38:34.000Z">
 <meta property="article:modified_time" content="2022-03-17T02:50:46.306Z">
 <meta property="article:author" content="MU Quanrui">
@@ -33,7 +33,7 @@
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Ubuntu">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://vor.ink/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647477925688.png">
+<meta name="twitter:image" content="http://muquanrui.com/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/images/1647477925688.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -280,9 +280,9 @@ sudo vi mysqld.cnf </code></pre>
             <div class="post-copyright">
     <div class="content">
         <p>最后更新： 2022年03月17日 10:50</p>
-        <p>原始链接： <a class="post-url" href="/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/" title="Ubuntu20.04安装MySQL记录">http://vor.ink/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/</a></p>
+        <p>原始链接： <a class="post-url" href="/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/" title="Ubuntu20.04安装MySQL记录">http://muquanrui.com/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/</a></p>
         <footer>
-            <a href="http://vor.ink">
+            <a href="http://muquanrui.com">
                 <img src="/images/logo.png" alt="MU Quanrui">
                 MU Quanrui
             </a>
@@ -337,7 +337,7 @@ sudo vi mysqld.cnf </code></pre>
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/&title=《Ubuntu20.04安装MySQL记录》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/&title=《Ubuntu20.04安装MySQL记录》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -347,22 +347,22 @@ sudo vi mysqld.cnf </code></pre>
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/&title=《Ubuntu20.04安装MySQL记录》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/&title=《Ubuntu20.04安装MySQL记录》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu20.04安装MySQL记录》 — Quanrui's Blog&url=http://vor.ink/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Ubuntu20.04安装MySQL记录》 — Quanrui's Blog&url=http://muquanrui.com/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/&via=http://muquanrui.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -372,7 +372,7 @@ sudo vi mysqld.cnf </code></pre>
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2022/03/17/Linux/Ubuntu20.04%E5%AE%89%E8%A3%85MySQL%E8%AE%B0%E5%BD%95/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -482,7 +482,7 @@ sudo vi mysqld.cnf </code></pre>
 
 <script>
   var mihoConfig = {
-      root: "http://vor.ink",
+      root: "http://muquanrui.com",
       animate: true,
       isHome: false,
       share: true,

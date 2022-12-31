@@ -11,22 +11,22 @@
   <meta name="description" content="1 程序、进程、线程的理解程序(programm)  概念：是为完成特定任务、用某种语言编写的一组指令的集合。即指一段静态的代码。  进程(process)  概念：程序的一次执行过程，或是正在运行的一个程序。 说明：进程作为资源分配的单位，系统在运行时会为每个进程分配不同的内存区域  线程(thread)  概念：进程可进一步细化为线程，是一个程序内部的一条执行路径。 说明：线程作为调度和执行的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java笔记八：多线程">
-<meta property="og:url" content="http://vor.ink/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.html">
+<meta property="og:url" content="http://muquanrui.com/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Quanrui&#39;s Blog">
 <meta property="og:description" content="1 程序、进程、线程的理解程序(programm)  概念：是为完成特定任务、用某种语言编写的一组指令的集合。即指一段静态的代码。  进程(process)  概念：程序的一次执行过程，或是正在运行的一个程序。 说明：进程作为资源分配的单位，系统在运行时会为每个进程分配不同的内存区域  线程(thread)  概念：进程可进一步细化为线程，是一个程序内部的一条执行路径。 说明：线程作为调度和执行的">
 <meta property="og:locale">
-<meta property="og:image" content="http://vor.ink/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/images/1629881770023.png">
-<meta property="og:image" content="http://vor.ink/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/images/1629881782063.png">
-<meta property="og:image" content="http://vor.ink/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/images/1629882135302.png">
-<meta property="og:image" content="http://vor.ink/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/images/1629882951229.png">
-<meta property="og:image" content="http://vor.ink/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/images/1629883018106.png">
+<meta property="og:image" content="http://muquanrui.com/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/images/1629881770023.png">
+<meta property="og:image" content="http://muquanrui.com/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/images/1629881782063.png">
+<meta property="og:image" content="http://muquanrui.com/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/images/1629882135302.png">
+<meta property="og:image" content="http://muquanrui.com/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/images/1629882951229.png">
+<meta property="og:image" content="http://muquanrui.com/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/images/1629883018106.png">
 <meta property="article:published_time" content="2021-08-25T02:48:57.000Z">
 <meta property="article:modified_time" content="2021-08-25T11:32:50.000Z">
 <meta property="article:author" content="MU Quanrui">
 <meta property="article:tag" content="Java笔记">
 <meta property="article:tag" content="Java高级">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://vor.ink/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/images/1629881770023.png">
+<meta name="twitter:image" content="http://muquanrui.com/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/images/1629881770023.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -568,9 +568,9 @@ public class ThreadPool &#123;
             <div class="post-copyright">
     <div class="content">
         <p>最后更新： 2021年08月25日 19:32</p>
-        <p>原始链接： <a class="post-url" href="/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/" title="Java笔记八：多线程">http://vor.ink/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/</a></p>
+        <p>原始链接： <a class="post-url" href="/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/" title="Java笔记八：多线程">http://muquanrui.com/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/</a></p>
         <footer>
-            <a href="http://vor.ink">
+            <a href="http://muquanrui.com">
                 <img src="/images/logo.png" alt="MU Quanrui">
                 MU Quanrui
             </a>
@@ -625,7 +625,7 @@ public class ThreadPool &#123;
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/&title=《Java笔记八：多线程》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/&title=《Java笔记八：多线程》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -635,22 +635,22 @@ public class ThreadPool &#123;
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/&title=《Java笔记八：多线程》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/&title=《Java笔记八：多线程》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java笔记八：多线程》 — Quanrui's Blog&url=http://vor.ink/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java笔记八：多线程》 — Quanrui's Blog&url=http://muquanrui.com/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/&via=http://muquanrui.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -660,7 +660,7 @@ public class ThreadPool &#123;
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2021/08/25/Java/Java%E7%AC%94%E8%AE%B0%E5%85%AB%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -768,7 +768,7 @@ public class ThreadPool &#123;
 
 <script>
   var mihoConfig = {
-      root: "http://vor.ink",
+      root: "http://muquanrui.com",
       animate: true,
       isHome: false,
       share: true,

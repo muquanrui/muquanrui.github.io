@@ -11,21 +11,21 @@
   <meta name="description" content="1 泛型的理解所谓泛型，就是允许在定义类、接口时通过一个标识表示类中某个属性的类型或者是某个方法的返回值及参数类型。这个类型参数将在使用时（例如，继承或实现这个接口，用这个类型声明变量、创建对象时）确定（即传入实际的类型参数，也称为类型实参）。 集合容器类在设计阶段&#x2F;声明阶段不能确定这个容器到底实际存的是什么类型的对象，所以在JDK1.5之前只能把元素类型设计为Object，JDK1.5之后使用泛">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java笔记十二：泛型">
-<meta property="og:url" content="http://vor.ink/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/index.html">
+<meta property="og:url" content="http://muquanrui.com/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Quanrui&#39;s Blog">
 <meta property="og:description" content="1 泛型的理解所谓泛型，就是允许在定义类、接口时通过一个标识表示类中某个属性的类型或者是某个方法的返回值及参数类型。这个类型参数将在使用时（例如，继承或实现这个接口，用这个类型声明变量、创建对象时）确定（即传入实际的类型参数，也称为类型实参）。 集合容器类在设计阶段&#x2F;声明阶段不能确定这个容器到底实际存的是什么类型的对象，所以在JDK1.5之前只能把元素类型设计为Object，JDK1.5之后使用泛">
 <meta property="og:locale">
-<meta property="og:image" content="http://vor.ink/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/images/1631444886959.png">
-<meta property="og:image" content="http://vor.ink/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/images/1631444928379.png">
-<meta property="og:image" content="http://vor.ink/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/images/1631605820627.png">
-<meta property="og:image" content="http://vor.ink/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/images/1631605835173.png">
+<meta property="og:image" content="http://muquanrui.com/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/images/1631444886959.png">
+<meta property="og:image" content="http://muquanrui.com/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/images/1631444928379.png">
+<meta property="og:image" content="http://muquanrui.com/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/images/1631605820627.png">
+<meta property="og:image" content="http://muquanrui.com/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/images/1631605835173.png">
 <meta property="article:published_time" content="2021-09-12T05:04:13.000Z">
 <meta property="article:modified_time" content="2021-09-14T07:10:32.000Z">
 <meta property="article:author" content="MU Quanrui">
 <meta property="article:tag" content="Java笔记">
 <meta property="article:tag" content="Java高级">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://vor.ink/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/images/1631444886959.png">
+<meta name="twitter:image" content="http://muquanrui.com/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/images/1631444886959.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -576,9 +576,9 @@
             <div class="post-copyright">
     <div class="content">
         <p>最后更新： 2021年09月14日 15:10</p>
-        <p>原始链接： <a class="post-url" href="/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/" title="Java笔记十二：泛型">http://vor.ink/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/</a></p>
+        <p>原始链接： <a class="post-url" href="/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/" title="Java笔记十二：泛型">http://muquanrui.com/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/</a></p>
         <footer>
-            <a href="http://vor.ink">
+            <a href="http://muquanrui.com">
                 <img src="/images/logo.png" alt="MU Quanrui">
                 MU Quanrui
             </a>
@@ -633,7 +633,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/&title=《Java笔记十二：泛型》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/&title=《Java笔记十二：泛型》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -643,22 +643,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/&title=《Java笔记十二：泛型》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/&title=《Java笔记十二：泛型》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java笔记十二：泛型》 — Quanrui's Blog&url=http://vor.ink/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java笔记十二：泛型》 — Quanrui's Blog&url=http://muquanrui.com/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/&via=http://muquanrui.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -668,7 +668,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2021/09/12/Java/Java%E7%AC%94%E8%AE%B0%E5%8D%81%E4%BA%8C%EF%BC%9A%E6%B3%9B%E5%9E%8B/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -776,7 +776,7 @@
 
 <script>
   var mihoConfig = {
-      root: "http://vor.ink",
+      root: "http://muquanrui.com",
       animate: true,
       isHome: false,
       share: true,

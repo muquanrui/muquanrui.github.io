@@ -11,21 +11,21 @@
   <meta name="description" content="状态图（Statechart diagram）用于描述一个对象在其生存周期间的动态行为，表现一个对象所经历的状态序列，引起状态转移的事件（event），以及因状态转移而伴随的动作（action）。 核心元素1.圆角矩形表示状态2.状态之间包含文字描述的有向箭头线。  转换要素1.源状态：受转换影响的状态。2.目标状态：转换完成后的对象状态。3.触发事件：用来为转换定义一个事件，包括调用，改变，信号">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UML—状态图和活动图">
-<meta property="og:url" content="http://vor.ink/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/index.html">
+<meta property="og:url" content="http://muquanrui.com/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/index.html">
 <meta property="og:site_name" content="Quanrui&#39;s Blog">
 <meta property="og:description" content="状态图（Statechart diagram）用于描述一个对象在其生存周期间的动态行为，表现一个对象所经历的状态序列，引起状态转移的事件（event），以及因状态转移而伴随的动作（action）。 核心元素1.圆角矩形表示状态2.状态之间包含文字描述的有向箭头线。  转换要素1.源状态：受转换影响的状态。2.目标状态：转换完成后的对象状态。3.触发事件：用来为转换定义一个事件，包括调用，改变，信号">
 <meta property="og:locale">
-<meta property="og:image" content="http://vor.ink/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/images/1527956421451.jpg">
-<meta property="og:image" content="http://vor.ink/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/images/1527957222232.jpg">
-<meta property="og:image" content="http://vor.ink/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/images/1527957421524.jpg">
-<meta property="og:image" content="http://vor.ink/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/images/1527957434924.jpg">
+<meta property="og:image" content="http://muquanrui.com/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/images/1527956421451.jpg">
+<meta property="og:image" content="http://muquanrui.com/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/images/1527957222232.jpg">
+<meta property="og:image" content="http://muquanrui.com/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/images/1527957421524.jpg">
+<meta property="og:image" content="http://muquanrui.com/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/images/1527957434924.jpg">
 <meta property="article:published_time" content="2018-06-02T16:13:13.000Z">
 <meta property="article:modified_time" content="2021-07-15T01:11:15.237Z">
 <meta property="article:author" content="MU Quanrui">
 <meta property="article:tag" content="大学课程">
 <meta property="article:tag" content="UML">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://vor.ink/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/images/1527956421451.jpg">
+<meta name="twitter:image" content="http://muquanrui.com/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/images/1527956421451.jpg">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -231,9 +231,9 @@
             <div class="post-copyright">
     <div class="content">
         <p>最后更新： 2021年07月15日 09:11</p>
-        <p>原始链接： <a class="post-url" href="/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/" title="UML—状态图和活动图">http://vor.ink/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/</a></p>
+        <p>原始链接： <a class="post-url" href="/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/" title="UML—状态图和活动图">http://muquanrui.com/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/</a></p>
         <footer>
-            <a href="http://vor.ink">
+            <a href="http://muquanrui.com">
                 <img src="/images/logo.png" alt="MU Quanrui">
                 MU Quanrui
             </a>
@@ -288,7 +288,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/&title=《UML—状态图和活动图》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/&title=《UML—状态图和活动图》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -298,22 +298,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/&title=《UML—状态图和活动图》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/&title=《UML—状态图和活动图》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://vor.ink/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《UML—状态图和活动图》 — Quanrui's Blog&url=http://vor.ink/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《UML—状态图和活动图》 — Quanrui's Blog&url=http://muquanrui.com/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/&via=http://muquanrui.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://vor.ink/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -323,7 +323,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://vor.ink/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2018/06/03/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/UML%E2%80%94%E7%8A%B6%E6%80%81%E5%9B%BE%E5%92%8C%E6%B4%BB%E5%8A%A8%E5%9B%BE/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -431,7 +431,7 @@
 
 <script>
   var mihoConfig = {
-      root: "http://vor.ink",
+      root: "http://muquanrui.com",
       animate: true,
       isHome: false,
       share: true,
