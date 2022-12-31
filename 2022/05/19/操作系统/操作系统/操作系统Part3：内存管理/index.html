@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title>操作系统Part3：内存管理 | VorSonnenaufgang&#39;s Blog</title>
+  <title>操作系统Part3：内存管理 | Quanrui&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    <meta name="keywords" content="VorSonnenaufgang,VorSonnenaufgang's Blog" />
+    <meta name="keywords" content="Quanrui's Blog" />
   
   <meta name="description" content="1 内存的基础知识内存（Memory）是用于存放数据的硬件，程序执行前需要先被放到内存中才能被CPU处理。   程序员编写的代码会编译成CPU能够识别的二进制指令，指令告诉CPU要去内存的哪个地址存取数据，以及对数据做对应的处理。 内存中的地址分为物理地址和逻辑地址：  物理地址：绝对地址。 逻辑地址：相对地址。找到逻辑地址对应的起点，就能找到对应的物理地址。   装入操作，就是将逻辑地址装入内存">
 <meta property="og:type" content="article">
 <meta property="og:title" content="操作系统Part3：内存管理">
 <meta property="og:url" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/index.html">
-<meta property="og:site_name" content="VorSonnenaufgang&#39;s Blog">
+<meta property="og:site_name" content="Quanrui&#39;s Blog">
 <meta property="og:description" content="1 内存的基础知识内存（Memory）是用于存放数据的硬件，程序执行前需要先被放到内存中才能被CPU处理。   程序员编写的代码会编译成CPU能够识别的二进制指令，指令告诉CPU要去内存的哪个地址存取数据，以及对数据做对应的处理。 内存中的地址分为物理地址和逻辑地址：  物理地址：绝对地址。 逻辑地址：相对地址。找到逻辑地址对应的起点，就能找到对应的物理地址。   装入操作，就是将逻辑地址装入内存">
 <meta property="og:locale">
 <meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519132228587.png">
@@ -78,7 +78,7 @@
 <meta property="og:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220525114845986.png">
 <meta property="article:published_time" content="2022-05-19T05:15:45.000Z">
 <meta property="article:modified_time" content="2022-05-25T03:49:35.805Z">
-<meta property="article:author" content="VorSonnenaufgang">
+<meta property="article:author" content="MU Quanrui">
 <meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/images/image-20220519132228587.png">
@@ -137,7 +137,7 @@
 
             <div class="header-menu-container">
                 <a href="/" class="left">
-                    <span class="site-title">VorSonnenaufgang&#39;s Blog</span>
+                    <span class="site-title">Quanrui&#39;s Blog</span>
                 </a>
                 <nav id="header-menu-nav" class="right">
                     
@@ -182,7 +182,7 @@
                 <div id="header-title">
                     
                     <h2>
-                        VorSonnenaufgang&#39;s Blog
+                        Quanrui&#39;s Blog
                     </h2>
                     
                 </div>
@@ -197,7 +197,7 @@
             <nav class="header-nav">
                 <div class="social">
                     
-                        <a title="Home" target="_blank" href="//vor.ink">
+                        <a title="Home" target="_blank" href="//muquanrui.com">
                             <i class="fa fa-home fa-2x"></i></a>
                     
                         <a title="Github" target="_blank" href="//github.com/VorSonnenaufgang">
@@ -485,8 +485,8 @@
         <p>原始链接： <a class="post-url" href="/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="操作系统Part3：内存管理">http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</a></p>
         <footer>
             <a href="http://vor.ink">
-                <img src="/images/logo.png" alt="VorSonnenaufgang">
-                VorSonnenaufgang
+                <img src="/images/logo.png" alt="MU Quanrui">
+                MU Quanrui
             </a>
         </footer>
     </div>
@@ -539,7 +539,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/&title=《操作系统Part3：内存管理》 — VorSonnenaufgang's Blog&pic=cover.jpg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/&title=《操作系统Part3：内存管理》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -549,7 +549,7 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/&title=《操作系统Part3：内存管理》 — VorSonnenaufgang's Blog&source=Carpe diem." data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/&title=《操作系统Part3：内存管理》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -559,7 +559,7 @@
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《操作系统Part3：内存管理》 — VorSonnenaufgang's Blog&url=http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/&via=http://vor.ink" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《操作系统Part3：内存管理》 — Quanrui's Blog&url=http://vor.ink/2022/05/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FPart3%EF%BC%9A%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/&via=http://vor.ink" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -660,7 +660,7 @@
       <p>
         Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
         Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
-      &copy; 2018~2022 VorSonnenaufgang<br>
+      &copy; 2018~2022 MU Quanrui<br>
       </p>
     </div>
   </div>
