@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>RabbitMQ八股文 | Quanrui&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Quanrui's Blog" />
+  
+  <meta name="description" content="1 消息队列基础1.1 MQ 概述MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消息的容器。多用于分布式系统之间进行通信。 我们可以把消息队列看作是一个存放消息的容器，当我们需要使用消息的时候，直接从容器中取出消息供自己使用即可。    生产者：消息的发送方 消费者：消息的接收方  1.2 MQ 的优势 异步提速：提升用户体验和系统吞吐量   将用户的请求数据存储到消息">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RabbitMQ八股文">
+<meta property="og:url" content="http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/index.html">
+<meta property="og:site_name" content="Quanrui&#39;s Blog">
+<meta property="og:description" content="1 消息队列基础1.1 MQ 概述MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消息的容器。多用于分布式系统之间进行通信。 我们可以把消息队列看作是一个存放消息的容器，当我们需要使用消息的时候，直接从容器中取出消息供自己使用即可。    生产者：消息的发送方 消费者：消息的接收方  1.2 MQ 的优势 异步提速：提升用户体验和系统吞吐量   将用户的请求数据存储到消息">
+<meta property="og:locale">
+<meta property="og:image" content="http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220821102725533.png">
+<meta property="og:image" content="http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/images/Asynchronous-message-queue.png">
+<meta property="og:image" content="http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/images/%E5%89%8A%E5%B3%B0-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97.png">
+<meta property="og:image" content="http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/images/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97-%E8%A7%A3%E8%80%A6.png">
+<meta property="og:image" content="http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220821104130018.png">
+<meta property="og:image" content="http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220821114052132.png">
+<meta property="og:image" content="http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220821114139835.png">
+<meta property="og:image" content="http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220821114348260.png">
+<meta property="og:image" content="http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220821114917720.png">
+<meta property="og:image" content="http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220821115316938.png">
+<meta property="og:image" content="http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220821135759582.png">
+<meta property="og:image" content="http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220821140112062.png">
+<meta property="og:image" content="http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220821140300731.png">
+<meta property="og:image" content="http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220821140458491.png">
+<meta property="og:image" content="http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220821140646276.png">
+<meta property="og:image" content="http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220821140732535.png">
+<meta property="article:published_time" content="2022-08-21T02:23:42.000Z">
+<meta property="article:modified_time" content="2023-01-01T12:04:31.833Z">
+<meta property="article:author" content="MU Quanrui">
+<meta property="article:tag" content="Programming">
+<meta property="article:tag" content="Middleware">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/images/image-20220821102725533.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+ <!--加载prettify代码高亮样式-->
+<link href="/google-code-prettify/tranquil-heart.css" type="text/css" rel="stylesheet" />
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+
+  <!--加载条样式-->
+  <style>
+    .pace .pace-progress {
+    	background-image: linear-gradient(90deg, #F79533 0%, #F37055 15%, #EF4E7B 30%, #A166AB 44%, #5073B8 58%, #1098AD 72%, #07B39B 86%, #6DBA82 100%);
+    	height: 3px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+  </style>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <div id="background"></div><!--背景颜色/图片-->
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+
+        <div id="header-menu" class="header-menu-pos animated">
+
+
+<a target="_blank" rel="noopener" href="https://github.com/muquanrui" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#FFA500; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Quanrui&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/categories">
+                        <i class="fa fa-book"></i>
+                        <span>Categories</span>
+                    </a>
+                    
+                    <a  href="/tags">
+                        <i class="fa fa-tags"></i>
+                        <span>Tags</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Quanrui&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Carpe diem.
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Home" target="_blank" href="//muquanrui.com">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/muquanrui">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Google" target="_blank" href="//google.com">
+                            <i class="fa fa-google fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Programming/Middleware/RabbitMQ八股文" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      RabbitMQ八股文
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Middleware/">Middleware</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2022-08-21
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>          
+        </li>
+      </ul>
+       <span class="post-count">文章字数:3.8k字 &nbsp &nbsp  
+         阅读时长:13分钟</span>
+    </div>
+  
+        
+          
+      </header>
+    
+
+    <div class="article-entry post-content" itemprop="articleBody">
+
+    
+    
+
+
+
+      
+            
+            <h1 id="1-消息队列基础"><a href="#1-消息队列基础" class="headerlink" title="1 消息队列基础"></a>1 消息队列基础</h1><h2 id="1-1-MQ-概述"><a href="#1-1-MQ-概述" class="headerlink" title="1.1 MQ 概述"></a>1.1 MQ 概述</h2><p>MQ全称 Message Queue(消息队列)，是在消息的传输过程中保存消息的容器。多用于分布式系统之间进行通信。</p>
+<p>我们可以把消息队列看作是一个存放消息的容器，当我们需要使用消息的时候，直接从容器中取出消息供自己使用即可。</p>
+<img src="images/image-20220821102725533.png" alt="image-20220821102725533" style="zoom:50%;" />
+
+<ul>
+<li>生产者：消息的发送方</li>
+<li>消费者：消息的接收方</li>
+</ul>
+<h2 id="1-2-MQ-的优势"><a href="#1-2-MQ-的优势" class="headerlink" title="1.2 MQ 的优势"></a>1.2 MQ 的优势</h2><ol>
+<li><strong>异步提速</strong>：提升用户体验和系统吞吐量</li>
+</ol>
+<p><img src="images/Asynchronous-message-queue.png" alt="通过异步处理提高系统性能"></p>
+<p>将用户的请求数据存储到消息队列之后就立即返回结果给用户，随后系统再异步对消息进行消费。</p>
+<p>虽然用户请求数据写入消息队列之后就立即返回给用户了，但是请求数据在后续的业务校验、写数据库等操作中可能失败，因此使用消息队列进行异步处理之后，需要适当修改业务流程进行配合，比如用户在提交订单之后，订单数据写入消息队列，不能立即返回用户订单提交成功，需要在消息队列的订单消费者进程真正处理完该订单之后，甚至出库后，再通过电子邮件或短信通知用户订单成功，以免交易纠纷，比如我们平时手机订火车票和电影票的用户场景。</p>
+<ol start="2">
+<li><strong>削峰填谷</strong>：提高系统稳定性</li>
+</ol>
+<p><img src="images/%E5%89%8A%E5%B3%B0-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97.png" alt="削峰"></p>
+<p>面对秒杀等短时间激增业务请求的高并发场景，可以将先将高并发产生的事务消息存储在消息队列中，然后后端服务再慢慢根据自己的能力去消费这些消息，这样就避免请求过多直接把后端服务打垮掉。</p>
+<ol start="3">
+<li><strong>应用解耦</strong>：提高系统容错性和可维护性</li>
+</ol>
+<p><img src="images/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97-%E8%A7%A3%E8%80%A6.png" alt="解耦"></p>
+<p>如果模块之间都是直接调用，无疑增加了系统的耦合度，这让系统的维护和拓展变得麻烦，对一个模块功能的修改或者增加新的模块都会导致去修改原有模块。</p>
+<p>引入消息队列后，各个模块都是面向消息队列传递业务的，模块的变动和新增只用在该模块自身上针对消息队列进行编码，而不需要和其他系统有耦合，这显然也提高了系统的扩展性。</p>
+<h2 id="1-3-MQ-的劣势"><a href="#1-3-MQ-的劣势" class="headerlink" title="1.3 MQ 的劣势"></a>1.3 MQ 的劣势</h2><ol>
+<li>系统可用性降低：系统引入的外部依赖越多，系统稳定性越差。一旦 MQ 宕机，就会对业务造成影响，如何保证 MQ 的高可用？</li>
+<li>系统复杂度提高：MQ 的加入大大增加了系统的复杂度，以前系统间是同步的远程调用，现在是通过MQ进行异步调用，如何保证消息没有被重复消费？怎么处理消息丢失情况？怎么保证消息传递的顺序性？</li>
+<li>一致性问题：A 系统处理完业务，通过 MQ 给 B、C、D 三个系统发消息数据，如果 B 系统、C 系统处理成功，D 系统处理失败，如何保证消息数据处理的一致性?</li>
+</ol>
+<h2 id="1-4-MQ-的使用条件"><a href="#1-4-MQ-的使用条件" class="headerlink" title="1.4 MQ 的使用条件"></a>1.4 MQ 的使用条件</h2><p>使用 MQ 一般需要满足以下条件：</p>
+<ol>
+<li>生产者不需要从消费者处获得反馈。引入消息队列之前的直接调用，其接口的返回值应该为空，这才让下层的动作还没做时上层可以继续往后走，即所谓异步成为了可能。</li>
+<li>容许短暂的不一致性。</li>
+<li>确实是用了有效果。即解耦、提速、削峰这些方面的收益，超过加入 MQ、管理 MQ 这些成本。</li>
+</ol>
+<h2 id="1-5-JMS-amp-AMQP"><a href="#1-5-JMS-amp-AMQP" class="headerlink" title="1.5 JMS &amp; AMQP"></a>1.5 JMS &amp; AMQP</h2><p>AMQP，即 Advanced Message Queuing Protocol，一个提供统一消息服务的应用层标准高级消息队列协议（二进制应用层协议），是应用层协议的一个开放标准，为面向消息的中间件设计。基于此协议的客户端与消息中间件可传递消息，并不受客户端/中间件不同产品，不同的开发语言等条件的限制。</p>
+<p>JMS 即 Java 消息服务(Java Message Service)应用程序接口，是一个 Java 平台中关于面向消息中间件的API，很多消息中间件都实现了JMS规范，例如 ActiveMQ，RabbitMQ 官方没有提供 JMS 的实现包，但是开源社区有。</p>
+<h2 id="1-6-常见的消息队列对比"><a href="#1-6-常见的消息队列对比" class="headerlink" title="1.6 常见的消息队列对比"></a>1.6 常见的消息队列对比</h2><p><img src="images/image-20220821104130018.png" alt="image-20220821104130018"></p>
+<h1 id="2-RabbitMQ-基础"><a href="#2-RabbitMQ-基础" class="headerlink" title="2 RabbitMQ 基础"></a>2 RabbitMQ 基础</h1><h2 id="2-1-RabbitMQ-的主要概念"><a href="#2-1-RabbitMQ-的主要概念" class="headerlink" title="2.1 RabbitMQ 的主要概念"></a>2.1 RabbitMQ 的主要概念</h2><ul>
+<li>Broker：接收和分发消息的应用，RabbitMQ Server就是 Message Broker。</li>
+<li>Virtual host：出于多租户和安全因素设计的，把 AMQP 的基本组件划分到一个虚拟的分组中，类似于网络中的 namespace 概念。当多个不同的用户使用同一个 RabbitMQ server 提供的服务时，可以划分出多个vhost，每个用户在自己的 vhost 创建 exchange/queue 等。</li>
+<li>Connection：publisher/consumer 和 broker 之间的 TCP 连接。</li>
+<li>Channel：如果每一次访问 RabbitMQ 都建立一个 Connection，在消息量大的时候建立 TCP Connection 的开销将是巨大的，效率也较低。Channel 是在 connection 内部建立的逻辑连接，即建立在 TCP 链接上的虚拟链接，如果应用程序支持多线程，通常每个 thread 创建单独的 channel 进行通讯，AMQP method 包含了 channel id 帮助客户端和 message broker 识别 channel，所以 channel 之间是完全隔离的，从而使得一个 TCP 被多个线程共享。Channel 作为轻量级的 Connection 极大减少了操作系统建立 TCP connection 的开销。</li>
+<li>Exchange：交换机，message 到达 broker 的第一站，根据分发规则，匹配查询表中的 routing key，分发消息到 queue 中去。常用的类型有direct (point-to-point), topic (publish-subscribe) and fanout (multicast)</li>
+<li>Queue：先进先出队列，消息最终被送到这里等待 consumer 取走。</li>
+<li>Binding：exchange 和 queue 之间的虚拟连接，binding 中可以包含 routing key。Binding 信息被保存到 exchange 中的查询表中，用于 message 的分发依据。</li>
+</ul>
+<h2 id="2-2-RabbitMQ-的工作模式"><a href="#2-2-RabbitMQ-的工作模式" class="headerlink" title="2.2 RabbitMQ 的工作模式"></a>2.2 RabbitMQ 的工作模式</h2><h3 id="简单模式"><a href="#简单模式" class="headerlink" title="简单模式"></a>简单模式</h3><img src="images/image-20220821114052132.png" alt="image-20220821114052132" style="zoom:50%;" />
+
+<ul>
+<li>P: 生产者，也就是要发送消息的程序</li>
+<li>C: 消费者:消息的接收者，会一直等待消息到来</li>
+<li>queue: 消息队列，图中红色部分。类似一个邮箱，可以缓存消息，生产者向其中投递消息，消费者从其中取出消息</li>
+</ul>
+<h3 id="Work-queues-工作队列模式"><a href="#Work-queues-工作队列模式" class="headerlink" title="Work queues 工作队列模式"></a>Work queues 工作队列模式</h3><img src="images/image-20220821114139835.png" alt="image-20220821114139835" style="zoom:50%;" />
+
+<p>简单模式基础上增加了多个消费者，共同消费同一个队列中的消息</p>
+<ul>
+<li>消费者之间采用轮询的方式来消费</li>
+<li>应用场景：对于任务过重或任务较多情况使用工作队列可以提高任务处理的速度，例如短信服务部署多个， 只需要有一个节点成功发送即可</li>
+</ul>
+<h3 id="Pub-Sub-订阅模式"><a href="#Pub-Sub-订阅模式" class="headerlink" title="Pub/Sub 订阅模式"></a>Pub/Sub 订阅模式</h3><img src="images/image-20220821114348260.png" alt="image-20220821114348260" style="zoom:50%;" />
+
+<p>在订阅模型中，多了一个 Fanout 类型的 Exchange 角色，而且过程略有变化:</p>
+<ul>
+<li>P: 生产者，也就是要发送消息的程序，但是不再直接发送到队列中，而是发给X (Exchange)</li>
+<li>C: 消费者，消息的接收者，会一直等待消息到来</li>
+<li>Queue: 消息队列，接收消息、缓存消息</li>
+<li>Exchange: 交换机(X)。一方面，接收生产者发送的消息。另一方面，知道如何处理消息，例如递交给某个特别队列、递交给所有队列、或是将消息丢弃。到底如何操作，取决于Exchange的类型。Exchange有常见以下3种类型: <ul>
+<li>Fanout: 广播，将消息交给所有绑定到交换机的队列</li>
+<li>Direct: 定向，把消息交给符合指定routing key 的队列</li>
+<li>Topic: 通配符，把消息交给符合routing pattern (路由模式) 的队列</li>
+</ul>
+</li>
+<li>Exchange(交换机)只负责转发消息，不具备存储消息的能力，因此如果没有任何队列与 Exchange 绑定，或者没有符合路由规则的队列，那么消息会丢失!</li>
+</ul>
+<h3 id="Routing-路由模式"><a href="#Routing-路由模式" class="headerlink" title="Routing 路由模式"></a>Routing 路由模式</h3><img src="images/image-20220821114917720.png" alt="image-20220821114917720" style="zoom:50%;" />
+
+<ul>
+<li>Exchange 为 Direct 类型，队列与交换机的绑定，不能是任意绑定了，而是要指定一个 RoutingKey (路由key)</li>
+<li>消息的发送方在向Exchange发送消息时，也必须指定消息的 RoutingKey</li>
+<li>Exchange 不再把消息交给每一个绑定的队列，而是根据消息的 Routing Key 进行判断，只有队列的 Routingkey 与消息的 Routing key 完全一致，才会接收到消息</li>
+</ul>
+<h3 id="Topics-通配符模式"><a href="#Topics-通配符模式" class="headerlink" title="Topics 通配符模式"></a>Topics 通配符模式</h3><img src="images/image-20220821115316938.png" alt="image-20220821115316938" style="zoom:50%;" />
+
+<ul>
+<li>Exchange 为 Topic 类型，与 Direct 相比，都是可以根据 RoutingKey 把消息路由到不同的队列，只不过 Topic 类型 Exchange 可以让队列在绑定 Routing key 的时候使用通配符!</li>
+<li>Routingkey 一般都是有一个或多个单词组成，多个单词之间以”.”分割，例如: item.insert</li>
+<li>通配符规则: # 匹配一个或多个词，* 匹配不多不少恰好1个词，例如: item.# 能够匹配 item.insert.abc 或者 item.insert，item.* 只能匹配 item.insert</li>
+</ul>
+<h1 id="3-RabbitMQ-高级"><a href="#3-RabbitMQ-高级" class="headerlink" title="3 RabbitMQ 高级"></a>3 RabbitMQ 高级</h1><h2 id="3-1-消息的可靠性"><a href="#3-1-消息的可靠性" class="headerlink" title="3.1 消息的可靠性"></a>3.1 消息的可靠性</h2><p>RabbitMQ 主要有4种手段来保证消息的可靠性：</p>
+<ol>
+<li><p>持久化</p>
+<ul>
+<li>exchange要持久化</li>
+<li>queue要持久化</li>
+<li>message要持久化 </li>
+</ul>
+</li>
+<li><p>生产方确认 Confirm</p>
+</li>
+<li><p>消费方确认 Ack</p>
+</li>
+<li><p>Broker 高可用</p>
+</li>
+</ol>
+<h3 id="消息的可靠投递"><a href="#消息的可靠投递" class="headerlink" title="消息的可靠投递"></a>消息的可靠投递</h3><p>在使用 RabbitMQ 的时候，作为消息发送方希望杜绝任何消息丢失或者投递失败场景。RabbitMQ 为我们提供了两种方式用来控制消息的投递可靠性模式。</p>
+<ul>
+<li>confirm 确认模式</li>
+<li>return 退回模式</li>
+</ul>
+<p>rabbitmq 整个消息投递的路径为:producer –&gt; rabbitmq broker –&gt; exchange –&gt; queue –&gt; consumer</p>
+<ul>
+<li>消息从 producer 到 exchange 会返回一个 confirmCallback。</li>
+<li>消息从 exchange 到 queue 投递失败会返回一个 returnCallback。</li>
+</ul>
+<p>我们将利用这两个 callback 控制消息的可靠性投递：</p>
+<p>针对confirmCallback：</p>
+<ol>
+<li>设置 ConnectionFactory 的 publisher-confirms=”true” 开启 确认模式。</li>
+<li>使用 rabbitTemplate.setConfirmCallback 设置回调函数。当消息发送到 exchange 后回调 confirm 方法，在方法中判断ack，如果为true，则发送成功，如果为false，则发送失败，需要处理。</li>
+</ol>
+<p>针对returnCallback：</p>
+<ol>
+<li>设置ConnectionFactory的publisher-returns=”true” 开启 退回模式。</li>
+<li>使用 rabbitTemplate.setReturnCallback 设置退回函数，当消息从 exchange 路由到 queue 失败后，如果设置了 rabbitTemplate.setMandatory(true) 参数，则会将消息退回给 producer，并执行回调函数 returnedMessage。</li>
+</ol>
+<h3 id="Consumer-Ack"><a href="#Consumer-Ack" class="headerlink" title="Consumer Ack"></a>Consumer Ack</h3><p>Ack 指 Acknowledge，表示消费端收到消息后的确认方式。 有三种确认方式:</p>
+<ol>
+<li>自动确认: acknowledge=”none”</li>
+<li>手动确认: acknowledge=”manual”</li>
+<li>根据异常情况确认: acknowledge=”auto”，(这种方式使用麻烦，不作讲解)</li>
+</ol>
+<p>其中自动确认是指，当消息一旦被 Consumer 接收到，则自动确认收到，并将相应 message 从 RabbitMQ 的消息缓存中移除。</p>
+<p>但是在实际业务处理中，很可能消息接收到，业务处理出现异常，那么该消息就会丢失。如果设置了手动确认方式，则需要在业务处理成功后，调用 channel.basicAck()，手动签收，如果出现异常，则调用 channel.basicNack() 方法，让其自动重新发送消息。</p>
+<h2 id="3-2-消费端限流"><a href="#3-2-消费端限流" class="headerlink" title="3.2 消费端限流"></a>3.2 消费端限流</h2><img src="images/image-20220821135759582.png" alt="image-20220821135759582" style="zoom:50%;" />
+
+<ul>
+<li>在 <a href="rabbit:listener-container">rabbit:listener-container</a> 中配置prefetch属性设置消费端一次拉取多少消息</li>
+<li>消费端的确认模式一定为手动确认。acknowledge=”manual”</li>
+</ul>
+<h2 id="3-3-TTL"><a href="#3-3-TTL" class="headerlink" title="3.3 TTL"></a>3.3 TTL</h2><p>TTL 全称 Time To Live(存活时间/过期时间)，当消息到达存活时间后，还没有被消费，会被自动清除。</p>
+<p>RabbitMQ可以对特定消息设置过期时间，也可以对整个队列 (Queue) 设置过期时间。</p>
+<ul>
+<li>设置队列过期时间使用参数: x-message-ttl。单位: ms(毫秒)，会对整个队列消息统一过期。</li>
+<li>设置消息过期时间使用参数: expiration。单位: ms(毫秒)，当该消息在队列头部时(消费时)，会单独判断<br>这一消息是否过期。</li>
+<li>如果两者都进行了设置，以时间短的为准。</li>
+</ul>
+<h2 id="3-4-死信队列"><a href="#3-4-死信队列" class="headerlink" title="3.4 死信队列"></a>3.4 死信队列</h2><p>Dead Letter Exchange(死信交换机)，当消息成为Dead message后，可以 被重新发送到另一个交换机，这个交换机就是DLX。</p>
+<p>消息成为死信的三种情况:</p>
+<ol>
+<li>队列消息长度到达限制</li>
+<li>消费者拒接消费消息，basicNack/basicReject，并且不把消息重新放入原目标队列，requeue=false</li>
+<li>原队列存在消息过期设置，消息到达超时时间未被消费</li>
+</ol>
+<p>死信交换机和死信队列的创建和普通的没有区别，但是需要将普通队列绑定到死信交换机:</p>
+<ul>
+<li>给队列设置参数: x-dead-letter-exchange 和 x-dead-letter-routing-key</li>
+</ul>
+<img src="images/image-20220821140112062.png" alt="image-20220821140112062" style="zoom:50%;" />
+
+<h2 id="3-5-延迟队列"><a href="#3-5-延迟队列" class="headerlink" title="3.5 延迟队列"></a>3.5 延迟队列</h2><p>延迟队列，即消息进入队列后不会立即被消费，只有到达指定时间后，才会被消费。</p>
+<p>比如需求:</p>
+<ul>
+<li>下单后，30分钟未支付，取消订单，回滚库存。</li>
+<li>新用户注册成功7天后，发送短信问候。</li>
+</ul>
+<p>很可惜，在RabbitMQ中并未提供延迟队列功能，但是可以使用「TTL+死信队列」组合实现延迟队列的效果。</p>
+<p><img src="images/image-20220821140300731.png" alt="image-20220821140300731"></p>
+<ul>
+<li>注意 Consumer 监听的队列是死信队列！</li>
+</ul>
+<h2 id="3-6-日志与监控"><a href="#3-6-日志与监控" class="headerlink" title="3.6 日志与监控"></a>3.6 日志与监控</h2><h3 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h3><p>RabbitMQ默认日志存放路径: /var/log/rabbitmq/rabbit@xxx.log</p>
+<p>日志包含了 RabbitMQ 的版本号、Erlang 的版本号、RabbitMQ 服务节点名称、cookie 的 hash 值、 RabbitMQ 配置文件地址、内存限制、磁盘限制、默认账户 guest 的创建以及权限配置等等。</p>
+<h3 id="监控"><a href="#监控" class="headerlink" title="监控"></a>监控</h3><ol>
+<li>Web 控制台的图形化界面监控</li>
+<li>命令行指令监控：</li>
+</ol>
+<img src="images/image-20220821140458491.png" alt="image-20220821140458491" style="zoom:50%;" />
+
+<h2 id="3-7-消息追踪"><a href="#3-7-消息追踪" class="headerlink" title="3.7 消息追踪"></a>3.7 消息追踪</h2><p>在使用任何消息中间件的过程中，难免会出现某条消息异常丢失的情况。对于 RabbitMQ 而言，可能 是因为生产者或消费者与 RabbitMQ 断开了连接，而它们与 RabbitMQ 又采用了不同的确认机制;也有可能是因为交换器与队列之间不同的转发策略;甚至是交换器并没有与任何队列进行绑定，生产者又不感知或者没有采取相应的措施；另外 RabbitMQ 本身的集群策略也可能导致消息的丢失。这个时候就需要有一个较好的机制跟踪记录消息的投递过程，以此协助开发和运维人员进行问题的定位。</p>
+<p>在 RabbitMQ 中可以使用 Firehose 和 rabbitmq_tracing 插件功能来实现消息追踪。</p>
+<h2 id="3-8-RabbitMQ-应用问题"><a href="#3-8-RabbitMQ-应用问题" class="headerlink" title="3.8 RabbitMQ 应用问题"></a>3.8 RabbitMQ 应用问题</h2><h3 id="消息可靠性保障"><a href="#消息可靠性保障" class="headerlink" title="消息可靠性保障"></a>消息可靠性保障</h3><p>需求：100%确保消息发送成功</p>
+<p>方法：消息补偿机制</p>
+<p><img src="images/image-20220821140646276.png" alt="image-20220821140646276"></p>
+<h3 id="消息幂等性保障"><a href="#消息幂等性保障" class="headerlink" title="消息幂等性保障"></a>消息幂等性保障</h3><p>需求：幂等性指一次和多次请求某一个资源，对于资源本身应该具有同样的结果。也就是说，其任意多次执行对资源本身所产生的影响均与一次执行的影响相同。在 MQ 中指，消费多条相同的消息，得到与消费该消息一次相同的结果。</p>
+<p>方法：乐观锁机制</p>
+<p><img src="images/image-20220821140732535.png" alt="image-20220821140732535"></p>
+<blockquote>
+<p>参考资料：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV15k4y1k7Ep">B站黑马程序员RabbitMQ教程</a></p>
+</blockquote>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2023年01月01日 20:04</p>
+        <p>原始链接： <a class="post-url" href="/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/" title="RabbitMQ八股文">http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/</a></p>
+        <footer>
+            <a href="http://muquanrui.com">
+                <img src="/images/logo.png" alt="MU Quanrui">
+                MU Quanrui
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/&title=《RabbitMQ八股文》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/&title=《RabbitMQ八股文》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《RabbitMQ八股文》 — Quanrui's Blog&url=http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/&via=http://muquanrui.com" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2022/08/21/Programming/Middleware/RabbitMQ%E5%85%AB%E8%82%A1%E6%96%87/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Programming/" class="color2">Programming</a>
+      
+    <a href="/tags/Middleware/" class="color1">Middleware</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+        <div class= "post-toc-name">Table of Contents</div>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%9F%BA%E7%A1%80"><span class="post-toc-text">1 消息队列基础</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-1-MQ-%E6%A6%82%E8%BF%B0"><span class="post-toc-text">1.1 MQ 概述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-2-MQ-%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="post-toc-text">1.2 MQ 的优势</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-3-MQ-%E7%9A%84%E5%8A%A3%E5%8A%BF"><span class="post-toc-text">1.3 MQ 的劣势</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-4-MQ-%E7%9A%84%E4%BD%BF%E7%94%A8%E6%9D%A1%E4%BB%B6"><span class="post-toc-text">1.4 MQ 的使用条件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-5-JMS-amp-AMQP"><span class="post-toc-text">1.5 JMS &amp; AMQP</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-6-%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AF%B9%E6%AF%94"><span class="post-toc-text">1.6 常见的消息队列对比</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-RabbitMQ-%E5%9F%BA%E7%A1%80"><span class="post-toc-text">2 RabbitMQ 基础</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-RabbitMQ-%E7%9A%84%E4%B8%BB%E8%A6%81%E6%A6%82%E5%BF%B5"><span class="post-toc-text">2.1 RabbitMQ 的主要概念</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-2-RabbitMQ-%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="post-toc-text">2.2 RabbitMQ 的工作模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E7%AE%80%E5%8D%95%E6%A8%A1%E5%BC%8F"><span class="post-toc-text">简单模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Work-queues-%E5%B7%A5%E4%BD%9C%E9%98%9F%E5%88%97%E6%A8%A1%E5%BC%8F"><span class="post-toc-text">Work queues 工作队列模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Pub-Sub-%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F"><span class="post-toc-text">Pub&#x2F;Sub 订阅模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Routing-%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F"><span class="post-toc-text">Routing 路由模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Topics-%E9%80%9A%E9%85%8D%E7%AC%A6%E6%A8%A1%E5%BC%8F"><span class="post-toc-text">Topics 通配符模式</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-RabbitMQ-%E9%AB%98%E7%BA%A7"><span class="post-toc-text">3 RabbitMQ 高级</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-1-%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7"><span class="post-toc-text">3.1 消息的可靠性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%8A%95%E9%80%92"><span class="post-toc-text">消息的可靠投递</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Consumer-Ack"><span class="post-toc-text">Consumer Ack</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-2-%E6%B6%88%E8%B4%B9%E7%AB%AF%E9%99%90%E6%B5%81"><span class="post-toc-text">3.2 消费端限流</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-3-TTL"><span class="post-toc-text">3.3 TTL</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-4-%E6%AD%BB%E4%BF%A1%E9%98%9F%E5%88%97"><span class="post-toc-text">3.4 死信队列</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-5-%E5%BB%B6%E8%BF%9F%E9%98%9F%E5%88%97"><span class="post-toc-text">3.5 延迟队列</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-6-%E6%97%A5%E5%BF%97%E4%B8%8E%E7%9B%91%E6%8E%A7"><span class="post-toc-text">3.6 日志与监控</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%97%A5%E5%BF%97"><span class="post-toc-text">日志</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E7%9B%91%E6%8E%A7"><span class="post-toc-text">监控</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-7-%E6%B6%88%E6%81%AF%E8%BF%BD%E8%B8%AA"><span class="post-toc-text">3.7 消息追踪</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-8-RabbitMQ-%E5%BA%94%E7%94%A8%E9%97%AE%E9%A2%98"><span class="post-toc-text">3.8 RabbitMQ 应用问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%B6%88%E6%81%AF%E5%8F%AF%E9%9D%A0%E6%80%A7%E4%BF%9D%E9%9A%9C"><span class="post-toc-text">消息可靠性保障</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%B6%88%E6%81%AF%E5%B9%82%E7%AD%89%E6%80%A7%E4%BF%9D%E9%9A%9C"><span class="post-toc-text">消息幂等性保障</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2022/10/06/Programming/Programming%20Learning/%E5%B0%9A%E7%A1%85%E8%B0%B7Java%E5%A4%A7%E5%8E%82%E9%9D%A2%E8%AF%95%E9%A2%98%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          尚硅谷Java大厂面试题学习笔记
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2022/08/13/Programming/Framework/Spring/Spring%20&%20Spring%20Boot%E5%85%AB%E8%82%A1%E6%96%87/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Spring &amp; Spring Boot八股文</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="Programming/Middleware/RabbitMQ八股文" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cyvaQ34l4';
+        var conf = 'dfbc2f31fdc91ffc75e2035195b4426d';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    |
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+    <div class="theme-info">
+</p>
+
+
+      <span class="post-count">本站博文总字数：637.8k</span>
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018~2023 MU Quanrui<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<!--加载prettify代码高亮js-->
+  <script type="text/javascript" src="/google-code-prettify/prettify.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('pre').addClass('prettyprint linenums');
+      $('code').addClass('prettyprint');
+      prettyPrint();
+    })
+  </script>
+
+<script>
+  var mihoConfig = {
+      root: "http://muquanrui.com",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Blog/">Blog</a><a class="category-link" href="/categories/Data-Structures-Algorithms/">Data Structures & Algorithms</a><a class="category-link" href="/categories/Database/">Database</a><a class="category-link" href="/categories/ENSEEIHT/">ENSEEIHT</a><a class="category-link" href="/categories/Framework/">Framework</a><a class="category-link" href="/categories/Franc%CC%A7ais/">Français</a><a class="category-link" href="/categories/Java-Project/">Java Project</a><a class="category-link" href="/categories/Java-Tutorial/">Java Tutorial</a><a class="category-link" href="/categories/Linux/">Linux</a><a class="category-link" href="/categories/Methodology/">Methodology</a><a class="category-link" href="/categories/Middleware/">Middleware</a><a class="category-link" href="/categories/Network/">Network</a><a class="category-link" href="/categories/Operating-System/">Operating System</a><a class="category-link" href="/categories/Photography/">Photography</a><a class="category-link" href="/categories/Problem-Solving/">Problem Solving</a><a class="category-link" href="/categories/Programming/">Programming</a><a class="category-link" href="/categories/Software/">Software</a><a class="category-link" href="/categories/macOS/">macOS</a><a class="category-link" href="/categories/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/">墓畔回忆录</a><a class="category-link" href="/categories/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/">我的大学</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Blog/" style="font-size: 13.53px;">Blog</a> <a href="/tags/College/" style="font-size: 18.24px;">College</a> <a href="/tags/Computer-Science/" style="font-size: 18.82px;">Computer Science</a> <a href="/tags/Data-Structures-Algorithms/" style="font-size: 10.59px;">Data Structures & Algorithms</a> <a href="/tags/Database/" style="font-size: 12.94px;">Database</a> <a href="/tags/ENSEEIHT/" style="font-size: 14.12px;">ENSEEIHT</a> <a href="/tags/Framework/" style="font-size: 11.76px;">Framework</a> <a href="/tags/Franc%CC%A7ais/" style="font-size: 14.71px;">Français</a> <a href="/tags/Java-Project/" style="font-size: 10px;">Java Project</a> <a href="/tags/Java-Tutorial/" style="font-size: 19.41px;">Java Tutorial</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 18.82px;">Java基础</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 14.71px;">Java核心技术卷I</a> <a href="/tags/Lifelong-Learning/" style="font-size: 16.47px;">Lifelong Learning</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Methodology/" style="font-size: 10px;">Methodology</a> <a href="/tags/Middleware/" style="font-size: 10.59px;">Middleware</a> <a href="/tags/MySQL/" style="font-size: 10.59px;">MySQL</a> <a href="/tags/Network/" style="font-size: 15.29px;">Network</a> <a href="/tags/Notes/" style="font-size: 15.88px;">Notes</a> <a href="/tags/Operating-System/" style="font-size: 13.53px;">Operating System</a> <a href="/tags/Photography/" style="font-size: 10px;">Photography</a> <a href="/tags/Problem-Solving/" style="font-size: 11.18px;">Problem Solving</a> <a href="/tags/Programming/" style="font-size: 20px;">Programming</a> <a href="/tags/Programming-Learning/" style="font-size: 11.18px;">Programming Learning</a> <a href="/tags/Software/" style="font-size: 10px;">Software</a> <a href="/tags/Spring/" style="font-size: 10.59px;">Spring</a> <a href="/tags/macOS/" style="font-size: 11.18px;">macOS</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91UML/" style="font-size: 11.76px;">【大学课程】UML</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10.59px;">【大学课程】操作系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" style="font-size: 11.76px;">【大学课程】数据库系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/" style="font-size: 11.76px;">【大学课程】计算机接口与通信</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 11.18px;">【大学课程】计算机网络</a> <a href="/tags/%E3%80%90%E5%B0%9A%E7%A1%85%E8%B0%B7%E3%80%91Java/" style="font-size: 17.06px;">【尚硅谷】Java</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.35px;">【王道考研】操作系统</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 12.94px;">【王道考研】计算机网络</a> <a href="/tags/%E5%9B%BE%E8%A7%A3%E7%BD%91%E7%BB%9C/" style="font-size: 11.76px;">图解网络</a> <a href="/tags/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/" style="font-size: 10.59px;">墓畔回忆录</a> <a href="/tags/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/" style="font-size: 17.65px;">我的大学</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/categories">
+                    <i class="fa fa-book"></i><span>Categories</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/tags">
+                    <i class="fa fa-tags"></i><span>Tags</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Blog/" style="font-size: 13.53px;">Blog</a> <a href="/tags/College/" style="font-size: 18.24px;">College</a> <a href="/tags/Computer-Science/" style="font-size: 18.82px;">Computer Science</a> <a href="/tags/Data-Structures-Algorithms/" style="font-size: 10.59px;">Data Structures & Algorithms</a> <a href="/tags/Database/" style="font-size: 12.94px;">Database</a> <a href="/tags/ENSEEIHT/" style="font-size: 14.12px;">ENSEEIHT</a> <a href="/tags/Framework/" style="font-size: 11.76px;">Framework</a> <a href="/tags/Franc%CC%A7ais/" style="font-size: 14.71px;">Français</a> <a href="/tags/Java-Project/" style="font-size: 10px;">Java Project</a> <a href="/tags/Java-Tutorial/" style="font-size: 19.41px;">Java Tutorial</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 18.82px;">Java基础</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 14.71px;">Java核心技术卷I</a> <a href="/tags/Lifelong-Learning/" style="font-size: 16.47px;">Lifelong Learning</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Methodology/" style="font-size: 10px;">Methodology</a> <a href="/tags/Middleware/" style="font-size: 10.59px;">Middleware</a> <a href="/tags/MySQL/" style="font-size: 10.59px;">MySQL</a> <a href="/tags/Network/" style="font-size: 15.29px;">Network</a> <a href="/tags/Notes/" style="font-size: 15.88px;">Notes</a> <a href="/tags/Operating-System/" style="font-size: 13.53px;">Operating System</a> <a href="/tags/Photography/" style="font-size: 10px;">Photography</a> <a href="/tags/Problem-Solving/" style="font-size: 11.18px;">Problem Solving</a> <a href="/tags/Programming/" style="font-size: 20px;">Programming</a> <a href="/tags/Programming-Learning/" style="font-size: 11.18px;">Programming Learning</a> <a href="/tags/Software/" style="font-size: 10px;">Software</a> <a href="/tags/Spring/" style="font-size: 10.59px;">Spring</a> <a href="/tags/macOS/" style="font-size: 11.18px;">macOS</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91UML/" style="font-size: 11.76px;">【大学课程】UML</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10.59px;">【大学课程】操作系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" style="font-size: 11.76px;">【大学课程】数据库系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/" style="font-size: 11.76px;">【大学课程】计算机接口与通信</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 11.18px;">【大学课程】计算机网络</a> <a href="/tags/%E3%80%90%E5%B0%9A%E7%A1%85%E8%B0%B7%E3%80%91Java/" style="font-size: 17.06px;">【尚硅谷】Java</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.35px;">【王道考研】操作系统</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 12.94px;">【王道考研】计算机网络</a> <a href="/tags/%E5%9B%BE%E8%A7%A3%E7%BD%91%E7%BB%9C/" style="font-size: 11.76px;">图解网络</a> <a href="/tags/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/" style="font-size: 10.59px;">墓畔回忆录</a> <a href="/tags/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/" style="font-size: 17.65px;">我的大学</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":200,"height":400,"vOffset":-30},"mobile":{"show":false},"react":{"opacity":0.8},"log":false});</script></body>
+</html>
+
+
+

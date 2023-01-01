@@ -123,7 +123,7 @@ body,
   height: 100%;
 }
 body {
-  font-family: Monaco, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", Menlo, "Ubuntu Mono", Consolas, HYZhengYuan;
   background-color: #181c3c;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -967,6 +967,9 @@ body {
 .article-entry:after {
   clear: both;
 }
+.article-entry strong {
+  color: #8a2be2;
+}
 .article-entry p,
 .article-entry table {
   line-height: 1.6em;
@@ -1013,6 +1016,15 @@ body {
 }
 .article-entry p img,
 .article-entry p video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: auto;
+  box-shadow: 0 0 30px #ccc;
+  -moz-box-shadow: 0 0 30px #ccc;
+  -webkit-box-shadow: 0 0 30px #ccc;
+}
+.article-entry img {
   max-width: 100%;
   height: auto;
   display: block;
@@ -1539,7 +1551,7 @@ body {
 .post-toc {
   display: inline-block;
   font-size: 17px;
-  font-family: Monaco, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", Menlo, "Ubuntu Mono", Consolas, HYZhengYuan;
   color: #000;
   white-space: nowrap;
   height: calc(100vh - 107px);
@@ -1553,6 +1565,7 @@ body {
 }
 .post-toc:hover {
   overflow-y: auto;
+  overflow-x: auto;
 }
 .post-toc::-webkit-scrollbar {
   width: 6px;
@@ -1570,7 +1583,7 @@ body {
 }
 .post-toc-name {
   font-size: 26px;
-  font-family: Monaco, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", Menlo, "Ubuntu Mono", Consolas, HYZhengYuan;
   padding: 15px 10px;
   margin-bottom: 20px;
   background: rgba(255,255,255,0.7);
@@ -1715,7 +1728,7 @@ body {
   padding: 5px 5px 5px 10px;
   position: relative;
   border-radius: 0 5px 5px 0;
-  font-family: Monaco, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", Menlo, "Ubuntu Mono", Consolas, HYZhengYuan;
 }
 .tag-cloud a:hover {
   color: #ff8c00;

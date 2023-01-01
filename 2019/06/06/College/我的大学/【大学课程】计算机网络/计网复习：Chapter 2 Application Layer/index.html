@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>计网复习：Chapter 2 Application Layer | Quanrui&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Quanrui's Blog" />
+  
+  <meta name="description" content="2.1 principles of network applicationsApplication architecturesClient-server architectureserver:   always-on host permanent IP address data centers for scaling  clients:  communicate with server may b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计网复习：Chapter 2 Application Layer">
+<meta property="og:url" content="http://muquanrui.com/2019/06/06/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%202%20Application%20Layer/index.html">
+<meta property="og:site_name" content="Quanrui&#39;s Blog">
+<meta property="og:description" content="2.1 principles of network applicationsApplication architecturesClient-server architectureserver:   always-on host permanent IP address data centers for scaling  clients:  communicate with server may b">
+<meta property="og:locale">
+<meta property="og:image" content="http://muquanrui.com/2019/06/06/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%202%20Application%20Layer/images/1559754302817.png">
+<meta property="og:image" content="http://muquanrui.com/2019/06/06/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%202%20Application%20Layer/images/1559754451881.png">
+<meta property="og:image" content="http://muquanrui.com/2019/06/06/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%202%20Application%20Layer/images/1559754481209.png">
+<meta property="og:image" content="http://muquanrui.com/2019/06/06/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%202%20Application%20Layer/images/1559754621811.png">
+<meta property="og:image" content="http://muquanrui.com/2019/06/06/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%202%20Application%20Layer/images/1559754671583.png">
+<meta property="og:image" content="http://muquanrui.com/2019/06/06/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%202%20Application%20Layer/images/1559755627700.png">
+<meta property="og:image" content="http://muquanrui.com/2019/06/06/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%202%20Application%20Layer/images/1559755995265.png">
+<meta property="og:image" content="http://muquanrui.com/2019/06/06/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%202%20Application%20Layer/images/1559756042039.png">
+<meta property="article:published_time" content="2019-06-05T16:37:34.000Z">
+<meta property="article:modified_time" content="2023-01-01T13:21:00.134Z">
+<meta property="article:author" content="MU Quanrui">
+<meta property="article:tag" content="College">
+<meta property="article:tag" content="我的大学">
+<meta property="article:tag" content="【大学课程】计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://muquanrui.com/2019/06/06/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%202%20Application%20Layer/images/1559754302817.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+ <!--加载prettify代码高亮样式-->
+<link href="/google-code-prettify/tranquil-heart.css" type="text/css" rel="stylesheet" />
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+
+  <!--加载条样式-->
+  <style>
+    .pace .pace-progress {
+    	background-image: linear-gradient(90deg, #F79533 0%, #F37055 15%, #EF4E7B 30%, #A166AB 44%, #5073B8 58%, #1098AD 72%, #07B39B 86%, #6DBA82 100%);
+    	height: 3px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+  </style>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <div id="background"></div><!--背景颜色/图片-->
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+
+        <div id="header-menu" class="header-menu-pos animated">
+
+
+<a target="_blank" rel="noopener" href="https://github.com/muquanrui" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#FFA500; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Quanrui&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/categories">
+                        <i class="fa fa-book"></i>
+                        <span>Categories</span>
+                    </a>
+                    
+                    <a  href="/tags">
+                        <i class="fa fa-tags"></i>
+                        <span>Tags</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Quanrui&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Carpe diem.
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Home" target="_blank" href="//muquanrui.com">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/muquanrui">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Google" target="_blank" href="//google.com">
+                            <i class="fa fa-google fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-College/我的大学/【大学课程】计算机网络/计网复习：Chapter 2 Application Layer" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      计网复习：Chapter 2 Application Layer
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/我的大学/">我的大学</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-06-06
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>          
+        </li>
+      </ul>
+       <span class="post-count">文章字数:1.1k字 &nbsp &nbsp  
+         阅读时长:7分钟</span>
+    </div>
+  
+        
+          
+      </header>
+    
+
+    <div class="article-entry post-content" itemprop="articleBody">
+
+    
+    
+
+
+
+      
+            
+            <h2 id="2-1-principles-of-network-applications"><a href="#2-1-principles-of-network-applications" class="headerlink" title="2.1 principles of network applications"></a>2.1 principles of network applications</h2><h3 id="Application-architectures"><a href="#Application-architectures" class="headerlink" title="Application architectures"></a>Application architectures</h3><h4 id="Client-server-architecture"><a href="#Client-server-architecture" class="headerlink" title="Client-server architecture"></a>Client-server architecture</h4><p><strong>server</strong>: </p>
+<ul>
+<li>always-on host</li>
+<li>permanent IP address</li>
+<li>data centers for scaling</li>
+</ul>
+<p><strong>clients</strong>:</p>
+<ul>
+<li>communicate with server</li>
+<li>may be intermittently connected</li>
+<li>may have dynamic IP addresses</li>
+<li>do not communicate directly with each other</li>
+</ul>
+<h4 id="P2P-architecture"><a href="#P2P-architecture" class="headerlink" title="P2P architecture"></a>P2P architecture</h4><ul>
+<li>no always-on server</li>
+<li>arbitrary end systems directly communicate</li>
+<li>peers request service from other peers, provide service in return to other peers</li>
+<li>peers are intermittently connected and change IP addresses</li>
+<li>complex management</li>
+</ul>
+<h3 id="Processes-communicating"><a href="#Processes-communicating" class="headerlink" title="Processes communicating"></a>Processes communicating</h3><h4 id="process"><a href="#process" class="headerlink" title="process"></a>process</h4><p>program running within a host</p>
+<ul>
+<li>within same host, two processes communicate using  inter-process communication (defined by OS)</li>
+<li>processes in different hosts communicate by exchanging messages</li>
+</ul>
+<p>C/S: </p>
+<ul>
+<li>client process: process that initiates communication</li>
+<li>server process: process that waits to be contacted</li>
+</ul>
+<p>P2P:<br>have client processes &amp; server processes</p>
+<h4 id="Sockets"><a href="#Sockets" class="headerlink" title="Sockets"></a>Sockets</h4><ul>
+<li>process sends/receives messages to/from its <strong>socket</strong></li>
+<li>socket analogous to door / drop box<ul>
+<li>sending process shoves message out door / drop letter into mail slot</li>
+<li>sending process relies on transport infrastructure on other side of door/mailing system to deliver message to socket at receiving process</li>
+</ul>
+</li>
+</ul>
+<h4 id="Addressing-processes"><a href="#Addressing-processes" class="headerlink" title="Addressing processes"></a>Addressing processes</h4><p>to receive messages, process  must have identifier</p>
+<p>identifier includes both <strong>IP address</strong> and <strong>port numbers</strong> associated with process on host.</p>
+<h3 id="App-layer-protocol"><a href="#App-layer-protocol" class="headerlink" title="App-layer protocol"></a>App-layer protocol</h3><h4 id="App-layer-protocol-defines"><a href="#App-layer-protocol-defines" class="headerlink" title="App-layer protocol defines"></a>App-layer protocol defines</h4><ul>
+<li>types of messages exchanged, <ul>
+<li>e.g., request, response </li>
+</ul>
+</li>
+<li>message syntax:<ul>
+<li>what fields in messages &amp; how fields are delineated</li>
+</ul>
+</li>
+<li>message semantics <ul>
+<li>meaning of information in fields</li>
+</ul>
+</li>
+<li>rules for when and how processes send &amp; respond to messages</li>
+</ul>
+<h4 id="What-transport-service-does-an-app-need"><a href="#What-transport-service-does-an-app-need" class="headerlink" title="What transport service does an app need"></a>What transport service does an app need</h4><ul>
+<li>data integrity</li>
+<li>timing</li>
+<li>throughput</li>
+<li>security</li>
+</ul>
+<h3 id="Internet-transport-protocols-services"><a href="#Internet-transport-protocols-services" class="headerlink" title="Internet transport protocols services"></a>Internet transport protocols services</h3><h4 id="TCP-service"><a href="#TCP-service" class="headerlink" title="TCP service"></a>TCP service</h4><ol>
+<li><strong>reliable transport</strong> between sending and receiving process</li>
+<li><strong>flow control</strong>: sender won’t overwhelm receiver </li>
+<li><strong>congestion control</strong>: throttle sender when network overloaded</li>
+<li><strong>does not provide</strong>: timing, minimum throughput guarantee, security</li>
+<li><strong>connection-oriented</strong>: setup required between client and server processes</li>
+</ol>
+<h4 id="UDP-service"><a href="#UDP-service" class="headerlink" title="UDP service"></a>UDP service</h4><ol>
+<li><strong>unreliable data transfer</strong> between sending and receiving process</li>
+<li><strong>does not provide</strong>: reliability, flow control, congestion control, timing, throughput guarantee, security, or connection setup</li>
+</ol>
+<h2 id="2-2-Web-and-HTTP"><a href="#2-2-Web-and-HTTP" class="headerlink" title="2.2 Web and HTTP"></a>2.2 Web and HTTP</h2><h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><h4 id="overview"><a href="#overview" class="headerlink" title="overview"></a>overview</h4><p><strong>HTTP</strong>: hypertext transfer protocol</p>
+<ul>
+<li>Web’s application layer protocol</li>
+<li>client/server model<ul>
+<li>client: browser that requests, receives, (using HTTP protocol) and “displays” Web objects </li>
+<li>server: Web server sends (using HTTP protocol) objects in response to requests</li>
+</ul>
+</li>
+</ul>
+<p><strong>uses TCP</strong>:</p>
+<ul>
+<li>client initiates TCP connection (creates socket) to server,  port 80</li>
+<li>server accepts TCP connection from client</li>
+<li>HTTP messages (application-layer protocol messages) exchanged between browser (HTTP client) and Web server (HTTP server)</li>
+<li>TCP connection closed</li>
+</ul>
+<p><strong>HTTP is stateless</strong></p>
+<ul>
+<li>server maintains no information about past client requests</li>
+</ul>
+<h4 id="HTTP-connections"><a href="#HTTP-connections" class="headerlink" title="HTTP connections"></a>HTTP connections</h4><p><strong>non-persistent HTTP</strong></p>
+<ul>
+<li>at most one object sent over TCP connection<ul>
+<li>connection then closed</li>
+</ul>
+</li>
+<li>downloading multiple objects required multiple connections</li>
+</ul>
+<p><strong>persistent HTTP</strong></p>
+<ul>
+<li>multiple objects can be sent over single TCP connection between client, server</li>
+</ul>
+<h4 id="Non-persistent-HTTP-response-time"><a href="#Non-persistent-HTTP-response-time" class="headerlink" title="Non-persistent HTTP: response time"></a>Non-persistent HTTP: response time</h4><p><strong>RTT</strong> (definition): time for a small packet to travel from client to server and back</p>
+<p><strong>HTTP response time</strong>:</p>
+<ul>
+<li>one RTT to initiate TCP connection</li>
+<li>one RTT for HTTP request and first few bytes of HTTP response to return</li>
+<li>file transmission time</li>
+<li>non-persistent HTTP response time =  <code>2RTT+ file transmission  time</code></li>
+</ul>
+<p><img src="./images/1559754302817.png"></p>
+<h4 id="Persistent-HTTP"><a href="#Persistent-HTTP" class="headerlink" title="Persistent HTTP"></a>Persistent HTTP</h4><p>non-persistent HTTP issues:</p>
+<ul>
+<li>requires 2 RTTs per object</li>
+<li>OS overhead for each TCP connection</li>
+<li>browsers often open parallel TCP connections to fetch referenced objects</li>
+</ul>
+<p><strong>persistent  HTTP</strong>:</p>
+<ul>
+<li>server leaves connection open after sending response</li>
+<li>subsequent HTTP messages  between same client/server sent over open connection</li>
+<li>client sends requests as soon as it encounters a referenced object</li>
+<li>as little as one RTT for all the referenced objects</li>
+</ul>
+<h4 id="HTTP-request-message"><a href="#HTTP-request-message" class="headerlink" title="HTTP request message"></a>HTTP request message</h4><p>two types of HTTP messages: <strong>request</strong>, <strong>response</strong></p>
+<p><img src="./images/1559754451881.png"></p>
+<p><img src="./images/1559754481209.png"></p>
+<p><strong>POST method:</strong></p>
+<ul>
+<li>web page often includes form input</li>
+<li>input is uploaded to server in entity body</li>
+</ul>
+<p><strong>URL method:</strong></p>
+<ul>
+<li>uses GET method</li>
+<li>input is uploaded in URL field of request line:</li>
+</ul>
+<p><img src="./images/1559754621811.png"></p>
+<h4 id="HTTP-response-message"><a href="#HTTP-response-message" class="headerlink" title="HTTP response message"></a>HTTP response message</h4><p><img src="./images/1559754671583.png"></p>
+<p><strong>HTTP response status</strong> : </p>
+<ul>
+<li>status code appears in 1st line in server-to-client response message.</li>
+</ul>
+<p>some sample codes:</p>
+<ul>
+<li><strong>200 OK</strong>: request succeeded, requested object later in this msg</li>
+<li><strong>301 Moved Permanently</strong>: requested object moved, new location specified later in this msg (Location:)</li>
+<li><strong>400 Bad Request</strong>: request msg not understood by server</li>
+<li><strong>404 Not Found</strong>: requested document not found on this server</li>
+<li><strong>505 HTTP Version Not Supported</strong></li>
+</ul>
+<h3 id="cookies"><a href="#cookies" class="headerlink" title="cookies"></a>cookies</h3><h4 id="four-components"><a href="#four-components" class="headerlink" title="four components"></a>four components</h4><ol>
+<li>cookie header line of HTTP response message</li>
+<li>cookie header line in next HTTP request message</li>
+<li>cookie file kept on user’s host, managed by user’s browser</li>
+<li>back-end database at Web site</li>
+</ol>
+<h4 id="what-cookies-can-be-used-for"><a href="#what-cookies-can-be-used-for" class="headerlink" title="what cookies can be used for:"></a>what cookies can be used for:</h4><ul>
+<li>authorization</li>
+<li>shopping carts</li>
+<li>recommendations</li>
+<li>user session state (Web e-mail)</li>
+</ul>
+<h4 id="how-to-keep-“state”"><a href="#how-to-keep-“state”" class="headerlink" title="how to keep “state”:"></a>how to keep “state”:</h4><ul>
+<li>protocol endpoints: maintain state at sender/receiver over multiple transactions</li>
+<li>cookies: http messages carry state</li>
+</ul>
+<h3 id="Web-caches-proxy-server"><a href="#Web-caches-proxy-server" class="headerlink" title="Web caches (proxy server)"></a>Web caches (proxy server)</h3><h4 id="goal"><a href="#goal" class="headerlink" title="goal:"></a>goal:</h4><p>satisfy client request without involving origin server</p>
+<ul>
+<li>user sets browser: Web accesses via  cache</li>
+<li>browser sends all HTTP requests to cache<ul>
+<li>object in cache: cache returns object </li>
+<li>else cache requests object from origin server, then returns object to client</li>
+</ul>
+</li>
+</ul>
+<p>cache acts as both client and server</p>
+<ul>
+<li>server for original requesting client</li>
+<li>client to origin server</li>
+</ul>
+<p>typically cache is installed by ISP (university, company, residential ISP)</p>
+<h4 id="why-Web-caching"><a href="#why-Web-caching" class="headerlink" title="why Web caching?"></a>why Web caching?</h4><ul>
+<li>reduce response time for client request</li>
+<li>reduce traffic on an institution’s access link</li>
+<li>Internet dense with caches: enables “poor” content providers to effectively deliver content (so too does P2P file sharing)</li>
+</ul>
+<h2 id="2-3-electronic-mail"><a href="#2-3-electronic-mail" class="headerlink" title="2.3 electronic mail"></a>2.3 electronic mail</h2><h3 id="components"><a href="#components" class="headerlink" title="components"></a>components</h3><p>Three major components: </p>
+<ul>
+<li>user agents </li>
+<li>mail servers </li>
+<li>simple mail transfer protocol: SMTP</li>
+</ul>
+<h3 id="SMTP"><a href="#SMTP" class="headerlink" title="SMTP"></a>SMTP</h3><p>uses TCP to reliably transfer email message from client to server, port 25</p>
+<p>direct transfer: sending server to receiving server</p>
+<p>three phases of transfer</p>
+<ul>
+<li>handshaking (greeting)</li>
+<li>transfer of messages</li>
+<li>closure</li>
+</ul>
+<p>command/response interaction (like HTTP)</p>
+<ul>
+<li>commands: ASCII text</li>
+<li>response: status code and phrase</li>
+</ul>
+<p>messages must be in 7-bit ASCII</p>
+<h2 id="2-4-DNS"><a href="#2-4-DNS" class="headerlink" title="2.4 DNS"></a>2.4 DNS</h2><h3 id="DNS-services"><a href="#DNS-services" class="headerlink" title="DNS services"></a>DNS services</h3><ul>
+<li>hostname to IP address translation</li>
+<li>host aliasing<ul>
+<li>canonical, alias names</li>
+</ul>
+</li>
+<li>mail server aliasing</li>
+<li>load distribution<ul>
+<li>replicated Web servers: many IP addresses correspond to one name</li>
+</ul>
+</li>
+</ul>
+<h3 id="DNS-structure"><a href="#DNS-structure" class="headerlink" title="DNS structure"></a>DNS structure</h3><h4 id="DNS-a-distributed-hierarchical-database"><a href="#DNS-a-distributed-hierarchical-database" class="headerlink" title="DNS: a distributed, hierarchical database"></a>DNS: a distributed, hierarchical database</h4><p><img src="./images/1559755627700.png"></p>
+<h4 id="DNS-root-name-servers"><a href="#DNS-root-name-servers" class="headerlink" title="DNS: root name servers"></a>DNS: root name servers</h4><p>contacted by local name server that can not resolve name</p>
+<p>root name server:</p>
+<ul>
+<li>contacts authoritative name server if name mapping not known</li>
+<li>gets mapping</li>
+<li>returns mapping to local name server</li>
+</ul>
+<h4 id="TLD-authoritative-servers"><a href="#TLD-authoritative-servers" class="headerlink" title="TLD, authoritative servers"></a>TLD, authoritative servers</h4><p>top-level domain (TLD) servers:</p>
+<ul>
+<li>responsible for com, org, net, edu, aero, jobs, museums, and all top-level country domains, e.g.: uk, fr, ca, jp</li>
+<li>Network Solutions maintains servers for .com TLD</li>
+<li>Educause for .edu TLD</li>
+</ul>
+<p>authoritative DNS servers: </p>
+<ul>
+<li>organization’s own DNS server(s), providing authoritative hostname to IP mappings for organization’s named hosts</li>
+<li>can be maintained by organization or service provider</li>
+</ul>
+<h4 id="Local-DNS-name-server"><a href="#Local-DNS-name-server" class="headerlink" title="Local DNS name server"></a>Local DNS name server</h4><ul>
+<li>does not strictly belong to hierarchy</li>
+<li>each ISP (residential ISP, company, university) has one</li>
+<li>when host makes DNS query, query is sent to its local DNS server</li>
+</ul>
+<h3 id="caching-updating-records"><a href="#caching-updating-records" class="headerlink" title="caching, updating records"></a>caching, updating records</h3><ul>
+<li>once (any) name server learns mapping, it caches mapping<ul>
+<li>cache entries timeout (disappear) after some time (TTL)</li>
+<li>TLD servers typically cached in local name servers</li>
+</ul>
+</li>
+<li>cached entries may be out-of-date (best effort name-to-address translation!)<ul>
+<li>if name host changes IP address, may not be known Internet-wide until all TTLs expire</li>
+</ul>
+</li>
+<li>update/notify mechanisms proposed IETF standard</li>
+</ul>
+<h4 id="DNS-records"><a href="#DNS-records" class="headerlink" title="DNS records"></a>DNS records</h4><p><img src="./images/1559755995265.png"></p>
+<h4 id="DNS-protocol-messages"><a href="#DNS-protocol-messages" class="headerlink" title="DNS protocol, messages"></a>DNS protocol, messages</h4><p><img src="./images/1559756042039.png"></p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2023年01月01日 21:21</p>
+        <p>原始链接： <a class="post-url" href="/2019/06/06/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%202%20Application%20Layer/" title="计网复习：Chapter 2 Application Layer">http://muquanrui.com/2019/06/06/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%202%20Application%20Layer/</a></p>
+        <footer>
+            <a href="http://muquanrui.com">
+                <img src="/images/logo.png" alt="MU Quanrui">
+                MU Quanrui
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2019/06/06/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%202%20Application%20Layer/&title=《计网复习：Chapter 2 Application Layer》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2019/06/06/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%202%20Application%20Layer/&title=《计网复习：Chapter 2 Application Layer》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2019/06/06/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%202%20Application%20Layer/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《计网复习：Chapter 2 Application Layer》 — Quanrui's Blog&url=http://muquanrui.com/2019/06/06/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%202%20Application%20Layer/&via=http://muquanrui.com" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2019/06/06/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%202%20Application%20Layer/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2019/06/06/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%202%20Application%20Layer/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/College/" class="color3">College</a>
+      
+    <a href="/tags/我的大学/" class="color5">我的大学</a>
+      
+    <a href="/tags/【大学课程】计算机网络/" class="color2">【大学课程】计算机网络</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+        <div class= "post-toc-name">Table of Contents</div>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-principles-of-network-applications"><span class="post-toc-text">2.1 principles of network applications</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Application-architectures"><span class="post-toc-text">Application architectures</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Client-server-architecture"><span class="post-toc-text">Client-server architecture</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#P2P-architecture"><span class="post-toc-text">P2P architecture</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Processes-communicating"><span class="post-toc-text">Processes communicating</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#process"><span class="post-toc-text">process</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Sockets"><span class="post-toc-text">Sockets</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Addressing-processes"><span class="post-toc-text">Addressing processes</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#App-layer-protocol"><span class="post-toc-text">App-layer protocol</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#App-layer-protocol-defines"><span class="post-toc-text">App-layer protocol defines</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#What-transport-service-does-an-app-need"><span class="post-toc-text">What transport service does an app need</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Internet-transport-protocols-services"><span class="post-toc-text">Internet transport protocols services</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#TCP-service"><span class="post-toc-text">TCP service</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#UDP-service"><span class="post-toc-text">UDP service</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-2-Web-and-HTTP"><span class="post-toc-text">2.2 Web and HTTP</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#HTTP"><span class="post-toc-text">HTTP</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#overview"><span class="post-toc-text">overview</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HTTP-connections"><span class="post-toc-text">HTTP connections</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Non-persistent-HTTP-response-time"><span class="post-toc-text">Non-persistent HTTP: response time</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Persistent-HTTP"><span class="post-toc-text">Persistent HTTP</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HTTP-request-message"><span class="post-toc-text">HTTP request message</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HTTP-response-message"><span class="post-toc-text">HTTP response message</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#cookies"><span class="post-toc-text">cookies</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#four-components"><span class="post-toc-text">four components</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#what-cookies-can-be-used-for"><span class="post-toc-text">what cookies can be used for:</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#how-to-keep-%E2%80%9Cstate%E2%80%9D"><span class="post-toc-text">how to keep “state”:</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Web-caches-proxy-server"><span class="post-toc-text">Web caches (proxy server)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#goal"><span class="post-toc-text">goal:</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#why-Web-caching"><span class="post-toc-text">why Web caching?</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-3-electronic-mail"><span class="post-toc-text">2.3 electronic mail</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#components"><span class="post-toc-text">components</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SMTP"><span class="post-toc-text">SMTP</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-4-DNS"><span class="post-toc-text">2.4 DNS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#DNS-services"><span class="post-toc-text">DNS services</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#DNS-structure"><span class="post-toc-text">DNS structure</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#DNS-a-distributed-hierarchical-database"><span class="post-toc-text">DNS: a distributed, hierarchical database</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#DNS-root-name-servers"><span class="post-toc-text">DNS: root name servers</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#TLD-authoritative-servers"><span class="post-toc-text">TLD, authoritative servers</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Local-DNS-name-server"><span class="post-toc-text">Local DNS name server</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#caching-updating-records"><span class="post-toc-text">caching, updating records</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#DNS-records"><span class="post-toc-text">DNS records</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#DNS-protocol-messages"><span class="post-toc-text">DNS protocol, messages</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2019/06/06/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%203%20Transport%20Layer/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          计网复习：Chapter 3 Transport Layer
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2019/06/05/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%201%20Introduction/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">计网复习：Chapter 1 Introduction</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="College/我的大学/【大学课程】计算机网络/计网复习：Chapter 2 Application Layer" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cyvaQ34l4';
+        var conf = 'dfbc2f31fdc91ffc75e2035195b4426d';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    |
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+    <div class="theme-info">
+</p>
+
+
+      <span class="post-count">本站博文总字数：637.8k</span>
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018~2023 MU Quanrui<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<!--加载prettify代码高亮js-->
+  <script type="text/javascript" src="/google-code-prettify/prettify.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('pre').addClass('prettyprint linenums');
+      $('code').addClass('prettyprint');
+      prettyPrint();
+    })
+  </script>
+
+<script>
+  var mihoConfig = {
+      root: "http://muquanrui.com",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Blog/">Blog</a><a class="category-link" href="/categories/Data-Structures-Algorithms/">Data Structures & Algorithms</a><a class="category-link" href="/categories/Database/">Database</a><a class="category-link" href="/categories/ENSEEIHT/">ENSEEIHT</a><a class="category-link" href="/categories/Framework/">Framework</a><a class="category-link" href="/categories/Franc%CC%A7ais/">Français</a><a class="category-link" href="/categories/Java-Project/">Java Project</a><a class="category-link" href="/categories/Java-Tutorial/">Java Tutorial</a><a class="category-link" href="/categories/Linux/">Linux</a><a class="category-link" href="/categories/Methodology/">Methodology</a><a class="category-link" href="/categories/Middleware/">Middleware</a><a class="category-link" href="/categories/Network/">Network</a><a class="category-link" href="/categories/Operating-System/">Operating System</a><a class="category-link" href="/categories/Photography/">Photography</a><a class="category-link" href="/categories/Problem-Solving/">Problem Solving</a><a class="category-link" href="/categories/Programming/">Programming</a><a class="category-link" href="/categories/Software/">Software</a><a class="category-link" href="/categories/macOS/">macOS</a><a class="category-link" href="/categories/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/">墓畔回忆录</a><a class="category-link" href="/categories/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/">我的大学</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Blog/" style="font-size: 13.53px;">Blog</a> <a href="/tags/College/" style="font-size: 18.24px;">College</a> <a href="/tags/Computer-Science/" style="font-size: 18.82px;">Computer Science</a> <a href="/tags/Data-Structures-Algorithms/" style="font-size: 10.59px;">Data Structures & Algorithms</a> <a href="/tags/Database/" style="font-size: 12.94px;">Database</a> <a href="/tags/ENSEEIHT/" style="font-size: 14.12px;">ENSEEIHT</a> <a href="/tags/Framework/" style="font-size: 11.76px;">Framework</a> <a href="/tags/Franc%CC%A7ais/" style="font-size: 14.71px;">Français</a> <a href="/tags/Java-Project/" style="font-size: 10px;">Java Project</a> <a href="/tags/Java-Tutorial/" style="font-size: 19.41px;">Java Tutorial</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 18.82px;">Java基础</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 14.71px;">Java核心技术卷I</a> <a href="/tags/Lifelong-Learning/" style="font-size: 16.47px;">Lifelong Learning</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Methodology/" style="font-size: 10px;">Methodology</a> <a href="/tags/Middleware/" style="font-size: 10.59px;">Middleware</a> <a href="/tags/MySQL/" style="font-size: 10.59px;">MySQL</a> <a href="/tags/Network/" style="font-size: 15.29px;">Network</a> <a href="/tags/Notes/" style="font-size: 15.88px;">Notes</a> <a href="/tags/Operating-System/" style="font-size: 13.53px;">Operating System</a> <a href="/tags/Photography/" style="font-size: 10px;">Photography</a> <a href="/tags/Problem-Solving/" style="font-size: 11.18px;">Problem Solving</a> <a href="/tags/Programming/" style="font-size: 20px;">Programming</a> <a href="/tags/Programming-Learning/" style="font-size: 11.18px;">Programming Learning</a> <a href="/tags/Software/" style="font-size: 10px;">Software</a> <a href="/tags/Spring/" style="font-size: 10.59px;">Spring</a> <a href="/tags/macOS/" style="font-size: 11.18px;">macOS</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91UML/" style="font-size: 11.76px;">【大学课程】UML</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10.59px;">【大学课程】操作系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" style="font-size: 11.76px;">【大学课程】数据库系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/" style="font-size: 11.76px;">【大学课程】计算机接口与通信</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 11.18px;">【大学课程】计算机网络</a> <a href="/tags/%E3%80%90%E5%B0%9A%E7%A1%85%E8%B0%B7%E3%80%91Java/" style="font-size: 17.06px;">【尚硅谷】Java</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.35px;">【王道考研】操作系统</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 12.94px;">【王道考研】计算机网络</a> <a href="/tags/%E5%9B%BE%E8%A7%A3%E7%BD%91%E7%BB%9C/" style="font-size: 11.76px;">图解网络</a> <a href="/tags/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/" style="font-size: 10.59px;">墓畔回忆录</a> <a href="/tags/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/" style="font-size: 17.65px;">我的大学</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/categories">
+                    <i class="fa fa-book"></i><span>Categories</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/tags">
+                    <i class="fa fa-tags"></i><span>Tags</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Blog/" style="font-size: 13.53px;">Blog</a> <a href="/tags/College/" style="font-size: 18.24px;">College</a> <a href="/tags/Computer-Science/" style="font-size: 18.82px;">Computer Science</a> <a href="/tags/Data-Structures-Algorithms/" style="font-size: 10.59px;">Data Structures & Algorithms</a> <a href="/tags/Database/" style="font-size: 12.94px;">Database</a> <a href="/tags/ENSEEIHT/" style="font-size: 14.12px;">ENSEEIHT</a> <a href="/tags/Framework/" style="font-size: 11.76px;">Framework</a> <a href="/tags/Franc%CC%A7ais/" style="font-size: 14.71px;">Français</a> <a href="/tags/Java-Project/" style="font-size: 10px;">Java Project</a> <a href="/tags/Java-Tutorial/" style="font-size: 19.41px;">Java Tutorial</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 18.82px;">Java基础</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 14.71px;">Java核心技术卷I</a> <a href="/tags/Lifelong-Learning/" style="font-size: 16.47px;">Lifelong Learning</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Methodology/" style="font-size: 10px;">Methodology</a> <a href="/tags/Middleware/" style="font-size: 10.59px;">Middleware</a> <a href="/tags/MySQL/" style="font-size: 10.59px;">MySQL</a> <a href="/tags/Network/" style="font-size: 15.29px;">Network</a> <a href="/tags/Notes/" style="font-size: 15.88px;">Notes</a> <a href="/tags/Operating-System/" style="font-size: 13.53px;">Operating System</a> <a href="/tags/Photography/" style="font-size: 10px;">Photography</a> <a href="/tags/Problem-Solving/" style="font-size: 11.18px;">Problem Solving</a> <a href="/tags/Programming/" style="font-size: 20px;">Programming</a> <a href="/tags/Programming-Learning/" style="font-size: 11.18px;">Programming Learning</a> <a href="/tags/Software/" style="font-size: 10px;">Software</a> <a href="/tags/Spring/" style="font-size: 10.59px;">Spring</a> <a href="/tags/macOS/" style="font-size: 11.18px;">macOS</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91UML/" style="font-size: 11.76px;">【大学课程】UML</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10.59px;">【大学课程】操作系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" style="font-size: 11.76px;">【大学课程】数据库系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/" style="font-size: 11.76px;">【大学课程】计算机接口与通信</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 11.18px;">【大学课程】计算机网络</a> <a href="/tags/%E3%80%90%E5%B0%9A%E7%A1%85%E8%B0%B7%E3%80%91Java/" style="font-size: 17.06px;">【尚硅谷】Java</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.35px;">【王道考研】操作系统</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 12.94px;">【王道考研】计算机网络</a> <a href="/tags/%E5%9B%BE%E8%A7%A3%E7%BD%91%E7%BB%9C/" style="font-size: 11.76px;">图解网络</a> <a href="/tags/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/" style="font-size: 10.59px;">墓畔回忆录</a> <a href="/tags/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/" style="font-size: 17.65px;">我的大学</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":200,"height":400,"vOffset":-30},"mobile":{"show":false},"react":{"opacity":0.8},"log":false});</script></body>
+</html>
+
+
+

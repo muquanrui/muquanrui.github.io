@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>A web application to submit and run Spark programs | Quanrui&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Quanrui's Blog" />
+  
+  <meta name="description" content="1 Project environmentDevelopment environment:  Java 1.8.0_281 Maven 3.8.4 IntelliJ IDEA 2021.1.2  Dependencies:  spring-webmvc 5.3.1 javax.servlet-api 3.1.0 thymeleaf-spring5 3.0.12.RELEASE commons-fi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A web application to submit and run Spark programs">
+<meta property="og:url" content="http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/index.html">
+<meta property="og:site_name" content="Quanrui&#39;s Blog">
+<meta property="og:description" content="1 Project environmentDevelopment environment:  Java 1.8.0_281 Maven 3.8.4 IntelliJ IDEA 2021.1.2  Dependencies:  spring-webmvc 5.3.1 javax.servlet-api 3.1.0 thymeleaf-spring5 3.0.12.RELEASE commons-fi">
+<meta property="og:locale">
+<meta property="og:image" content="http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/images/1643046535559.png">
+<meta property="og:image" content="http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/images/1643055636643.png">
+<meta property="og:image" content="http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/images/1643046763653.png">
+<meta property="og:image" content="http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/images/1643047019992.png">
+<meta property="og:image" content="http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/images/1643047326835.png">
+<meta property="og:image" content="http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/images/1643047941754.png">
+<meta property="og:image" content="http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/images/1643047985387.png">
+<meta property="og:image" content="http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/images/1643047640353.png">
+<meta property="og:image" content="http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/images/1643048379890.png">
+<meta property="og:image" content="http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/images/1643048532431.png">
+<meta property="og:image" content="http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/images/1643048629983.png">
+<meta property="og:image" content="http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/images/1643048775651.png">
+<meta property="og:image" content="http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/images/1643048816371.png">
+<meta property="og:image" content="http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/images/1643049065611.png">
+<meta property="og:image" content="http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/images/1643049261654.png">
+<meta property="article:published_time" content="2022-01-24T10:30:28.000Z">
+<meta property="article:modified_time" content="2023-01-01T11:27:38.986Z">
+<meta property="article:author" content="MU Quanrui">
+<meta property="article:tag" content="College">
+<meta property="article:tag" content="ENSEEIHT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/images/1643046535559.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+ <!--加载prettify代码高亮样式-->
+<link href="/google-code-prettify/tranquil-heart.css" type="text/css" rel="stylesheet" />
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+
+  <!--加载条样式-->
+  <style>
+    .pace .pace-progress {
+    	background-image: linear-gradient(90deg, #F79533 0%, #F37055 15%, #EF4E7B 30%, #A166AB 44%, #5073B8 58%, #1098AD 72%, #07B39B 86%, #6DBA82 100%);
+    	height: 3px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+  </style>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <div id="background"></div><!--背景颜色/图片-->
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+
+        <div id="header-menu" class="header-menu-pos animated">
+
+
+<a target="_blank" rel="noopener" href="https://github.com/muquanrui" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#FFA500; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Quanrui&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/categories">
+                        <i class="fa fa-book"></i>
+                        <span>Categories</span>
+                    </a>
+                    
+                    <a  href="/tags">
+                        <i class="fa fa-tags"></i>
+                        <span>Tags</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Quanrui&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Carpe diem.
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Home" target="_blank" href="//muquanrui.com">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/muquanrui">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Google" target="_blank" href="//google.com">
+                            <i class="fa fa-google fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-College/ENSEEIHT/A web application to submit and run Spark programs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      A web application to submit and run Spark programs
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/ENSEEIHT/">ENSEEIHT</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2022-01-24
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>          
+        </li>
+      </ul>
+       <span class="post-count">文章字数:941字 &nbsp &nbsp  
+         阅读时长:5分钟</span>
+    </div>
+  
+        
+          
+      </header>
+    
+
+    <div class="article-entry post-content" itemprop="articleBody">
+
+    
+    
+
+
+
+      
+            
+            <h2 id="1-Project-environment"><a href="#1-Project-environment" class="headerlink" title="1 Project environment"></a>1 Project environment</h2><p>Development environment:</p>
+<ul>
+<li>Java 1.8.0_281</li>
+<li>Maven 3.8.4</li>
+<li>IntelliJ IDEA 2021.1.2</li>
+</ul>
+<p>Dependencies:</p>
+<ul>
+<li>spring-webmvc 5.3.1</li>
+<li>javax.servlet-api 3.1.0</li>
+<li>thymeleaf-spring5 3.0.12.RELEASE</li>
+<li>commons-fileupload 1.3.1</li>
+</ul>
+<p>Running environment:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://vor.ink/2022/01/09/Spark%20cluster%20construction%20(using%20three%20virtual%20machines)/">Spark virtual machine cluster</a></li>
+<li>Tomcat 9.0.58</li>
+</ul>
+<h2 id="2-Modules-overview"><a href="#2-Modules-overview" class="headerlink" title="2 Modules overview"></a>2 Modules overview</h2><p><img src="./images/1643046535559.png"></p>
+<p><img src="./images/1643055636643.png"></p>
+<h2 id="3-Upload-module"><a href="#3-Upload-module" class="headerlink" title="3 Upload module"></a>3 Upload module</h2><h3 id="3-1-Fron-end-part"><a href="#3-1-Fron-end-part" class="headerlink" title="3.1 Fron-end part"></a>3.1 Fron-end part</h3><p>First create index.html and use form to allow users to upload files and submit HTTP post request.</p>
+<p>At the same time complete the simple css style of the whole program.</p>
+<p>Here we also need to use a JavaScript to decide whether the form is allowed to submitted:</p>
+<ul>
+<li>if program and data file have both been uploaded</li>
+<li>if the program is a JAR, and the data file is a txt</li>
+<li>if the program entry conforms to the format (package.Class)</li>
+</ul>
+<h3 id="3-2-Back-end-part"><a href="#3-2-Back-end-part" class="headerlink" title="3.2 Back-end part"></a>3.2 Back-end part</h3><p>A controller to receive the request:</p>
+<ul>
+<li>Transfer files to server side through Spring MVC’s MultipartFile.</li>
+<li>Share the attributes, mainly files information in the session to the next page through Spring MVC model.</li>
+</ul>
+<h2 id="4-Run-module"><a href="#4-Run-module" class="headerlink" title="4 Run module"></a>4 Run module</h2><h3 id="4-1-ProgramBean-and-RunProgramService"><a href="#4-1-ProgramBean-and-RunProgramService" class="headerlink" title="4.1 ProgramBean and RunProgramService"></a>4.1 ProgramBean and RunProgramService</h3><p>A bean <code>ProgramBean</code> is needed, which is used later to save information such as filename and path.</p>
+<p>We also need to create a service class <code>RunProgramService</code> that implements the Runnable interface. In this class, the <code>Runtime.getRuntime().exec()</code> method is used to start the child thread, start the terminal program and call the command to run the program and get the result:</p>
+<pre><code class="bash">hdfs dfs -rm /input/datafileNameToReplace.txt
+
+hdfs dfs -put datafileNameToReplace.txt /input
+
+hdfs dfs -rm -r /output
+
+spark-submit \
+--master spark://192.168.91.100:7077 \
+--executor-memory 512m \
+--total-executor-cores 4 \
+--class mainMethodToReplace \
+programPathToReplace \
+hdfs://192.168.91.100:9000/input \
+hdfs://192.168.91.100:9000/output
+
+hadoop fs -getmerge /output outputPathToReplace</code></pre>
+<p>To ensure that these commands are executed sequentially, after each <code>Runtime.getRuntime().exec()</code> we use the <code>Process</code> object to receive return value and call the <code>waitFor()</code> method to ensure that the current thread will not continue until the previous child thread ends.</p>
+<h3 id="4-2-Web-part"><a href="#4-2-Web-part" class="headerlink" title="4.2 Web part"></a>4.2 Web part</h3><p>Another HTML page, which also uses a form, but with hidden inputs used to get the attributes passed in, and then give the user a button to run the program.</p>
+<p>The controller in this module’s web page needs to:</p>
+<ul>
+<li>Get file name and path information and encapsulate them into <code>programBean</code>.</li>
+<li>Use programBean to create and initialize <code>runProgramService</code>, and use  <code>Thread</code> to start a new thread to call the service to execute the program.</li>
+<li>Send attribute of the path of the output file to the download module’s page.</li>
+</ul>
+<h2 id="5-Download-module"><a href="#5-Download-module" class="headerlink" title="5 Download module"></a>5 Download module</h2><h3 id="5-1-Fron-end-part"><a href="#5-1-Fron-end-part" class="headerlink" title="5.1 Fron-end part"></a>5.1 Fron-end part</h3><p>Provide two buttons on the HTML page to allow users to download the output file and access SparkUI.</p>
+<p>A JavaScript is required to judge if the hidden field <code>isOutput</code> is true when the page is loaded. If it is, user can download output file, otherwise, an alert will prompt.</p>
+<h3 id="5-2-Back-end-part"><a href="#5-2-Back-end-part" class="headerlink" title="5.2 Back-end part"></a>5.2 Back-end part</h3><p>Every time the user clicks the “Download” button, the controller <code>testDownload</code> responds to the request and determines whether the file exists according to the output file path:</p>
+<ul>
+<li>If it exists, forward the request to the controller <code>canDownload</code> whicch uses Spring MVC’s ResponseEntity to read and rewrite the file and provide it to the user for download, and update <code>isOutput</code> to true.</li>
+<li>If it dosen’t exist, return to the current page and continue to set <code>isOutput</code> to false.</li>
+</ul>
+<h2 id="6-Test"><a href="#6-Test" class="headerlink" title="6 Test"></a>6 Test</h2><ul>
+<li>Virtual machine Master: server side</li>
+<li>Physical machine Host: client side </li>
+</ul>
+<h3 id="6-1-Deploy-the-webapp"><a href="#6-1-Deploy-the-webapp" class="headerlink" title="6.1 Deploy the webapp"></a>6.1 Deploy the webapp</h3><p>Use the Maven package tool to package the project into a war.</p>
+<p><img src="./images/1643046763653.png"></p>
+<p>Copy the war to the directory webapps of Tomcat in the Master.</p>
+<p><img src="./images/1643047019992.png"></p>
+<p>Start Tomcat and use the Host to access the application by <code>IP address of the virtual machine + Tomcat port number + name of the war</code>.</p>
+<p><img src="./images/1643047326835.png"></p>
+<h3 id="6-2-Start-Hadoop-and-Spark"><a href="#6-2-Start-Hadoop-and-Spark" class="headerlink" title="6.2 Start Hadoop and Spark"></a>6.2 Start Hadoop and Spark</h3><p>On the Master, start the Hadoop and Spark cluster with the command:</p>
+<pre><code class="bash">start-all.sh
+start-spark.sh</code></pre>
+<p>Use <code>jps</code> to check the Master, Slave1 and Slave2, make sure the nodes have all started.</p>
+<p><img src="./images/1643047941754.png"></p>
+<p><img src="./images/1643047985387.png"></p>
+<h3 id="6-3-Prepare-the-program-to-be-submitted"><a href="#6-3-Prepare-the-program-to-be-submitted" class="headerlink" title="6.3 Prepare the program to be submitted"></a>6.3 Prepare the program to be submitted</h3><p>Prepare a Spark program packged to JAR on Host. This program must allow the input file path and output file path o be obtained through command line parameters (<code>String args[]</code>). These two parameters are used by the server to execute spark-sbmit later.</p>
+<p>At the same time, the data files that this program needs to process are also required. Here a WordCount and an article are used.</p>
+<p><img src="./images/1643047640353.png"></p>
+<h3 id="6-4-Upload-program-and-data-file"><a href="#6-4-Upload-program-and-data-file" class="headerlink" title="6.4 Upload program and data file"></a>6.4 Upload program and data file</h3><p>On the Host, upload the JAR and txt file, and specify the program entry (the class where the main method is located)  on the home page of the web application, and then press the “Upload” button.</p>
+<p><img src="./images/1643048379890.png"></p>
+<p>If the upload does not meet the requirements, such as the file is not uploaded, or the file type and program entry format are wrong, the submission will pop up an error and stay on the current page.</p>
+<p><img src="./images/1643048532431.png"></p>
+<h3 id="6-5-Upload-successfully-and-run-the-program"><a href="#6-5-Upload-successfully-and-run-the-program" class="headerlink" title="6.5 Upload successfully and run the program"></a>6.5 Upload successfully and run the program</h3><p>After the upload is successful, it will jump to this page, click the “Run the program” button to let Spark run the program.</p>
+<p><img src="./images/1643048629983.png"></p>
+<h3 id="6-6-Download-and-check-SparkUI"><a href="#6-6-Download-and-check-SparkUI" class="headerlink" title="6.6 Download and check SparkUI"></a>6.6 Download and check SparkUI</h3><p>On the download page, if the program has not finished and the output file has not been obtained, clicking the “Download” button will prompt to wait, and then stay on the current page.</p>
+<p><img src="./images/1643048775651.png"></p>
+<p>Client can check the program running status through SparkUI, clicking “Check SparkUI” button to open the new page.</p>
+<p><img src="./images/1643048816371.png"></p>
+<p>After a while, if the program finished executing, clicking “Download” button to download the output file.</p>
+<p><img src="./images/1643049065611.png"></p>
+<p>Download the file and open it, we successfully get the result.</p>
+<p><img src="./images/1643049261654.png"></p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2023年01月01日 19:27</p>
+        <p>原始链接： <a class="post-url" href="/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/" title="A web application to submit and run Spark programs">http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/</a></p>
+        <footer>
+            <a href="http://muquanrui.com">
+                <img src="/images/logo.png" alt="MU Quanrui">
+                MU Quanrui
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/&title=《A web application to submit and run Spark programs》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/&title=《A web application to submit and run Spark programs》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《A web application to submit and run Spark programs》 — Quanrui's Blog&url=http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/&via=http://muquanrui.com" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2022/01/24/College/ENSEEIHT/A%20web%20application%20to%20submit%20and%20run%20Spark%20programs/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/College/" class="color3">College</a>
+      
+    <a href="/tags/ENSEEIHT/" class="color4">ENSEEIHT</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+        <div class= "post-toc-name">Table of Contents</div>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-Project-environment"><span class="post-toc-text">1 Project environment</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-Modules-overview"><span class="post-toc-text">2 Modules overview</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-Upload-module"><span class="post-toc-text">3 Upload module</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-Fron-end-part"><span class="post-toc-text">3.1 Fron-end part</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-Back-end-part"><span class="post-toc-text">3.2 Back-end part</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-Run-module"><span class="post-toc-text">4 Run module</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-ProgramBean-and-RunProgramService"><span class="post-toc-text">4.1 ProgramBean and RunProgramService</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-2-Web-part"><span class="post-toc-text">4.2 Web part</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-Download-module"><span class="post-toc-text">5 Download module</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-1-Fron-end-part"><span class="post-toc-text">5.1 Fron-end part</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-2-Back-end-part"><span class="post-toc-text">5.2 Back-end part</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-Test"><span class="post-toc-text">6 Test</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-1-Deploy-the-webapp"><span class="post-toc-text">6.1 Deploy the webapp</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-2-Start-Hadoop-and-Spark"><span class="post-toc-text">6.2 Start Hadoop and Spark</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-3-Prepare-the-program-to-be-submitted"><span class="post-toc-text">6.3 Prepare the program to be submitted</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-4-Upload-program-and-data-file"><span class="post-toc-text">6.4 Upload program and data file</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-5-Upload-successfully-and-run-the-program"><span class="post-toc-text">6.5 Upload successfully and run the program</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-6-Download-and-check-SparkUI"><span class="post-toc-text">6.6 Download and check SparkUI</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2022/02/14/Programming/Problem%20Solving/IDEA%E8%8E%B7%E5%8F%96%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E6%97%B6%E7%9A%84%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          IDEA获取资源文件时的路径问题
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2022/01/09/College/ENSEEIHT/Spark%20cluster%20construction%20(using%20three%20virtual%20machines)/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Spark cluster construction (using three virtual machines)</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="College/ENSEEIHT/A web application to submit and run Spark programs" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cyvaQ34l4';
+        var conf = 'dfbc2f31fdc91ffc75e2035195b4426d';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    |
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+    <div class="theme-info">
+</p>
+
+
+      <span class="post-count">本站博文总字数：637.8k</span>
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018~2023 MU Quanrui<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<!--加载prettify代码高亮js-->
+  <script type="text/javascript" src="/google-code-prettify/prettify.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('pre').addClass('prettyprint linenums');
+      $('code').addClass('prettyprint');
+      prettyPrint();
+    })
+  </script>
+
+<script>
+  var mihoConfig = {
+      root: "http://muquanrui.com",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Blog/">Blog</a><a class="category-link" href="/categories/Data-Structures-Algorithms/">Data Structures & Algorithms</a><a class="category-link" href="/categories/Database/">Database</a><a class="category-link" href="/categories/ENSEEIHT/">ENSEEIHT</a><a class="category-link" href="/categories/Framework/">Framework</a><a class="category-link" href="/categories/Franc%CC%A7ais/">Français</a><a class="category-link" href="/categories/Java-Project/">Java Project</a><a class="category-link" href="/categories/Java-Tutorial/">Java Tutorial</a><a class="category-link" href="/categories/Linux/">Linux</a><a class="category-link" href="/categories/Methodology/">Methodology</a><a class="category-link" href="/categories/Middleware/">Middleware</a><a class="category-link" href="/categories/Network/">Network</a><a class="category-link" href="/categories/Operating-System/">Operating System</a><a class="category-link" href="/categories/Photography/">Photography</a><a class="category-link" href="/categories/Problem-Solving/">Problem Solving</a><a class="category-link" href="/categories/Programming/">Programming</a><a class="category-link" href="/categories/Software/">Software</a><a class="category-link" href="/categories/macOS/">macOS</a><a class="category-link" href="/categories/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/">墓畔回忆录</a><a class="category-link" href="/categories/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/">我的大学</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Blog/" style="font-size: 13.53px;">Blog</a> <a href="/tags/College/" style="font-size: 18.24px;">College</a> <a href="/tags/Computer-Science/" style="font-size: 18.82px;">Computer Science</a> <a href="/tags/Data-Structures-Algorithms/" style="font-size: 10.59px;">Data Structures & Algorithms</a> <a href="/tags/Database/" style="font-size: 12.94px;">Database</a> <a href="/tags/ENSEEIHT/" style="font-size: 14.12px;">ENSEEIHT</a> <a href="/tags/Framework/" style="font-size: 11.76px;">Framework</a> <a href="/tags/Franc%CC%A7ais/" style="font-size: 14.71px;">Français</a> <a href="/tags/Java-Project/" style="font-size: 10px;">Java Project</a> <a href="/tags/Java-Tutorial/" style="font-size: 19.41px;">Java Tutorial</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 18.82px;">Java基础</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 14.71px;">Java核心技术卷I</a> <a href="/tags/Lifelong-Learning/" style="font-size: 16.47px;">Lifelong Learning</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Methodology/" style="font-size: 10px;">Methodology</a> <a href="/tags/Middleware/" style="font-size: 10.59px;">Middleware</a> <a href="/tags/MySQL/" style="font-size: 10.59px;">MySQL</a> <a href="/tags/Network/" style="font-size: 15.29px;">Network</a> <a href="/tags/Notes/" style="font-size: 15.88px;">Notes</a> <a href="/tags/Operating-System/" style="font-size: 13.53px;">Operating System</a> <a href="/tags/Photography/" style="font-size: 10px;">Photography</a> <a href="/tags/Problem-Solving/" style="font-size: 11.18px;">Problem Solving</a> <a href="/tags/Programming/" style="font-size: 20px;">Programming</a> <a href="/tags/Programming-Learning/" style="font-size: 11.18px;">Programming Learning</a> <a href="/tags/Software/" style="font-size: 10px;">Software</a> <a href="/tags/Spring/" style="font-size: 10.59px;">Spring</a> <a href="/tags/macOS/" style="font-size: 11.18px;">macOS</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91UML/" style="font-size: 11.76px;">【大学课程】UML</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10.59px;">【大学课程】操作系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" style="font-size: 11.76px;">【大学课程】数据库系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/" style="font-size: 11.76px;">【大学课程】计算机接口与通信</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 11.18px;">【大学课程】计算机网络</a> <a href="/tags/%E3%80%90%E5%B0%9A%E7%A1%85%E8%B0%B7%E3%80%91Java/" style="font-size: 17.06px;">【尚硅谷】Java</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.35px;">【王道考研】操作系统</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 12.94px;">【王道考研】计算机网络</a> <a href="/tags/%E5%9B%BE%E8%A7%A3%E7%BD%91%E7%BB%9C/" style="font-size: 11.76px;">图解网络</a> <a href="/tags/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/" style="font-size: 10.59px;">墓畔回忆录</a> <a href="/tags/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/" style="font-size: 17.65px;">我的大学</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/categories">
+                    <i class="fa fa-book"></i><span>Categories</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/tags">
+                    <i class="fa fa-tags"></i><span>Tags</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Blog/" style="font-size: 13.53px;">Blog</a> <a href="/tags/College/" style="font-size: 18.24px;">College</a> <a href="/tags/Computer-Science/" style="font-size: 18.82px;">Computer Science</a> <a href="/tags/Data-Structures-Algorithms/" style="font-size: 10.59px;">Data Structures & Algorithms</a> <a href="/tags/Database/" style="font-size: 12.94px;">Database</a> <a href="/tags/ENSEEIHT/" style="font-size: 14.12px;">ENSEEIHT</a> <a href="/tags/Framework/" style="font-size: 11.76px;">Framework</a> <a href="/tags/Franc%CC%A7ais/" style="font-size: 14.71px;">Français</a> <a href="/tags/Java-Project/" style="font-size: 10px;">Java Project</a> <a href="/tags/Java-Tutorial/" style="font-size: 19.41px;">Java Tutorial</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 18.82px;">Java基础</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 14.71px;">Java核心技术卷I</a> <a href="/tags/Lifelong-Learning/" style="font-size: 16.47px;">Lifelong Learning</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Methodology/" style="font-size: 10px;">Methodology</a> <a href="/tags/Middleware/" style="font-size: 10.59px;">Middleware</a> <a href="/tags/MySQL/" style="font-size: 10.59px;">MySQL</a> <a href="/tags/Network/" style="font-size: 15.29px;">Network</a> <a href="/tags/Notes/" style="font-size: 15.88px;">Notes</a> <a href="/tags/Operating-System/" style="font-size: 13.53px;">Operating System</a> <a href="/tags/Photography/" style="font-size: 10px;">Photography</a> <a href="/tags/Problem-Solving/" style="font-size: 11.18px;">Problem Solving</a> <a href="/tags/Programming/" style="font-size: 20px;">Programming</a> <a href="/tags/Programming-Learning/" style="font-size: 11.18px;">Programming Learning</a> <a href="/tags/Software/" style="font-size: 10px;">Software</a> <a href="/tags/Spring/" style="font-size: 10.59px;">Spring</a> <a href="/tags/macOS/" style="font-size: 11.18px;">macOS</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91UML/" style="font-size: 11.76px;">【大学课程】UML</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10.59px;">【大学课程】操作系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" style="font-size: 11.76px;">【大学课程】数据库系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/" style="font-size: 11.76px;">【大学课程】计算机接口与通信</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 11.18px;">【大学课程】计算机网络</a> <a href="/tags/%E3%80%90%E5%B0%9A%E7%A1%85%E8%B0%B7%E3%80%91Java/" style="font-size: 17.06px;">【尚硅谷】Java</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.35px;">【王道考研】操作系统</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 12.94px;">【王道考研】计算机网络</a> <a href="/tags/%E5%9B%BE%E8%A7%A3%E7%BD%91%E7%BB%9C/" style="font-size: 11.76px;">图解网络</a> <a href="/tags/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/" style="font-size: 10.59px;">墓畔回忆录</a> <a href="/tags/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/" style="font-size: 17.65px;">我的大学</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":200,"height":400,"vOffset":-30},"mobile":{"show":false},"react":{"opacity":0.8},"log":false});</script></body>
+</html>
+
+
+

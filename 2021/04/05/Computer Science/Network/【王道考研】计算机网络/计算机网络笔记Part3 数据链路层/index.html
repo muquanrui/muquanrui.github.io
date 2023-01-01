@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>计算机网络笔记Part3 数据链路层 | Quanrui&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Quanrui's Blog" />
+  
+  <meta name="description" content="1 概述结点：主机、路由器 链路：网络中两个结点之间的物理通道，链路的传输介质主要有双绞线、光纤和微波，分为有线链路和无线链路。 数据链路：网络中两个结点之间的逻辑通道，把实现控制数据传输协议的硬件和软件加到链路上就构成数据链路。 帧：链路层的协议数据单元，封装网络层数据报。 数据链路层负责通过一条链路从一个结点向另一个物理链路直接相连的相邻结点传送数据报。 数据链路层在物理层提供服务的基础上向">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络笔记Part3 数据链路层">
+<meta property="og:url" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/index.html">
+<meta property="og:site_name" content="Quanrui&#39;s Blog">
+<meta property="og:description" content="1 概述结点：主机、路由器 链路：网络中两个结点之间的物理通道，链路的传输介质主要有双绞线、光纤和微波，分为有线链路和无线链路。 数据链路：网络中两个结点之间的逻辑通道，把实现控制数据传输协议的硬件和软件加到链路上就构成数据链路。 帧：链路层的协议数据单元，封装网络层数据报。 数据链路层负责通过一条链路从一个结点向另一个物理链路直接相连的相邻结点传送数据报。 数据链路层在物理层提供服务的基础上向">
+<meta property="og:locale">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617737135096.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617613587948.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617613885260.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617614162278.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617614295413.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617614442137.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617614530010.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617615992827.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617616328909.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617616383196.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617616981381.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617617082291.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617617390565.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617617642646.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617620033351.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617619992688.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617620005264.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617620088466.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617622565670.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617622909521.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617623013771.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617623116541.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617623253004.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617623311872.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617623712788.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617632633165.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617633489666.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617634756449.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617635092345.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617635124245.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617635268468.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617635299022.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617635311926.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617635402868.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617635676333.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617635914783.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617635976923.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617699956132.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617693434467.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617693532478.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617693630829.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617693907725.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617694620428.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617695052233.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617695302497.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617696531946.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617699258057.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617699533472.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617699751789.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617701805404.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617702347594.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617703316161.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617704735064.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617704986234.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617705517391.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617706196079.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617706300657.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617706568059.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617706616678.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617731529351.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617732063374.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617732242616.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617732680989.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617732775335.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617734754901.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617733511497.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617733983317.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617734384208.png">
+<meta property="og:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617734612200.png">
+<meta property="article:published_time" content="2021-04-05T02:50:59.000Z">
+<meta property="article:modified_time" content="2023-01-01T13:24:26.669Z">
+<meta property="article:author" content="MU Quanrui">
+<meta property="article:tag" content="Computer Science">
+<meta property="article:tag" content="Network">
+<meta property="article:tag" content="【王道考研】计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/images/1617737135096.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+ <!--加载prettify代码高亮样式-->
+<link href="/google-code-prettify/tranquil-heart.css" type="text/css" rel="stylesheet" />
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+
+  <!--加载条样式-->
+  <style>
+    .pace .pace-progress {
+    	background-image: linear-gradient(90deg, #F79533 0%, #F37055 15%, #EF4E7B 30%, #A166AB 44%, #5073B8 58%, #1098AD 72%, #07B39B 86%, #6DBA82 100%);
+    	height: 3px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+  </style>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <div id="background"></div><!--背景颜色/图片-->
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+
+        <div id="header-menu" class="header-menu-pos animated">
+
+
+<a target="_blank" rel="noopener" href="https://github.com/muquanrui" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#FFA500; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Quanrui&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/categories">
+                        <i class="fa fa-book"></i>
+                        <span>Categories</span>
+                    </a>
+                    
+                    <a  href="/tags">
+                        <i class="fa fa-tags"></i>
+                        <span>Tags</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Quanrui&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Carpe diem.
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Home" target="_blank" href="//muquanrui.com">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/muquanrui">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Google" target="_blank" href="//google.com">
+                            <i class="fa fa-google fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Computer Science/Network/【王道考研】计算机网络/计算机网络笔记Part3 数据链路层" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      计算机网络笔记Part3 数据链路层
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Network/">Network</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-04-05
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>          
+        </li>
+      </ul>
+       <span class="post-count">文章字数:7.2k字 &nbsp &nbsp  
+         阅读时长:25分钟</span>
+    </div>
+  
+        
+          
+      </header>
+    
+
+    <div class="article-entry post-content" itemprop="articleBody">
+
+    
+    
+
+
+
+      
+            
+            <p><img src="./images/1617737135096.png"></p>
+<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1 概述"></a>1 概述</h2><p><strong>结点</strong>：主机、路由器</p>
+<p><strong>链路</strong>：网络中两个结点之间的<strong>物理通道</strong>，链路的传输介质主要有双绞线、光纤和微波，分为有线链路和无线链路。</p>
+<p><strong>数据链路</strong>：网络中两个结点之间的<strong>逻辑通道</strong>，把实现控制数据传输协议的硬件和软件加到链路上就构成数据链路。</p>
+<p><strong>帧</strong>：链路层的协议数据单元，封装网络层数据报。</p>
+<p>数据链路层负责通过一条链路从一个结点向另一个物理链路直接相连的相邻结点传送数据报。</p>
+<p>数据链路层在物理层提供服务的基础上向网络层提供服务，最基本的服务是将源自网络层来的数据可靠地传输到相邻结点的目标机网络层。主要作用是加强物理层传输原始比特流的功能，将物理层提供的可能出错的物理连接改造为逻辑上无差错的数据链路，使之对网络层表现为一条无差错的链路。</p>
+<p>数据链路层的功能：</p>
+<ol>
+<li>为网络层提供服务。无确认无连接服务，有确认无连接服务，有确认面向连接服务。</li>
+<li>链路管理。连接的建立、维持、释放（用于面向连接服务）。</li>
+<li>组帧。</li>
+<li>流量控制。</li>
+<li>差错控制（帧错/位错）。</li>
+</ol>
+<h2 id="2-封装成帧和透明传输"><a href="#2-封装成帧和透明传输" class="headerlink" title="2 封装成帧和透明传输"></a>2 封装成帧和透明传输</h2><p><strong>封装成帧</strong>：在一段数据的前后部分添加首部和尾部构成帧。接收端在收到物理层上交的比特流后，根据首部和尾部的标记，从收到的比特流中识别帧的开始和结束。</p>
+<p>首部和尾部包含许多控制信息，作用是：帧定界（确定帧的界限）。</p>
+<p><strong>帧同步</strong>：接收方应当能从接收到的二进制比特流中区分出帧的起始和终止。</p>
+<p>组帧的方法：</p>
+<ol>
+<li>字符计数法</li>
+<li>字符（节）填充法</li>
+<li>零比特填充法</li>
+<li>违规编码法</li>
+</ol>
+<p><img src="./images/1617613587948.png"></p>
+<p><strong>透明传输</strong>：不管所传数据是什么样的比特组合，都应当能在链路上传输。</p>
+<p>当所传数据的比特组合恰巧与某个控制信息一样时要采取措施，使接收方不会将这样的数据认为是某种控制信息，以保证数据链路层的透明传输。。</p>
+<ol>
+<li><strong>字符计数法</strong>：帧首部使用一个计数字段（第一个字节，八位）来标明帧内字符数。但是鸡蛋装在一个篮子里，很容易出错。</li>
+</ol>
+<p><img src="./images/1617613885260.png"></p>
+<ol start="2">
+<li><strong>字符填充法</strong>：</li>
+</ol>
+<p>问题来源：</p>
+<p><img src="./images/1617614162278.png"></p>
+<p>解决方法：</p>
+<p><img src="./images/1617614295413.png"></p>
+<ol start="3">
+<li><strong>零比特填充法</strong>：</li>
+</ol>
+<p><img src="./images/1617614442137.png"></p>
+<ol start="4">
+<li><strong>违规编码法</strong>：</li>
+</ol>
+<p><img src="./images/1617614530010.png"></p>
+<p>字节计数法中Count字段的脆弱性及字符填充法实现上的复杂和不兼容，目前普遍使用的是零比特填充和违规编码法。</p>
+<h2 id="3-差错控制"><a href="#3-差错控制" class="headerlink" title="3 差错控制"></a>3 差错控制</h2><p>传输中的差错由噪声引起：</p>
+<ul>
+<li>全局性：由于线路本身电气特性所产生的随机噪声（热噪声），是信道固有的随机存在的。<ul>
+<li>解决办法：提高信噪比来减少或避免干扰。</li>
+</ul>
+</li>
+<li>局部性：外界特定的短暂原因所造成的冲击噪声，是产生差错的主要原因。<ul>
+<li>解决办法：利用编码技术。</li>
+</ul>
+</li>
+</ul>
+<p><strong>差错</strong>：</p>
+<ul>
+<li>位错：比特位出错，1变0，0变1。</li>
+<li>帧错：发送123<ul>
+<li>丢失：收到13</li>
+<li>重复：收到1223</li>
+<li>失序：收到132</li>
+</ul>
+</li>
+</ul>
+<p>数据链路层为网络层提供服务。无确认无连接服务，有确认无连接服务，有确认面向连接服务。</p>
+<ul>
+<li>通信质量好，有线传输链路：无确认无连接服务。如果有差错，交给上层协议比如传输层来完成。</li>
+<li>通信质量差，无线传输链路：有确认无连接服务，有确认面向连接服务。</li>
+</ul>
+<p>差错控制（位错）：</p>
+<ul>
+<li>检错编码<ul>
+<li>奇偶校验码</li>
+<li>循环冗余码CRC</li>
+</ul>
+</li>
+<li>纠错编码<ul>
+<li>海明码</li>
+</ul>
+</li>
+</ul>
+<p>数据链路层编码 vs 物理层编码</p>
+<ul>
+<li>数据链路层编码针对一组比特，通过冗余码技术检查一组二进制比特串在传输过程中是否出现差错。</li>
+<li>物理层编码针对单个比特，解决传输过程中比特同步的问题，比如曼彻斯特编码。</li>
+</ul>
+<h3 id="3-1-检错编码"><a href="#3-1-检错编码" class="headerlink" title="3.1 检错编码"></a>3.1 检错编码</h3><p><strong>奇偶校验码</strong>：</p>
+<p><img src="./images/1617615992827.png"></p>
+<p>奇偶校验码只能检查出奇数个比特错误，检错能力为50%。</p>
+<p><strong>CRC循环冗余码</strong>：</p>
+<p><img src="./images/1617616328909.png"></p>
+<p><img src="./images/1617616383196.png"></p>
+<p>链路层使用CRC检验能够实现无比特差错的传输，但是只能做到对帧的无差错接收，这不是可靠传输，因为错误的帧都被丢弃，发送端发送的全部数据并没有全部被接收。</p>
+<h3 id="3-2-纠错编码"><a href="#3-2-纠错编码" class="headerlink" title="3.2 纠错编码"></a>3.2 纠错编码</h3><p><strong>海明码</strong>：可以发现双比特错，只能纠正单比特错。</p>
+<p>工作流程：</p>
+<ol>
+<li>确定校验码位数r</li>
+</ol>
+<p><img src="./images/1617616981381.png"></p>
+<ol start="2">
+<li>确定校验码和数据的位置</li>
+</ol>
+<p><img src="./images/1617617082291.png"></p>
+<ol start="3">
+<li>求出校验码的值</li>
+</ol>
+<p><img src="./images/1617617390565.png"></p>
+<ol start="4">
+<li>检错并纠错</li>
+</ol>
+<p><img src="./images/1617617642646.png"></p>
+<h2 id="4-流量控制与可靠传输机制"><a href="#4-流量控制与可靠传输机制" class="headerlink" title="4 流量控制与可靠传输机制"></a>4 流量控制与可靠传输机制</h2><p>较高的发送速度和较低的接收能力不匹配会造成传输出错，因此流量控制是数据链路层的重要工作。</p>
+<p>数据链路层流量控制 vs 传输层流量控制</p>
+<ul>
+<li>数据链路层的流量控制是点对点的，而传输层的流量控制是端到端的</li>
+<li>数据链路层的流量控制手段是接收方收不下就不回复确认，传输层流量控制手段是接收端给发送端一个窗口公告。</li>
+</ul>
+<p><strong>流量控制方法</strong>：</p>
+<ul>
+<li>停止等待协议</li>
+<li>滑动窗口协议<ul>
+<li>后退N帧协议GBN</li>
+<li>选择重传协议SR</li>
+</ul>
+</li>
+</ul>
+<p><img src="./images/1617620033351.png"></p>
+<p><img src="./images/1617619992688.png"></p>
+<p><img src="./images/1617620005264.png"></p>
+<p><img src="./images/1617620088466.png"></p>
+<p>停止等待协议也是一种特殊的滑动窗口协议，即发送方和接收方的窗口数量都是1。</p>
+<ul>
+<li>停止-等待协议：发送窗口=1，接收窗口=1</li>
+<li>后退N帧协议（GBN）：发送窗口&gt;1，接收窗口=1</li>
+<li>选择重传协议（SR）：发送窗口&gt;1，接收窗口&gt;1</li>
+</ul>
+<p>数据链路层的滑动窗口协议中窗口大小是固定的，不会变化，传输层的窗口大小可能是变化的。</p>
+<p>滑动窗口解决：</p>
+<ul>
+<li>流量控制：收不下不给确认，想发发不了</li>
+<li>可靠传输：发送方等待超时，自动重传</li>
+</ul>
+<h3 id="4-1-停止-等待协议"><a href="#4-1-停止-等待协议" class="headerlink" title="4.1 停止-等待协议"></a>4.1 停止-等待协议</h3><p>为什么要有停止等待协议：</p>
+<ul>
+<li>除了比特出差错，底层信道还会出现丢包问题。</li>
+<li>为了实现流量控制。</li>
+</ul>
+<p>研究前提：</p>
+<ul>
+<li>仅考虑一方发送数据，一方接收数据。（常用的实际上是全双工）</li>
+<li>不纠结数据在哪一个层次传输。</li>
+<li>停止等待协议就是每发送完一个分组就停止发送，等待对方确认，在收到确认后再发送下一个分组。</li>
+</ul>
+<p>应用情况——</p>
+<p>无差错情况：</p>
+<p><img src="./images/1617622565670.png"></p>
+<p>有差错情况：</p>
+<ul>
+<li>数据帧丢失或检测到帧出错</li>
+</ul>
+<p><img src="./images/1617622909521.png"></p>
+<ul>
+<li>ACK丢失</li>
+</ul>
+<p><img src="./images/1617623013771.png"></p>
+<ul>
+<li>ACK迟到</li>
+</ul>
+<p><img src="./images/1617623116541.png"></p>
+<p>性能分析：</p>
+<ul>
+<li>优点：简单</li>
+<li>缺点：信道利用率太低</li>
+</ul>
+<p><img src="./images/1617623253004.png"></p>
+<p><strong>信道利用率</strong>：发送方在一个周期内，有效发送数据所需要时间占整个发送周期的比率。</p>
+<p><img src="./images/1617623311872.png"></p>
+<h3 id="4-2-后退N帧协议（GBN）"><a href="#4-2-后退N帧协议（GBN）" class="headerlink" title="4.2 后退N帧协议（GBN）"></a>4.2 后退N帧协议（GBN）</h3><p>流水线：连续发送帧</p>
+<p><img src="./images/1617623712788.png"></p>
+<p>后退N帧协议中的滑动窗口：</p>
+<p><img src="./images/1617632633165.png"></p>
+<p>GBN发送方必须响应：</p>
+<ol>
+<li>上层的调用：上层要发送数据时，发送方先检查发送窗口是否已满，如果未满，则产生一个帧并将其发送，如果窗口已满，发送方将数据返回上层，暗示上层窗口已满，上层等一会再发送。实际实现时，发送方可以缓存这些数据等待窗口不满时发送。</li>
+<li>收到一个ACK：GBN协议中对n号帧确认采用<strong>累积确认</strong>的方式，标明接收方已经收到n号帧和它之前的全部帧。</li>
+<li>超时事件：定时器用于恢复数据帧或确认帧的丢失，出现超时时，发送方重传所有已发送但未被确认的帧，即后退N帧。</li>
+</ol>
+<p>GBN接收方要做的事：</p>
+<ol>
+<li>如果正确收到n号帧并且按序，那么接收方为n帧发送一个编号为n的ACK，并将该帧中的数据部分交付给上层。</li>
+<li>其余情况都丢弃帧，并为最近按序接收的帧重新发送ACK。接收方无需缓存任何失序帧，只需维护一个信息：expectedseqnum（下一个按序接收的帧序号）。</li>
+</ol>
+<p><img src="./images/1617633489666.png"></p>
+<p>滑动窗口的长度：如果采用n个比特对帧编号，那么发送窗口的尺寸Wt应满足1&lt;=Wt&lt;=2^n - 1。如果窗口尺寸过大，就会使得接收方无法区别新帧和旧帧。</p>
+<p>性能分析：</p>
+<ul>
+<li>优点：连续发送数据帧，提高了信道利用率。</li>
+<li>缺点：在重传时必须把原来已经正确传送的数据帧重传，传送效率降低。</li>
+</ul>
+<h3 id="4-3-选择重传协议（SR）"><a href="#4-3-选择重传协议（SR）" class="headerlink" title="4.3 选择重传协议（SR）"></a>4.3 选择重传协议（SR）</h3><p>选择重传协议中的滑动窗口：</p>
+<p><img src="./images/1617634756449.png"></p>
+<p>注意：图中上下无关（两个例子）</p>
+<p>SR发送方必须响应：</p>
+<ol>
+<li>上层的调用：从上层收到数据后，SR发送方检查下一个可用于该帧的序号，如果序号位于发送窗口内，则发送该数据帧，反之则类似于GBN，要么缓存数据，要么返回给上层之后再传输。</li>
+<li>收到一个ACK：如果收到ACK，假如该帧序号在窗口内，则SR发送方将那个被确认的帧标记为已接收。如果该帧是窗口的下界（最左边第一个窗口的序号），则窗口向前移动到具有最小序号的未确认帧处。如果窗口移动了并且有序号在窗口内的未发送帧，则发送这些帧。</li>
+</ol>
+<p><img src="./images/1617635092345.png"></p>
+<p><img src="./images/1617635124245.png"></p>
+<ol start="3">
+<li>超时事件：每个帧有自己的定时器，一个超时事件发生后只重传一个帧。</li>
+</ol>
+<p>SR接收方要做的事：</p>
+<ol>
+<li>来者不拒（接收窗口内的帧）：SR接收方确认一个正确接收的帧而不管其是否按序。失序的帧将被缓存，并返回给发送方一个该帧的确认帧（收到谁确认谁），直到所有帧（即序号更小的帧）都被收到为止，这时才可以将一批帧按序交付上层，然后向前移动滑动窗口。</li>
+</ol>
+<p><img src="./images/1617635268468.png"></p>
+<p><img src="./images/1617635299022.png"></p>
+<p><img src="./images/1617635311926.png"></p>
+<p><img src="./images/1617635402868.png"></p>
+<p><img src="./images/1617635676333.png"></p>
+<p>滑动窗口长度：</p>
+<p><img src="./images/1617635914783.png"></p>
+<p>问题出现：无法判断收到的帧是重传的帧还是新的帧。</p>
+<p>发送窗口最好等于接收窗口（大了溢出，小了没意义）。</p>
+<p><img src="./images/1617635976923.png"></p>
+<h2 id="5-介质访问控制"><a href="#5-介质访问控制" class="headerlink" title="5 介质访问控制"></a>5 介质访问控制</h2><p>传输数据使用的两种链路：</p>
+<ul>
+<li>点对点链路：两个相邻结点通过一个链路相连，没有第三者。比如：PPP协议，常用于广域网。</li>
+<li>广播式链路：所有主机共享通信介质。比如：早期的总线以太网，无线局域网，常用于局域网。典型拓扑结构是总线型，星型（逻辑总线型）。</li>
+</ul>
+<p><strong>介质访问控制</strong>：采用一定措施，使得两对节点之间的通信不会发生互相干扰的情况。</p>
+<ul>
+<li>静态划分信道：信道划分介质访问控制<ul>
+<li>频分多路复用 FDM</li>
+<li>时分多路复用 TDM</li>
+<li>波分多路复用 WDM</li>
+<li>码分多路复用 CDM</li>
+</ul>
+</li>
+<li>动态分配信道<ul>
+<li>轮询访问介质访问控制<ul>
+<li>令牌传递协议</li>
+</ul>
+</li>
+<li>随机访问介质访问控制<ul>
+<li>ALOHA协议</li>
+<li>CSMA协议</li>
+<li>CSMA/CD协议</li>
+<li>CSMA/CA协议</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="./images/1617699956132.png"></p>
+<h3 id="5-1-信道划分介质访问控制"><a href="#5-1-信道划分介质访问控制" class="headerlink" title="5.1 信道划分介质访问控制"></a>5.1 信道划分介质访问控制</h3><p><strong>信道划分介质访问控制</strong>：将使用介质的每个设备与来自同一信道上的其他设备的通信隔离开，把时域和频域资源合理分配给网络上的设备。</p>
+<p><img src="./images/1617693434467.png"></p>
+<p><strong>频分多路复用FDM</strong>：</p>
+<p><img src="./images/1617693532478.png"></p>
+<p><strong>时分多路复用TDM</strong>：</p>
+<p><img src="./images/1617693630829.png"></p>
+<p>改进的时分复用——<strong>统计时分复用STDM</strong>：</p>
+<p><img src="./images/1617693907725.png"></p>
+<p><strong>波分多路复用WDM</strong>：光的频分多路复用</p>
+<p><strong>码分多路复用CDM</strong>：<strong>码分多址</strong>（CDMA）是码分复用的一种方式。</p>
+<p><img src="./images/1617694620428.png"></p>
+<h3 id="5-2-ALOHA协议"><a href="#5-2-ALOHA协议" class="headerlink" title="5.2 ALOHA协议"></a>5.2 ALOHA协议</h3><p><strong>动态分配信道</strong>（动态媒体接入控制/多点接入）特点是：信道并非在用户通信时固定分配给用户，其中的随机访问介质访问控制使得所有用户可随机发送信息，发送信息时占全部带宽，但是会出现不协调的冲突，需要被解决。</p>
+<p><strong>ALOHA协议</strong>：</p>
+<ul>
+<li>纯ALOHA协议</li>
+<li>时隙ALOHA协议</li>
+</ul>
+<p><strong>纯ALOHA协议</strong>：</p>
+<ul>
+<li>思想：想发就发。不监听信道，不按时间槽发送，随机重发。</li>
+</ul>
+<p><img src="./images/1617695052233.png"></p>
+<ul>
+<li><p>冲突如何检测：如果发生冲突，接收方会检测出差错，然后不予确认，发送方在一定时间内收不到确认就判断发生冲突。</p>
+</li>
+<li><p>冲突如何解决：超时后等一随机时间再重传。</p>
+</li>
+</ul>
+<p><strong>时隙ALOHA协议</strong>：</p>
+<ul>
+<li>思想：控制想发就发的随意性。把时间分成若干个相同的时间片，所有用户在时间片开始时刻同步接入网络信道，若发生冲突，则必须等待下一个时间片开始时刻再发送。</li>
+</ul>
+<p><img src="./images/1617695302497.png"></p>
+<p>注意：</p>
+<ol>
+<li>纯ALOHA协议比时隙ALOHA吞吐量更低，效率更低。</li>
+<li>纯ALOHA协议想发就发，时隙ALOHA只有在时间片段开始才能发。</li>
+</ol>
+<h3 id="5-3-CSMA协议"><a href="#5-3-CSMA协议" class="headerlink" title="5.3 CSMA协议"></a>5.3 CSMA协议</h3><p><strong>CSMA</strong>（carrier sense multiple access）载波监听多路访问协议。</p>
+<ul>
+<li>CS：载波监听，每一个站点在发送数据前先检测一下总线上是否有其他计算机在发送数据。</li>
+<li>MA：多点接入，表示许多计算机以多点接入的方式连接在一根总线上。</li>
+<li>协议思想：发送帧之前，监听信道。</li>
+<li>监听结果<ul>
+<li>信道空闲：发送完整帧</li>
+<li>信道忙：推迟发送</li>
+</ul>
+</li>
+</ul>
+<p><strong>1-坚持CSMA</strong>：坚持指的是对于监听信道忙之后的坚持。</p>
+<ul>
+<li>思想：如果一个主机要发送消息，那么先监听信道。<ul>
+<li>空闲：直接传输，不必等待。</li>
+<li>忙：一直监听，一空闲马上传输。</li>
+<li>冲突（一段时间没收到回复）：等待一个随机长的时间再监听，重复上述过程。</li>
+</ul>
+</li>
+<li>优点：只要媒体空闲，站点就马上发送，避免了媒体利用率的损失。</li>
+<li>缺点：如果两个或两个以上站点有数据要发送，冲突不可避免。</li>
+</ul>
+<p><strong>非坚持CSMA</strong>：非坚持指的是监听信道忙之后就不继续监听。</p>
+<ul>
+<li>思想：如果一个主机要发送消息，那么先监听信道。<ul>
+<li>空闲：直接传输，不必等待。</li>
+<li>忙：等待一个随机时间之后再监听。</li>
+</ul>
+</li>
+<li>优点：采用随机的重发延迟时间可以减少冲突发生的可能性。</li>
+<li>缺点：可能大家都在延迟等待，使得媒体处于空闲状态，媒体使用率大大降低。</li>
+</ul>
+<p><strong>p-坚持CSMA</strong>：p-坚持指的是对于监听信道空闲的处理。</p>
+<ul>
+<li>思想：如果一个主机要发送消息，那么先监听信道。<ul>
+<li>空闲：以p概率直接传输，不必等待。概率1-p则等待到下一个时间槽（时间片）再传输。</li>
+<li>忙：等待一个随机事件之后再监听。</li>
+</ul>
+</li>
+<li>优点：既能像非坚持算法减少冲突，也能像1-坚持算法那样减少媒体空闲时间。</li>
+<li>缺点：发生冲突后还是要坚持把数据帧发送完，造成浪费。</li>
+</ul>
+<p><img src="./images/1617696531946.png"></p>
+<h3 id="5-4-CSMA-CD协议"><a href="#5-4-CSMA-CD协议" class="headerlink" title="5.4 CSMA/CD协议"></a>5.4 CSMA/CD协议</h3><p><strong>CSMA/CD</strong>（carrier sense multiple access with collision detection）载波监听多点接入/碰撞检测</p>
+<ul>
+<li>CS：载波监听，每一个站点在发送数据前先检测一下总线上是否有其他计算机在发送数据。</li>
+<li>MA：多点接入，表示许多计算机以多点接入的方式连接在一根总线上。总线型网络。</li>
+<li>CD：碰撞检测（冲突检测），“边发送边监听”，适配器边发送数据边检测信道上信号电压的变化情况，以判断自己在发送数据时其他站是否也在发送数据。半双工网络。</li>
+</ul>
+<p>先听后发为什么还有冲突：电磁波在总线上以有线速率传播。</p>
+<p>传播时延对载波监听的影响：</p>
+<p><img src="./images/1617699258057.png"></p>
+<p>确定碰撞后的重传时间：截断二进制指数规避算法</p>
+<p><img src="./images/1617699533472.png"></p>
+<p>最小帧长问题：帧太短，会导致发送完毕才检测到碰撞，没法叫停发送。</p>
+<p><img src="./images/1617699751789.png"></p>
+<h3 id="5-5-CSMA-CA协议"><a href="#5-5-CSMA-CA协议" class="headerlink" title="5.5 CSMA/CA协议"></a>5.5 CSMA/CA协议</h3><p><strong>CSMA/CA</strong>（carrier sense multiple access with collision avoidance）载波监听多点接入/碰撞避免</p>
+<ul>
+<li>为什么要有CSMA/CA：CSMA/CA用于无线局域网，CSMA/CD用于总线型有线局域网。</li>
+</ul>
+<p>工作原理：</p>
+<ul>
+<li>发送数据前，先检测信道是否空闲。<ul>
+<li>空闲：发出RTS（request to read），RTS包括发射端地址、接收端地址、下一份数据将持续发送的时间等信息。</li>
+<li>忙：等待一段时间。</li>
+</ul>
+</li>
+<li>接收端收到RTS后，响应CTS（clear to send）。</li>
+<li>发送端收到CTS后开始发送数据帧（同时预约信道：发送方告知其他站点自己要传多久数据）。</li>
+<li>接收端收到数据帧后，用CRC来检验数据是否正确，正确则相应ACK帧。</li>
+<li>发送方收到ACK可以进行下一个数据帧的发送，若没有则一直重传至规定重发次数为止（采用二进制指数规避算法来确定随机的推迟时间）。</li>
+</ul>
+<p>三个机制实现碰撞避免：</p>
+<ol>
+<li>预约信道</li>
+<li>ACK帧</li>
+<li>RTS/CTS帧（可选）</li>
+</ol>
+<p>CSMA/CD vs CSMA/CA</p>
+<ul>
+<li>相同点：都从属于CSMA，核心是先听再说。</li>
+<li>不同点：<ul>
+<li>传输介质不同：CSMA/CD用于总线以太网（有线），CSMA/CA用于无限局域网（无线）。</li>
+<li>载波检测方式不同：因为传输介质不同。</li>
+<li>CSMA/CD检测冲突，CSMA/CA避免冲突，二者出现冲突后都会进行有限次重传。</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-6-轮询访问介质访问控制"><a href="#5-6-轮询访问介质访问控制" class="headerlink" title="5.6 轮询访问介质访问控制"></a>5.6 轮询访问介质访问控制</h3><p>信道划分介质访问控制协议（MAC Multiple/Media Access Control）：基于多路复用技术划分资源</p>
+<ul>
+<li>网络负载重：共享信道效率高，且公平。</li>
+<li>网络负载轻：共享信道效率低</li>
+</ul>
+<p>随机访问MAC协议：用户根据意愿随机发送信息，发送信息时可以独占信道带宽。</p>
+<ul>
+<li>网络负载重：产生冲突开销。</li>
+<li>网络负载轻：共享信道效率高，单个结点可以利用全部信道带宽。</li>
+</ul>
+<p>轮询访问MAC协议：既不产生冲突，又要发送时占全部带宽。</p>
+<ul>
+<li>轮询协议</li>
+<li>令牌传递协议</li>
+</ul>
+<p><strong>轮询协议</strong>：主节点轮流“邀请”从属结点发送数据。</p>
+<p>问题：</p>
+<ol>
+<li>轮询开销</li>
+<li>等待延迟</li>
+<li>单点故障</li>
+</ol>
+<p><strong>令牌传递协议</strong>：</p>
+<p><img src="./images/1617701805404.png"></p>
+<h2 id="6-局域网"><a href="#6-局域网" class="headerlink" title="6 局域网"></a>6 局域网</h2><p><strong>局域网</strong>（Local Area Network）：LAN，某一区域内多台计算机互连成的计算机组，使用广播信道。</p>
+<p>局域网的特点：</p>
+<ol>
+<li>覆盖地理范围小。</li>
+<li>使用专门铺设的传输介质（双绞线、同轴电缆）进行联网，数据传输速率高（10Mb/s～10Gb/s）。</li>
+<li>通信延迟时间短，误码率低，可靠性较高。</li>
+<li>各站为平等关系，共享传输信道。</li>
+<li>多采用分布式控制和广播式通信，能进行广播与组播。</li>
+</ol>
+<p>决定局域网的主要要素：网络拓扑，传输介质与介质访问控制方法。</p>
+<p>局域网网络拓扑结构：</p>
+<p><img src="./images/1617702347594.png"></p>
+<p>局域网传输介质：</p>
+<ul>
+<li>有线局域网：双绞线，同轴电缆，光纤。</li>
+<li>无线局域网：电磁波。</li>
+</ul>
+<p>局域网介质访问控制方法：</p>
+<ul>
+<li>CSMA/CD：常用于总线型局域网，也用于树型网络。</li>
+<li>令牌总线：常用于总线型局域网，也用于树型网络。<ul>
+<li>把总线型或树型网络中的各个工作站按一定顺序如按接口地址大小排列成一个逻辑环，只有令牌持有者才能控制总线，才有发送信息的权利。</li>
+</ul>
+</li>
+<li>令牌环：用于逻辑上的环形局域网（物理拓扑结构是星型），如令牌环网。</li>
+</ul>
+<p>局域网的分类：</p>
+<ol>
+<li>以太网（Ethernet）：应用最广泛的局域网，按速度分为标准以太网（10Mbps），快速以太网（100Mbps），千兆以太网（1000Mbps），10G以太网。都符合IEEE802.3标准。逻辑拓扑总线型，物理拓扑是星型或扩展星型，使用CSMA/CD。</li>
+<li>令牌环网（Token-ring network）：物理上采用星型拓扑结构，逻辑上是环形拓扑结构。昨日黄花，造价高，不实用。</li>
+<li>FDDI网（Fiber Distributed Data Interface）：传输介质使用光纤，用得很少。物理上采用双环拓扑结构，逻辑上是环形拓扑结构。</li>
+<li>ATM网（Asynchronous Transfer Mode）：较新型的单元交换技术，使用53字节固定长度的单元进行交换。</li>
+<li>无线局域网（Wireless Local Area Network，WLAN）：采用IEEE802.11标准，通信介质是电磁波，空气传输。</li>
+</ol>
+<p>IEEE 802标准：是IEEE 802 LAN/MAN标准委员会制定的局域网、城域网技术标准（1980年2月成立）。</p>
+<ul>
+<li>IEEE 802.3：以太网</li>
+<li>IEEE 802.5：令牌环网</li>
+<li>IEEE 802.8：FDDI网</li>
+<li>IEEE 802.11：无线局域网</li>
+</ul>
+<p>MAC子层和LLC子层：IEEE 802标准所描述的局域网参考模型对应OSI参考模型的数据链路层和物理层，将数据链路层划分为<strong>逻辑链路层LLC子层</strong>和<strong>介质访问控制层MAC子层</strong>。</p>
+<p><img src="./images/1617703316161.png"></p>
+<h3 id="6-1-以太网"><a href="#6-1-以太网" class="headerlink" title="6.1 以太网"></a>6.1 以太网</h3><p>以太网（Ethernet）是由Xerox公司创建并由Xerox、Intel和DEC公司联合开发的基带总线局域网规范，是当今局域网采用的最通用的通信协议标准。以太网使用CSMA/CD技术</p>
+<p>以太网在局域网各种技术中占统治性地位：</p>
+<ol>
+<li>造价低廉。</li>
+<li>是应用最广泛的局域网技术。</li>
+<li>比令牌环网、ATM网便宜，简单。</li>
+<li>满足网络速率要求：10Mbps～10Gbps</li>
+</ol>
+<p>以太网的两个标准：</p>
+<ol>
+<li>DIX Ethernet V2：第一个局域网（以太网）产品规约。</li>
+<li>IEEE 802.3：IEEE 802委员会802.3工作组制定的第一个IEEE的以太网标准（帧格式与DIX有些微区别）。</li>
+</ol>
+<p>以太网提供无连接，不可靠的服务：</p>
+<ul>
+<li>无连接：发送方和接收方之间无“握手过程”。</li>
+<li>不可靠：不对发送方的数据帧编号，接收方不向发送方进行确认，差错帧直接丢弃，差错纠正由高层负责。（以太网只实现无差错接收，不实现可靠传输）</li>
+</ul>
+<p>以太网传输介质与拓扑结构发展：</p>
+<p><img src="./images/1617704735064.png"></p>
+<p><strong>10BASE-T以太网</strong>：传送基带信号的双绞线以太网。T表示采用双绞线，现10BASE-T以太网采用无屏蔽双绞线（UTP），传输速率是10Mb/s。</p>
+<ul>
+<li>物理上采用星型拓扑，逻辑上总线型，每段双绞线最长为100m。</li>
+<li>采用曼彻斯特编码。</li>
+<li>采用CSMA/CD介质访问控制。</li>
+</ul>
+<p><strong>适配器</strong>：计算机与外界局域网的连接通过通信适配器。</p>
+<p><img src="./images/1617704986234.png"></p>
+<p><strong>MAC地址</strong>：硬件地址/物理地址，标识符。每个适配器有一个全球唯一的48位二进制地址，前24位代表厂家（IEEE规定），后24位厂家自己制定，常用6组十六进制数表示。</p>
+<p><strong>以太网MAC帧</strong>：最常用的是以太网V2的格式。</p>
+<p><img src="./images/1617705517391.png"></p>
+<p>高速以太网：速率大于等于100Mb/s的以太网。</p>
+<ul>
+<li>100Base-T以太网：在双绞线上传送100Mb/基带信号的星型拓扑以太网，，仍使用IEEE802.3的CSMA/CD协议。支持全双工和半双工，可在全双工方式下工作而无冲突（星型中间变交换机，隔离冲突域）。</li>
+<li>吉比特以太网：在光纤或双绞线上传送1Gb/s的信号，支持全双工和半双工，可在全双工方式下工作而无冲突。</li>
+<li>10吉比特以太网：在光纤上传送10Gb/s的信号。只支持全双工，没有冲突。</li>
+</ul>
+<h3 id="6-2-无线局域网"><a href="#6-2-无线局域网" class="headerlink" title="6.2 无线局域网"></a>6.2 无线局域网</h3><p>IEEE 802.11：无线局域网的通用标准。</p>
+<p><strong>802.11的MAC帧头格式</strong>：</p>
+<p><img src="./images/1617706196079.png"></p>
+<p><img src="./images/1617706300657.png"></p>
+<p>无线局域网的分类：</p>
+<ol>
+<li>有固定基础设施的无线局域网</li>
+</ol>
+<p><img src="./images/1617706568059.png"></p>
+<ol start="2">
+<li>无固定基础设施无线局域网的自组织网络</li>
+</ol>
+<p><img src="./images/1617706616678.png"></p>
+<h2 id="7-广域网"><a href="#7-广域网" class="headerlink" title="7 广域网"></a>7 广域网</h2><p><strong>广域网</strong>（WAN，Wide Area Network），跨接很大物理范围，所覆盖范围从几十公里到几千公里，能连接多个城市或国家，或横跨几个洲并能提供远距离通信，形成国际性的远程网络。</p>
+<p>广域网的通信子网主要使用<strong>分组交换</strong>技术，可以利用公用分组交换网、卫星通信网和无线分组交换网，将分布在不同地区的局域网或计算机系统互连起来，达到资源共享的目的，如因特网（Internet）是世界范围内最大的广域网。</p>
+<p><img src="./images/1617731529351.png"></p>
+<h3 id="7-1-PPP协议"><a href="#7-1-PPP协议" class="headerlink" title="7.1 PPP协议"></a>7.1 PPP协议</h3><p>点对点协议PPP（Point-to-Point Protocol）：目前最广泛使用的数据链路层协议，用户使用拨号电话接入因特网时都是用PPP协议。只支持全双工链路。</p>
+<p>PPP协议满足的要求：</p>
+<ul>
+<li>简单：对于链路层的帧，无需纠错，无需序号，无需流量控制。</li>
+<li>封装成帧：帧定界符。</li>
+<li>透明传输：与帧定界符一样比特组合的数据应该如何处理？异步线路使用字节填充，同步线路使用比特填充。</li>
+<li>满足多种网络层协议：封装的IP数据报可以采用多种协议。</li>
+<li>满足多种类型链路：串行/并行，同步/异步，电/光…</li>
+<li>差错检测：错就丢弃。</li>
+<li>检测连接状态：链路是否正常工作。</li>
+<li>最大传送单元：数据部分最大长度MTU不超过1500字节。</li>
+<li>网络层地址协商：知道通信双方的网络层地址。</li>
+<li>数据压缩协商</li>
+</ul>
+<p>PPP协议无需满足的要求：</p>
+<ul>
+<li>纠错</li>
+<li>流量控制</li>
+<li>序号</li>
+<li>不支持多点线路</li>
+</ul>
+<p>PPP协议的三个组成部分：</p>
+<ol>
+<li>一个将IP数据报封装到串行链路（同步串行/异步串行）的方法。</li>
+<li>链路控制协议LCP：建立并维护数据链路连接。身份验证。</li>
+<li>网络控制协议NCP：PPP可支持多种网络协议，每个不同的网络协议都要一个相应的NCP来配置，为网络层协议建立和配置逻辑连接。</li>
+</ol>
+<p>PPP协议的状态图：</p>
+<p><img src="./images/1617732063374.png"></p>
+<p>PPP协议的帧格式：</p>
+<p><img src="./images/1617732242616.png"></p>
+<h3 id="7-2-HDLC协议"><a href="#7-2-HDLC协议" class="headerlink" title="7.2 HDLC协议"></a>7.2 HDLC协议</h3><p>HDLC协议：高级数据链路控制协议（High-Level Data Link Control HDLC），是一个在同步网上传输数据、面向比特的数据链路层协议。由ISO开发而成。</p>
+<ul>
+<li>数据报文可透明传输，用于实现透明传输的“0比特插入法”易于硬件实现。</li>
+<li>采用全双工通信。</li>
+<li>所有帧采用CRC检验，对信息帧进行顺序编号，可防止漏收或重份，传输可靠性高。</li>
+</ul>
+<p>HDLC的站：</p>
+<ul>
+<li>主站：起控制作用站。</li>
+<li>从站：被控制的站。</li>
+<li>复合站：有控制，也能被控制。</li>
+</ul>
+<p>对应三种数据方式：</p>
+<ol>
+<li>正常响应方式：主站命令从站进行传输。</li>
+<li>异步平衡方式：每一个复合站都是平等地位。</li>
+<li>异步响应方式：从站可以不经过主站同意进行数据传输。</li>
+</ol>
+<p>HDLC的帧格式：</p>
+<p><img src="./images/1617732680989.png"></p>
+<p>PPP协议 vs HDLC协议</p>
+<ul>
+<li>都只支持全双工链路</li>
+<li>都可以实现透明传输。</li>
+<li>都可以实现差错检测，但不纠正差错。</li>
+</ul>
+<p><img src="./images/1617732775335.png"></p>
+<h2 id="8-链路层设备"><a href="#8-链路层设备" class="headerlink" title="8 链路层设备"></a>8 链路层设备</h2><p>物理层扩展以太网：</p>
+<ul>
+<li>光纤</li>
+<li>主干集线器</li>
+</ul>
+<p><img src="./images/1617734754901.png"></p>
+<p><strong>网桥</strong>：根据MAC帧的目的地址对帧进行转发和过滤。当网桥收到一个帧时，并不向所有接口转发此帧，而是先检查此帧的目的MAC地址，然后再确定该帧转发到哪一个接口，或者丢弃。</p>
+<p><img src="./images/1617733511497.png"></p>
+<p>网桥的分类：</p>
+<ul>
+<li>透明网桥：透明指以太网上的站点并不知道所发送的帧要经过哪几个网桥，是一种即插即用的设备——自学习。</li>
+</ul>
+<p><img src="./images/1617733983317.png"></p>
+<ul>
+<li>源路由网桥：在发送帧时，把详细的最佳路由信息（路由最少/时间最短）放在帧的首部中。<ul>
+<li>方法：源站以广播方式向想要通信的目的站发送一个发现帧。</li>
+</ul>
+</li>
+</ul>
+<p>多接口网桥——以太网<strong>交换机</strong>：</p>
+<p><img src="./images/1617734384208.png"></p>
+<p>以太网交换机的两种交换方式：</p>
+<ul>
+<li>直通式交换机<ul>
+<li>查完目的地址（6B）就立刻转发。</li>
+<li>延迟小，可靠性低，无法支持具有不同速率的端口的交换。</li>
+</ul>
+</li>
+<li>存储转发式交换机（实际使用）<ul>
+<li>将帧放入高速缓存，并检查是否正确，正确则转发，错误则丢弃。</li>
+<li>延迟大，可靠性高，可以支持具有不同速率的端口的交换。</li>
+</ul>
+</li>
+</ul>
+<p>冲突域和广播域：</p>
+<p><img src="./images/1617734612200.png"></p>
+<hr>
+<blockquote>
+<p>参考资料：<br><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV19E411D78Q?from=search&seid=9528505304466187088">B站 2019 王道考研 计算机网络</a></p>
+</blockquote>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2023年01月01日 21:24</p>
+        <p>原始链接： <a class="post-url" href="/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" title="计算机网络笔记Part3 数据链路层">http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</a></p>
+        <footer>
+            <a href="http://muquanrui.com">
+                <img src="/images/logo.png" alt="MU Quanrui">
+                MU Quanrui
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/&title=《计算机网络笔记Part3 数据链路层》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/&title=《计算机网络笔记Part3 数据链路层》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《计算机网络笔记Part3 数据链路层》 — Quanrui's Blog&url=http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/&via=http://muquanrui.com" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2021/04/05/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/ComputerScience/" class="color2">Computer Science</a>
+      
+    <a href="/tags/Network/" class="color3">Network</a>
+      
+    <a href="/tags/【王道考研】计算机网络/" class="color2">【王道考研】计算机网络</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+        <div class= "post-toc-name">Table of Contents</div>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-%E6%A6%82%E8%BF%B0"><span class="post-toc-text">1 概述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-%E5%B0%81%E8%A3%85%E6%88%90%E5%B8%A7%E5%92%8C%E9%80%8F%E6%98%8E%E4%BC%A0%E8%BE%93"><span class="post-toc-text">2 封装成帧和透明传输</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-%E5%B7%AE%E9%94%99%E6%8E%A7%E5%88%B6"><span class="post-toc-text">3 差错控制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-%E6%A3%80%E9%94%99%E7%BC%96%E7%A0%81"><span class="post-toc-text">3.1 检错编码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-%E7%BA%A0%E9%94%99%E7%BC%96%E7%A0%81"><span class="post-toc-text">3.2 纠错编码</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E4%B8%8E%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E6%9C%BA%E5%88%B6"><span class="post-toc-text">4 流量控制与可靠传输机制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-%E5%81%9C%E6%AD%A2-%E7%AD%89%E5%BE%85%E5%8D%8F%E8%AE%AE"><span class="post-toc-text">4.1 停止-等待协议</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-2-%E5%90%8E%E9%80%80N%E5%B8%A7%E5%8D%8F%E8%AE%AE%EF%BC%88GBN%EF%BC%89"><span class="post-toc-text">4.2 后退N帧协议（GBN）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-%E9%80%89%E6%8B%A9%E9%87%8D%E4%BC%A0%E5%8D%8F%E8%AE%AE%EF%BC%88SR%EF%BC%89"><span class="post-toc-text">4.3 选择重传协议（SR）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-%E4%BB%8B%E8%B4%A8%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="post-toc-text">5 介质访问控制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-1-%E4%BF%A1%E9%81%93%E5%88%92%E5%88%86%E4%BB%8B%E8%B4%A8%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="post-toc-text">5.1 信道划分介质访问控制</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-2-ALOHA%E5%8D%8F%E8%AE%AE"><span class="post-toc-text">5.2 ALOHA协议</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-3-CSMA%E5%8D%8F%E8%AE%AE"><span class="post-toc-text">5.3 CSMA协议</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-4-CSMA-CD%E5%8D%8F%E8%AE%AE"><span class="post-toc-text">5.4 CSMA&#x2F;CD协议</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-5-CSMA-CA%E5%8D%8F%E8%AE%AE"><span class="post-toc-text">5.5 CSMA&#x2F;CA协议</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-6-%E8%BD%AE%E8%AF%A2%E8%AE%BF%E9%97%AE%E4%BB%8B%E8%B4%A8%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="post-toc-text">5.6 轮询访问介质访问控制</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-%E5%B1%80%E5%9F%9F%E7%BD%91"><span class="post-toc-text">6 局域网</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-1-%E4%BB%A5%E5%A4%AA%E7%BD%91"><span class="post-toc-text">6.1 以太网</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-2-%E6%97%A0%E7%BA%BF%E5%B1%80%E5%9F%9F%E7%BD%91"><span class="post-toc-text">6.2 无线局域网</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-%E5%B9%BF%E5%9F%9F%E7%BD%91"><span class="post-toc-text">7 广域网</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-1-PPP%E5%8D%8F%E8%AE%AE"><span class="post-toc-text">7.1 PPP协议</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-2-HDLC%E5%8D%8F%E8%AE%AE"><span class="post-toc-text">7.2 HDLC协议</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-%E9%93%BE%E8%B7%AF%E5%B1%82%E8%AE%BE%E5%A4%87"><span class="post-toc-text">8 链路层设备</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/04/08/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part4%20%E7%BD%91%E7%BB%9C%E5%B1%82/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          计算机网络笔记Part4 网络层
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/04/04/Computer%20Science/Network/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0Part2%20%E7%89%A9%E7%90%86%E5%B1%82/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">计算机网络笔记Part2 物理层</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="Computer Science/Network/【王道考研】计算机网络/计算机网络笔记Part3 数据链路层" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cyvaQ34l4';
+        var conf = 'dfbc2f31fdc91ffc75e2035195b4426d';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    |
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+    <div class="theme-info">
+</p>
+
+
+      <span class="post-count">本站博文总字数：637.8k</span>
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018~2023 MU Quanrui<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<!--加载prettify代码高亮js-->
+  <script type="text/javascript" src="/google-code-prettify/prettify.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('pre').addClass('prettyprint linenums');
+      $('code').addClass('prettyprint');
+      prettyPrint();
+    })
+  </script>
+
+<script>
+  var mihoConfig = {
+      root: "http://muquanrui.com",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Blog/">Blog</a><a class="category-link" href="/categories/Data-Structures-Algorithms/">Data Structures & Algorithms</a><a class="category-link" href="/categories/Database/">Database</a><a class="category-link" href="/categories/ENSEEIHT/">ENSEEIHT</a><a class="category-link" href="/categories/Framework/">Framework</a><a class="category-link" href="/categories/Franc%CC%A7ais/">Français</a><a class="category-link" href="/categories/Java-Project/">Java Project</a><a class="category-link" href="/categories/Java-Tutorial/">Java Tutorial</a><a class="category-link" href="/categories/Linux/">Linux</a><a class="category-link" href="/categories/Methodology/">Methodology</a><a class="category-link" href="/categories/Middleware/">Middleware</a><a class="category-link" href="/categories/Network/">Network</a><a class="category-link" href="/categories/Operating-System/">Operating System</a><a class="category-link" href="/categories/Photography/">Photography</a><a class="category-link" href="/categories/Problem-Solving/">Problem Solving</a><a class="category-link" href="/categories/Programming/">Programming</a><a class="category-link" href="/categories/Software/">Software</a><a class="category-link" href="/categories/macOS/">macOS</a><a class="category-link" href="/categories/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/">墓畔回忆录</a><a class="category-link" href="/categories/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/">我的大学</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Blog/" style="font-size: 13.53px;">Blog</a> <a href="/tags/College/" style="font-size: 18.24px;">College</a> <a href="/tags/Computer-Science/" style="font-size: 18.82px;">Computer Science</a> <a href="/tags/Data-Structures-Algorithms/" style="font-size: 10.59px;">Data Structures & Algorithms</a> <a href="/tags/Database/" style="font-size: 12.94px;">Database</a> <a href="/tags/ENSEEIHT/" style="font-size: 14.12px;">ENSEEIHT</a> <a href="/tags/Framework/" style="font-size: 11.76px;">Framework</a> <a href="/tags/Franc%CC%A7ais/" style="font-size: 14.71px;">Français</a> <a href="/tags/Java-Project/" style="font-size: 10px;">Java Project</a> <a href="/tags/Java-Tutorial/" style="font-size: 19.41px;">Java Tutorial</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 18.82px;">Java基础</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 14.71px;">Java核心技术卷I</a> <a href="/tags/Lifelong-Learning/" style="font-size: 16.47px;">Lifelong Learning</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Methodology/" style="font-size: 10px;">Methodology</a> <a href="/tags/Middleware/" style="font-size: 10.59px;">Middleware</a> <a href="/tags/MySQL/" style="font-size: 10.59px;">MySQL</a> <a href="/tags/Network/" style="font-size: 15.29px;">Network</a> <a href="/tags/Notes/" style="font-size: 15.88px;">Notes</a> <a href="/tags/Operating-System/" style="font-size: 13.53px;">Operating System</a> <a href="/tags/Photography/" style="font-size: 10px;">Photography</a> <a href="/tags/Problem-Solving/" style="font-size: 11.18px;">Problem Solving</a> <a href="/tags/Programming/" style="font-size: 20px;">Programming</a> <a href="/tags/Programming-Learning/" style="font-size: 11.18px;">Programming Learning</a> <a href="/tags/Software/" style="font-size: 10px;">Software</a> <a href="/tags/Spring/" style="font-size: 10.59px;">Spring</a> <a href="/tags/macOS/" style="font-size: 11.18px;">macOS</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91UML/" style="font-size: 11.76px;">【大学课程】UML</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10.59px;">【大学课程】操作系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" style="font-size: 11.76px;">【大学课程】数据库系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/" style="font-size: 11.76px;">【大学课程】计算机接口与通信</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 11.18px;">【大学课程】计算机网络</a> <a href="/tags/%E3%80%90%E5%B0%9A%E7%A1%85%E8%B0%B7%E3%80%91Java/" style="font-size: 17.06px;">【尚硅谷】Java</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.35px;">【王道考研】操作系统</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 12.94px;">【王道考研】计算机网络</a> <a href="/tags/%E5%9B%BE%E8%A7%A3%E7%BD%91%E7%BB%9C/" style="font-size: 11.76px;">图解网络</a> <a href="/tags/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/" style="font-size: 10.59px;">墓畔回忆录</a> <a href="/tags/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/" style="font-size: 17.65px;">我的大学</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/categories">
+                    <i class="fa fa-book"></i><span>Categories</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/tags">
+                    <i class="fa fa-tags"></i><span>Tags</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Blog/" style="font-size: 13.53px;">Blog</a> <a href="/tags/College/" style="font-size: 18.24px;">College</a> <a href="/tags/Computer-Science/" style="font-size: 18.82px;">Computer Science</a> <a href="/tags/Data-Structures-Algorithms/" style="font-size: 10.59px;">Data Structures & Algorithms</a> <a href="/tags/Database/" style="font-size: 12.94px;">Database</a> <a href="/tags/ENSEEIHT/" style="font-size: 14.12px;">ENSEEIHT</a> <a href="/tags/Framework/" style="font-size: 11.76px;">Framework</a> <a href="/tags/Franc%CC%A7ais/" style="font-size: 14.71px;">Français</a> <a href="/tags/Java-Project/" style="font-size: 10px;">Java Project</a> <a href="/tags/Java-Tutorial/" style="font-size: 19.41px;">Java Tutorial</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 18.82px;">Java基础</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 14.71px;">Java核心技术卷I</a> <a href="/tags/Lifelong-Learning/" style="font-size: 16.47px;">Lifelong Learning</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Methodology/" style="font-size: 10px;">Methodology</a> <a href="/tags/Middleware/" style="font-size: 10.59px;">Middleware</a> <a href="/tags/MySQL/" style="font-size: 10.59px;">MySQL</a> <a href="/tags/Network/" style="font-size: 15.29px;">Network</a> <a href="/tags/Notes/" style="font-size: 15.88px;">Notes</a> <a href="/tags/Operating-System/" style="font-size: 13.53px;">Operating System</a> <a href="/tags/Photography/" style="font-size: 10px;">Photography</a> <a href="/tags/Problem-Solving/" style="font-size: 11.18px;">Problem Solving</a> <a href="/tags/Programming/" style="font-size: 20px;">Programming</a> <a href="/tags/Programming-Learning/" style="font-size: 11.18px;">Programming Learning</a> <a href="/tags/Software/" style="font-size: 10px;">Software</a> <a href="/tags/Spring/" style="font-size: 10.59px;">Spring</a> <a href="/tags/macOS/" style="font-size: 11.18px;">macOS</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91UML/" style="font-size: 11.76px;">【大学课程】UML</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10.59px;">【大学课程】操作系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" style="font-size: 11.76px;">【大学课程】数据库系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/" style="font-size: 11.76px;">【大学课程】计算机接口与通信</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 11.18px;">【大学课程】计算机网络</a> <a href="/tags/%E3%80%90%E5%B0%9A%E7%A1%85%E8%B0%B7%E3%80%91Java/" style="font-size: 17.06px;">【尚硅谷】Java</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.35px;">【王道考研】操作系统</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 12.94px;">【王道考研】计算机网络</a> <a href="/tags/%E5%9B%BE%E8%A7%A3%E7%BD%91%E7%BB%9C/" style="font-size: 11.76px;">图解网络</a> <a href="/tags/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/" style="font-size: 10.59px;">墓畔回忆录</a> <a href="/tags/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/" style="font-size: 17.65px;">我的大学</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":200,"height":400,"vOffset":-30},"mobile":{"show":false},"react":{"opacity":0.8},"log":false});</script></body>
+</html>
+
+
+

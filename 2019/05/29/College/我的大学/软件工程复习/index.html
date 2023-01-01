@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>软件工程复习 | Quanrui&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Quanrui's Blog" />
+  
+  <meta name="description" content="软件的生命周期 软件产品从形成概念开始，经过开发、使用和维护，直到最后退役的全过程。 原则：各阶段任务尽可能独立 优点： “各个击破”、“分而治之”，降低难度 便于不同人员分工协作 便于在各个阶段采用科学的管理技术 便于在各个阶段采用先进的开发方法和技术 便于对软件开发工程的全过程的组织和管理       特点 顺序性、依赖性 推迟程序的物理实现 质量保证的观点（利于尽早发现错误）：阶段文档、评审">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件工程复习">
+<meta property="og:url" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Quanrui&#39;s Blog">
+<meta property="og:description" content="软件的生命周期 软件产品从形成概念开始，经过开发、使用和维护，直到最后退役的全过程。 原则：各阶段任务尽可能独立 优点： “各个击破”、“分而治之”，降低难度 便于不同人员分工协作 便于在各个阶段采用科学的管理技术 便于在各个阶段采用先进的开发方法和技术 便于对软件开发工程的全过程的组织和管理       特点 顺序性、依赖性 推迟程序的物理实现 质量保证的观点（利于尽早发现错误）：阶段文档、评审">
+<meta property="og:locale">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559102447141.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559102500601.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559102851185.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559102862174.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559103054122.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559103158044.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559103252436.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559103295566.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559104010756.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559104151808.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559104169192.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559127872292.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559128013913.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559128063934.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559128077801.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559128157007.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559128616969.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559128629565.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559128708705.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559128769686.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559128868067.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559128879101.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559128892853.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559105792846.png">
+<meta property="og:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559105871051.png">
+<meta property="article:published_time" content="2019-05-29T03:26:26.000Z">
+<meta property="article:modified_time" content="2023-01-01T11:26:06.547Z">
+<meta property="article:author" content="MU Quanrui">
+<meta property="article:tag" content="College">
+<meta property="article:tag" content="我的大学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/images/1559102447141.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+ <!--加载prettify代码高亮样式-->
+<link href="/google-code-prettify/tranquil-heart.css" type="text/css" rel="stylesheet" />
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+
+  <!--加载条样式-->
+  <style>
+    .pace .pace-progress {
+    	background-image: linear-gradient(90deg, #F79533 0%, #F37055 15%, #EF4E7B 30%, #A166AB 44%, #5073B8 58%, #1098AD 72%, #07B39B 86%, #6DBA82 100%);
+    	height: 3px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+  </style>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <div id="background"></div><!--背景颜色/图片-->
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+
+        <div id="header-menu" class="header-menu-pos animated">
+
+
+<a target="_blank" rel="noopener" href="https://github.com/muquanrui" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#FFA500; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Quanrui&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/categories">
+                        <i class="fa fa-book"></i>
+                        <span>Categories</span>
+                    </a>
+                    
+                    <a  href="/tags">
+                        <i class="fa fa-tags"></i>
+                        <span>Tags</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Quanrui&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Carpe diem.
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Home" target="_blank" href="//muquanrui.com">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/muquanrui">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Google" target="_blank" href="//google.com">
+                            <i class="fa fa-google fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-College/我的大学/软件工程复习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      软件工程复习
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/我的大学/">我的大学</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-05-29
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>          
+        </li>
+      </ul>
+       <span class="post-count">文章字数:4.5k字 &nbsp &nbsp  
+         阅读时长:15分钟</span>
+    </div>
+  
+        
+          
+      </header>
+    
+
+    <div class="article-entry post-content" itemprop="articleBody">
+
+    
+    
+
+
+
+      
+            
+            <h3 id="软件的生命周期"><a href="#软件的生命周期" class="headerlink" title="软件的生命周期"></a>软件的生命周期</h3><ul>
+<li>软件产品从形成概念开始，经过开发、使用和维护，直到最后退役的全过程。</li>
+<li>原则：各阶段任务尽可能独立</li>
+<li>优点：<ul>
+<li>“各个击破”、“分而治之”，降低难度</li>
+<li>便于不同人员分工协作</li>
+<li>便于在各个阶段采用科学的管理技术</li>
+<li>便于在各个阶段采用先进的开发方法和技术</li>
+<li>便于对软件开发工程的全过程的组织和管理</li>
+</ul>
+</li>
+</ul>
+<p><img src="./images/1559102447141.png" alt="三个时期六个阶段"></p>
+<p><img src="./images/1559102500601.png"></p>
+<ul>
+<li>特点<ul>
+<li>顺序性、依赖性</li>
+<li>推迟程序的物理实现</li>
+<li>质量保证的观点（利于尽早发现错误）：阶段文档、评审</li>
+</ul>
+</li>
+</ul>
+<p>错误的“积累效应”和“放大效应”：</p>
+<ul>
+<li>大部分的错误是在编码之前造成的</li>
+<li>错误发现、改正得越晚，需付出的代价越高</li>
+</ul>
+<h3 id="软件过程"><a href="#软件过程" class="headerlink" title="软件过程"></a>软件过程</h3><ul>
+<li>软件开发全部过程、活动和任务的结构框架。</li>
+<li>普遍适用的框架，而非具体的方法</li>
+<li>作用<ul>
+<li>描述各阶段关系</li>
+<li>为软件工程管理提供里程碑和进度表</li>
+<li>为开发过程提供原则和方法</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-编码—修正模型（code-and-fix-model）"><a href="#1-编码—修正模型（code-and-fix-model）" class="headerlink" title="1. 编码—修正模型（code and fix model）"></a>1. 编码—修正模型（code and fix model）</h4><ol>
+<li>软件开发只有两个阶段<ul>
+<li>编写程序代码</li>
+<li>修改程序代码</li>
+</ul>
+</li>
+<li>作坊式生产方式</li>
+<li>缺点<ul>
+<li>低估设计，代码结构差，难修改</li>
+<li>不重视需求，开发风险大，用户不满意</li>
+<li>难修改、难维护</li>
+</ul>
+</li>
+</ol>
+<h4 id="2-瀑布模型（Waterfall-Model）"><a href="#2-瀑布模型（Waterfall-Model）" class="headerlink" title="2. 瀑布模型（Waterfall Model）"></a>2. 瀑布模型（Waterfall Model）</h4><ul>
+<li>软件生存周期模型，流水式过程模型<ul>
+<li>有章可循，严谨有序。克服了个体随意性和不规范性的倾向，是摆脱软件危机迈出的重要一步</li>
+</ul>
+</li>
+<li>生命周期方法学</li>
+<li>阶段划分方法— 控制复杂性</li>
+</ul>
+<p><img src="./images/1559102851185.png"></p>
+<p><img src="./images/1559102862174.png"></p>
+<p>特点：</p>
+<ul>
+<li>基本思想：“分而治之”</li>
+<li>优点<ul>
+<li>规范管理开发过程</li>
+<li>文档驱动</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>初期系统的需求难于完全确定</li>
+<li>文档驱动</li>
+<li>周期长</li>
+</ul>
+</li>
+<li>适用范围<ul>
+<li>结构化方法，面向过程的软件开发方法</li>
+<li>需求变化少</li>
+<li>开发人员熟悉应用领域</li>
+<li>低风险项目</li>
+<li>使用环境稳定</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-原型模型（Prototyping-Model）"><a href="#3-原型模型（Prototyping-Model）" class="headerlink" title="3. 原型模型（Prototyping Model）"></a>3. 原型模型（Prototyping Model）</h4><ul>
+<li>针对：软件开发初期需求难以确定，需求模糊问题。补充和完善</li>
+<li>工程上经常使用的“原型”</li>
+<li>快速原型法（Rapid Prototyping）</li>
+<li>基本思想：快速建立原型，完善用户需求，建立一个完整并经过证实的需求规格说明，然后以此作为正式系统的开发基础。</li>
+</ul>
+<p><img src="./images/1559103054122.png"></p>
+<p>快速开发原型的途径</p>
+<ul>
+<li><p>模拟软件系统的人机界面和人机交互方式</p>
+</li>
+<li><p>开发工作原型，实现软件系统的部分功能</p>
+</li>
+<li><p>利用正在运行的类似软件</p>
+</li>
+<li><p>优点</p>
+<ul>
+<li>用户参与</li>
+<li>快速</li>
+</ul>
+</li>
+<li><p>缺点</p>
+<ul>
+<li>对开发环境要求高</li>
+</ul>
+</li>
+<li><p>适用范围</p>
+<ul>
+<li>已有产品（原型）</li>
+<li>简单而熟悉的领域</li>
+<li>有快速原型开发工具</li>
+<li>进行产品移植或升级</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-增量模型-Incremental-Model"><a href="#4-增量模型-Incremental-Model" class="headerlink" title="4. 增量模型( Incremental Model )"></a>4. 增量模型( Incremental Model )</h4><p>基本思想：遵循递增方式来进行软件开发</p>
+<p><img src="./images/1559103158044.png"></p>
+<ul>
+<li>优点<ul>
+<li>人员分配灵活</li>
+<li>能够在较短的时间内向用户提交一些可用的工作产品，能解决用户端一些急用功能</li>
+<li>每次只提交部分功能，使用户由较充分的时间适应和学习</li>
+<li>整个系统是由一个个构件集成在一起的，所以适应变更，大大提高了系统的可维护性</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>构件逐渐加入已有系统，对系统的要求比较苛刻（开放系统）</li>
+<li>需要协调好各增量之间的关系，管理复杂</li>
+<li>容易退化为边做边改模型，使软件过程的控制失去整体性</li>
+</ul>
+</li>
+<li>适用范围<ul>
+<li>在整个项目开发过程中，需求都可能发生变化，客户接受分阶段交付</li>
+<li>分析设计人员对应用领域不熟悉，难以一步到位</li>
+<li>中等或高风险项目</li>
+<li>用户可参与到整个软件开发过程中</li>
+<li>软件公司自己有较好的类库、构件库</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-螺旋模型（Spiral-Model）"><a href="#5-螺旋模型（Spiral-Model）" class="headerlink" title="5. 螺旋模型（Spiral Model）"></a>5. 螺旋模型（Spiral Model）</h4><ul>
+<li>针对：前面的模型没有提供“驾驭软件风险”的功能</li>
+<li>基本思想：降低风险<ul>
+<li>制定计划planning</li>
+<li>风险分析risk analysis</li>
+<li>实施工程engineering, construction and release</li>
+<li>客户评估customer evaluation</li>
+</ul>
+</li>
+</ul>
+<p><img src="./images/1559103252436.png"></p>
+<ul>
+<li>优点<ul>
+<li>有利于重用已有的构件</li>
+<li>以循环的方式逐步加深系统的定义和实现的深度</li>
+<li>灵活的风险控制，随着迭代的增加，风险程度降低</li>
+<li>用户参与，使得项目不偏离正确方向</li>
+<li>良好的沟通和高质量的产品</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>对开发人员要求高</li>
+<li>用户长期地接受“演化”方法较难</li>
+</ul>
+</li>
+<li>适用范围<ul>
+<li>庞大、复杂、高风险的系统</li>
+<li>内部开发的大规模软件项目</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-喷泉模型（Fountain-Model）"><a href="#6-喷泉模型（Fountain-Model）" class="headerlink" title="6. 喷泉模型（Fountain Model）"></a>6. 喷泉模型（Fountain Model）</h4><ul>
+<li>面向对象生命周期模型</li>
+<li>特点<ul>
+<li>迭代</li>
+<li>无缝</li>
+</ul>
+</li>
+</ul>
+<p><img src="./images/1559103295566.png"></p>
+<h4 id="为什么需要软件过程模型"><a href="#为什么需要软件过程模型" class="headerlink" title="为什么需要软件过程模型"></a>为什么需要软件过程模型</h4><ul>
+<li>明确了软件开发的过程和步骤，促进工程化开发软件</li>
+<li>为软件开发提供了可视性，便于对软件开发过程进行管理和控制</li>
+<li>便于细化和安排任务，使得每个人员明确各自的工作</li>
+</ul>
+<h4 id="如何选择软件过程模型"><a href="#如何选择软件过程模型" class="headerlink" title="如何选择软件过程模型"></a>如何选择软件过程模型</h4><ul>
+<li>软件过程模型是不断发展的</li>
+<li>各种软件过程模型各有优缺点和适用场合</li>
+<li>选用时不必拘泥于某种模型</li>
+<li>可组合多种模型</li>
+<li>也可根据实际创造新的模型</li>
+</ul>
+<p>传统的软件工程：数据流图，数据流图映射成模块结构图。</p>
+<h3 id="系统流程图"><a href="#系统流程图" class="headerlink" title="系统流程图"></a>系统流程图</h3><p>用途</p>
+<ul>
+<li>描述系统物理模型的传统工具。表达业务在系统各部件之间进行处理的流水账。系统各部件用黑盒子的形式进行描述。理顺和优化业务，分析不足。</li>
+<li>符号简单明了，是沟通交流的工具。</li>
+</ul>
+<p><img src="./images/1559104010756.png"></p>
+<p>系统流程图不仅可用于可行性研究，还可用于需求分析阶段。</p>
+<p>画系统流程图时，首先要搞清业务处理过程，同时要理解系统流程图各个符号的含义，选择相应的符号来代表系统中的各个元素</p>
+<p>系统流程图分层：</p>
+<ul>
+<li>面对复杂系统时，较好的办法是分层次描绘。</li>
+<li>先绘制高层次系统流程图，描述系统概貌，再对每个关键功能详细描述。</li>
+<li>从抽象到具体逐步深入的了解复杂系统。</li>
+</ul>
+<h3 id="数据流图（DFD-Data-Flow-Diagram）"><a href="#数据流图（DFD-Data-Flow-Diagram）" class="headerlink" title="数据流图（DFD: Data Flow Diagram）"></a>数据流图（DFD: Data Flow Diagram）</h3><h4 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h4><ul>
+<li>是对业务流程的进一步抽象和概括</li>
+<li>描绘系统的逻辑功能模型的工具</li>
+<li>描绘信息流和数据从输入移动到输出的过程中所经受的变换：数据从哪里来，到哪里去，经过怎样的处理，保存在哪里</li>
+<li>没有任何具体的物理部件，只是描绘数据在软件中流动和被处理的逻辑过程。是系统逻辑功能的图形表示。</li>
+<li>可以发现和解决数据流通中的问题：数据不匹配、处理过程不合理等</li>
+<li>是分析员和用户沟通的工具，是后期设计的出发点。</li>
+</ul>
+<h4 id="2-符号"><a href="#2-符号" class="headerlink" title="2. 符号"></a>2. 符号</h4><p><img src="./images/1559104151808.png"></p>
+<p><img src="./images/1559104169192.png"></p>
+<h4 id="3-DFD的绘制过程"><a href="#3-DFD的绘制过程" class="headerlink" title="3. DFD的绘制过程"></a>3. DFD的绘制过程</h4><p>DFD的绘制一般采用自顶向下、逐步细化的方法，主要步骤：</p>
+<ul>
+<li>明确系统范围。识别出那些不受系统控制但又影响系统运行的外部环境。</li>
+<li>绘制基本系统模型：基本系统模型由若干源点、终点和一个基本处理组成，表明系统对数据加工变换的基本功能。</li>
+<li>逐层细化基本系统模型得到功能级DFD和详细DFD。<ul>
+<li>细化原则：<ul>
+<li>分解后的软件成分有相对独立功能</li>
+<li>一次分解不要加入过多细节，忽略琐碎的枝节，如出错处理等</li>
+<li>由外向里画DFD</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-用途"><a href="#4-用途" class="headerlink" title="4. 用途"></a>4. 用途</h4><ul>
+<li>交流信息的工具：开发人员之间，分析员和用户之间</li>
+<li>软件分析和设计的工具<ul>
+<li>辅助分析。描述了系统的功能</li>
+<li>辅助设计。对数据流图划分边界，不同的边界对应不同的系统设计和实现</li>
+</ul>
+</li>
+</ul>
+<p>实现：渐增式，非..的优缺点。什么自顶向下，三明治等等具体内容优缺点</p>
+<h3 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3><p>软件需求：以一种清晰、简洁、一致且无二义性的方式，描述用户对目标软件系统在功能、行为、性能、设计约束等方面的期望，是在开发过程中对系统的约束。</p>
+<h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><ul>
+<li>充分理解现实中的业务问题，并作为软件设计的基础；</li>
+<li>为软件项目的成本、时间、风险估计提供准确的依据；</li>
+<li>减少开发工作量，避免将时间与资源浪费在设计与实现错误的需求上；</li>
+<li>通过提供需求文档和需求基线，来有效的管理系统演化与变更；</li>
+<li>作为顾客与开发团队之间正式合同的一部分；</li>
+<li>为最终的验收测试提供标准和依据；</li>
+</ul>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><p>**业务需求(Business Requirements)**：客户对于系统的高层次目标要求(highlevel objectives) ，定义了项目的远景和范畴(vision and scope)</p>
+<ul>
+<li>业务：属于哪类业务范畴？应完成什么功能？为何目的？</li>
+<li>客户：软件为谁服务？目标客户是谁？</li>
+<li>特性：区别于其他竞争产品的特性是什么？</li>
+<li>价值：价值体现在那些方面？</li>
+<li>优先级：功能特性的优先级次序是什么？</li>
+</ul>
+<p>**用户需求(User Requirements)**：用户使用系统必须完成的任务。是从用户角度描述的系统功能需求与非功能需求，通常只涉及系统的外部行为而不涉及内部特性。</p>
+<p>**系统需求(System Requirements, SR)**：系统应该提供的功能或服务，通常涉及用户或外部系统与该系统之间的交互，不考虑系统内部的实现细节；</p>
+<h4 id="系统需求的类型"><a href="#系统需求的类型" class="headerlink" title="系统需求的类型"></a>系统需求的类型</h4><ol>
+<li>功能性需求(F)</li>
+</ol>
+<ul>
+<li>描述了系统所应提供的服务</li>
+<li>系统与其实现环境之间的交互，输入/输出</li>
+<li>异常</li>
+</ul>
+<p>功能需求可以以不同的详细程度反复编写和细化</p>
+<p>功能需求描述应该完整而且一致和准确</p>
+<ul>
+<li>完整性意味着用户所需的所有的服务应该全部给出描述</li>
+<li>一致性意味着需求描述不能前后矛盾</li>
+<li>准确性是指需求不能出现模糊和二义性的地方</li>
+</ul>
+<ol start="2">
+<li>非功能性需求(URPS)</li>
+</ol>
+<ul>
+<li>描述了不直接关联到系统功能行为的系统的方方面面。从各个角度对系统的约束和限制，反映了客户对软件系统质量和性能的额外要求，如响应时间、数据精度、可靠性等。</li>
+<li>可用性(Usability):是一种用户可以学会的操作、输入准备、解释一个系统或者构件输出的状况。</li>
+<li>可靠性(Reliability):是系统或构件在给定时间内、指定条件下，完成其要求功能的能力。</li>
+<li>性能(Performance):需求要考虑系统的定量属性，比如响应时间，吞吐量、有效性和准确性。</li>
+<li>可支持性(Supportability):需求关注于在进行部署后系统的变化状况，比如包括可适配性、可维护性、可移植性等。</li>
+</ul>
+<h4 id="分析方法"><a href="#分析方法" class="headerlink" title="分析方法"></a>分析方法</h4><p>细化所有的软件功能，找到各元素之间的联系和限制，分析他们是否满足需求，剔除不合理的需求，增加需要补充的部分，最后，给出系统的详细逻辑模型。</p>
+<ul>
+<li>结构化方法（Structured Analysis, SA）：功能的分析与抽象，自顶向下进行分析</li>
+<li>面向数据结构的方法</li>
+<li>面向对象的方法：以对象作为分析问题解决问题的核心</li>
+<li>形式化软件规格说明技术：通过数学推演和形式化方法严格定义用户需求</li>
+</ul>
+<h4 id="结构化分析方法"><a href="#结构化分析方法" class="headerlink" title="结构化分析方法"></a>结构化分析方法</h4><p>SA的核心思想是模块化，自顶向下、逐步求精对系统进行分析</p>
+<p>使用多个需求分析视图，建立系统的数据、功能和行为模型</p>
+<ul>
+<li>数据流图DFD（流动和处理）</li>
+<li>加工说明PSPEC（说明DFD中的每个加工）</li>
+<li>数据字典DD （DFD中所有元素的定义的集合）</li>
+<li>状态迁移图STD（软件状态变迁）</li>
+<li>关联图（外部实体和系统之间的数据流和物流）</li>
+<li>E-R图</li>
+</ul>
+<h4 id="需求分析的原则"><a href="#需求分析的原则" class="headerlink" title="需求分析的原则"></a>需求分析的原则</h4><p>(1) 必须理解并描述问题的信息域，根据这条 准则应该建立数据模型。<br>(2) 必须定义软件应完成的功能域，这条准则 要求建立功能模型。<br>(3) 必须描述作为外部事件结果的软件行为， 这条准则要求建立行为模型。<br>(4) 必须对描述信息、功能和行为的模型进行 分解，用层次的方式展示细节。</p>
+<h4 id="各种图"><a href="#各种图" class="headerlink" title="各种图"></a>各种图</h4><p>数据建模—-ERD (Entity- Relationship Diagram)</p>
+<p><img src="./images/1559127872292.png"></p>
+<p>功能建模—数据流图（Data Flow Diagram, DFD）</p>
+<p><img src="./images/1559128013913.png"></p>
+<p>行为建模—状态转换图（State Transition Diagram）</p>
+<p><img src="./images/1559128063934.png"></p>
+<p><img src="./images/1559128077801.png"></p>
+<h3 id="软件设计"><a href="#软件设计" class="headerlink" title="软件设计"></a>软件设计</h3><p><img src="./images/1559128157007.png"></p>
+<h4 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h4><p>“模块”，又称“构件”，一般指用一个名字可调用 的一段程序。它一般具有如下三个基本属性：</p>
+<ul>
+<li>功能即指该模块实现什么功能，做什么事情 规定的功能 出错处理 返回一个“结束标志”</li>
+<li>逻辑：描述模块内部如何实现要求的功能和数据。 </li>
+<li>接口：模块的输入输出 </li>
+<li>状态：该模块运行时的环境和条件。</li>
+</ul>
+<p><strong>模块化（modularity）</strong>：模块划分，将系统分成若干模块</p>
+<p><strong>“模块化”的作用</strong></p>
+<ul>
+<li>容易设计，使软件结构清晰，易于理解；</li>
+<li>使软件易于测试和调试，提高可靠性；</li>
+<li>提高可修改性；</li>
+<li>有助于软件开发工程的组织管理</li>
+</ul>
+<p><strong>模块的重要特征</strong></p>
+<ul>
+<li>抽象（abstraction）<ul>
+<li>我们在考虑问题时，集中考虑和当前问题有关的方面，而忽略和当前问题无关的方面，这就是抽象。或者说抽象就是抽出事物的本质特性和各类问题的共性，找出联系和相似性，加以概括和提取。</li>
+<li>处理复杂系统的唯一有效方法。</li>
+</ul>
+</li>
+<li>信息隐藏（information hiding）<ul>
+<li>数据隐藏、细节隐藏，黑盒子</li>
+<li>可理解性</li>
+<li>修改副作用小</li>
+<li>错误副作用小</li>
+</ul>
+</li>
+<li>局部化：把一些关系密切的软件元素物理地放得彼此靠近</li>
+<li>模块独立性</li>
+</ul>
+<p><strong>模块独立性（Module independence）</strong><br>好设计的关键： 模块分解的目的是每个模块完成一个相对 独立的子功能，并且与其它模块间的接口 简单。</p>
+<p>独立性的度量（Yourdon &amp; Constantine,1978） </p>
+<ul>
+<li>耦合（Coupling） — 块间联系 </li>
+<li>内聚（Cohesion） — 块内联系</li>
+</ul>
+<p><img src="./images/1559128616969.png"></p>
+<p><img src="./images/1559128629565.png"></p>
+<h4 id="面向数据流的结构化设计方法（SD）"><a href="#面向数据流的结构化设计方法（SD）" class="headerlink" title="面向数据流的结构化设计方法（SD）"></a>面向数据流的结构化设计方法（SD）</h4><p><img src="./images/1559128708705.png"></p>
+<p>层次图用来描绘软件功能和子功能的层次结构，图中的一个矩形框代表一个模块，方框间的连线表示调用关系而不表示组成关系。</p>
+<p><img src="./images/1559128769686.png"></p>
+<ol>
+<li>结构图（Yourdon提出）是软件结构设计的另一种工具, 与层次图类似。用来确定系统中每个程序是由哪些模块组成的，以及这些模块相互间的关系</li>
+<li>它在层次图的每一个方框内注明的是模块的名字或主要功能。</li>
+<li>方框之间的直线表示模块的调用关系。</li>
+<li>用带注解的箭头表示模块调用过程中传递的信息。</li>
+</ol>
+<p><strong>基于数据流（ SD ）的设计方法</strong></p>
+<ul>
+<li>又称为结构化设计方法；</li>
+<li>目标：给出设计软件结构的一个系统化途径；</li>
+<li>作用：该方法定义了一些不同的“映射”，利用这些映射可以把数据流图变换成软件结构。</li>
+</ul>
+<p><img src="./images/1559128868067.png"></p>
+<p><img src="./images/1559128879101.png"></p>
+<p><img src="./images/1559128892853.png"></p>
+<p>分层DFD的映射</p>
+<ul>
+<li>对于一个复杂问题的DFD，往往是分层的。分层的DFD映射成SC图也应该是分层的，这样便于设计，也便于修改。</li>
+</ul>
+<h4 id="面向数据结构的分析方法"><a href="#面向数据结构的分析方法" class="headerlink" title="面向数据结构的分析方法"></a>面向数据结构的分析方法</h4><ul>
+<li>软件系统本质上是信息处理系统，以信息对象及其操作为核心进行需求分析。</li>
+<li>认为复合信息对象具有层次结构，并且可按顺序、选择、重复三种结构分解为成员信息对象。</li>
+<li>提供将层次信息结构映射为程序结构的机制，从而为软件设计奠定较好的基础。</li>
+</ul>
+<h4 id="面向对象分析方法"><a href="#面向对象分析方法" class="headerlink" title="面向对象分析方法"></a>面向对象分析方法</h4><p>OOA的核心思想是利用OO的概念和方法对软件需求 建造模型，以使用户需求逐步精确化、一致化、完全化。</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><h4 id="黑盒测试-——-功能测试"><a href="#黑盒测试-——-功能测试" class="headerlink" title="黑盒测试 —— 功能测试"></a>黑盒测试 —— 功能测试</h4><p><img src="./images/1559105792846.png"></p>
+<p>黑盒测试的目：</p>
+<ul>
+<li>功能是否正常使用？</li>
+<li>输入 → 正确输出？</li>
+<li>保持外部信息的完整性？</li>
+<li>时机：测试 的后期，如集成测试、确认测试</li>
+</ul>
+<h4 id="白盒测试"><a href="#白盒测试" class="headerlink" title="白盒测试"></a>白盒测试</h4><p><img src="./images/1559105871051.png"></p>
+<ul>
+<li>关注软件内部逻辑结构 （control structure）</li>
+<li>测试每条逻辑通路</li>
+<li>检查断点（ break point break point break point ）状态</li>
+<li>测试方案对程序逻辑的覆盖程度决定测试的完全性程度</li>
+<li>时机：测试的早期，例如：单元测试</li>
+<li>成本高，通常对结构比较复杂的模块进行白盒测试</li>
+</ul>
+<h3 id="维护"><a href="#维护" class="headerlink" title="维护"></a>维护</h3><p>定义：就是在软件已经交付使用之后，因为下列原因而修改软件的过程。</p>
+<ul>
+<li>软件中的bug需要修复——改正性维护（corrective maintenace）</li>
+<li>软件在使用过程中，应用户要求扩充一些在分析和设计阶段中没有规定的功能和性能——完善性维护（perfective maintenance）</li>
+<li>商业环境在不断地变化、计算机硬件和软件环境的升级需要更新现有的系统——适应性维护（adaptive maintenance）</li>
+<li>为了改进系统的可靠性和可维护性，为适应将来的变化而进行的自主性的改进——预防性维护（preventive maintenace）</li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2023年01月01日 19:26</p>
+        <p>原始链接： <a class="post-url" href="/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/" title="软件工程复习">http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/</a></p>
+        <footer>
+            <a href="http://muquanrui.com">
+                <img src="/images/logo.png" alt="MU Quanrui">
+                MU Quanrui
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/&title=《软件工程复习》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/&title=《软件工程复习》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《软件工程复习》 — Quanrui's Blog&url=http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/&via=http://muquanrui.com" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2019/05/29/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%A4%8D%E4%B9%A0/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/College/" class="color3">College</a>
+      
+    <a href="/tags/我的大学/" class="color5">我的大学</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+        <div class= "post-toc-name">Table of Contents</div>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="post-toc-text">软件的生命周期</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B"><span class="post-toc-text">软件过程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-%E7%BC%96%E7%A0%81%E2%80%94%E4%BF%AE%E6%AD%A3%E6%A8%A1%E5%9E%8B%EF%BC%88code-and-fix-model%EF%BC%89"><span class="post-toc-text">1. 编码—修正模型（code and fix model）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-%E7%80%91%E5%B8%83%E6%A8%A1%E5%9E%8B%EF%BC%88Waterfall-Model%EF%BC%89"><span class="post-toc-text">2. 瀑布模型（Waterfall Model）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%9E%8B%EF%BC%88Prototyping-Model%EF%BC%89"><span class="post-toc-text">3. 原型模型（Prototyping Model）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-%E5%A2%9E%E9%87%8F%E6%A8%A1%E5%9E%8B-Incremental-Model"><span class="post-toc-text">4. 增量模型( Incremental Model )</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-%E8%9E%BA%E6%97%8B%E6%A8%A1%E5%9E%8B%EF%BC%88Spiral-Model%EF%BC%89"><span class="post-toc-text">5. 螺旋模型（Spiral Model）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6-%E5%96%B7%E6%B3%89%E6%A8%A1%E5%9E%8B%EF%BC%88Fountain-Model%EF%BC%89"><span class="post-toc-text">6. 喷泉模型（Fountain Model）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="post-toc-text">为什么需要软件过程模型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E8%BD%AF%E4%BB%B6%E8%BF%87%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="post-toc-text">如何选择软件过程模型</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="post-toc-text">系统流程图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9B%BE%EF%BC%88DFD-Data-Flow-Diagram%EF%BC%89"><span class="post-toc-text">数据流图（DFD: Data Flow Diagram）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-%E6%A6%82%E8%BF%B0"><span class="post-toc-text">1. 概述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-%E7%AC%A6%E5%8F%B7"><span class="post-toc-text">2. 符号</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-DFD%E7%9A%84%E7%BB%98%E5%88%B6%E8%BF%87%E7%A8%8B"><span class="post-toc-text">3. DFD的绘制过程</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-%E7%94%A8%E9%80%94"><span class="post-toc-text">4. 用途</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="post-toc-text">需求分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E4%BD%9C%E7%94%A8"><span class="post-toc-text">作用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%88%86%E7%B1%BB"><span class="post-toc-text">分类</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E7%B3%BB%E7%BB%9F%E9%9C%80%E6%B1%82%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">系统需求的类型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="post-toc-text">分析方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E7%BB%93%E6%9E%84%E5%8C%96%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="post-toc-text">结构化分析方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E7%9A%84%E5%8E%9F%E5%88%99"><span class="post-toc-text">需求分析的原则</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E5%90%84%E7%A7%8D%E5%9B%BE"><span class="post-toc-text">各种图</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1"><span class="post-toc-text">软件设计</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="post-toc-text">模块化</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E9%9D%A2%E5%90%91%E6%95%B0%E6%8D%AE%E6%B5%81%E7%9A%84%E7%BB%93%E6%9E%84%E5%8C%96%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95%EF%BC%88SD%EF%BC%89"><span class="post-toc-text">面向数据流的结构化设计方法（SD）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E9%9D%A2%E5%90%91%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="post-toc-text">面向数据结构的分析方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="post-toc-text">面向对象分析方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="post-toc-text">测试</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95-%E2%80%94%E2%80%94-%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="post-toc-text">黑盒测试 —— 功能测试</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95"><span class="post-toc-text">白盒测试</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E7%BB%B4%E6%8A%A4"><span class="post-toc-text">维护</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2019/06/05/College/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E5%A4%8D%E4%B9%A0%EF%BC%9AChapter%201%20Introduction/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          计网复习：Chapter 1 Introduction
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2019/01/15/Lifelong%20Learning/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/2019.1.15%20%E7%A7%91%E7%9B%AE%E4%B8%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">2019.1.15 科目三</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="College/我的大学/软件工程复习" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cyvaQ34l4';
+        var conf = 'dfbc2f31fdc91ffc75e2035195b4426d';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    |
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+    <div class="theme-info">
+</p>
+
+
+      <span class="post-count">本站博文总字数：637.8k</span>
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018~2023 MU Quanrui<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<!--加载prettify代码高亮js-->
+  <script type="text/javascript" src="/google-code-prettify/prettify.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('pre').addClass('prettyprint linenums');
+      $('code').addClass('prettyprint');
+      prettyPrint();
+    })
+  </script>
+
+<script>
+  var mihoConfig = {
+      root: "http://muquanrui.com",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Blog/">Blog</a><a class="category-link" href="/categories/Data-Structures-Algorithms/">Data Structures & Algorithms</a><a class="category-link" href="/categories/Database/">Database</a><a class="category-link" href="/categories/ENSEEIHT/">ENSEEIHT</a><a class="category-link" href="/categories/Framework/">Framework</a><a class="category-link" href="/categories/Franc%CC%A7ais/">Français</a><a class="category-link" href="/categories/Java-Project/">Java Project</a><a class="category-link" href="/categories/Java-Tutorial/">Java Tutorial</a><a class="category-link" href="/categories/Linux/">Linux</a><a class="category-link" href="/categories/Methodology/">Methodology</a><a class="category-link" href="/categories/Middleware/">Middleware</a><a class="category-link" href="/categories/Network/">Network</a><a class="category-link" href="/categories/Operating-System/">Operating System</a><a class="category-link" href="/categories/Photography/">Photography</a><a class="category-link" href="/categories/Problem-Solving/">Problem Solving</a><a class="category-link" href="/categories/Programming/">Programming</a><a class="category-link" href="/categories/Software/">Software</a><a class="category-link" href="/categories/macOS/">macOS</a><a class="category-link" href="/categories/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/">墓畔回忆录</a><a class="category-link" href="/categories/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/">我的大学</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Blog/" style="font-size: 13.53px;">Blog</a> <a href="/tags/College/" style="font-size: 18.24px;">College</a> <a href="/tags/Computer-Science/" style="font-size: 18.82px;">Computer Science</a> <a href="/tags/Data-Structures-Algorithms/" style="font-size: 10.59px;">Data Structures & Algorithms</a> <a href="/tags/Database/" style="font-size: 12.94px;">Database</a> <a href="/tags/ENSEEIHT/" style="font-size: 14.12px;">ENSEEIHT</a> <a href="/tags/Framework/" style="font-size: 11.76px;">Framework</a> <a href="/tags/Franc%CC%A7ais/" style="font-size: 14.71px;">Français</a> <a href="/tags/Java-Project/" style="font-size: 10px;">Java Project</a> <a href="/tags/Java-Tutorial/" style="font-size: 19.41px;">Java Tutorial</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 18.82px;">Java基础</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 14.71px;">Java核心技术卷I</a> <a href="/tags/Lifelong-Learning/" style="font-size: 16.47px;">Lifelong Learning</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Methodology/" style="font-size: 10px;">Methodology</a> <a href="/tags/Middleware/" style="font-size: 10.59px;">Middleware</a> <a href="/tags/MySQL/" style="font-size: 10.59px;">MySQL</a> <a href="/tags/Network/" style="font-size: 15.29px;">Network</a> <a href="/tags/Notes/" style="font-size: 15.88px;">Notes</a> <a href="/tags/Operating-System/" style="font-size: 13.53px;">Operating System</a> <a href="/tags/Photography/" style="font-size: 10px;">Photography</a> <a href="/tags/Problem-Solving/" style="font-size: 11.18px;">Problem Solving</a> <a href="/tags/Programming/" style="font-size: 20px;">Programming</a> <a href="/tags/Programming-Learning/" style="font-size: 11.18px;">Programming Learning</a> <a href="/tags/Software/" style="font-size: 10px;">Software</a> <a href="/tags/Spring/" style="font-size: 10.59px;">Spring</a> <a href="/tags/macOS/" style="font-size: 11.18px;">macOS</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91UML/" style="font-size: 11.76px;">【大学课程】UML</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10.59px;">【大学课程】操作系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" style="font-size: 11.76px;">【大学课程】数据库系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/" style="font-size: 11.76px;">【大学课程】计算机接口与通信</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 11.18px;">【大学课程】计算机网络</a> <a href="/tags/%E3%80%90%E5%B0%9A%E7%A1%85%E8%B0%B7%E3%80%91Java/" style="font-size: 17.06px;">【尚硅谷】Java</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.35px;">【王道考研】操作系统</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 12.94px;">【王道考研】计算机网络</a> <a href="/tags/%E5%9B%BE%E8%A7%A3%E7%BD%91%E7%BB%9C/" style="font-size: 11.76px;">图解网络</a> <a href="/tags/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/" style="font-size: 10.59px;">墓畔回忆录</a> <a href="/tags/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/" style="font-size: 17.65px;">我的大学</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/categories">
+                    <i class="fa fa-book"></i><span>Categories</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/tags">
+                    <i class="fa fa-tags"></i><span>Tags</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Blog/" style="font-size: 13.53px;">Blog</a> <a href="/tags/College/" style="font-size: 18.24px;">College</a> <a href="/tags/Computer-Science/" style="font-size: 18.82px;">Computer Science</a> <a href="/tags/Data-Structures-Algorithms/" style="font-size: 10.59px;">Data Structures & Algorithms</a> <a href="/tags/Database/" style="font-size: 12.94px;">Database</a> <a href="/tags/ENSEEIHT/" style="font-size: 14.12px;">ENSEEIHT</a> <a href="/tags/Framework/" style="font-size: 11.76px;">Framework</a> <a href="/tags/Franc%CC%A7ais/" style="font-size: 14.71px;">Français</a> <a href="/tags/Java-Project/" style="font-size: 10px;">Java Project</a> <a href="/tags/Java-Tutorial/" style="font-size: 19.41px;">Java Tutorial</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 18.82px;">Java基础</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 14.71px;">Java核心技术卷I</a> <a href="/tags/Lifelong-Learning/" style="font-size: 16.47px;">Lifelong Learning</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Methodology/" style="font-size: 10px;">Methodology</a> <a href="/tags/Middleware/" style="font-size: 10.59px;">Middleware</a> <a href="/tags/MySQL/" style="font-size: 10.59px;">MySQL</a> <a href="/tags/Network/" style="font-size: 15.29px;">Network</a> <a href="/tags/Notes/" style="font-size: 15.88px;">Notes</a> <a href="/tags/Operating-System/" style="font-size: 13.53px;">Operating System</a> <a href="/tags/Photography/" style="font-size: 10px;">Photography</a> <a href="/tags/Problem-Solving/" style="font-size: 11.18px;">Problem Solving</a> <a href="/tags/Programming/" style="font-size: 20px;">Programming</a> <a href="/tags/Programming-Learning/" style="font-size: 11.18px;">Programming Learning</a> <a href="/tags/Software/" style="font-size: 10px;">Software</a> <a href="/tags/Spring/" style="font-size: 10.59px;">Spring</a> <a href="/tags/macOS/" style="font-size: 11.18px;">macOS</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91UML/" style="font-size: 11.76px;">【大学课程】UML</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10.59px;">【大学课程】操作系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" style="font-size: 11.76px;">【大学课程】数据库系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/" style="font-size: 11.76px;">【大学课程】计算机接口与通信</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 11.18px;">【大学课程】计算机网络</a> <a href="/tags/%E3%80%90%E5%B0%9A%E7%A1%85%E8%B0%B7%E3%80%91Java/" style="font-size: 17.06px;">【尚硅谷】Java</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.35px;">【王道考研】操作系统</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 12.94px;">【王道考研】计算机网络</a> <a href="/tags/%E5%9B%BE%E8%A7%A3%E7%BD%91%E7%BB%9C/" style="font-size: 11.76px;">图解网络</a> <a href="/tags/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/" style="font-size: 10.59px;">墓畔回忆录</a> <a href="/tags/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/" style="font-size: 17.65px;">我的大学</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":200,"height":400,"vOffset":-30},"mobile":{"show":false},"react":{"opacity":0.8},"log":false});</script></body>
+</html>
+
+
+
