@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>学习笔记｜代码精进之路：从码农到工匠 - 思想 | Quanrui&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Quanrui's Blog" />
+  
+  <meta name="description" content="8 抽象 若想捉大鱼，就得潜入深渊。深渊里的鱼更有力，也更纯净。硕大而抽象，且非常美丽。 ——大卫·林奇  8.1 介绍抽象思维是人类文明发展的推动力之一。原始人看到一棵树，就认识一棵树，随着认知水平的提高，人类开始识别不同的树，然后抽象思维到植物-&gt;生物-&gt;物质。 抽象和具象是相对应的概念，“抽”就是抽离，“象”就是具象。从字面上理解抽象，就是从具体中抽离出来。英文的抽象abstra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习笔记｜代码精进之路：从码农到工匠 - 思想">
+<meta property="og:url" content="http://muquanrui.com/2022/12/29/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E6%80%9D%E6%83%B3/index.html">
+<meta property="og:site_name" content="Quanrui&#39;s Blog">
+<meta property="og:description" content="8 抽象 若想捉大鱼，就得潜入深渊。深渊里的鱼更有力，也更纯净。硕大而抽象，且非常美丽。 ——大卫·林奇  8.1 介绍抽象思维是人类文明发展的推动力之一。原始人看到一棵树，就认识一棵树，随着认知水平的提高，人类开始识别不同的树，然后抽象思维到植物-&gt;生物-&gt;物质。 抽象和具象是相对应的概念，“抽”就是抽离，“象”就是具象。从字面上理解抽象，就是从具体中抽离出来。英文的抽象abstra">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-12-29T07:10:44.000Z">
+<meta property="article:modified_time" content="2023-01-02T11:10:38.014Z">
+<meta property="article:author" content="MU Quanrui">
+<meta property="article:tag" content="Programming">
+<meta property="article:tag" content="Methodology">
+<meta property="article:tag" content="代码精进之路：从码农到工匠">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+ <!--加载prettify代码高亮样式-->
+<link href="/google-code-prettify/tranquil-heart.css" type="text/css" rel="stylesheet" />
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+
+  <!--加载条样式-->
+  <style>
+    .pace .pace-progress {
+    	background-image: linear-gradient(90deg, #F79533 0%, #F37055 15%, #EF4E7B 30%, #A166AB 44%, #5073B8 58%, #1098AD 72%, #07B39B 86%, #6DBA82 100%);
+    	height: 3px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+  </style>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <div id="background"></div><!--背景颜色/图片-->
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+
+        <div id="header-menu" class="header-menu-pos animated">
+
+
+<a target="_blank" rel="noopener" href="https://github.com/muquanrui" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#FFA500; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Quanrui&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/categories">
+                        <i class="fa fa-book"></i>
+                        <span>Categories</span>
+                    </a>
+                    
+                    <a  href="/tags">
+                        <i class="fa fa-tags"></i>
+                        <span>Tags</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Quanrui&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Carpe diem.
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Home" target="_blank" href="//muquanrui.com">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/muquanrui">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Google" target="_blank" href="//google.com">
+                            <i class="fa fa-google fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Programming/Methodology/代码精进之路：从码农到工匠/学习笔记｜代码精进之路：从码农到工匠 - 思想" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      学习笔记｜代码精进之路：从码农到工匠 - 思想
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Methodology/">Methodology</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2022-12-29
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>          
+        </li>
+      </ul>
+       <span class="post-count">文章字数:3.3k字 &nbsp &nbsp  
+         阅读时长:11分钟</span>
+    </div>
+  
+        
+          
+      </header>
+    
+
+    <div class="article-entry post-content" itemprop="articleBody">
+
+    
+    
+
+
+
+      
+            
+            <h1 id="8-抽象"><a href="#8-抽象" class="headerlink" title="8 抽象"></a>8 抽象</h1><blockquote>
+<p>若想捉大鱼，就得潜入深渊。深渊里的鱼更有力，也更纯净。硕大而抽象，且非常美丽。</p>
+<p>——大卫·林奇</p>
+</blockquote>
+<h2 id="8-1-介绍"><a href="#8-1-介绍" class="headerlink" title="8.1 介绍"></a>8.1 介绍</h2><p>抽象思维是人类文明发展的推动力之一。原始人看到一棵树，就认识一棵树，随着认知水平的提高，人类开始识别不同的树，然后抽象思维到植物-&gt;生物-&gt;物质。</p>
+<p>抽象和具象是相对应的概念，“抽”就是抽离，“象”就是具象。从字面上理解抽象，就是从具体中抽离出来。英文的抽象abstract来自拉丁文abstractio，它的原意是排除、抽出。</p>
+<p>抽象是指为了某种目的，对一个概念或一种现象包含的信息进行过滤，移除不相关的信息，只保留与某种最终目的相关的信息。例如“苹果”就是一个抽象，是对“苹果”这个概念的统称，它抹去了单个苹果对象的特征，不管是大的小的、甜的不甜的、红的不红的，都叫作“苹果”。</p>
+<h2 id="8-2-抽象与OO"><a href="#8-2-抽象与OO" class="headerlink" title="8.2 抽象与OO"></a>8.2 抽象与OO</h2><p>面向对象（Object Oriented，OO）的思考方式，就是万物皆对象。抽象帮助我们将现实世界的对象抽象成类，完成从现实世界的概念到计算机世界的模型的映射。</p>
+<p>例如，有一堆苹果，如果对其进行抽象，我们可以得到Apple这个类，通过这个类，我们可以实例化一个红色的苹果：new Apple(“red”)。此时，如果我们需要把香蕉、橘子等水果也纳入考虑范围，那么Apple的抽象层次就不够了，需要Fruit这个更高层次的抽象来表达“水果”的概念。</p>
+<p>面向对象的思想主要包括3个方面：</p>
+<ol>
+<li>面向对象的分析（Object Oriented Analysis，OOA）：根据抽象关键问题域来分解系统。</li>
+<li>面向对象的设计（Object Oriented Design，OOD）：提供符号设计系统的面向对象的实现过程。</li>
+<li>面向对象的编程（Object Oriented Programming，OOP）：程序中包含各种独立而又互相调用的对象的思想。</li>
+</ol>
+<h2 id="8-3-抽象的层次"><a href="#8-3-抽象的层次" class="headerlink" title="8.3 抽象的层次"></a>8.3 抽象的层次</h2><p>对同一个对象的抽象是有不同层次的。层次越往上，抽象程度越高，它所包含的东西就越多，其含义越宽泛，忽略的细节也越多；层次越往下，抽象程度越低，它所包含的东西越少，细节越多。</p>
+<p>分层抽象在软件世界中无处不在，是软件架构的核心。</p>
+<p>有一句名言，“软件领域的任何问题，都可以通过增加一个间接的中间层来解决。”这种分层在某种意义上也是抽象的分层，每一层的抽象只关注本层相关的信息，对上层屏蔽复杂性，从而简化整个系统的设计。</p>
+<p>例如操作系统，编程语言，各种架构，都用到分层抽象的思想。</p>
+<h2 id="8-4-如何抽象"><a href="#8-4-如何抽象" class="headerlink" title="8.4 如何抽象"></a>8.4 如何抽象</h2><p>方法论：</p>
+<ol>
+<li>寻找共性：抽象的过程就是合并同类项、归并分类和寻找共性的过程。也就是将有内在逻辑关系的事物放在一起，然后给这个分类进行命名，这个名字就代表了这组分类的抽象。</li>
+<li>提升抽象层次：发现有些东西无法归到一个类别中时，可以通过上升一个抽象层次的方式，让它们在更高的抽象层次上产生逻辑关系。</li>
+<li>构筑金字塔：通过归类分组搭建金字塔结构。要自下而上地思考，总结概括；自上而下地表达，结论先行。</li>
+</ol>
+<p>提升抽象思维：</p>
+<ol>
+<li>多阅读</li>
+<li>多总结</li>
+<li>领域建模训练</li>
+</ol>
+<hr>
+<h1 id="9-分治"><a href="#9-分治" class="headerlink" title="9 分治"></a>9 分治</h1><h2 id="9-1-分治算法"><a href="#9-1-分治算法" class="headerlink" title="9.1 分治算法"></a>9.1 分治算法</h2><p>分治算法主要包含两个步骤——分、治。</p>
+<ol>
+<li>分解：将要解决的问题划分成若干规模较小的同类问题。</li>
+<li>求解：当子问题划分得足够小时，用较简单的方法解决。</li>
+<li>合并：按原问题的要求，将子问题的解逐层合并，构成原问题的解。</li>
+</ol>
+<p>应用举例：</p>
+<ul>
+<li>归并排序</li>
+<li>二分查找</li>
+<li>第K小元素</li>
+</ul>
+<h2 id="9-2-分治思想的应用"><a href="#9-2-分治思想的应用" class="headerlink" title="9.2 分治思想的应用"></a>9.2 分治思想的应用</h2><h3 id="9-2-1-函数分解"><a href="#9-2-1-函数分解" class="headerlink" title="9.2.1 函数分解"></a>9.2.1 函数分解</h3><p>函数过大过长是典型的代码“坏味道”，意味着这个函数可能承载着过多的职责，应该将大函数分解成多个短小、易读、易维护的小函数。</p>
+<p>但是要注意：</p>
+<ol>
+<li>函数长短是职责单一的充分不必要条件，长函数往往意味着职责不单一，但是短函数也不一定就意味着职责单一。</li>
+<li>使用组合函数模式时，要注意抽象层次一致性原则（Single Level of Abstration Principle，SLAP），不同抽象层次的内容放在一起会给人凌乱、逻辑不协调的感觉。</li>
+</ol>
+<h3 id="9-2-2-写代码的两次创造"><a href="#9-2-2-写代码的两次创造" class="headerlink" title="9.2.2 写代码的两次创造"></a>9.2.2 写代码的两次创造</h3><p>优雅的代码很少是一次成形的，大部分情况下要经过两次创造：</p>
+<ol>
+<li>第一遍实现功能。不要试图一次就写出“完美的”代码，这样只会拖慢我们的节奏，第一遍以实现功能为主，可以允许一定的冗长和复杂，比如有过多的缩进和嵌套循环，有过长的参数列表，名称可以随意取，还会有部分的重复代码。第一遍主要是为了理清逻辑，为第二遍的重构优化做好准备。</li>
+<li>第二遍重构优化。如果只是止步于功能实现，那么代码最多只是一个半成品。需要有第二次创造——重构优化，即在第一遍实现功能的基础上，看一看是否可以做得更好：命名合理吗？职责单一吗？满足OCP吗？函数是否过长？抽象是否合理？</li>
+</ol>
+<p>第二次创造通常要比第一次创造更费精力、更耗时间，所以很少有人愿意去做第二遍的事情。</p>
+<p>康纳曼·丹尼尔在《快思慢想》一书中提出的重要理论：系统一（感性）和系统二（理性）。动用系统二会耗费能量，而人类是从贫瘠的远古时代进化而来的，为了保存能量，一般默认的是使用系统一思考，不到万不得已，是不会启动系统二的。</p>
+<p>因此，最好的优化肯定不是等系统上线后再去做，因为这样往往就等于“再也不会去做”（later equals never）。优化工作本应该是我们编码工作的一部分，拆成两步，主要对编码效率上的考量。</p>
+<h3 id="9-2-3-分治模式"><a href="#9-2-3-分治模式" class="headerlink" title="9.2.3 分治模式"></a>9.2.3 分治模式</h3><p>很多的设计模式都用到了分治的思想，比如第5章介绍的23种设计模式中的责任链模式、装饰者模式，以及管道模式。</p>
+<h3 id="9-2-4-分层设计"><a href="#9-2-4-分层设计" class="headerlink" title="9.2.4 分层设计"></a>9.2.4 分层设计</h3><p>分层设计最大的好处是分离关注（Separation of concerns），这样我们就可以通过分层隔离简化一个复杂的问题，让每一层只对上一层负责，从而使每一层的职责变得相对简单。</p>
+<p>比如网络分层模型，架构的分层。</p>
+<h3 id="9-2-5-横切和竖切"><a href="#9-2-5-横切和竖切" class="headerlink" title="9.2.5 横切和竖切"></a>9.2.5 横切和竖切</h3><p>随着互联网的发展，用户流量呈指数型增长，单体应用已经不能适应发展的需要，分布式架构正在变得越来越重要。这是企业架构演化的必然结果，因为只有分治才能应对网络高并发，实现水平扩展。</p>
+<p>比如分布式数据库的横切（水平拆分）和竖切（垂直拆分）：</p>
+<ul>
+<li>竖切，就是按照领域将单体数据库拆分成多个数据库。比如，原来电商数据都是放在一个库中，我们可以按照领域拆分成商品库、会员库、交易库等。</li>
+<li>横切，是通过一种数据路由算法对数据进行分片，从而减少一个数据库中的数据量。比如，我们要将会员的交易数据切分成10个库，可以用userId对10进行取模。</li>
+</ul>
+<hr>
+<h1 id="10-技术人的素养"><a href="#10-技术人的素养" class="headerlink" title="10 技术人的素养"></a>10 技术人的素养</h1><blockquote>
+<p>未经审视的人生不值得过。</p>
+<p>——苏格拉底</p>
+</blockquote>
+<ol>
+<li>不教条：在软件的世界里没有“银弹”。教条的主要原因是我们还停留在有样学样的阶段，导致我们忘记了软件的第一性原理是“控制软件复杂度”。但凡能提高代码可读性、可扩展性和可维护性的方法，都是值得考虑的，并不一定要拘泥于某种特定的开发过程或者编程范式。</li>
+<li>批判性思维（Critical Thinking）：是一种谨慎运用推理去断定一个断言是否为真的能力。它要求我们保持思考的自主性和逻辑的严密性，不被动地全盘接受，也不刻意地带着偏见去驳斥一个观点。</li>
+<li>成长型思维：成长的过程中不可能是一帆风顺的，肯定会有痛苦、有阻力、有挫折。面对逆境，我们应该怎么做？有些人也许不堪重负，就此沉沦了，而有些人可以越挫越勇，把每一次失败都当成学习的机会。成长型思维（Growth Mindset）和固定型思维（Fixed Mindset）会极大地影响我们面对逆境的处理方式。</li>
+<li>结构化思维：不仅在表达上要结构化，在分析问题时更要有结构化思维，这样才能分析得更全面、深刻。结构化思维的定义就是“逻辑+套路”。逻辑是一种能力，而套路是方法论、经验；逻辑属于道，而方法论属于术。所谓逻辑，是指结构之间必须是有逻辑关系的，可以使用演绎顺序、时间顺序、空间顺序、程度顺序来阻止逻辑。所谓套路，是指我们解决问题的方法论、路径和经验。<ol>
+<li>如何落地新团队？<ol>
+<li>熟悉业务：了解产品形态，了解业务流程，走访客户。</li>
+<li>熟悉技术：了解系统架构，了解领域模型，了解代码结构。</li>
+<li>熟悉人：了解组织结构，了解人员角色，勤沟通。</li>
+</ol>
+</li>
+<li>如何做晋升述职？<ol>
+<li>提出问题，定义问题，分析问题，解决问题，最后展望未来。</li>
+<li>zoom in/zoom out</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>工具化思维：懒比低效的勤奋更具智慧，是更难得的美德。最差的境界是“实在懒”，拖延不喜欢的任务；其次是“开明懒”，迅速做完不喜欢的任务，以摆脱之；最高的境界是“智慧懒”，编写某个工具来完成不喜欢的任务，以便再也不用做这样的事情了，从而一劳永逸。</li>
+<li>好奇心：学习的动力不应该来自于外界的强力，而应该来自于内在，来自于我们内心对知识的渴望、对世界的好奇心。好奇心是创新的驱动力，是学习的起点。拥有好奇心也能让人常常快乐。</li>
+<li>记笔记：记笔记利于知识内化，形成知识体系和方便回顾。做笔记要注意使用云笔记，归类分组，不要复制粘贴和结构化表达。</li>
+<li>有目标：“所有事物都要经过两次创造的原则，第一次为心智上的创造，第二次为实际的创造”。即先搞清楚目标，然后努力实现。带着目标去学习和行动，往往事半功倍。</li>
+<li>选择的自由：自由不是想做什么就做什么，自由是一种价值观，是一种责任，是一种敢于做出选择，并愿意为自己的选择承担后果的责任。但凡成大事者，都能够“处乱世而不惊，临虚空而不惧，喜迎阴晴圆缺，笑傲雨雪风霜”。</li>
+<li>平和的心态：做事要积极，但是心态要放平。真正平和的人了解自己所有的主观感受都只是一瞬间的波动。虽然疼痛，但不再感到悲惨；虽然愉悦，但不再干扰心灵的平静。</li>
+<li>精进：天必须进步一点点！记住，慢就是快。</li>
+</ol>
+<hr>
+<h1 id="11-技术Leader的修养"><a href="#11-技术Leader的修养" class="headerlink" title="11 技术Leader的修养"></a>11 技术Leader的修养</h1><blockquote>
+<p>Leader，就是走在队伍的最前面，带领者，领路人。</p>
+<p>——金一南《胜者思维》</p>
+</blockquote>
+<ol>
+<li>提升团队技术氛围：分享代码的好坏味道；技术课题的研讨分享会；Code Review周报；读书会。</li>
+<li>学会目标管理：相比KPI更加重视OKR；使用SMART原则设定目标。</li>
+<li>做好技术规划：分而治之，将工作和问题划分为当前问题、技术领域、业务领域和团队特色。</li>
+<li>反思推理阶梯：避免基于自身主观认识为前提产生的不客观或错误推理。</li>
+<li>注意Leader和Manager的区别：技术Leader要重技术，轻管理，用技术带领和驱动团队。</li>
+<li>视人为人：尊重自己，尊重他人，重视人与人的关系。</li>
+</ol>
+<hr>
+<blockquote>
+<p>学习资料：</p>
+<p>《代码精进之路：从码农到工匠》——张建飞</p>
+</blockquote>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2023年01月02日 19:10</p>
+        <p>原始链接： <a class="post-url" href="/2022/12/29/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E6%80%9D%E6%83%B3/" title="学习笔记｜代码精进之路：从码农到工匠 - 思想">http://muquanrui.com/2022/12/29/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E6%80%9D%E6%83%B3/</a></p>
+        <footer>
+            <a href="http://muquanrui.com">
+                <img src="/images/logo.png" alt="MU Quanrui">
+                MU Quanrui
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2022/12/29/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E6%80%9D%E6%83%B3/&title=《学习笔记｜代码精进之路：从码农到工匠 - 思想》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2022/12/29/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E6%80%9D%E6%83%B3/&title=《学习笔记｜代码精进之路：从码农到工匠 - 思想》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2022/12/29/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E6%80%9D%E6%83%B3/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《学习笔记｜代码精进之路：从码农到工匠 - 思想》 — Quanrui's Blog&url=http://muquanrui.com/2022/12/29/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E6%80%9D%E6%83%B3/&via=http://muquanrui.com" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2022/12/29/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E6%80%9D%E6%83%B3/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2022/12/29/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E6%80%9D%E6%83%B3/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Programming/" class="color2">Programming</a>
+      
+    <a href="/tags/Methodology/" class="color2">Methodology</a>
+      
+    <a href="/tags/代码精进之路：从码农到工匠/" class="color4">代码精进之路：从码农到工匠</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+        <div class= "post-toc-name">Table of Contents</div>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#8-%E6%8A%BD%E8%B1%A1"><span class="post-toc-text">8 抽象</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-1-%E4%BB%8B%E7%BB%8D"><span class="post-toc-text">8.1 介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-2-%E6%8A%BD%E8%B1%A1%E4%B8%8EOO"><span class="post-toc-text">8.2 抽象与OO</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-3-%E6%8A%BD%E8%B1%A1%E7%9A%84%E5%B1%82%E6%AC%A1"><span class="post-toc-text">8.3 抽象的层次</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-4-%E5%A6%82%E4%BD%95%E6%8A%BD%E8%B1%A1"><span class="post-toc-text">8.4 如何抽象</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#9-%E5%88%86%E6%B2%BB"><span class="post-toc-text">9 分治</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9-1-%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95"><span class="post-toc-text">9.1 分治算法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9-2-%E5%88%86%E6%B2%BB%E6%80%9D%E6%83%B3%E7%9A%84%E5%BA%94%E7%94%A8"><span class="post-toc-text">9.2 分治思想的应用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-2-1-%E5%87%BD%E6%95%B0%E5%88%86%E8%A7%A3"><span class="post-toc-text">9.2.1 函数分解</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-2-2-%E5%86%99%E4%BB%A3%E7%A0%81%E7%9A%84%E4%B8%A4%E6%AC%A1%E5%88%9B%E9%80%A0"><span class="post-toc-text">9.2.2 写代码的两次创造</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-2-3-%E5%88%86%E6%B2%BB%E6%A8%A1%E5%BC%8F"><span class="post-toc-text">9.2.3 分治模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-2-4-%E5%88%86%E5%B1%82%E8%AE%BE%E8%AE%A1"><span class="post-toc-text">9.2.4 分层设计</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-2-5-%E6%A8%AA%E5%88%87%E5%92%8C%E7%AB%96%E5%88%87"><span class="post-toc-text">9.2.5 横切和竖切</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#10-%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%9A%84%E7%B4%A0%E5%85%BB"><span class="post-toc-text">10 技术人的素养</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#11-%E6%8A%80%E6%9C%AFLeader%E7%9A%84%E4%BF%AE%E5%85%BB"><span class="post-toc-text">11 技术Leader的修养</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          学习笔记｜代码精进之路：从码农到工匠 - 实践
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2022/12/25/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E6%8A%80%E8%89%BA/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">学习笔记｜代码精进之路：从码农到工匠 - 技艺</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="Programming/Methodology/代码精进之路：从码农到工匠/学习笔记｜代码精进之路：从码农到工匠 - 思想" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cyvaQ34l4';
+        var conf = 'dfbc2f31fdc91ffc75e2035195b4426d';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    |
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+    <div class="theme-info">
+</p>
+
+
+      <span class="post-count">本站博文总字数：673.1k</span>
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018~2023 MU Quanrui<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<!--加载prettify代码高亮js-->
+  <script type="text/javascript" src="/google-code-prettify/prettify.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('pre').addClass('prettyprint linenums');
+      $('code').addClass('prettyprint');
+      prettyPrint();
+    })
+  </script>
+
+<script>
+  var mihoConfig = {
+      root: "http://muquanrui.com",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Blog/">Blog</a><a class="category-link" href="/categories/Data-Structures-Algorithms/">Data Structures & Algorithms</a><a class="category-link" href="/categories/Database/">Database</a><a class="category-link" href="/categories/ENSEEIHT/">ENSEEIHT</a><a class="category-link" href="/categories/Framework/">Framework</a><a class="category-link" href="/categories/Franc%CC%A7ais/">Français</a><a class="category-link" href="/categories/Java-Project/">Java Project</a><a class="category-link" href="/categories/Java-Tutorial/">Java Tutorial</a><a class="category-link" href="/categories/Linux/">Linux</a><a class="category-link" href="/categories/Methodology/">Methodology</a><a class="category-link" href="/categories/Middleware/">Middleware</a><a class="category-link" href="/categories/Network/">Network</a><a class="category-link" href="/categories/Operating-System/">Operating System</a><a class="category-link" href="/categories/Photography/">Photography</a><a class="category-link" href="/categories/Problem-Solving/">Problem Solving</a><a class="category-link" href="/categories/Programming/">Programming</a><a class="category-link" href="/categories/Software/">Software</a><a class="category-link" href="/categories/macOS/">macOS</a><a class="category-link" href="/categories/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/">墓畔回忆录</a><a class="category-link" href="/categories/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/">我的大学</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Blog/" style="font-size: 13.53px;">Blog</a> <a href="/tags/College/" style="font-size: 18.24px;">College</a> <a href="/tags/Computer-Science/" style="font-size: 18.82px;">Computer Science</a> <a href="/tags/Data-Structures-Algorithms/" style="font-size: 10.59px;">Data Structures & Algorithms</a> <a href="/tags/Database/" style="font-size: 12.94px;">Database</a> <a href="/tags/ENSEEIHT/" style="font-size: 14.12px;">ENSEEIHT</a> <a href="/tags/Framework/" style="font-size: 11.76px;">Framework</a> <a href="/tags/Franc%CC%A7ais/" style="font-size: 14.71px;">Français</a> <a href="/tags/Java-Project/" style="font-size: 10px;">Java Project</a> <a href="/tags/Java-Tutorial/" style="font-size: 19.41px;">Java Tutorial</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 18.82px;">Java基础</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 14.71px;">Java核心技术卷I</a> <a href="/tags/Lifelong-Learning/" style="font-size: 16.47px;">Lifelong Learning</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Methodology/" style="font-size: 11.76px;">Methodology</a> <a href="/tags/Middleware/" style="font-size: 10.59px;">Middleware</a> <a href="/tags/MySQL/" style="font-size: 10.59px;">MySQL</a> <a href="/tags/Network/" style="font-size: 15.29px;">Network</a> <a href="/tags/Notes/" style="font-size: 15.88px;">Notes</a> <a href="/tags/Operating-System/" style="font-size: 13.53px;">Operating System</a> <a href="/tags/Photography/" style="font-size: 10px;">Photography</a> <a href="/tags/Problem-Solving/" style="font-size: 11.18px;">Problem Solving</a> <a href="/tags/Programming/" style="font-size: 20px;">Programming</a> <a href="/tags/Programming-Learning/" style="font-size: 11.18px;">Programming Learning</a> <a href="/tags/Software/" style="font-size: 10px;">Software</a> <a href="/tags/Spring/" style="font-size: 10.59px;">Spring</a> <a href="/tags/macOS/" style="font-size: 11.18px;">macOS</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91UML/" style="font-size: 11.76px;">【大学课程】UML</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10.59px;">【大学课程】操作系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" style="font-size: 11.76px;">【大学课程】数据库系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/" style="font-size: 11.76px;">【大学课程】计算机接口与通信</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 11.18px;">【大学课程】计算机网络</a> <a href="/tags/%E3%80%90%E5%B0%9A%E7%A1%85%E8%B0%B7%E3%80%91Java/" style="font-size: 17.06px;">【尚硅谷】Java</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.35px;">【王道考研】操作系统</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 12.94px;">【王道考研】计算机网络</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/" style="font-size: 11.18px;">代码精进之路：从码农到工匠</a> <a href="/tags/%E5%9B%BE%E8%A7%A3%E7%BD%91%E7%BB%9C/" style="font-size: 11.76px;">图解网络</a> <a href="/tags/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/" style="font-size: 10.59px;">墓畔回忆录</a> <a href="/tags/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/" style="font-size: 17.65px;">我的大学</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/categories">
+                    <i class="fa fa-book"></i><span>Categories</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/tags">
+                    <i class="fa fa-tags"></i><span>Tags</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Blog/" style="font-size: 13.53px;">Blog</a> <a href="/tags/College/" style="font-size: 18.24px;">College</a> <a href="/tags/Computer-Science/" style="font-size: 18.82px;">Computer Science</a> <a href="/tags/Data-Structures-Algorithms/" style="font-size: 10.59px;">Data Structures & Algorithms</a> <a href="/tags/Database/" style="font-size: 12.94px;">Database</a> <a href="/tags/ENSEEIHT/" style="font-size: 14.12px;">ENSEEIHT</a> <a href="/tags/Framework/" style="font-size: 11.76px;">Framework</a> <a href="/tags/Franc%CC%A7ais/" style="font-size: 14.71px;">Français</a> <a href="/tags/Java-Project/" style="font-size: 10px;">Java Project</a> <a href="/tags/Java-Tutorial/" style="font-size: 19.41px;">Java Tutorial</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 18.82px;">Java基础</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 14.71px;">Java核心技术卷I</a> <a href="/tags/Lifelong-Learning/" style="font-size: 16.47px;">Lifelong Learning</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Methodology/" style="font-size: 11.76px;">Methodology</a> <a href="/tags/Middleware/" style="font-size: 10.59px;">Middleware</a> <a href="/tags/MySQL/" style="font-size: 10.59px;">MySQL</a> <a href="/tags/Network/" style="font-size: 15.29px;">Network</a> <a href="/tags/Notes/" style="font-size: 15.88px;">Notes</a> <a href="/tags/Operating-System/" style="font-size: 13.53px;">Operating System</a> <a href="/tags/Photography/" style="font-size: 10px;">Photography</a> <a href="/tags/Problem-Solving/" style="font-size: 11.18px;">Problem Solving</a> <a href="/tags/Programming/" style="font-size: 20px;">Programming</a> <a href="/tags/Programming-Learning/" style="font-size: 11.18px;">Programming Learning</a> <a href="/tags/Software/" style="font-size: 10px;">Software</a> <a href="/tags/Spring/" style="font-size: 10.59px;">Spring</a> <a href="/tags/macOS/" style="font-size: 11.18px;">macOS</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91UML/" style="font-size: 11.76px;">【大学课程】UML</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10.59px;">【大学课程】操作系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" style="font-size: 11.76px;">【大学课程】数据库系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/" style="font-size: 11.76px;">【大学课程】计算机接口与通信</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 11.18px;">【大学课程】计算机网络</a> <a href="/tags/%E3%80%90%E5%B0%9A%E7%A1%85%E8%B0%B7%E3%80%91Java/" style="font-size: 17.06px;">【尚硅谷】Java</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.35px;">【王道考研】操作系统</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 12.94px;">【王道考研】计算机网络</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/" style="font-size: 11.18px;">代码精进之路：从码农到工匠</a> <a href="/tags/%E5%9B%BE%E8%A7%A3%E7%BD%91%E7%BB%9C/" style="font-size: 11.76px;">图解网络</a> <a href="/tags/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/" style="font-size: 10.59px;">墓畔回忆录</a> <a href="/tags/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/" style="font-size: 17.65px;">我的大学</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":200,"height":400,"vOffset":-30},"mobile":{"show":false},"react":{"opacity":0.8},"log":false});</script></body>
+</html>
+
+
+

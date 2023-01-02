@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>学习笔记｜代码精进之路：从码农到工匠 - 实践 | Quanrui&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Quanrui's Blog" />
+  
+  <meta name="description" content="12 COLA架构 软件的首要技术使命：管理复杂度。 ——史蒂夫·迈克康奈尔《代码大全（第2版）》  12.1 软件架构软件架构是一个系统的草图。软件架构描述的对象是直接构成系统的抽象组件。各个组件之间的连接则明确和相对细致地描述组件之间的通信。在实现阶段，这些抽象组件被细化为实际的组件，比如具体某个类或者对象。在面向对象领域中，组件之间的连接通常用接口来实现。  业务架构：由业务架构师负责，也可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习笔记｜代码精进之路：从码农到工匠 - 实践">
+<meta property="og:url" content="http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:site_name" content="Quanrui&#39;s Blog">
+<meta property="og:description" content="12 COLA架构 软件的首要技术使命：管理复杂度。 ——史蒂夫·迈克康奈尔《代码大全（第2版）》  12.1 软件架构软件架构是一个系统的草图。软件架构描述的对象是直接构成系统的抽象组件。各个组件之间的连接则明确和相对细致地描述组件之间的通信。在实现阶段，这些抽象组件被细化为实际的组件，比如具体某个类或者对象。在面向对象领域中，组件之间的连接通常用接口来实现。  业务架构：由业务架构师负责，也可">
+<meta property="og:locale">
+<meta property="og:image" content="http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/images/image-20230102183658592.png">
+<meta property="og:image" content="http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/images/image-20230102184000730.png">
+<meta property="og:image" content="http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/images/image-20230102184044141.png">
+<meta property="og:image" content="http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/images/image-20230102184328152.png">
+<meta property="og:image" content="http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/images/image-20230102184745011.png">
+<meta property="og:image" content="http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/images/image-20230102185037203.png">
+<meta property="og:image" content="http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/images/image-20230102185141547.png">
+<meta property="og:image" content="http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/images/image-20230102185152231.png">
+<meta property="og:image" content="http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/images/image-20230102185202001.png">
+<meta property="og:image" content="http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/images/image-20230102185231078.png">
+<meta property="og:image" content="http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/images/image-20230102185740499.png">
+<meta property="og:image" content="http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/images/image-20230102185758525.png">
+<meta property="og:image" content="http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/images/image-20230102185926927.png">
+<meta property="article:published_time" content="2023-01-02T09:30:17.000Z">
+<meta property="article:modified_time" content="2023-01-02T11:10:39.042Z">
+<meta property="article:author" content="MU Quanrui">
+<meta property="article:tag" content="Programming">
+<meta property="article:tag" content="Methodology">
+<meta property="article:tag" content="代码精进之路：从码农到工匠">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/images/image-20230102183658592.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+ <!--加载prettify代码高亮样式-->
+<link href="/google-code-prettify/tranquil-heart.css" type="text/css" rel="stylesheet" />
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+
+  
+  
+
+
+  <!--加载条样式-->
+  <style>
+    .pace .pace-progress {
+    	background-image: linear-gradient(90deg, #F79533 0%, #F37055 15%, #EF4E7B 30%, #A166AB 44%, #5073B8 58%, #1098AD 72%, #07B39B 86%, #6DBA82 100%);
+    	height: 3px;
+    }
+    .pace .pace-progress-inner {
+     	box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+    	border-top-color: #1E92FB;	/*上边框颜色*/
+    	border-left-color: #1E92FB;	/*左边框颜色*/
+    }
+  </style>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <div id="background"></div><!--背景颜色/图片-->
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+
+        <div id="header-menu" class="header-menu-pos animated">
+
+
+<a target="_blank" rel="noopener" href="https://github.com/muquanrui" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#FFA500; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Quanrui&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/categories">
+                        <i class="fa fa-book"></i>
+                        <span>Categories</span>
+                    </a>
+                    
+                    <a  href="/tags">
+                        <i class="fa fa-tags"></i>
+                        <span>Tags</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Quanrui&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Carpe diem.
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Home" target="_blank" href="//muquanrui.com">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/muquanrui">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Google" target="_blank" href="//google.com">
+                            <i class="fa fa-google fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Programming/Methodology/代码精进之路：从码农到工匠/学习笔记｜代码精进之路：从码农到工匠 - 实践" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      学习笔记｜代码精进之路：从码农到工匠 - 实践
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Methodology/">Methodology</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2023-01-02
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>          
+        </li>
+      </ul>
+       <span class="post-count">文章字数:3.7k字 &nbsp &nbsp  
+         阅读时长:12分钟</span>
+    </div>
+  
+        
+          
+      </header>
+    
+
+    <div class="article-entry post-content" itemprop="articleBody">
+
+    
+    
+
+
+
+      
+            
+            <h1 id="12-COLA架构"><a href="#12-COLA架构" class="headerlink" title="12 COLA架构"></a>12 COLA架构</h1><blockquote>
+<p>软件的首要技术使命：管理复杂度。</p>
+<p>——史蒂夫·迈克康奈尔《代码大全（第2版）》</p>
+</blockquote>
+<h2 id="12-1-软件架构"><a href="#12-1-软件架构" class="headerlink" title="12.1 软件架构"></a>12.1 软件架构</h2><p>软件架构是一个系统的草图。软件架构描述的对象是直接构成系统的抽象组件。各个组件之间的连接则明确和相对细致地描述组件之间的通信。在实现阶段，这些抽象组件被细化为实际的组件，比如具体某个类或者对象。在面向对象领域中，组件之间的连接通常用接口来实现。</p>
+<ul>
+<li>业务架构：由业务架构师负责，也可以称为业务领域专家、行业专家。业务架构属于顶层设计，其对业务的定义和划分会影响组织结构和技术架构。</li>
+<li>应用架构：由应用架构师负责，他需要根据业务场景的需要，设计应用的拓扑结构，制定应用规范、定义接口和数据交互协议等。并尽量将应用的复杂度控制在一个可以接受的水平，从而在快速地支撑业务发展的同时，确保系统的可用性和可维护性。</li>
+<li>系统架构：根据业务情况综合考虑系统的非功能属性要求（包括性能、安全性、可用性、稳定性等），然后做出技术选型。对于流行的分布式架构系统，需要解决服务器负载、分布式服务的注册和发现、消息系统、缓存系统、分布式数据库等问题，同时解决如何在CAP（Consistency，Availability，Partition Tolerance）定理之间进行权衡的问题。</li>
+<li>数据架构：如何对数据收集、处理，提供统一的服务和标准，是数据架构需要关注的问题。其目的就是统一数据定义规范，标准化数据表达，形成有效易维护的数据资产，搭建统一的大数据处理平台，形成数据使用闭环。</li>
+<li>物理架构：物理架构关注软件元件是如何放到硬件上的，包括机房搭建、网络拓扑结构、网络分流器、代理服务器、Web服务器、应用服务器、报表服务器、整合服务器、存储服务器和主机等。</li>
+<li>运维架构：负责运维系统的规划、选型、部署上线，建立规范化的运维体系。要借助技术手段控制和优化成本，通过工具化及流程提升运维效率，注重运营效益。制定和优化运维解决方案，包括但不限于柔性容灾、智能调度、弹性扩容与防攻击、推动及开发高效的自动化运维和管理工具、提高运维的自动化程度和效率。</li>
+</ul>
+<h2 id="12-2-典型的应用架构"><a href="#12-2-典型的应用架构" class="headerlink" title="12.2 典型的应用架构"></a>12.2 典型的应用架构</h2><h3 id="12-2-1-分层架构"><a href="#12-2-1-分层架构" class="headerlink" title="12.2.1 分层架构"></a>12.2.1 分层架构</h3><p>分层是一种常见的根据系统中的角色（职责拆分）和组织代码单元的常规实践。</p>
+<img src="images/image-20230102183658592.png" alt="image-20230102183658592" style="zoom:33%;" />
+
+<p>千层面架构是一种分层架构的反模式，是一种过度设计，比如：</p>
+<ul>
+<li>热衷于创建完美的系统导致项目过度抽象。</li>
+<li>层次太多，增加了整个系统的复杂性。</li>
+<li>物理层次太多，不但增加了整个系统的复杂性，还降低了系统的性能。</li>
+<li>严格的分层方法导致上层必须通过中间层次访问，而不是直接访问需要的层次。</li>
+</ul>
+<h3 id="12-2-2-CQRS"><a href="#12-2-2-CQRS" class="headerlink" title="12.2.2 CQRS"></a>12.2.2 CQRS</h3><p>命令查询分离（Command Query Separation，CQS）最早是Betrand Meyer（Eiffel语言之父，OCP的提出者）提出的概念，其基本思想在于任何一个对象的方法可以分为以下两类：</p>
+<ol>
+<li>命令（Command）：不返回任何结果（void），但会改变对象的状态。</li>
+<li>查询（Query）：返回结果，但是不会改变对象的状态，对系统没有副作用。</li>
+</ol>
+<p>命令查询职责分离模式（Command Query Responsibility Segregation，CQRS）是对CQS模式的进一步改进而成的一种简单架构模式。该模式从业务上分离修改（Command，增、删改，会对系统状态进行修改）和查询（Query，查，不会对系统状态进行修改）的行为，隔离开了读写逻辑，便于对不同部分进行有针对性的优化。</p>
+<img src="images/image-20230102184000730.png" alt="image-20230102184000730" style="zoom:33%;" />
+
+<h3 id="12-2-3-六边形架构"><a href="#12-2-3-六边形架构" class="headerlink" title="12.2.3 六边形架构"></a>12.2.3 六边形架构</h3><p>六边形架构由Alistair Cockburn在2005年提出，解决了传统的分层架构所带来的问题。实际上，六边形架构也是一种分层架构，只不过不是上下，而是内部和外部。</p>
+<img src="images/image-20230102184044141.png" alt="image-20230102184044141" style="zoom:33%;" />
+
+<p>六边形架构又称端口-适配器架构。六边形架构将系统分为内部（内部六边形）和外部，内部代表应用的业务逻辑，外部代表应用的驱动逻辑、基础设施或其他应用。</p>
+<p>内部通过端口和外部系统通信，端口代表了一定协议，以API呈现。一个端口可能对应多个外部系统，不同的外部系统需要使用不同的适配器，适配器负责对协议进行转换。这样就使得应用程序能够以一致的方式被用户、程序、自动化测试、批处理脚本所驱动，并且可以在与实际运行的设备和数据库相隔离的情况下进行开发和测试。</p>
+<p>一个端口对应多个适配器，是对一类外部系统的归纳，它体现了对外部的抽象。应用通过端口为外界提供服务，这些端口需要被良好地设计和测试。内部不关心外部如何使用端口，从一开始就要假定外部使用者是可替换的。</p>
+<h3 id="12-2-4-洋葱架构"><a href="#12-2-4-洋葱架构" class="headerlink" title="12.2.4 洋葱架构"></a>12.2.4 洋葱架构</h3><p>2008年，Jeffrey Palermo提出了洋葱架构（Onion Architecture）。</p>
+<p>洋葱架构在端口和适配器架构的基础上贯彻了将领域放在应用中心，将驱动机制（用户用例）和基础设施（ORM、搜索引擎、第三方API等）放在外围的思路。</p>
+<p>洋葱架构在六边形架构的基础上加入了内部层次。洋葱架构与六边形架构有着相同的思路，都是通过编写适配器代码将应用核心从对基础设施的关注中解放出来，避免基础设施代码渗透到应用核心之中。这样应用使用的工具和传达机制都可以轻松地替换，在一定程度上避免技术、工具或者供应商锁定。</p>
+<p>另外，洋葱架构分离了基础设施和业务应用，使得我们可以方便地模拟（Mock）基础实施，对业务应用进行测试。企业应用中存在着不止两个层次，洋葱架构还在业务逻辑中加入了一些在领域驱动设计的过程中被识别出来的层次，包括应用层（Application）、领域服务（Domain Service）、领域模型（Domain Model）和基础设施（Infrastructure）等。</p>
+<img src="images/image-20230102184328152.png" alt="image-20230102184328152" style="zoom:33%;" />
+
+<h3 id="12-2-5-DDD"><a href="#12-2-5-DDD" class="headerlink" title="12.2.5 DDD"></a>12.2.5 DDD</h3><p>准确地说，DDD不是架构，而是一种开发思想。但是很多架构的思想来源是DDD，比如洋葱架构，其内层（核心业务逻辑）就应该是领域层。</p>
+<h2 id="12-3-COLA架构设计"><a href="#12-3-COLA架构设计" class="headerlink" title="12.3 COLA架构设计"></a>12.3 COLA架构设计</h2><h3 id="12-3-1-分层设计"><a href="#12-3-1-分层设计" class="headerlink" title="12.3.1 分层设计"></a>12.3.1 分层设计</h3><p>COLA的分层是一种经过改良的三层架构，主要是将传统的业务逻辑层拆分成应用层、领域层和基础设施层：</p>
+<img src="images/image-20230102184745011.png" alt="image-20230102184745011" style="zoom:33%;" />
+
+<ol>
+<li>展现层（Presentation Layer）：负责以Rest的格式接受Web请求，然后将请求路由给Application层执行，并返回视图模型（View Model），其载体通常是数据传输对象（Data Transfer Object，DTO）。</li>
+<li>应用层（Application Layer）：主要负责获取输入、组装上下文、做输入校验、调用领域层做业务处理，当需要时发送消息通知。当然，层次是开放的，若有需要，应用层也可以直接访问基础实施层。</li>
+<li>领域层（Domain Layer）：主要封装了核心业务逻辑，并通过领域服务（Domain Service）和领域对象（Entities）的函数对外部提供业务逻辑的计算和处理。</li>
+<li>基础设施层（Infrastructure Layer）：主要包含数据访问通道（Tunnel）、Config和Common。这里我们使用Tunnel这个概念对所有的数据来源进行抽象，数据来源可以是数据库（MySQL、NoSQL）、搜索引擎、文件系统，也可以是SOA服务等；Config负责应用的配置；Common是通用的工具类。</li>
+</ol>
+<h3 id="12-3-2-扩展设计"><a href="#12-3-2-扩展设计" class="headerlink" title="12.3.2 扩展设计"></a>12.3.2 扩展设计</h3><p>两个基本概念：</p>
+<ol>
+<li>业务身份：是指在系统唯一标识一个业务或者一个场景的标志。在具体实现中，我们使用BizCode来表示业务身份，采用类似Java包名命名空间的方式。例如，用“ali.tmall”表示阿里巴巴天猫业务，用“ali.tmall.car”表示阿里巴巴天猫的汽车业务，用“ali.tmall.car.aftermarket”表示阿里巴巴天猫的汽车业务的后市场场景。</li>
+<li>扩展点：思想源自插件模式。每个业务或者场景都可以实现一个或多个扩展点（ExtensionPoint），也就是说，一个业务身份加上一个扩展点可以唯一地确定一个扩展实现（Extension）。这个业务身份和扩展点的组合，我们称为扩展坐标（ExtensionCoordinate）。</li>
+</ol>
+<p>作为一个框架，COLA在此主要做了两件事情：在系统启动时，扫描注册标记有@Extension的扩展实类；在系统Runtime时，根据业务身份选择对应的扩展实现进行执行。</p>
+<h3 id="12-3-3-规范设计"><a href="#12-3-3-规范设计" class="headerlink" title="12.3.3 规范设计"></a>12.3.3 规范设计</h3><ol>
+<li>组件规范：COLA规定一个应用至少要有3个组件：应用层、领域层和基础实施层。如果不是严格的前后端分离，也可以加入展现层的组件，但这是可选的。领域组件（Domain Module）是应用的核心，负责核心业务逻辑的处理，不应该有任何的外部依赖。领域组件的实现方式有两种，一种是把领域组件设计成纯POJO，另一种是通过依赖倒置，将数据访问的接口放在领域组件里，让基础设施组件（Infrastructure Module）去做接口实现。</li>
+</ol>
+<img src="images/image-20230102185037203.png" alt="image-20230102185037203" style="zoom:25%;" />
+
+<ol start="2">
+<li>包规范：包的设计也要遵循高内聚、低耦合的原则。每个包都应该是一组功能类似的类的聚集，这种划分使得整个项目形成一个金字塔结构。</li>
+</ol>
+<p><img src="images/image-20230102185141547.png" alt="image-20230102185141547"></p>
+<p><img src="images/image-20230102185152231.png" alt="image-20230102185152231"></p>
+<p><img src="images/image-20230102185202001.png" alt="image-20230102185202001"></p>
+<ol start="3">
+<li>命名规范：</li>
+</ol>
+<p><img src="images/image-20230102185231078.png" alt="image-20230102185231078"></p>
+<h3 id="12-3-4-COLA-Archetype"><a href="#12-3-4-COLA-Archetype" class="headerlink" title="12.3.4 COLA Archetype"></a>12.3.4 COLA Archetype</h3><p>应用创建的Maven Archetype确保了架构风格的一致，提升了新应用的创建效率。</p>
+<pre><code class="shell">mvn archetype:generate
+-DgroupId=com.alibaba.sample //demo应用的groupId
+-DartifactId=demo //demo应用的artifactId
+-Dversion=1.0.0-SNAPSHOT //demo应用的版本号
+-Dpackage=com.alibaba.sample //demo应用的package名
+-DarchetypeArtifactId=cola-framework-archetype
+-DarchetypeGroupId=com.alibaba.cola
+-DarchetypeVersion=1.0.0-SNAPSHOT</code></pre>
+<h2 id="12-4-COLA测试"><a href="#12-4-COLA测试" class="headerlink" title="12.4 COLA测试"></a>12.4 COLA测试</h2><h3 id="12-4-1-单元测试"><a href="#12-4-1-单元测试" class="headerlink" title="12.4.1 单元测试"></a>12.4.1 单元测试</h3><p>单元测试,是指对软件中的最小可测试单元进行检查和验证，应该具备以下特点：</p>
+<ul>
+<li>粒度要小：其测试对象通常是一个函数，最大也不应该超过一个类。</li>
+<li>速度要快：其运行速度要极快，应该都是在毫秒级完成。</li>
+</ul>
+<p>在COLA架构中，领域（Domain）组件作为核心业务逻辑，最好是纯POJO实现的，这样单元测试就会变得很容易，测试的粒度也是一个函数，运行速度极快。</p>
+<h3 id="12-4-2-集成测试"><a href="#12-4-2-集成测试" class="headerlink" title="12.4.2 集成测试"></a>12.4.2 集成测试</h3><p>集成测试是在单元测试的基础上，将所有模块按照设计要求组装成为子系统或系统，进行集成测试。</p>
+<p>集成测试的特点如下:</p>
+<ul>
+<li>集成测试是以模块和子系统为单元进行的测试，是黑盒测试。</li>
+<li>集成测试主要测试接口层的测试空间，单元测试主要测试内部实现层的测试空间。</li>
+</ul>
+<p>因为业务系统的依赖通常比较多，所以集成测试的成本很高。在处理这些依赖时，只有以下两种解决方法：</p>
+<ul>
+<li>不使用Mock：优点是实现成本低，但缺点是对环境的要求高。需要保证依赖的日常环境很稳定，依赖的数据很稳定。</li>
+<li>使用Mock：好处是屏蔽了外部依赖，测试可重复可预期，但缺点是Mock的成本非常高。试想，如果一次业务调用依赖外部4次服务调用和5次数据库调用，那么有9个接口需要Mock，你可能要花费70%的时间去写测试。</li>
+</ul>
+<h3 id="12-4-3-ColaMock"><a href="#12-4-3-ColaMock" class="headerlink" title="12.4.3 ColaMock"></a>12.4.3 ColaMock</h3><p>ColaMock工具是为了解决集成测试中Mock成本高的问题，自动帮助我们录制需要Mock的数据，并保存在本地，然后在运行集成测试时，自动进行注入、回放，从而极大地提升集成测试的效率。</p>
+<p>ColaMock主要包括数据自动录制和回放两大功能，其录制原理如下：</p>
+<ol>
+<li>ColaMock通过@ColaMockConfig标注需要录制的点，这些点也是回放时需要填充Mock数据的。</li>
+<li>然后通过DataRecordListener类监听测试运行情况，将需要录制的数据，按照一定的格式录制到Mock文件中去。</li>
+</ol>
+<h2 id="12-5-COLA架构总览"><a href="#12-5-COLA架构总览" class="headerlink" title="12.5 COLA架构总览"></a>12.5 COLA架构总览</h2><p>在架构思想上，COLA主张像六边形架构那样，使用端口-适配器去解耦技术细节；主张像洋葱架构那样，以领域为核心，并通过依赖倒置反转领域层的依赖方向。</p>
+<p><img src="images/image-20230102185740499.png" alt="image-20230102185740499"></p>
+<p>从COLA应用处理响应一个请求的过程来看，COLA使用了CQRS来分离命令和查询的职责，使用扩展点和元数据来提供更高应用的可扩展性，使用ColaMock来提升测试效率。</p>
+<p><img src="images/image-20230102185758525.png" alt="image-20230102185758525"></p>
+<hr>
+<h1 id="13-工匠平台"><a href="#13-工匠平台" class="headerlink" title="13 工匠平台"></a>13 工匠平台</h1><blockquote>
+<p>工匠平台，技术人自己的舞台！</p>
+<p>——“工匠平台”的宣传语</p>
+</blockquote>
+<p>工匠平台的核心是要构建一套对技术人员进行评测的度量体系，量化技术人员的技术贡献，从而激励技术人员在完成任务之余，投入更多的精力去写出更好的代码。</p>
+<p>定义了4个大的维度作为技术人员的KPI指标，分别是应用质量、技术影响力、技术贡献和开发质量。其中每个维度又可以包含一到多个度量，每个度量有一些度量指标。通过这些指标可以计算出一个分数，将分数加权求和就能直观反映出一个工程师的分数，分数越高，表示技术人员做出的技术贡献越多。</p>
+<p><img src="images/image-20230102185926927.png" alt="image-20230102185926927"></p>
+<p>完整代码：<a target="_blank" rel="noopener" href="https://github.com/alibaba/COLA/tree/master/sample/craftsman">https://github.com/alibaba/COLA/tree/master/sample/craftsman</a></p>
+<hr>
+<blockquote>
+<p>学习资料：</p>
+<p>《代码精进之路：从码农到工匠》——张建飞</p>
+</blockquote>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2023年01月02日 19:10</p>
+        <p>原始链接： <a class="post-url" href="/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/" title="学习笔记｜代码精进之路：从码农到工匠 - 实践">http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/</a></p>
+        <footer>
+            <a href="http://muquanrui.com">
+                <img src="/images/logo.png" alt="MU Quanrui">
+                MU Quanrui
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/&title=《学习笔记｜代码精进之路：从码农到工匠 - 实践》 — Quanrui's Blog&pic=cover.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/&title=《学习笔记｜代码精进之路：从码农到工匠 - 实践》 — Quanrui's Blog&source=Carpe diem." data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《学习笔记｜代码精进之路：从码农到工匠 - 实践》 — Quanrui's Blog&url=http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/&via=http://muquanrui.com" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://muquanrui.com/2023/01/02/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E5%AE%9E%E8%B7%B5/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Programming/" class="color2">Programming</a>
+      
+    <a href="/tags/Methodology/" class="color2">Methodology</a>
+      
+    <a href="/tags/代码精进之路：从码农到工匠/" class="color4">代码精进之路：从码农到工匠</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+        <div class= "post-toc-name">Table of Contents</div>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#12-COLA%E6%9E%B6%E6%9E%84"><span class="post-toc-text">12 COLA架构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#12-1-%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84"><span class="post-toc-text">12.1 软件架构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#12-2-%E5%85%B8%E5%9E%8B%E7%9A%84%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84"><span class="post-toc-text">12.2 典型的应用架构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-2-1-%E5%88%86%E5%B1%82%E6%9E%B6%E6%9E%84"><span class="post-toc-text">12.2.1 分层架构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-2-2-CQRS"><span class="post-toc-text">12.2.2 CQRS</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-2-3-%E5%85%AD%E8%BE%B9%E5%BD%A2%E6%9E%B6%E6%9E%84"><span class="post-toc-text">12.2.3 六边形架构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-2-4-%E6%B4%8B%E8%91%B1%E6%9E%B6%E6%9E%84"><span class="post-toc-text">12.2.4 洋葱架构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-2-5-DDD"><span class="post-toc-text">12.2.5 DDD</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#12-3-COLA%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="post-toc-text">12.3 COLA架构设计</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-3-1-%E5%88%86%E5%B1%82%E8%AE%BE%E8%AE%A1"><span class="post-toc-text">12.3.1 分层设计</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-3-2-%E6%89%A9%E5%B1%95%E8%AE%BE%E8%AE%A1"><span class="post-toc-text">12.3.2 扩展设计</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-3-3-%E8%A7%84%E8%8C%83%E8%AE%BE%E8%AE%A1"><span class="post-toc-text">12.3.3 规范设计</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-3-4-COLA-Archetype"><span class="post-toc-text">12.3.4 COLA Archetype</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#12-4-COLA%E6%B5%8B%E8%AF%95"><span class="post-toc-text">12.4 COLA测试</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-4-1-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="post-toc-text">12.4.1 单元测试</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-4-2-%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95"><span class="post-toc-text">12.4.2 集成测试</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-4-3-ColaMock"><span class="post-toc-text">12.4.3 ColaMock</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#12-5-COLA%E6%9E%B6%E6%9E%84%E6%80%BB%E8%A7%88"><span class="post-toc-text">12.5 COLA架构总览</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#13-%E5%B7%A5%E5%8C%A0%E5%B9%B3%E5%8F%B0"><span class="post-toc-text">13 工匠平台</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2022/12/29/Programming/Methodology/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BD%9C%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0%20-%20%E6%80%9D%E6%83%B3/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">学习笔记｜代码精进之路：从码农到工匠 - 思想</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="Programming/Methodology/代码精进之路：从码农到工匠/学习笔记｜代码精进之路：从码农到工匠 - 实践" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'cyvaQ34l4';
+        var conf = 'dfbc2f31fdc91ffc75e2035195b4426d';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    |
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+    <div class="theme-info">
+</p>
+
+
+      <span class="post-count">本站博文总字数：673.1k</span>
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018~2023 MU Quanrui<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+<!--加载prettify代码高亮js-->
+  <script type="text/javascript" src="/google-code-prettify/prettify.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('pre').addClass('prettyprint linenums');
+      $('code').addClass('prettyprint');
+      prettyPrint();
+    })
+  </script>
+
+<script>
+  var mihoConfig = {
+      root: "http://muquanrui.com",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Blog/">Blog</a><a class="category-link" href="/categories/Data-Structures-Algorithms/">Data Structures & Algorithms</a><a class="category-link" href="/categories/Database/">Database</a><a class="category-link" href="/categories/ENSEEIHT/">ENSEEIHT</a><a class="category-link" href="/categories/Framework/">Framework</a><a class="category-link" href="/categories/Franc%CC%A7ais/">Français</a><a class="category-link" href="/categories/Java-Project/">Java Project</a><a class="category-link" href="/categories/Java-Tutorial/">Java Tutorial</a><a class="category-link" href="/categories/Linux/">Linux</a><a class="category-link" href="/categories/Methodology/">Methodology</a><a class="category-link" href="/categories/Middleware/">Middleware</a><a class="category-link" href="/categories/Network/">Network</a><a class="category-link" href="/categories/Operating-System/">Operating System</a><a class="category-link" href="/categories/Photography/">Photography</a><a class="category-link" href="/categories/Problem-Solving/">Problem Solving</a><a class="category-link" href="/categories/Programming/">Programming</a><a class="category-link" href="/categories/Software/">Software</a><a class="category-link" href="/categories/macOS/">macOS</a><a class="category-link" href="/categories/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/">墓畔回忆录</a><a class="category-link" href="/categories/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/">我的大学</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Blog/" style="font-size: 13.53px;">Blog</a> <a href="/tags/College/" style="font-size: 18.24px;">College</a> <a href="/tags/Computer-Science/" style="font-size: 18.82px;">Computer Science</a> <a href="/tags/Data-Structures-Algorithms/" style="font-size: 10.59px;">Data Structures & Algorithms</a> <a href="/tags/Database/" style="font-size: 12.94px;">Database</a> <a href="/tags/ENSEEIHT/" style="font-size: 14.12px;">ENSEEIHT</a> <a href="/tags/Framework/" style="font-size: 11.76px;">Framework</a> <a href="/tags/Franc%CC%A7ais/" style="font-size: 14.71px;">Français</a> <a href="/tags/Java-Project/" style="font-size: 10px;">Java Project</a> <a href="/tags/Java-Tutorial/" style="font-size: 19.41px;">Java Tutorial</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 18.82px;">Java基础</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 14.71px;">Java核心技术卷I</a> <a href="/tags/Lifelong-Learning/" style="font-size: 16.47px;">Lifelong Learning</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Methodology/" style="font-size: 11.76px;">Methodology</a> <a href="/tags/Middleware/" style="font-size: 10.59px;">Middleware</a> <a href="/tags/MySQL/" style="font-size: 10.59px;">MySQL</a> <a href="/tags/Network/" style="font-size: 15.29px;">Network</a> <a href="/tags/Notes/" style="font-size: 15.88px;">Notes</a> <a href="/tags/Operating-System/" style="font-size: 13.53px;">Operating System</a> <a href="/tags/Photography/" style="font-size: 10px;">Photography</a> <a href="/tags/Problem-Solving/" style="font-size: 11.18px;">Problem Solving</a> <a href="/tags/Programming/" style="font-size: 20px;">Programming</a> <a href="/tags/Programming-Learning/" style="font-size: 11.18px;">Programming Learning</a> <a href="/tags/Software/" style="font-size: 10px;">Software</a> <a href="/tags/Spring/" style="font-size: 10.59px;">Spring</a> <a href="/tags/macOS/" style="font-size: 11.18px;">macOS</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91UML/" style="font-size: 11.76px;">【大学课程】UML</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10.59px;">【大学课程】操作系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" style="font-size: 11.76px;">【大学课程】数据库系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/" style="font-size: 11.76px;">【大学课程】计算机接口与通信</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 11.18px;">【大学课程】计算机网络</a> <a href="/tags/%E3%80%90%E5%B0%9A%E7%A1%85%E8%B0%B7%E3%80%91Java/" style="font-size: 17.06px;">【尚硅谷】Java</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.35px;">【王道考研】操作系统</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 12.94px;">【王道考研】计算机网络</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/" style="font-size: 11.18px;">代码精进之路：从码农到工匠</a> <a href="/tags/%E5%9B%BE%E8%A7%A3%E7%BD%91%E7%BB%9C/" style="font-size: 11.76px;">图解网络</a> <a href="/tags/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/" style="font-size: 10.59px;">墓畔回忆录</a> <a href="/tags/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/" style="font-size: 17.65px;">我的大学</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/categories">
+                    <i class="fa fa-book"></i><span>Categories</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/tags">
+                    <i class="fa fa-tags"></i><span>Tags</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Blog/" style="font-size: 13.53px;">Blog</a> <a href="/tags/College/" style="font-size: 18.24px;">College</a> <a href="/tags/Computer-Science/" style="font-size: 18.82px;">Computer Science</a> <a href="/tags/Data-Structures-Algorithms/" style="font-size: 10.59px;">Data Structures & Algorithms</a> <a href="/tags/Database/" style="font-size: 12.94px;">Database</a> <a href="/tags/ENSEEIHT/" style="font-size: 14.12px;">ENSEEIHT</a> <a href="/tags/Framework/" style="font-size: 11.76px;">Framework</a> <a href="/tags/Franc%CC%A7ais/" style="font-size: 14.71px;">Français</a> <a href="/tags/Java-Project/" style="font-size: 10px;">Java Project</a> <a href="/tags/Java-Tutorial/" style="font-size: 19.41px;">Java Tutorial</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 18.82px;">Java基础</a> <a href="/tags/Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7I/" style="font-size: 14.71px;">Java核心技术卷I</a> <a href="/tags/Lifelong-Learning/" style="font-size: 16.47px;">Lifelong Learning</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Methodology/" style="font-size: 11.76px;">Methodology</a> <a href="/tags/Middleware/" style="font-size: 10.59px;">Middleware</a> <a href="/tags/MySQL/" style="font-size: 10.59px;">MySQL</a> <a href="/tags/Network/" style="font-size: 15.29px;">Network</a> <a href="/tags/Notes/" style="font-size: 15.88px;">Notes</a> <a href="/tags/Operating-System/" style="font-size: 13.53px;">Operating System</a> <a href="/tags/Photography/" style="font-size: 10px;">Photography</a> <a href="/tags/Problem-Solving/" style="font-size: 11.18px;">Problem Solving</a> <a href="/tags/Programming/" style="font-size: 20px;">Programming</a> <a href="/tags/Programming-Learning/" style="font-size: 11.18px;">Programming Learning</a> <a href="/tags/Software/" style="font-size: 10px;">Software</a> <a href="/tags/Spring/" style="font-size: 10.59px;">Spring</a> <a href="/tags/macOS/" style="font-size: 11.18px;">macOS</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91UML/" style="font-size: 11.76px;">【大学课程】UML</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10.59px;">【大学课程】操作系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" style="font-size: 11.76px;">【大学课程】数据库系统</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E4%BF%A1/" style="font-size: 11.76px;">【大学课程】计算机接口与通信</a> <a href="/tags/%E3%80%90%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 11.18px;">【大学课程】计算机网络</a> <a href="/tags/%E3%80%90%E5%B0%9A%E7%A1%85%E8%B0%B7%E3%80%91Java/" style="font-size: 17.06px;">【尚硅谷】Java</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12.35px;">【王道考研】操作系统</a> <a href="/tags/%E3%80%90%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 12.94px;">【王道考研】计算机网络</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E7%B2%BE%E8%BF%9B%E4%B9%8B%E8%B7%AF%EF%BC%9A%E4%BB%8E%E7%A0%81%E5%86%9C%E5%88%B0%E5%B7%A5%E5%8C%A0/" style="font-size: 11.18px;">代码精进之路：从码农到工匠</a> <a href="/tags/%E5%9B%BE%E8%A7%A3%E7%BD%91%E7%BB%9C/" style="font-size: 11.76px;">图解网络</a> <a href="/tags/%E5%A2%93%E7%95%94%E5%9B%9E%E5%BF%86%E5%BD%95/" style="font-size: 10.59px;">墓畔回忆录</a> <a href="/tags/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6/" style="font-size: 17.65px;">我的大学</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":200,"height":400,"vOffset":-30},"mobile":{"show":false},"react":{"opacity":0.8},"log":false});</script></body>
+</html>
+
+
+
